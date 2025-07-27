@@ -2,7 +2,7 @@
 /*
 Plugin Name: Mimer forms VDI
 Description: Valida campos de teléfono y conecta con API.
-Version: 1.2.1
+Version: 1.2.2
 Author: Mimer
 */
 

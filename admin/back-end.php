@@ -84,10 +84,36 @@ class MimerPhoneValidatorAdmin {
                     <?php submit_button(); ?>
                 </form>
             <?php elseif ($active_tab == 'api'): ?>
-                <p>Próximamente: configuración de la API.</p>
+                <form method="post">
+                    <?php
+                    if ($_SERVER['REQUEST_METHOD'] === 'POST' && $active_tab == 'api') {
+                        $trustedform_js = isset($_POST['mimer_trustedform_js']) ? $_POST['mimer_trustedform_js'] : '';
+                        update_option('mimer_trustedform_js', $trustedform_js);
+                        echo '<div class="updated"><p>TrustedForm code saved.</p></div>';
+                    }
+                    ?>
+                    <table class="form-table">
+                        <tr valign="top">
+                            <th scope="row">TrustedForm code</th>
+                            <td>
+                                <textarea name="mimer_trustedform_js" rows="8" cols="60"><?php echo get_option('mimer_trustedform_js'); ?></textarea>
+                                <p class="description">Paste your TrustedForm code here. It will be rendered exactly as you paste it.</p>
+                            </td>
+                        </tr>
+                    </table>
+                    <?php submit_button('Save code'); ?>
+                </form>
             <?php endif; ?>
         </div>
         <?php
+    }
+
+    public function insert_trustedform_after_form($content) {
+        if (is_admin()) return $content;
+        $trustedform_js = get_option('mimer_trustedform_js');
+        if (empty($trustedform_js)) return $content;
+        // Mostrar el código tal cual, dentro del div
+        return preg_replace('/(<\/form>)/i', '$1<div class="trustedform">' . $trustedform_js . '</div>', $content, 1);
     }
 }
 

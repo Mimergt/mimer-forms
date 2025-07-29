@@ -23,6 +23,7 @@ $data = [
   "lead-phone"                  => $lead_phone,
   "case-depo-provera-taken"     => $fields['case_depo_provera_taken'],
   "case-depo-provera-use"       => $fields['case_depo_provera_use'],
+  "case-injury"                 => $fields['case_injury'], // <--- NUEVO CAMPO
   "case-diagnosis"              => $fields['case_diagnosis'],
   "case-description"            => $fields['case_description'],
   "case-attorney"               => $attorney,

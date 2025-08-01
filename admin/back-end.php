@@ -9,8 +9,8 @@ class MimerPhoneValidatorAdmin {
 
     public function add_admin_menu() {
         add_menu_page(
-            'Forms VDI', // Nuevo título de la página
-            'Forms VDI', // Nuevo título del menú
+            'Forms VDI',
+            'Forms VDI',
             'manage_options',
             'mimer-phone-validator',
             array($this, 'settings_page_html'),
@@ -22,10 +22,10 @@ class MimerPhoneValidatorAdmin {
     public function register_settings() {
         register_setting('mimer_phone_validator_group', 'mimer_phone_validator_api_key');
         register_setting('mimer_phone_validator_group', 'mimer_phone_validator_enabled');
+        register_setting('mimer_phone_validator_group', 'mimer_trustedform_js');
     }
 
     public function settings_page_html() {
-        // Determinar la pestaña activa
         $active_tab = isset($_GET['tab']) ? $_GET['tab'] : 'phone_validator';
         ?>
         <div class="wrap">
@@ -88,6 +88,7 @@ class MimerPhoneValidatorAdmin {
                     <?php
                     if ($_SERVER['REQUEST_METHOD'] === 'POST' && $active_tab == 'api') {
                         $trustedform_js = isset($_POST['mimer_trustedform_js']) ? $_POST['mimer_trustedform_js'] : '';
+                        // Guardar tal cual, sin formatear
                         update_option('mimer_trustedform_js', $trustedform_js);
                         echo '<div class="updated"><p>TrustedForm code saved.</p></div>';
                     }

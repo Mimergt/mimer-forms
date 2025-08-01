@@ -39,6 +39,7 @@ document.addEventListener('DOMContentLoaded', function () {
       })
       .then(response => response.json())
       .then(data => {
+        console.log('Respuesta AJAX:', data); // <-- Añade esto
         if (data.redirect) {
           window.location.href = data.redirect;
         }

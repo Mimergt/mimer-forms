@@ -25,29 +25,9 @@ document.addEventListener('DOMContentLoaded', function () {
         return;
       }
 
-      // --- AJAX SUBMIT Y REDIRECCIÓN ---
-      e.preventDefault();
-
-      const formData = new FormData(form);
-
-      fetch(form.action, {
-        method: form.method,
-        body: formData,
-        headers: {
-          'X-Requested-With': 'XMLHttpRequest'
-        }
-      })
-      .then(response => response.json())
-      .then(data => {
-        console.log('Respuesta AJAX:', data); // <-- Añade esto
-        if (data.redirect) {
-          window.location.href = data.redirect;
-        }
-      })
-      .catch(() => {
-        // Si hay error, redirige a la página local de gracias
-        window.location.href = 'https://injuryresolve.com/dp-thankyou/';
-      });
+      // --- ENVÍO NORMAL DEL FORMULARIO ---
+      // Elimina el e.preventDefault() y el AJAX para permitir el submit tradicional
+      // El formulario se enviará y la redirección la hará PHP
     });
   });
 });

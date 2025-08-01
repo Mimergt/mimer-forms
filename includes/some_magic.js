@@ -1,5 +1,3 @@
-
-
 document.addEventListener('DOMContentLoaded', function () {
   const forms = document.querySelectorAll('form');
 
@@ -24,7 +22,31 @@ document.addEventListener('DOMContentLoaded', function () {
 
       if (!isValid) {
         e.preventDefault();
+        return;
       }
+
+      // --- AJAX SUBMIT Y REDIRECCIÓN ---
+      e.preventDefault();
+
+      const formData = new FormData(form);
+
+      fetch(form.action, {
+        method: form.method,
+        body: formData,
+        headers: {
+          'X-Requested-With': 'XMLHttpRequest'
+        }
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.redirect) {
+          window.location.href = data.redirect;
+        }
+      })
+      .catch(() => {
+        // Si hay error, redirige a la página local de gracias
+        window.location.href = 'https://injuryresolve.com/dp-thankyou/';
+      });
     });
   });
 });

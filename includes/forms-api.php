@@ -54,20 +54,21 @@ $data = [
 
         file_put_contents(plugin_dir_path(__FILE__) . '/../log.txt', $log, FILE_APPEND);
 
-        // Procesar redirección
+        // Procesar redirección para AJAX
         if (!is_wp_error($response)) {
             $body = wp_remote_retrieve_body($response);
             $json = json_decode($body, true);
             if (isset($json['redirect_url']) && !empty($json['redirect_url'])) {
-                wp_redirect($json['redirect_url']);
-                exit;
+                $redirect = $json['redirect_url'];
             } else {
-                wp_redirect('https://injuryresolve.com/dp-thankyou/');
-                exit;
+                $redirect = 'https://injuryresolve.com/dp-thankyou/';
             }
         } else {
-            wp_redirect('https://injuryresolve.com/dp-thankyou/');
-            exit;
+            $redirect = 'https://injuryresolve.com/dp-thankyou/';
         }
+
+        // Devuelve JSON para AJAX
+        echo json_encode(['redirect' => $redirect]);
+        exit;
     }
 }

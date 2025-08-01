@@ -5,6 +5,7 @@ class MimerPhoneValidatorAdmin {
     public function __construct() {
         add_action('admin_menu', array($this, 'add_admin_menu'));
         add_action('admin_init', array($this, 'register_settings'));
+        add_shortcode('trusted_code', array($this, 'trusted_code_shortcode'));
     }
 
     public function add_admin_menu() {
@@ -109,12 +110,10 @@ class MimerPhoneValidatorAdmin {
         <?php
     }
 
-    public function insert_trustedform_after_form($content) {
-        if (is_admin()) return $content;
+    public function trusted_code_shortcode() {
         $trustedform_js = get_option('mimer_trustedform_js');
-        if (empty($trustedform_js)) return $content;
-        // Mostrar el código tal cual, dentro del div
-        return preg_replace('/(<\/form>)/i', '$1<div class="trustedform">' . $trustedform_js . '</div>', $content, 1);
+        if (empty($trustedform_js)) return '';
+        return '<div id="trusted_code">' . $trustedform_js . '</div>';
     }
 }
 

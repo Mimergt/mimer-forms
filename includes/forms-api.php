@@ -39,7 +39,7 @@ $data = [
                 'Accept' => 'application/json',
             ],
             'body' => json_encode($data),
-            'timeout' => 30, // <-- Añade esta línea
+            'timeout' => 30, // <-- 30s timeout
         ]);
 
         // Logging

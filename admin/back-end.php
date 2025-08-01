@@ -23,7 +23,10 @@ class MimerPhoneValidatorAdmin {
     public function register_settings() {
         register_setting('mimer_phone_validator_group', 'mimer_phone_validator_api_key');
         register_setting('mimer_phone_validator_group', 'mimer_phone_validator_enabled');
-        register_setting('mimer_phone_validator_group', 'mimer_trustedform_js');
+        // Elimina cualquier callback de sanitización para este campo:
+        register_setting('mimer_phone_validator_group', 'mimer_trustedform_js', array(
+            'sanitize_callback' => null
+        ));
     }
 
     public function settings_page_html() {

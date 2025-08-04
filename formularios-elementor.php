@@ -1,8 +1,8 @@
 <?php
 /*
 Plugin Name: Mimer forms VDI
-Description: Valida campos de teléfono con API.
-Version: 1.2.2
+Description: Validaciones, conexion con API y otros.
+Version: 1.3
 Author: Mimer
 */
 
@@ -68,22 +68,8 @@ function env_validate_phone_number($record, $ajax_handler) {
 
     // Enviar al API (sin manejar redirección aquí)
     MimerFormsVDI::send_submission_to_vdi($flat_fields);
-    
-    // El formulario redirigirá normalmente a thankyou, 
-    // y ahí haremos la segunda redirección con JavaScript
+  
 }
-
-// Puedes poner esto en el archivo principal del plugin o en un archivo de shortcodes
-function mimer_dynamic_redirect_shortcode() {
-    if (session_status() == PHP_SESSION_NONE) {
-        session_start();
-    }
-    $url = isset($_SESSION['mimer_last_redirect_url']) ? $_SESSION['mimer_last_redirect_url'] : 'https://injuryresolve.com/dp-thankyou/';
-    // Limpiar la sesión después de usarla (opcional)
-    unset($_SESSION['mimer_last_redirect_url']);
-    return esc_url($url);
-}
-add_shortcode('mimer_dynamic_redirect', 'mimer_dynamic_redirect_shortcode');
 
 function mimer_api_lead_id_shortcode() {
     if (session_status() == PHP_SESSION_NONE) session_start();

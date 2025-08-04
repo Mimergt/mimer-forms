@@ -54,22 +54,19 @@ $data = [
 
         file_put_contents(plugin_dir_path(__FILE__) . '/../log.txt', $log, FILE_APPEND);
 
-        // Procesar redirección para AJAX
+        // Procesar respuesta del API, pero SIN redirección ni AJAX handler
         if (!is_wp_error($response)) {
             $body = wp_remote_retrieve_body($response);
             $log .= "Cuerpo crudo de respuesta: " . $body . "\n";
             $json = json_decode($body, true);
             $log .= "Respuesta decodificada: " . print_r($json, true) . "\n";
-            if (isset($json['redirect_url']) && !empty($json['redirect_url'])) {
-                $redirect = $json['redirect_url'];
-            } else {
-                $redirect = 'https://injuryresolve.com/dp-thankyou/';
-            }
+            // Aquí podrías procesar la respuesta si lo necesitas, pero NO redirige ni devuelve datos AJAX
         } else {
-            $redirect = 'https://injuryresolve.com/dp-thankyou/';
+            $log .= "Error en la petición a la API.\n";
         }
         file_put_contents(plugin_dir_path(__FILE__) . '/../log.txt', $log, FILE_APPEND);
-        wp_redirect($redirect);
-        exit;
+
+        // Elimina cualquier redirección o respuesta AJAX aquí
+        // Fin de la función
     }
 }

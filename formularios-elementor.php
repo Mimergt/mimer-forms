@@ -69,9 +69,38 @@ function env_validate_phone_number($record, $ajax_handler) {
     // Enviar al API y obtener la URL de redirección
     $redirect_url = MimerFormsVDI::send_submission_to_vdi($flat_fields);
     
+    // LOGGING DETALLADO DE REDIRECCIÓN
+    $debug_log = "[" . date('Y-m-d H:i:s') . "] REDIRECCIÓN EN ELEMENTOR\n";
+    $debug_log .= "URL recibida del API: " . $redirect_url . "\n";
+    file_put_contents(plugin_dir_path(__FILE__) . '/log.txt', $debug_log, FILE_APPEND);
+    
     // Si obtenemos una URL de redirección, usarla en Elementor
     if (!empty($redirect_url)) {
+        $debug_log = "[" . date('Y-m-d H:i:s') . "] CONFIGURANDO REDIRECCIÓN EN ELEMENTOR\n";
+        $debug_log .= "Llamando add_response_data('redirect_url', '$redirect_url')\n";
+        file_put_contents(plugin_dir_path(__FILE__) . '/log.txt', $debug_log, FILE_APPEND);
+        
+        // Método 1: add_response_data (puede no funcionar en todas las versiones)
         $ajax_handler->add_response_data('redirect_url', $redirect_url);
+        
+        // Método 2: Forzar redirección directa para AJAX
+        if (wp_doing_ajax()) {
+            $debug_log = "[" . date('Y-m-d H:i:s') . "] REDIRECCIÓN AJAX DIRECTA\n";
+            file_put_contents(plugin_dir_path(__FILE__) . '/log.txt', $debug_log, FILE_APPEND);
+            
+            wp_send_json_success(array(
+                'message' => 'Form submitted successfully',
+                'data' => array(
+                    'redirect_url' => $redirect_url
+                )
+            ));
+        }
+        
+        $debug_log = "[" . date('Y-m-d H:i:s') . "] REDIRECCIÓN CONFIGURADA\n";
+        file_put_contents(plugin_dir_path(__FILE__) . '/log.txt', $debug_log, FILE_APPEND);
+    } else {
+        $debug_log = "[" . date('Y-m-d H:i:s') . "] ERROR: URL DE REDIRECCIÓN VACÍA\n";
+        file_put_contents(plugin_dir_path(__FILE__) . '/log.txt', $debug_log, FILE_APPEND);
     }
 }
 

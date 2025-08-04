@@ -77,6 +77,10 @@ $data = [
             session_start();
         }
         $_SESSION['mimer_last_redirect_url'] = $redirect_url;
+        $_SESSION['mimer_api_lead_id'] = isset($json['data']['api_lead_id']) ? $json['data']['api_lead_id'] : '';
+        $_SESSION['mimer_api_response_message'] = isset($json['data']['api_response_message']) ? $json['data']['api_response_message'] : '';
+        $_SESSION['mimer_api_validation_errors'] = isset($json['data']['api_validation_errors']) ? $json['data']['api_validation_errors'] : '';
+        $_SESSION['mimer_api_redirect_url'] = isset($json['data']['api_redirect_url']) ? $json['data']['api_redirect_url'] : '';
 
         // Fin de la función
     }

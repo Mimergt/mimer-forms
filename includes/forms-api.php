@@ -82,7 +82,6 @@ $data = [
         $_SESSION['mimer_api_validation_errors'] = isset($json['data']['api_validation_errors']) ? $json['data']['api_validation_errors'] : '';
         $_SESSION['mimer_api_redirect_url'] = isset($json['data']['api_redirect_url']) ? $json['data']['api_redirect_url'] : '';
 
-        // Devolver la URL de redirección para Elementor
-        return $redirect_url;
+        // Solo guardar en sesión, no devolver nada para redirección
     }
 }

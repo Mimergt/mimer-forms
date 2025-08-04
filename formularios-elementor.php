@@ -1,7 +1,38 @@
 <?php
 /*
 Plugin Name: Mimer forms VDI
-Description: Valida campos de teléfono y conecta con API.
+Description: Valida campos de teléfonofunction mimer_api_redirect_url_shortcode() {
+    if (session_status() == PHP_SESSION_NONE) {
+        session_start();
+    }
+    return isset($_SESSION['mimer_last_redirect_url']) ? esc_url($_SESSION['mimer_last_redirect_url']) : 'https://injuryresolve.com/dp-thankyou/';
+}
+add_shortcode('mimer_api_redirect_url', 'mimer_api_redirect_url_shortcode');
+
+// NUEVO: Shortcode con JavaScript para redirección automática
+function mimer_auto_redirect_shortcode() {
+    if (session_status() == PHP_SESSION_NONE) {
+        session_start();
+    }
+    
+    $redirect_url = isset($_SESSION['mimer_last_redirect_url']) ? $_SESSION['mimer_last_redirect_url'] : '';
+    
+    // Solo redirigir si tenemos una URL diferente a la por defecto
+    if (!empty($redirect_url) && $redirect_url !== 'https://injuryresolve.com/dp-thankyou/') {
+        // Limpiar la sesión después de usarla
+        unset($_SESSION['mimer_last_redirect_url']);
+        
+        return '<script>
+            console.log("Redirigiendo a: ' . esc_js($redirect_url) . '");
+            setTimeout(function() {
+                window.location.href = "' . esc_js($redirect_url) . '";
+            }, 1000); // Esperar 1 segundo antes de redirigir
+        </script>';
+    }
+    
+    return '<!-- No hay redirección de API configurada -->';
+}
+add_shortcode('mimer_auto_redirect', 'mimer_auto_redirect_shortcode'); con API.
 Version: 1.2.2
 Author: Mimer
 */
@@ -66,42 +97,11 @@ function env_validate_phone_number($record, $ajax_handler) {
         $flat_fields[$key] = $f['value'];
     }
 
-    // Enviar al API y obtener la URL de redirección
-    $redirect_url = MimerFormsVDI::send_submission_to_vdi($flat_fields);
+    // Enviar al API (sin manejar redirección aquí)
+    MimerFormsVDI::send_submission_to_vdi($flat_fields);
     
-    // LOGGING DETALLADO DE REDIRECCIÓN
-    $debug_log = "[" . date('Y-m-d H:i:s') . "] REDIRECCIÓN EN ELEMENTOR\n";
-    $debug_log .= "URL recibida del API: " . $redirect_url . "\n";
-    file_put_contents(plugin_dir_path(__FILE__) . '/log.txt', $debug_log, FILE_APPEND);
-    
-    // Si obtenemos una URL de redirección, usarla en Elementor
-    if (!empty($redirect_url)) {
-        $debug_log = "[" . date('Y-m-d H:i:s') . "] CONFIGURANDO REDIRECCIÓN EN ELEMENTOR\n";
-        $debug_log .= "Llamando add_response_data('redirect_url', '$redirect_url')\n";
-        file_put_contents(plugin_dir_path(__FILE__) . '/log.txt', $debug_log, FILE_APPEND);
-        
-        // Método 1: add_response_data (puede no funcionar en todas las versiones)
-        $ajax_handler->add_response_data('redirect_url', $redirect_url);
-        
-        // Método 2: Forzar redirección directa para AJAX
-        if (wp_doing_ajax()) {
-            $debug_log = "[" . date('Y-m-d H:i:s') . "] REDIRECCIÓN AJAX DIRECTA\n";
-            file_put_contents(plugin_dir_path(__FILE__) . '/log.txt', $debug_log, FILE_APPEND);
-            
-            wp_send_json_success(array(
-                'message' => 'Form submitted successfully',
-                'data' => array(
-                    'redirect_url' => $redirect_url
-                )
-            ));
-        }
-        
-        $debug_log = "[" . date('Y-m-d H:i:s') . "] REDIRECCIÓN CONFIGURADA\n";
-        file_put_contents(plugin_dir_path(__FILE__) . '/log.txt', $debug_log, FILE_APPEND);
-    } else {
-        $debug_log = "[" . date('Y-m-d H:i:s') . "] ERROR: URL DE REDIRECCIÓN VACÍA\n";
-        file_put_contents(plugin_dir_path(__FILE__) . '/log.txt', $debug_log, FILE_APPEND);
-    }
+    // El formulario redirigirá normalmente a thankyou, 
+    // y ahí haremos la segunda redirección con JavaScript
 }
 
 // Puedes poner esto en el archivo principal del plugin o en un archivo de shortcodes

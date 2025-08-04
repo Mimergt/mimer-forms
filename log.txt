@@ -3706,3 +3706,817 @@ Respuesta decodificada: Array
 
 )
 
+[2025-08-04 18:02:35] Respuesta completa: Array
+(
+    [valid] => 1
+    [number] => 14046820975
+    [local_format] => 4046820975
+    [international_format] => +14046820975
+    [country_prefix] => +1
+    [country_code] => US
+    [country_name] => United States of America
+    [location] => Atlanta
+    [carrier] => 
+    [line_type] => landline
+)
+
+[2025-08-04 18:02:35] CAMPOS ORIGINALES DEL FORMULARIO
+Array
+(
+    [case_depo_provera_taken] => Yes
+    [case_depo_provera_use] => 3 or more years
+    [case_diagnosis] => Yes
+    [case_attorney] => No
+    [case_description] => test redirection final 1
+    [lead_first_name] => Harper
+    [lead_last_name] => Hall
+    [lead_phone] => +14046820975
+    [lead_email] => t4@epic.gt
+    [lead_zip_code] => 30043
+    [accept] => on
+    [trustedform] => 
+    [case_injury] => Brain Meningioma
+    [field_a64186e] => 
+)
+
+[2025-08-04 18:02:40] ENVÍO A VDI
+Payload: Array
+(
+    [lead-first-name] => Harper
+    [lead-last-name] => Hall
+    [lead-email-address] => t4@epic.gt
+    [lead-phone] => 14046820975
+    [case-depo-provera-taken] => Yes
+    [case-depo-provera-use] => 3 or more years
+    [case-injury] => Brain Meningioma
+    [case-diagnosis] => Yes
+    [case-description] => test redirection final 1
+    [case-attorney] => No
+    [lead-trusted-form-cert-id] => https://cert.trustedform.com/fa3c7a46746c11062430fe0505fed0beecab156c
+    [lead-ip-address] => 2800:98:1112:1f4d:3443:c9d:8b6a:a46a
+    [lead-zip-code] => 30043
+)
+
+Respuesta: {"success":true,"code":200,"locale":"en","slug":"successfully_created_a_new_submission","message":"Successfully created a new submission.","data":{"uuid":"ce675ec7-52f1-4381-b95d-aeba149a6266","name":"Depo Provera - Harper Hall (2025-08-04)","is_test":true,"status":"success","reject_reason":null,"validation_errors":null,"api_lead_id":"WIKL6HMB","api_response_message":"Lead Accepted","api_validation_errors":null,"reviewed_at":"2025-08-04T18:02:35.000000Z","created_at":"2025-08-04T18:02:35.000000Z","updated_at":"2025-08-04T18:02:39.000000Z","api_redirect_url":"https:\/\/www.totalinjuryhelp.com\/hp-thank-you?lead_id=WIKL6HMB","redirect_url":"https:\/\/www.totalinjuryhelp.com\/hp-thank-you?lead_id=WIKL6HMB","is_reviewed":true,"is_approved":true,"is_rejected":false,"form":{"title":"Depo Posts - InjuryResolve","slug":"depo-provera-injury-resolve","auto_approve":true,"auto_reject":true,"description":null,"production_at":null,"disabled_at":null,"disable_reason":null,"created_at":"2025-07-28T18:35:48.000000Z","updated_at":"2025-08-01T20:17:02.000000Z","has_sdk":true,"is_production":false,"is_enabled":true},"responses":[{"uuid":"4e07e99e-8ce7-4ea0-a2c0-74024d7ed90c","form_submission_id":1000,"form_field_id":366,"responsable_type":null,"responsable_id":null,"value":"Harper","created_at":"2025-08-04T18:02:35.000000Z","updated_at":"2025-08-04T18:02:35.000000Z","actual_value":"Harper"},{"uuid":"501529b7-98c4-481c-a3ab-195a7e015139","form_submission_id":1000,"form_field_id":367,"responsable_type":null,"responsable_id":null,"value":"Hall","created_at":"2025-08-04T18:02:35.000000Z","updated_at":"2025-08-04T18:02:35.000000Z","actual_value":"Hall"},{"uuid":"0906c478-15e1-410a-a032-c4600db62004","form_submission_id":1000,"form_field_id":368,"responsable_type":null,"responsable_id":null,"value":"t4@epic.gt","created_at":"2025-08-04T18:02:35.000000Z","updated_at":"2025-08-04T18:02:35.000000Z","actual_value":"t4@epic.gt"},{"uuid":"c49a50aa-cf8a-415d-9445-82c2603087ad","form_submission_id":1000,"form_field_id":369,"responsable_type":null,"responsable_id":null,"value":"14046820975","created_at":"2025-08-04T18:02:35.000000Z","updated_at":"2025-08-04T18:02:35.000000Z","actual_value":"14046820975"},{"uuid":"2c560346-9a2f-4f37-9b51-0b79d090c1a8","form_submission_id":1000,"form_field_id":370,"responsable_type":null,"responsable_id":null,"value":"30043","created_at":"2025-08-04T18:02:35.000000Z","updated_at":"2025-08-04T18:02:35.000000Z","actual_value":"30043"},{"uuid":"fe751d8b-be06-4bd7-8290-bcd793b505e5","form_submission_id":1000,"form_field_id":371,"responsable_type":"form_field_choice","responsable_id":1086,"value":null,"created_at":"2025-08-04T18:02:35.000000Z","updated_at":"2025-08-04T18:02:35.000000Z","actual_value":"Yes","responsable":{"uuid":"dab19e8d-2659-4073-ac03-699a355f4287","form_field_id":371,"display_value":"Yes","actual_value":"Yes","is_accepted":true,"is_hidden":false,"position":0,"created_at":"2025-07-28T18:35:48.000000Z","updated_at":"2025-07-28T18:35:48.000000Z"}},{"uuid":"7194b129-60d8-4b42-8066-739bd9f2272e","form_submission_id":1000,"form_field_id":372,"responsable_type":"form_field_choice","responsable_id":1090,"value":null,"created_at":"2025-08-04T18:02:35.000000Z","updated_at":"2025-08-04T18:02:35.000000Z","actual_value":"3 or more years","responsable":{"uuid":"0084065c-b84a-4d2b-ba13-68b97e5679d1","form_field_id":372,"display_value":"3 or more years","actual_value":"3 or more years","is_accepted":true,"is_hidden":false,"position":2,"created_at":"2025-07-28T18:35:48.000000Z","updated_at":"2025-07-28T18:35:48.000000Z"}},{"uuid":"00779b00-e9bd-4a7e-acdc-57f81883e388","form_submission_id":1000,"form_field_id":373,"responsable_type":"form_field_choice","responsable_id":1094,"value":null,"created_at":"2025-08-04T18:02:35.000000Z","updated_at":"2025-08-04T18:02:35.000000Z","actual_value":"Brain Meningioma","responsable":{"uuid":"675a8cc2-221a-451a-9180-dd2bef90233f","form_field_id":373,"display_value":"Brain Meningioma","actual_value":"Brain Meningioma","is_accepted":true,"is_hidden":false,"position":1,"created_at":"2025-07-28T18:35:48.000000Z","updated_at":"2025-07-28T18:35:48.000000Z"}},{"uuid":"6c80601b-62b9-4967-9612-5c67bc7eeae8","form_submission_id":1000,"form_field_id":374,"responsable_type":"form_field_choice","responsable_id":1104,"value":null,"created_at":"2025-08-04T18:02:35.000000Z","updated_at":"2025-08-04T18:02:35.000000Z","actual_value":"Yes","responsable":{"uuid":"9e6b5955-f138-42eb-9f4c-5504578aaa40","form_field_id":374,"display_value":"Yes","actual_value":"Yes","is_accepted":true,"is_hidden":false,"position":0,"created_at":"2025-07-28T18:35:49.000000Z","updated_at":"2025-07-28T18:35:49.000000Z"}},{"uuid":"15deb67f-5e41-4fbf-9894-96c2ed4b8a96","form_submission_id":1000,"form_field_id":375,"responsable_type":null,"responsable_id":null,"value":"test redirection final 1","created_at":"2025-08-04T18:02:35.000000Z","updated_at":"2025-08-04T18:02:35.000000Z","actual_value":"test redirection final 1"},{"uuid":"cf73142b-dd2e-4336-9145-c2f160081324","form_submission_id":1000,"form_field_id":376,"responsable_type":"form_field_choice","responsable_id":1106,"value":null,"created_at":"2025-08-04T18:02:35.000000Z","updated_at":"2025-08-04T18:02:35.000000Z","actual_value":"No","responsable":{"uuid":"993ee696-ff9c-47a0-af19-1d8d2558a071","form_field_id":376,"display_value":"No","actual_value":"No","is_accepted":true,"is_hidden":false,"position":0,"created_at":"2025-07-28T18:35:49.000000Z","updated_at":"2025-07-28T18:35:49.000000Z"}},{"uuid":"7674ca67-51a6-4c56-b136-5f79dfdae28d","form_submission_id":1000,"form_field_id":377,"responsable_type":null,"responsable_id":null,"value":"https:\/\/cert.trustedform.com\/fa3c7a46746c11062430fe0505fed0beecab156c","created_at":"2025-08-04T18:02:35.000000Z","updated_at":"2025-08-04T18:02:35.000000Z","actual_value":"https:\/\/cert.trustedform.com\/fa3c7a46746c11062430fe0505fed0beecab156c"},{"uuid":"9062324b-570d-4940-b39b-8e7058af009b","form_submission_id":1000,"form_field_id":378,"responsable_type":null,"responsable_id":null,"value":"2800:98:1112:1f4d:3443:c9d:8b6a:a46a","created_at":"2025-08-04T18:02:35.000000Z","updated_at":"2025-08-04T18:02:35.000000Z","actual_value":"2800:98:1112:1f4d:3443:c9d:8b6a:a46a"}]}}
+[2025-08-04 18:02:40] ENVÍO A VDI
+Payload: Array
+(
+    [lead-first-name] => Harper
+    [lead-last-name] => Hall
+    [lead-email-address] => t4@epic.gt
+    [lead-phone] => 14046820975
+    [case-depo-provera-taken] => Yes
+    [case-depo-provera-use] => 3 or more years
+    [case-injury] => Brain Meningioma
+    [case-diagnosis] => Yes
+    [case-description] => test redirection final 1
+    [case-attorney] => No
+    [lead-trusted-form-cert-id] => https://cert.trustedform.com/fa3c7a46746c11062430fe0505fed0beecab156c
+    [lead-ip-address] => 2800:98:1112:1f4d:3443:c9d:8b6a:a46a
+    [lead-zip-code] => 30043
+)
+
+Respuesta: {"success":true,"code":200,"locale":"en","slug":"successfully_created_a_new_submission","message":"Successfully created a new submission.","data":{"uuid":"ce675ec7-52f1-4381-b95d-aeba149a6266","name":"Depo Provera - Harper Hall (2025-08-04)","is_test":true,"status":"success","reject_reason":null,"validation_errors":null,"api_lead_id":"WIKL6HMB","api_response_message":"Lead Accepted","api_validation_errors":null,"reviewed_at":"2025-08-04T18:02:35.000000Z","created_at":"2025-08-04T18:02:35.000000Z","updated_at":"2025-08-04T18:02:39.000000Z","api_redirect_url":"https:\/\/www.totalinjuryhelp.com\/hp-thank-you?lead_id=WIKL6HMB","redirect_url":"https:\/\/www.totalinjuryhelp.com\/hp-thank-you?lead_id=WIKL6HMB","is_reviewed":true,"is_approved":true,"is_rejected":false,"form":{"title":"Depo Posts - InjuryResolve","slug":"depo-provera-injury-resolve","auto_approve":true,"auto_reject":true,"description":null,"production_at":null,"disabled_at":null,"disable_reason":null,"created_at":"2025-07-28T18:35:48.000000Z","updated_at":"2025-08-01T20:17:02.000000Z","has_sdk":true,"is_production":false,"is_enabled":true},"responses":[{"uuid":"4e07e99e-8ce7-4ea0-a2c0-74024d7ed90c","form_submission_id":1000,"form_field_id":366,"responsable_type":null,"responsable_id":null,"value":"Harper","created_at":"2025-08-04T18:02:35.000000Z","updated_at":"2025-08-04T18:02:35.000000Z","actual_value":"Harper"},{"uuid":"501529b7-98c4-481c-a3ab-195a7e015139","form_submission_id":1000,"form_field_id":367,"responsable_type":null,"responsable_id":null,"value":"Hall","created_at":"2025-08-04T18:02:35.000000Z","updated_at":"2025-08-04T18:02:35.000000Z","actual_value":"Hall"},{"uuid":"0906c478-15e1-410a-a032-c4600db62004","form_submission_id":1000,"form_field_id":368,"responsable_type":null,"responsable_id":null,"value":"t4@epic.gt","created_at":"2025-08-04T18:02:35.000000Z","updated_at":"2025-08-04T18:02:35.000000Z","actual_value":"t4@epic.gt"},{"uuid":"c49a50aa-cf8a-415d-9445-82c2603087ad","form_submission_id":1000,"form_field_id":369,"responsable_type":null,"responsable_id":null,"value":"14046820975","created_at":"2025-08-04T18:02:35.000000Z","updated_at":"2025-08-04T18:02:35.000000Z","actual_value":"14046820975"},{"uuid":"2c560346-9a2f-4f37-9b51-0b79d090c1a8","form_submission_id":1000,"form_field_id":370,"responsable_type":null,"responsable_id":null,"value":"30043","created_at":"2025-08-04T18:02:35.000000Z","updated_at":"2025-08-04T18:02:35.000000Z","actual_value":"30043"},{"uuid":"fe751d8b-be06-4bd7-8290-bcd793b505e5","form_submission_id":1000,"form_field_id":371,"responsable_type":"form_field_choice","responsable_id":1086,"value":null,"created_at":"2025-08-04T18:02:35.000000Z","updated_at":"2025-08-04T18:02:35.000000Z","actual_value":"Yes","responsable":{"uuid":"dab19e8d-2659-4073-ac03-699a355f4287","form_field_id":371,"display_value":"Yes","actual_value":"Yes","is_accepted":true,"is_hidden":false,"position":0,"created_at":"2025-07-28T18:35:48.000000Z","updated_at":"2025-07-28T18:35:48.000000Z"}},{"uuid":"7194b129-60d8-4b42-8066-739bd9f2272e","form_submission_id":1000,"form_field_id":372,"responsable_type":"form_field_choice","responsable_id":1090,"value":null,"created_at":"2025-08-04T18:02:35.000000Z","updated_at":"2025-08-04T18:02:35.000000Z","actual_value":"3 or more years","responsable":{"uuid":"0084065c-b84a-4d2b-ba13-68b97e5679d1","form_field_id":372,"display_value":"3 or more years","actual_value":"3 or more years","is_accepted":true,"is_hidden":false,"position":2,"created_at":"2025-07-28T18:35:48.000000Z","updated_at":"2025-07-28T18:35:48.000000Z"}},{"uuid":"00779b00-e9bd-4a7e-acdc-57f81883e388","form_submission_id":1000,"form_field_id":373,"responsable_type":"form_field_choice","responsable_id":1094,"value":null,"created_at":"2025-08-04T18:02:35.000000Z","updated_at":"2025-08-04T18:02:35.000000Z","actual_value":"Brain Meningioma","responsable":{"uuid":"675a8cc2-221a-451a-9180-dd2bef90233f","form_field_id":373,"display_value":"Brain Meningioma","actual_value":"Brain Meningioma","is_accepted":true,"is_hidden":false,"position":1,"created_at":"2025-07-28T18:35:48.000000Z","updated_at":"2025-07-28T18:35:48.000000Z"}},{"uuid":"6c80601b-62b9-4967-9612-5c67bc7eeae8","form_submission_id":1000,"form_field_id":374,"responsable_type":"form_field_choice","responsable_id":1104,"value":null,"created_at":"2025-08-04T18:02:35.000000Z","updated_at":"2025-08-04T18:02:35.000000Z","actual_value":"Yes","responsable":{"uuid":"9e6b5955-f138-42eb-9f4c-5504578aaa40","form_field_id":374,"display_value":"Yes","actual_value":"Yes","is_accepted":true,"is_hidden":false,"position":0,"created_at":"2025-07-28T18:35:49.000000Z","updated_at":"2025-07-28T18:35:49.000000Z"}},{"uuid":"15deb67f-5e41-4fbf-9894-96c2ed4b8a96","form_submission_id":1000,"form_field_id":375,"responsable_type":null,"responsable_id":null,"value":"test redirection final 1","created_at":"2025-08-04T18:02:35.000000Z","updated_at":"2025-08-04T18:02:35.000000Z","actual_value":"test redirection final 1"},{"uuid":"cf73142b-dd2e-4336-9145-c2f160081324","form_submission_id":1000,"form_field_id":376,"responsable_type":"form_field_choice","responsable_id":1106,"value":null,"created_at":"2025-08-04T18:02:35.000000Z","updated_at":"2025-08-04T18:02:35.000000Z","actual_value":"No","responsable":{"uuid":"993ee696-ff9c-47a0-af19-1d8d2558a071","form_field_id":376,"display_value":"No","actual_value":"No","is_accepted":true,"is_hidden":false,"position":0,"created_at":"2025-07-28T18:35:49.000000Z","updated_at":"2025-07-28T18:35:49.000000Z"}},{"uuid":"7674ca67-51a6-4c56-b136-5f79dfdae28d","form_submission_id":1000,"form_field_id":377,"responsable_type":null,"responsable_id":null,"value":"https:\/\/cert.trustedform.com\/fa3c7a46746c11062430fe0505fed0beecab156c","created_at":"2025-08-04T18:02:35.000000Z","updated_at":"2025-08-04T18:02:35.000000Z","actual_value":"https:\/\/cert.trustedform.com\/fa3c7a46746c11062430fe0505fed0beecab156c"},{"uuid":"9062324b-570d-4940-b39b-8e7058af009b","form_submission_id":1000,"form_field_id":378,"responsable_type":null,"responsable_id":null,"value":"2800:98:1112:1f4d:3443:c9d:8b6a:a46a","created_at":"2025-08-04T18:02:35.000000Z","updated_at":"2025-08-04T18:02:35.000000Z","actual_value":"2800:98:1112:1f4d:3443:c9d:8b6a:a46a"}]}}
+Cuerpo crudo de respuesta: {"success":true,"code":200,"locale":"en","slug":"successfully_created_a_new_submission","message":"Successfully created a new submission.","data":{"uuid":"ce675ec7-52f1-4381-b95d-aeba149a6266","name":"Depo Provera - Harper Hall (2025-08-04)","is_test":true,"status":"success","reject_reason":null,"validation_errors":null,"api_lead_id":"WIKL6HMB","api_response_message":"Lead Accepted","api_validation_errors":null,"reviewed_at":"2025-08-04T18:02:35.000000Z","created_at":"2025-08-04T18:02:35.000000Z","updated_at":"2025-08-04T18:02:39.000000Z","api_redirect_url":"https:\/\/www.totalinjuryhelp.com\/hp-thank-you?lead_id=WIKL6HMB","redirect_url":"https:\/\/www.totalinjuryhelp.com\/hp-thank-you?lead_id=WIKL6HMB","is_reviewed":true,"is_approved":true,"is_rejected":false,"form":{"title":"Depo Posts - InjuryResolve","slug":"depo-provera-injury-resolve","auto_approve":true,"auto_reject":true,"description":null,"production_at":null,"disabled_at":null,"disable_reason":null,"created_at":"2025-07-28T18:35:48.000000Z","updated_at":"2025-08-01T20:17:02.000000Z","has_sdk":true,"is_production":false,"is_enabled":true},"responses":[{"uuid":"4e07e99e-8ce7-4ea0-a2c0-74024d7ed90c","form_submission_id":1000,"form_field_id":366,"responsable_type":null,"responsable_id":null,"value":"Harper","created_at":"2025-08-04T18:02:35.000000Z","updated_at":"2025-08-04T18:02:35.000000Z","actual_value":"Harper"},{"uuid":"501529b7-98c4-481c-a3ab-195a7e015139","form_submission_id":1000,"form_field_id":367,"responsable_type":null,"responsable_id":null,"value":"Hall","created_at":"2025-08-04T18:02:35.000000Z","updated_at":"2025-08-04T18:02:35.000000Z","actual_value":"Hall"},{"uuid":"0906c478-15e1-410a-a032-c4600db62004","form_submission_id":1000,"form_field_id":368,"responsable_type":null,"responsable_id":null,"value":"t4@epic.gt","created_at":"2025-08-04T18:02:35.000000Z","updated_at":"2025-08-04T18:02:35.000000Z","actual_value":"t4@epic.gt"},{"uuid":"c49a50aa-cf8a-415d-9445-82c2603087ad","form_submission_id":1000,"form_field_id":369,"responsable_type":null,"responsable_id":null,"value":"14046820975","created_at":"2025-08-04T18:02:35.000000Z","updated_at":"2025-08-04T18:02:35.000000Z","actual_value":"14046820975"},{"uuid":"2c560346-9a2f-4f37-9b51-0b79d090c1a8","form_submission_id":1000,"form_field_id":370,"responsable_type":null,"responsable_id":null,"value":"30043","created_at":"2025-08-04T18:02:35.000000Z","updated_at":"2025-08-04T18:02:35.000000Z","actual_value":"30043"},{"uuid":"fe751d8b-be06-4bd7-8290-bcd793b505e5","form_submission_id":1000,"form_field_id":371,"responsable_type":"form_field_choice","responsable_id":1086,"value":null,"created_at":"2025-08-04T18:02:35.000000Z","updated_at":"2025-08-04T18:02:35.000000Z","actual_value":"Yes","responsable":{"uuid":"dab19e8d-2659-4073-ac03-699a355f4287","form_field_id":371,"display_value":"Yes","actual_value":"Yes","is_accepted":true,"is_hidden":false,"position":0,"created_at":"2025-07-28T18:35:48.000000Z","updated_at":"2025-07-28T18:35:48.000000Z"}},{"uuid":"7194b129-60d8-4b42-8066-739bd9f2272e","form_submission_id":1000,"form_field_id":372,"responsable_type":"form_field_choice","responsable_id":1090,"value":null,"created_at":"2025-08-04T18:02:35.000000Z","updated_at":"2025-08-04T18:02:35.000000Z","actual_value":"3 or more years","responsable":{"uuid":"0084065c-b84a-4d2b-ba13-68b97e5679d1","form_field_id":372,"display_value":"3 or more years","actual_value":"3 or more years","is_accepted":true,"is_hidden":false,"position":2,"created_at":"2025-07-28T18:35:48.000000Z","updated_at":"2025-07-28T18:35:48.000000Z"}},{"uuid":"00779b00-e9bd-4a7e-acdc-57f81883e388","form_submission_id":1000,"form_field_id":373,"responsable_type":"form_field_choice","responsable_id":1094,"value":null,"created_at":"2025-08-04T18:02:35.000000Z","updated_at":"2025-08-04T18:02:35.000000Z","actual_value":"Brain Meningioma","responsable":{"uuid":"675a8cc2-221a-451a-9180-dd2bef90233f","form_field_id":373,"display_value":"Brain Meningioma","actual_value":"Brain Meningioma","is_accepted":true,"is_hidden":false,"position":1,"created_at":"2025-07-28T18:35:48.000000Z","updated_at":"2025-07-28T18:35:48.000000Z"}},{"uuid":"6c80601b-62b9-4967-9612-5c67bc7eeae8","form_submission_id":1000,"form_field_id":374,"responsable_type":"form_field_choice","responsable_id":1104,"value":null,"created_at":"2025-08-04T18:02:35.000000Z","updated_at":"2025-08-04T18:02:35.000000Z","actual_value":"Yes","responsable":{"uuid":"9e6b5955-f138-42eb-9f4c-5504578aaa40","form_field_id":374,"display_value":"Yes","actual_value":"Yes","is_accepted":true,"is_hidden":false,"position":0,"created_at":"2025-07-28T18:35:49.000000Z","updated_at":"2025-07-28T18:35:49.000000Z"}},{"uuid":"15deb67f-5e41-4fbf-9894-96c2ed4b8a96","form_submission_id":1000,"form_field_id":375,"responsable_type":null,"responsable_id":null,"value":"test redirection final 1","created_at":"2025-08-04T18:02:35.000000Z","updated_at":"2025-08-04T18:02:35.000000Z","actual_value":"test redirection final 1"},{"uuid":"cf73142b-dd2e-4336-9145-c2f160081324","form_submission_id":1000,"form_field_id":376,"responsable_type":"form_field_choice","responsable_id":1106,"value":null,"created_at":"2025-08-04T18:02:35.000000Z","updated_at":"2025-08-04T18:02:35.000000Z","actual_value":"No","responsable":{"uuid":"993ee696-ff9c-47a0-af19-1d8d2558a071","form_field_id":376,"display_value":"No","actual_value":"No","is_accepted":true,"is_hidden":false,"position":0,"created_at":"2025-07-28T18:35:49.000000Z","updated_at":"2025-07-28T18:35:49.000000Z"}},{"uuid":"7674ca67-51a6-4c56-b136-5f79dfdae28d","form_submission_id":1000,"form_field_id":377,"responsable_type":null,"responsable_id":null,"value":"https:\/\/cert.trustedform.com\/fa3c7a46746c11062430fe0505fed0beecab156c","created_at":"2025-08-04T18:02:35.000000Z","updated_at":"2025-08-04T18:02:35.000000Z","actual_value":"https:\/\/cert.trustedform.com\/fa3c7a46746c11062430fe0505fed0beecab156c"},{"uuid":"9062324b-570d-4940-b39b-8e7058af009b","form_submission_id":1000,"form_field_id":378,"responsable_type":null,"responsable_id":null,"value":"2800:98:1112:1f4d:3443:c9d:8b6a:a46a","created_at":"2025-08-04T18:02:35.000000Z","updated_at":"2025-08-04T18:02:35.000000Z","actual_value":"2800:98:1112:1f4d:3443:c9d:8b6a:a46a"}]}}
+Respuesta decodificada: Array
+(
+    [success] => 1
+    [code] => 200
+    [locale] => en
+    [slug] => successfully_created_a_new_submission
+    [message] => Successfully created a new submission.
+    [data] => Array
+        (
+            [uuid] => ce675ec7-52f1-4381-b95d-aeba149a6266
+            [name] => Depo Provera - Harper Hall (2025-08-04)
+            [is_test] => 1
+            [status] => success
+            [reject_reason] => 
+            [validation_errors] => 
+            [api_lead_id] => WIKL6HMB
+            [api_response_message] => Lead Accepted
+            [api_validation_errors] => 
+            [reviewed_at] => 2025-08-04T18:02:35.000000Z
+            [created_at] => 2025-08-04T18:02:35.000000Z
+            [updated_at] => 2025-08-04T18:02:39.000000Z
+            [api_redirect_url] => https://www.totalinjuryhelp.com/hp-thank-you?lead_id=WIKL6HMB
+            [redirect_url] => https://www.totalinjuryhelp.com/hp-thank-you?lead_id=WIKL6HMB
+            [is_reviewed] => 1
+            [is_approved] => 1
+            [is_rejected] => 
+            [form] => Array
+                (
+                    [title] => Depo Posts - InjuryResolve
+                    [slug] => depo-provera-injury-resolve
+                    [auto_approve] => 1
+                    [auto_reject] => 1
+                    [description] => 
+                    [production_at] => 
+                    [disabled_at] => 
+                    [disable_reason] => 
+                    [created_at] => 2025-07-28T18:35:48.000000Z
+                    [updated_at] => 2025-08-01T20:17:02.000000Z
+                    [has_sdk] => 1
+                    [is_production] => 
+                    [is_enabled] => 1
+                )
+
+            [responses] => Array
+                (
+                    [0] => Array
+                        (
+                            [uuid] => 4e07e99e-8ce7-4ea0-a2c0-74024d7ed90c
+                            [form_submission_id] => 1000
+                            [form_field_id] => 366
+                            [responsable_type] => 
+                            [responsable_id] => 
+                            [value] => Harper
+                            [created_at] => 2025-08-04T18:02:35.000000Z
+                            [updated_at] => 2025-08-04T18:02:35.000000Z
+                            [actual_value] => Harper
+                        )
+
+                    [1] => Array
+                        (
+                            [uuid] => 501529b7-98c4-481c-a3ab-195a7e015139
+                            [form_submission_id] => 1000
+                            [form_field_id] => 367
+                            [responsable_type] => 
+                            [responsable_id] => 
+                            [value] => Hall
+                            [created_at] => 2025-08-04T18:02:35.000000Z
+                            [updated_at] => 2025-08-04T18:02:35.000000Z
+                            [actual_value] => Hall
+                        )
+
+                    [2] => Array
+                        (
+                            [uuid] => 0906c478-15e1-410a-a032-c4600db62004
+                            [form_submission_id] => 1000
+                            [form_field_id] => 368
+                            [responsable_type] => 
+                            [responsable_id] => 
+                            [value] => t4@epic.gt
+                            [created_at] => 2025-08-04T18:02:35.000000Z
+                            [updated_at] => 2025-08-04T18:02:35.000000Z
+                            [actual_value] => t4@epic.gt
+                        )
+
+                    [3] => Array
+                        (
+                            [uuid] => c49a50aa-cf8a-415d-9445-82c2603087ad
+                            [form_submission_id] => 1000
+                            [form_field_id] => 369
+                            [responsable_type] => 
+                            [responsable_id] => 
+                            [value] => 14046820975
+                            [created_at] => 2025-08-04T18:02:35.000000Z
+                            [updated_at] => 2025-08-04T18:02:35.000000Z
+                            [actual_value] => 14046820975
+                        )
+
+                    [4] => Array
+                        (
+                            [uuid] => 2c560346-9a2f-4f37-9b51-0b79d090c1a8
+                            [form_submission_id] => 1000
+                            [form_field_id] => 370
+                            [responsable_type] => 
+                            [responsable_id] => 
+                            [value] => 30043
+                            [created_at] => 2025-08-04T18:02:35.000000Z
+                            [updated_at] => 2025-08-04T18:02:35.000000Z
+                            [actual_value] => 30043
+                        )
+
+                    [5] => Array
+                        (
+                            [uuid] => fe751d8b-be06-4bd7-8290-bcd793b505e5
+                            [form_submission_id] => 1000
+                            [form_field_id] => 371
+                            [responsable_type] => form_field_choice
+                            [responsable_id] => 1086
+                            [value] => 
+                            [created_at] => 2025-08-04T18:02:35.000000Z
+                            [updated_at] => 2025-08-04T18:02:35.000000Z
+                            [actual_value] => Yes
+                            [responsable] => Array
+                                (
+                                    [uuid] => dab19e8d-2659-4073-ac03-699a355f4287
+                                    [form_field_id] => 371
+                                    [display_value] => Yes
+                                    [actual_value] => Yes
+                                    [is_accepted] => 1
+                                    [is_hidden] => 
+                                    [position] => 0
+                                    [created_at] => 2025-07-28T18:35:48.000000Z
+                                    [updated_at] => 2025-07-28T18:35:48.000000Z
+                                )
+
+                        )
+
+                    [6] => Array
+                        (
+                            [uuid] => 7194b129-60d8-4b42-8066-739bd9f2272e
+                            [form_submission_id] => 1000
+                            [form_field_id] => 372
+                            [responsable_type] => form_field_choice
+                            [responsable_id] => 1090
+                            [value] => 
+                            [created_at] => 2025-08-04T18:02:35.000000Z
+                            [updated_at] => 2025-08-04T18:02:35.000000Z
+                            [actual_value] => 3 or more years
+                            [responsable] => Array
+                                (
+                                    [uuid] => 0084065c-b84a-4d2b-ba13-68b97e5679d1
+                                    [form_field_id] => 372
+                                    [display_value] => 3 or more years
+                                    [actual_value] => 3 or more years
+                                    [is_accepted] => 1
+                                    [is_hidden] => 
+                                    [position] => 2
+                                    [created_at] => 2025-07-28T18:35:48.000000Z
+                                    [updated_at] => 2025-07-28T18:35:48.000000Z
+                                )
+
+                        )
+
+                    [7] => Array
+                        (
+                            [uuid] => 00779b00-e9bd-4a7e-acdc-57f81883e388
+                            [form_submission_id] => 1000
+                            [form_field_id] => 373
+                            [responsable_type] => form_field_choice
+                            [responsable_id] => 1094
+                            [value] => 
+                            [created_at] => 2025-08-04T18:02:35.000000Z
+                            [updated_at] => 2025-08-04T18:02:35.000000Z
+                            [actual_value] => Brain Meningioma
+                            [responsable] => Array
+                                (
+                                    [uuid] => 675a8cc2-221a-451a-9180-dd2bef90233f
+                                    [form_field_id] => 373
+                                    [display_value] => Brain Meningioma
+                                    [actual_value] => Brain Meningioma
+                                    [is_accepted] => 1
+                                    [is_hidden] => 
+                                    [position] => 1
+                                    [created_at] => 2025-07-28T18:35:48.000000Z
+                                    [updated_at] => 2025-07-28T18:35:48.000000Z
+                                )
+
+                        )
+
+                    [8] => Array
+                        (
+                            [uuid] => 6c80601b-62b9-4967-9612-5c67bc7eeae8
+                            [form_submission_id] => 1000
+                            [form_field_id] => 374
+                            [responsable_type] => form_field_choice
+                            [responsable_id] => 1104
+                            [value] => 
+                            [created_at] => 2025-08-04T18:02:35.000000Z
+                            [updated_at] => 2025-08-04T18:02:35.000000Z
+                            [actual_value] => Yes
+                            [responsable] => Array
+                                (
+                                    [uuid] => 9e6b5955-f138-42eb-9f4c-5504578aaa40
+                                    [form_field_id] => 374
+                                    [display_value] => Yes
+                                    [actual_value] => Yes
+                                    [is_accepted] => 1
+                                    [is_hidden] => 
+                                    [position] => 0
+                                    [created_at] => 2025-07-28T18:35:49.000000Z
+                                    [updated_at] => 2025-07-28T18:35:49.000000Z
+                                )
+
+                        )
+
+                    [9] => Array
+                        (
+                            [uuid] => 15deb67f-5e41-4fbf-9894-96c2ed4b8a96
+                            [form_submission_id] => 1000
+                            [form_field_id] => 375
+                            [responsable_type] => 
+                            [responsable_id] => 
+                            [value] => test redirection final 1
+                            [created_at] => 2025-08-04T18:02:35.000000Z
+                            [updated_at] => 2025-08-04T18:02:35.000000Z
+                            [actual_value] => test redirection final 1
+                        )
+
+                    [10] => Array
+                        (
+                            [uuid] => cf73142b-dd2e-4336-9145-c2f160081324
+                            [form_submission_id] => 1000
+                            [form_field_id] => 376
+                            [responsable_type] => form_field_choice
+                            [responsable_id] => 1106
+                            [value] => 
+                            [created_at] => 2025-08-04T18:02:35.000000Z
+                            [updated_at] => 2025-08-04T18:02:35.000000Z
+                            [actual_value] => No
+                            [responsable] => Array
+                                (
+                                    [uuid] => 993ee696-ff9c-47a0-af19-1d8d2558a071
+                                    [form_field_id] => 376
+                                    [display_value] => No
+                                    [actual_value] => No
+                                    [is_accepted] => 1
+                                    [is_hidden] => 
+                                    [position] => 0
+                                    [created_at] => 2025-07-28T18:35:49.000000Z
+                                    [updated_at] => 2025-07-28T18:35:49.000000Z
+                                )
+
+                        )
+
+                    [11] => Array
+                        (
+                            [uuid] => 7674ca67-51a6-4c56-b136-5f79dfdae28d
+                            [form_submission_id] => 1000
+                            [form_field_id] => 377
+                            [responsable_type] => 
+                            [responsable_id] => 
+                            [value] => https://cert.trustedform.com/fa3c7a46746c11062430fe0505fed0beecab156c
+                            [created_at] => 2025-08-04T18:02:35.000000Z
+                            [updated_at] => 2025-08-04T18:02:35.000000Z
+                            [actual_value] => https://cert.trustedform.com/fa3c7a46746c11062430fe0505fed0beecab156c
+                        )
+
+                    [12] => Array
+                        (
+                            [uuid] => 9062324b-570d-4940-b39b-8e7058af009b
+                            [form_submission_id] => 1000
+                            [form_field_id] => 378
+                            [responsable_type] => 
+                            [responsable_id] => 
+                            [value] => 2800:98:1112:1f4d:3443:c9d:8b6a:a46a
+                            [created_at] => 2025-08-04T18:02:35.000000Z
+                            [updated_at] => 2025-08-04T18:02:35.000000Z
+                            [actual_value] => 2800:98:1112:1f4d:3443:c9d:8b6a:a46a
+                        )
+
+                )
+
+        )
+
+)
+
+[2025-08-04 18:11:48] Respuesta completa: Array
+(
+    [valid] => 1
+    [number] => 14044981326
+    [local_format] => 4044981326
+    [international_format] => +14044981326
+    [country_prefix] => +1
+    [country_code] => US
+    [country_name] => United States of America
+    [location] => Atlanta
+    [carrier] => 
+    [line_type] => landline
+)
+
+[2025-08-04 18:11:48] CAMPOS ORIGINALES DEL FORMULARIO
+Array
+(
+    [case_depo_provera_taken] => Yes
+    [case_depo_provera_use] => 3 or more years
+    [case_diagnosis] => Other Injury
+    [case_attorney] => No
+    [case_description] => redirection test
+    [lead_first_name] => Evelyn
+    [lead_last_name] => Young
+    [lead_phone] => +14044981326
+    [lead_email] => t6@epic.gt
+    [lead_zip_code] => 30043
+    [accept] => on
+    [trustedform] => 
+    [case_injury] => Brain Meningioma
+    [field_a64186e] => 
+)
+
+[2025-08-04 18:11:49] ENVÍO A VDI
+Payload: Array
+(
+    [lead-first-name] => Evelyn
+    [lead-last-name] => Young
+    [lead-email-address] => t6@epic.gt
+    [lead-phone] => 14044981326
+    [case-depo-provera-taken] => Yes
+    [case-depo-provera-use] => 3 or more years
+    [case-injury] => Brain Meningioma
+    [case-diagnosis] => Other Injury
+    [case-description] => redirection test
+    [case-attorney] => No
+    [lead-trusted-form-cert-id] => https://cert.trustedform.com/f9780f76aa7d343404899bbd84a5088d2d3a9897
+    [lead-ip-address] => 2800:98:1112:1f4d:3443:c9d:8b6a:a46a
+    [lead-zip-code] => 30043
+)
+
+Respuesta: {"success":false,"code":422,"locale":"en","slug":"the_selected_case_diagnosis_is_invalid","message":"The selected case-diagnosis is invalid.","errors":{"case-diagnosis":["The selected case-diagnosis is invalid."]}}
+[2025-08-04 18:11:49] ENVÍO A VDI
+Payload: Array
+(
+    [lead-first-name] => Evelyn
+    [lead-last-name] => Young
+    [lead-email-address] => t6@epic.gt
+    [lead-phone] => 14044981326
+    [case-depo-provera-taken] => Yes
+    [case-depo-provera-use] => 3 or more years
+    [case-injury] => Brain Meningioma
+    [case-diagnosis] => Other Injury
+    [case-description] => redirection test
+    [case-attorney] => No
+    [lead-trusted-form-cert-id] => https://cert.trustedform.com/f9780f76aa7d343404899bbd84a5088d2d3a9897
+    [lead-ip-address] => 2800:98:1112:1f4d:3443:c9d:8b6a:a46a
+    [lead-zip-code] => 30043
+)
+
+Respuesta: {"success":false,"code":422,"locale":"en","slug":"the_selected_case_diagnosis_is_invalid","message":"The selected case-diagnosis is invalid.","errors":{"case-diagnosis":["The selected case-diagnosis is invalid."]}}
+Cuerpo crudo de respuesta: {"success":false,"code":422,"locale":"en","slug":"the_selected_case_diagnosis_is_invalid","message":"The selected case-diagnosis is invalid.","errors":{"case-diagnosis":["The selected case-diagnosis is invalid."]}}
+Respuesta decodificada: Array
+(
+    [success] => 
+    [code] => 422
+    [locale] => en
+    [slug] => the_selected_case_diagnosis_is_invalid
+    [message] => The selected case-diagnosis is invalid.
+    [errors] => Array
+        (
+            [case-diagnosis] => Array
+                (
+                    [0] => The selected case-diagnosis is invalid.
+                )
+
+        )
+
+)
+
+[2025-08-04 18:11:49] REDIRECCIÓN EN ELEMENTOR
+URL recibida del API: https://injuryresolve.com/dp-thankyou/
+[2025-08-04 18:11:49] CONFIGURANDO REDIRECCIÓN EN ELEMENTOR
+Llamando add_response_data('redirect_url', 'https://injuryresolve.com/dp-thankyou/')
+[2025-08-04 18:11:49] REDIRECCIÓN AJAX DIRECTA
+[2025-08-04 18:14:19] Respuesta completa: Array
+(
+    [valid] => 1
+    [number] => 14043851290
+    [local_format] => 4043851290
+    [international_format] => +14043851290
+    [country_prefix] => +1
+    [country_code] => US
+    [country_name] => United States of America
+    [location] => Atlanta
+    [carrier] => 
+    [line_type] => landline
+)
+
+[2025-08-04 18:14:19] CAMPOS ORIGINALES DEL FORMULARIO
+Array
+(
+    [case_depo_provera_taken] => Yes
+    [case_depo_provera_use] => 3 or more years
+    [case_diagnosis] => Yes
+    [case_attorney] => No
+    [case_description] => test Henry
+    [lead_first_name] => Henry
+    [lead_last_name] => Robinson
+    [lead_phone] => +14043851290
+    [lead_email] => t7@epic.gt
+    [lead_zip_code] => 30043
+    [accept] => on
+    [trustedform] => 
+    [case_injury] => Brain Meningioma
+    [field_a64186e] => 
+)
+
+[2025-08-04 18:14:24] ENVÍO A VDI
+Payload: Array
+(
+    [lead-first-name] => Henry
+    [lead-last-name] => Robinson
+    [lead-email-address] => t7@epic.gt
+    [lead-phone] => 14043851290
+    [case-depo-provera-taken] => Yes
+    [case-depo-provera-use] => 3 or more years
+    [case-injury] => Brain Meningioma
+    [case-diagnosis] => Yes
+    [case-description] => test Henry
+    [case-attorney] => No
+    [lead-trusted-form-cert-id] => https://cert.trustedform.com/d93aeef883c063ab21298086fdbaf44e206291eb
+    [lead-ip-address] => 2800:98:1112:1f4d:3443:c9d:8b6a:a46a
+    [lead-zip-code] => 30043
+)
+
+Respuesta: {"success":true,"code":200,"locale":"en","slug":"successfully_created_a_new_submission","message":"Successfully created a new submission.","data":{"uuid":"000aa541-6522-4b6c-bf89-b9708657ed69","name":"Depo Provera - Henry Robinson (2025-08-04)","is_test":true,"status":"success","reject_reason":null,"validation_errors":null,"api_lead_id":"O3IFHRUW","api_response_message":"Lead Accepted","api_validation_errors":null,"reviewed_at":"2025-08-04T18:14:20.000000Z","created_at":"2025-08-04T18:14:19.000000Z","updated_at":"2025-08-04T18:14:24.000000Z","api_redirect_url":"https:\/\/www.totalinjuryhelp.com\/hp-thank-you?lead_id=O3IFHRUW","redirect_url":"https:\/\/www.totalinjuryhelp.com\/hp-thank-you?lead_id=O3IFHRUW","is_reviewed":true,"is_approved":true,"is_rejected":false,"form":{"title":"Depo Posts - InjuryResolve","slug":"depo-provera-injury-resolve","auto_approve":true,"auto_reject":true,"description":null,"production_at":null,"disabled_at":null,"disable_reason":null,"created_at":"2025-07-28T18:35:48.000000Z","updated_at":"2025-08-01T20:17:02.000000Z","has_sdk":true,"is_production":false,"is_enabled":true},"responses":[{"uuid":"41c9be8d-bc9e-4c04-8e1f-9a8b1b2c2973","form_submission_id":1002,"form_field_id":366,"responsable_type":null,"responsable_id":null,"value":"Henry","created_at":"2025-08-04T18:14:19.000000Z","updated_at":"2025-08-04T18:14:19.000000Z","actual_value":"Henry"},{"uuid":"b3299379-351d-4156-ba91-9528395b47b1","form_submission_id":1002,"form_field_id":367,"responsable_type":null,"responsable_id":null,"value":"Robinson","created_at":"2025-08-04T18:14:20.000000Z","updated_at":"2025-08-04T18:14:20.000000Z","actual_value":"Robinson"},{"uuid":"d2efa097-df7e-4c3b-a14e-8feb84fefd4c","form_submission_id":1002,"form_field_id":368,"responsable_type":null,"responsable_id":null,"value":"t7@epic.gt","created_at":"2025-08-04T18:14:20.000000Z","updated_at":"2025-08-04T18:14:20.000000Z","actual_value":"t7@epic.gt"},{"uuid":"d10124b1-3bde-492b-9549-89d88d1f7a85","form_submission_id":1002,"form_field_id":369,"responsable_type":null,"responsable_id":null,"value":"14043851290","created_at":"2025-08-04T18:14:20.000000Z","updated_at":"2025-08-04T18:14:20.000000Z","actual_value":"14043851290"},{"uuid":"9f83c9d0-927d-4c50-a141-332c6ca43400","form_submission_id":1002,"form_field_id":370,"responsable_type":null,"responsable_id":null,"value":"30043","created_at":"2025-08-04T18:14:20.000000Z","updated_at":"2025-08-04T18:14:20.000000Z","actual_value":"30043"},{"uuid":"974e706e-62aa-4cd0-9a8c-c88d71047278","form_submission_id":1002,"form_field_id":371,"responsable_type":"form_field_choice","responsable_id":1086,"value":null,"created_at":"2025-08-04T18:14:20.000000Z","updated_at":"2025-08-04T18:14:20.000000Z","actual_value":"Yes","responsable":{"uuid":"dab19e8d-2659-4073-ac03-699a355f4287","form_field_id":371,"display_value":"Yes","actual_value":"Yes","is_accepted":true,"is_hidden":false,"position":0,"created_at":"2025-07-28T18:35:48.000000Z","updated_at":"2025-07-28T18:35:48.000000Z"}},{"uuid":"20a90bb6-c734-4e1e-b2e8-2b3b63e32309","form_submission_id":1002,"form_field_id":372,"responsable_type":"form_field_choice","responsable_id":1090,"value":null,"created_at":"2025-08-04T18:14:20.000000Z","updated_at":"2025-08-04T18:14:20.000000Z","actual_value":"3 or more years","responsable":{"uuid":"0084065c-b84a-4d2b-ba13-68b97e5679d1","form_field_id":372,"display_value":"3 or more years","actual_value":"3 or more years","is_accepted":true,"is_hidden":false,"position":2,"created_at":"2025-07-28T18:35:48.000000Z","updated_at":"2025-07-28T18:35:48.000000Z"}},{"uuid":"1c88facb-71eb-415f-b82c-512ef604358a","form_submission_id":1002,"form_field_id":373,"responsable_type":"form_field_choice","responsable_id":1094,"value":null,"created_at":"2025-08-04T18:14:20.000000Z","updated_at":"2025-08-04T18:14:20.000000Z","actual_value":"Brain Meningioma","responsable":{"uuid":"675a8cc2-221a-451a-9180-dd2bef90233f","form_field_id":373,"display_value":"Brain Meningioma","actual_value":"Brain Meningioma","is_accepted":true,"is_hidden":false,"position":1,"created_at":"2025-07-28T18:35:48.000000Z","updated_at":"2025-07-28T18:35:48.000000Z"}},{"uuid":"d74f5e1b-07e1-4dd1-839f-e2b6be96cdcb","form_submission_id":1002,"form_field_id":374,"responsable_type":"form_field_choice","responsable_id":1104,"value":null,"created_at":"2025-08-04T18:14:20.000000Z","updated_at":"2025-08-04T18:14:20.000000Z","actual_value":"Yes","responsable":{"uuid":"9e6b5955-f138-42eb-9f4c-5504578aaa40","form_field_id":374,"display_value":"Yes","actual_value":"Yes","is_accepted":true,"is_hidden":false,"position":0,"created_at":"2025-07-28T18:35:49.000000Z","updated_at":"2025-07-28T18:35:49.000000Z"}},{"uuid":"5bc8d347-4fe4-4ccc-9b93-c092b2290e44","form_submission_id":1002,"form_field_id":375,"responsable_type":null,"responsable_id":null,"value":"test Henry","created_at":"2025-08-04T18:14:20.000000Z","updated_at":"2025-08-04T18:14:20.000000Z","actual_value":"test Henry"},{"uuid":"dba55d67-3651-4c92-9ca3-6cc6461e0551","form_submission_id":1002,"form_field_id":376,"responsable_type":"form_field_choice","responsable_id":1106,"value":null,"created_at":"2025-08-04T18:14:20.000000Z","updated_at":"2025-08-04T18:14:20.000000Z","actual_value":"No","responsable":{"uuid":"993ee696-ff9c-47a0-af19-1d8d2558a071","form_field_id":376,"display_value":"No","actual_value":"No","is_accepted":true,"is_hidden":false,"position":0,"created_at":"2025-07-28T18:35:49.000000Z","updated_at":"2025-07-28T18:35:49.000000Z"}},{"uuid":"567113d1-ef0c-4f71-bfb1-86417fab38c8","form_submission_id":1002,"form_field_id":377,"responsable_type":null,"responsable_id":null,"value":"https:\/\/cert.trustedform.com\/d93aeef883c063ab21298086fdbaf44e206291eb","created_at":"2025-08-04T18:14:20.000000Z","updated_at":"2025-08-04T18:14:20.000000Z","actual_value":"https:\/\/cert.trustedform.com\/d93aeef883c063ab21298086fdbaf44e206291eb"},{"uuid":"ef8c6a22-f952-4f7f-9b3f-219f2f28b195","form_submission_id":1002,"form_field_id":378,"responsable_type":null,"responsable_id":null,"value":"2800:98:1112:1f4d:3443:c9d:8b6a:a46a","created_at":"2025-08-04T18:14:20.000000Z","updated_at":"2025-08-04T18:14:20.000000Z","actual_value":"2800:98:1112:1f4d:3443:c9d:8b6a:a46a"}]}}
+[2025-08-04 18:14:24] ENVÍO A VDI
+Payload: Array
+(
+    [lead-first-name] => Henry
+    [lead-last-name] => Robinson
+    [lead-email-address] => t7@epic.gt
+    [lead-phone] => 14043851290
+    [case-depo-provera-taken] => Yes
+    [case-depo-provera-use] => 3 or more years
+    [case-injury] => Brain Meningioma
+    [case-diagnosis] => Yes
+    [case-description] => test Henry
+    [case-attorney] => No
+    [lead-trusted-form-cert-id] => https://cert.trustedform.com/d93aeef883c063ab21298086fdbaf44e206291eb
+    [lead-ip-address] => 2800:98:1112:1f4d:3443:c9d:8b6a:a46a
+    [lead-zip-code] => 30043
+)
+
+Respuesta: {"success":true,"code":200,"locale":"en","slug":"successfully_created_a_new_submission","message":"Successfully created a new submission.","data":{"uuid":"000aa541-6522-4b6c-bf89-b9708657ed69","name":"Depo Provera - Henry Robinson (2025-08-04)","is_test":true,"status":"success","reject_reason":null,"validation_errors":null,"api_lead_id":"O3IFHRUW","api_response_message":"Lead Accepted","api_validation_errors":null,"reviewed_at":"2025-08-04T18:14:20.000000Z","created_at":"2025-08-04T18:14:19.000000Z","updated_at":"2025-08-04T18:14:24.000000Z","api_redirect_url":"https:\/\/www.totalinjuryhelp.com\/hp-thank-you?lead_id=O3IFHRUW","redirect_url":"https:\/\/www.totalinjuryhelp.com\/hp-thank-you?lead_id=O3IFHRUW","is_reviewed":true,"is_approved":true,"is_rejected":false,"form":{"title":"Depo Posts - InjuryResolve","slug":"depo-provera-injury-resolve","auto_approve":true,"auto_reject":true,"description":null,"production_at":null,"disabled_at":null,"disable_reason":null,"created_at":"2025-07-28T18:35:48.000000Z","updated_at":"2025-08-01T20:17:02.000000Z","has_sdk":true,"is_production":false,"is_enabled":true},"responses":[{"uuid":"41c9be8d-bc9e-4c04-8e1f-9a8b1b2c2973","form_submission_id":1002,"form_field_id":366,"responsable_type":null,"responsable_id":null,"value":"Henry","created_at":"2025-08-04T18:14:19.000000Z","updated_at":"2025-08-04T18:14:19.000000Z","actual_value":"Henry"},{"uuid":"b3299379-351d-4156-ba91-9528395b47b1","form_submission_id":1002,"form_field_id":367,"responsable_type":null,"responsable_id":null,"value":"Robinson","created_at":"2025-08-04T18:14:20.000000Z","updated_at":"2025-08-04T18:14:20.000000Z","actual_value":"Robinson"},{"uuid":"d2efa097-df7e-4c3b-a14e-8feb84fefd4c","form_submission_id":1002,"form_field_id":368,"responsable_type":null,"responsable_id":null,"value":"t7@epic.gt","created_at":"2025-08-04T18:14:20.000000Z","updated_at":"2025-08-04T18:14:20.000000Z","actual_value":"t7@epic.gt"},{"uuid":"d10124b1-3bde-492b-9549-89d88d1f7a85","form_submission_id":1002,"form_field_id":369,"responsable_type":null,"responsable_id":null,"value":"14043851290","created_at":"2025-08-04T18:14:20.000000Z","updated_at":"2025-08-04T18:14:20.000000Z","actual_value":"14043851290"},{"uuid":"9f83c9d0-927d-4c50-a141-332c6ca43400","form_submission_id":1002,"form_field_id":370,"responsable_type":null,"responsable_id":null,"value":"30043","created_at":"2025-08-04T18:14:20.000000Z","updated_at":"2025-08-04T18:14:20.000000Z","actual_value":"30043"},{"uuid":"974e706e-62aa-4cd0-9a8c-c88d71047278","form_submission_id":1002,"form_field_id":371,"responsable_type":"form_field_choice","responsable_id":1086,"value":null,"created_at":"2025-08-04T18:14:20.000000Z","updated_at":"2025-08-04T18:14:20.000000Z","actual_value":"Yes","responsable":{"uuid":"dab19e8d-2659-4073-ac03-699a355f4287","form_field_id":371,"display_value":"Yes","actual_value":"Yes","is_accepted":true,"is_hidden":false,"position":0,"created_at":"2025-07-28T18:35:48.000000Z","updated_at":"2025-07-28T18:35:48.000000Z"}},{"uuid":"20a90bb6-c734-4e1e-b2e8-2b3b63e32309","form_submission_id":1002,"form_field_id":372,"responsable_type":"form_field_choice","responsable_id":1090,"value":null,"created_at":"2025-08-04T18:14:20.000000Z","updated_at":"2025-08-04T18:14:20.000000Z","actual_value":"3 or more years","responsable":{"uuid":"0084065c-b84a-4d2b-ba13-68b97e5679d1","form_field_id":372,"display_value":"3 or more years","actual_value":"3 or more years","is_accepted":true,"is_hidden":false,"position":2,"created_at":"2025-07-28T18:35:48.000000Z","updated_at":"2025-07-28T18:35:48.000000Z"}},{"uuid":"1c88facb-71eb-415f-b82c-512ef604358a","form_submission_id":1002,"form_field_id":373,"responsable_type":"form_field_choice","responsable_id":1094,"value":null,"created_at":"2025-08-04T18:14:20.000000Z","updated_at":"2025-08-04T18:14:20.000000Z","actual_value":"Brain Meningioma","responsable":{"uuid":"675a8cc2-221a-451a-9180-dd2bef90233f","form_field_id":373,"display_value":"Brain Meningioma","actual_value":"Brain Meningioma","is_accepted":true,"is_hidden":false,"position":1,"created_at":"2025-07-28T18:35:48.000000Z","updated_at":"2025-07-28T18:35:48.000000Z"}},{"uuid":"d74f5e1b-07e1-4dd1-839f-e2b6be96cdcb","form_submission_id":1002,"form_field_id":374,"responsable_type":"form_field_choice","responsable_id":1104,"value":null,"created_at":"2025-08-04T18:14:20.000000Z","updated_at":"2025-08-04T18:14:20.000000Z","actual_value":"Yes","responsable":{"uuid":"9e6b5955-f138-42eb-9f4c-5504578aaa40","form_field_id":374,"display_value":"Yes","actual_value":"Yes","is_accepted":true,"is_hidden":false,"position":0,"created_at":"2025-07-28T18:35:49.000000Z","updated_at":"2025-07-28T18:35:49.000000Z"}},{"uuid":"5bc8d347-4fe4-4ccc-9b93-c092b2290e44","form_submission_id":1002,"form_field_id":375,"responsable_type":null,"responsable_id":null,"value":"test Henry","created_at":"2025-08-04T18:14:20.000000Z","updated_at":"2025-08-04T18:14:20.000000Z","actual_value":"test Henry"},{"uuid":"dba55d67-3651-4c92-9ca3-6cc6461e0551","form_submission_id":1002,"form_field_id":376,"responsable_type":"form_field_choice","responsable_id":1106,"value":null,"created_at":"2025-08-04T18:14:20.000000Z","updated_at":"2025-08-04T18:14:20.000000Z","actual_value":"No","responsable":{"uuid":"993ee696-ff9c-47a0-af19-1d8d2558a071","form_field_id":376,"display_value":"No","actual_value":"No","is_accepted":true,"is_hidden":false,"position":0,"created_at":"2025-07-28T18:35:49.000000Z","updated_at":"2025-07-28T18:35:49.000000Z"}},{"uuid":"567113d1-ef0c-4f71-bfb1-86417fab38c8","form_submission_id":1002,"form_field_id":377,"responsable_type":null,"responsable_id":null,"value":"https:\/\/cert.trustedform.com\/d93aeef883c063ab21298086fdbaf44e206291eb","created_at":"2025-08-04T18:14:20.000000Z","updated_at":"2025-08-04T18:14:20.000000Z","actual_value":"https:\/\/cert.trustedform.com\/d93aeef883c063ab21298086fdbaf44e206291eb"},{"uuid":"ef8c6a22-f952-4f7f-9b3f-219f2f28b195","form_submission_id":1002,"form_field_id":378,"responsable_type":null,"responsable_id":null,"value":"2800:98:1112:1f4d:3443:c9d:8b6a:a46a","created_at":"2025-08-04T18:14:20.000000Z","updated_at":"2025-08-04T18:14:20.000000Z","actual_value":"2800:98:1112:1f4d:3443:c9d:8b6a:a46a"}]}}
+Cuerpo crudo de respuesta: {"success":true,"code":200,"locale":"en","slug":"successfully_created_a_new_submission","message":"Successfully created a new submission.","data":{"uuid":"000aa541-6522-4b6c-bf89-b9708657ed69","name":"Depo Provera - Henry Robinson (2025-08-04)","is_test":true,"status":"success","reject_reason":null,"validation_errors":null,"api_lead_id":"O3IFHRUW","api_response_message":"Lead Accepted","api_validation_errors":null,"reviewed_at":"2025-08-04T18:14:20.000000Z","created_at":"2025-08-04T18:14:19.000000Z","updated_at":"2025-08-04T18:14:24.000000Z","api_redirect_url":"https:\/\/www.totalinjuryhelp.com\/hp-thank-you?lead_id=O3IFHRUW","redirect_url":"https:\/\/www.totalinjuryhelp.com\/hp-thank-you?lead_id=O3IFHRUW","is_reviewed":true,"is_approved":true,"is_rejected":false,"form":{"title":"Depo Posts - InjuryResolve","slug":"depo-provera-injury-resolve","auto_approve":true,"auto_reject":true,"description":null,"production_at":null,"disabled_at":null,"disable_reason":null,"created_at":"2025-07-28T18:35:48.000000Z","updated_at":"2025-08-01T20:17:02.000000Z","has_sdk":true,"is_production":false,"is_enabled":true},"responses":[{"uuid":"41c9be8d-bc9e-4c04-8e1f-9a8b1b2c2973","form_submission_id":1002,"form_field_id":366,"responsable_type":null,"responsable_id":null,"value":"Henry","created_at":"2025-08-04T18:14:19.000000Z","updated_at":"2025-08-04T18:14:19.000000Z","actual_value":"Henry"},{"uuid":"b3299379-351d-4156-ba91-9528395b47b1","form_submission_id":1002,"form_field_id":367,"responsable_type":null,"responsable_id":null,"value":"Robinson","created_at":"2025-08-04T18:14:20.000000Z","updated_at":"2025-08-04T18:14:20.000000Z","actual_value":"Robinson"},{"uuid":"d2efa097-df7e-4c3b-a14e-8feb84fefd4c","form_submission_id":1002,"form_field_id":368,"responsable_type":null,"responsable_id":null,"value":"t7@epic.gt","created_at":"2025-08-04T18:14:20.000000Z","updated_at":"2025-08-04T18:14:20.000000Z","actual_value":"t7@epic.gt"},{"uuid":"d10124b1-3bde-492b-9549-89d88d1f7a85","form_submission_id":1002,"form_field_id":369,"responsable_type":null,"responsable_id":null,"value":"14043851290","created_at":"2025-08-04T18:14:20.000000Z","updated_at":"2025-08-04T18:14:20.000000Z","actual_value":"14043851290"},{"uuid":"9f83c9d0-927d-4c50-a141-332c6ca43400","form_submission_id":1002,"form_field_id":370,"responsable_type":null,"responsable_id":null,"value":"30043","created_at":"2025-08-04T18:14:20.000000Z","updated_at":"2025-08-04T18:14:20.000000Z","actual_value":"30043"},{"uuid":"974e706e-62aa-4cd0-9a8c-c88d71047278","form_submission_id":1002,"form_field_id":371,"responsable_type":"form_field_choice","responsable_id":1086,"value":null,"created_at":"2025-08-04T18:14:20.000000Z","updated_at":"2025-08-04T18:14:20.000000Z","actual_value":"Yes","responsable":{"uuid":"dab19e8d-2659-4073-ac03-699a355f4287","form_field_id":371,"display_value":"Yes","actual_value":"Yes","is_accepted":true,"is_hidden":false,"position":0,"created_at":"2025-07-28T18:35:48.000000Z","updated_at":"2025-07-28T18:35:48.000000Z"}},{"uuid":"20a90bb6-c734-4e1e-b2e8-2b3b63e32309","form_submission_id":1002,"form_field_id":372,"responsable_type":"form_field_choice","responsable_id":1090,"value":null,"created_at":"2025-08-04T18:14:20.000000Z","updated_at":"2025-08-04T18:14:20.000000Z","actual_value":"3 or more years","responsable":{"uuid":"0084065c-b84a-4d2b-ba13-68b97e5679d1","form_field_id":372,"display_value":"3 or more years","actual_value":"3 or more years","is_accepted":true,"is_hidden":false,"position":2,"created_at":"2025-07-28T18:35:48.000000Z","updated_at":"2025-07-28T18:35:48.000000Z"}},{"uuid":"1c88facb-71eb-415f-b82c-512ef604358a","form_submission_id":1002,"form_field_id":373,"responsable_type":"form_field_choice","responsable_id":1094,"value":null,"created_at":"2025-08-04T18:14:20.000000Z","updated_at":"2025-08-04T18:14:20.000000Z","actual_value":"Brain Meningioma","responsable":{"uuid":"675a8cc2-221a-451a-9180-dd2bef90233f","form_field_id":373,"display_value":"Brain Meningioma","actual_value":"Brain Meningioma","is_accepted":true,"is_hidden":false,"position":1,"created_at":"2025-07-28T18:35:48.000000Z","updated_at":"2025-07-28T18:35:48.000000Z"}},{"uuid":"d74f5e1b-07e1-4dd1-839f-e2b6be96cdcb","form_submission_id":1002,"form_field_id":374,"responsable_type":"form_field_choice","responsable_id":1104,"value":null,"created_at":"2025-08-04T18:14:20.000000Z","updated_at":"2025-08-04T18:14:20.000000Z","actual_value":"Yes","responsable":{"uuid":"9e6b5955-f138-42eb-9f4c-5504578aaa40","form_field_id":374,"display_value":"Yes","actual_value":"Yes","is_accepted":true,"is_hidden":false,"position":0,"created_at":"2025-07-28T18:35:49.000000Z","updated_at":"2025-07-28T18:35:49.000000Z"}},{"uuid":"5bc8d347-4fe4-4ccc-9b93-c092b2290e44","form_submission_id":1002,"form_field_id":375,"responsable_type":null,"responsable_id":null,"value":"test Henry","created_at":"2025-08-04T18:14:20.000000Z","updated_at":"2025-08-04T18:14:20.000000Z","actual_value":"test Henry"},{"uuid":"dba55d67-3651-4c92-9ca3-6cc6461e0551","form_submission_id":1002,"form_field_id":376,"responsable_type":"form_field_choice","responsable_id":1106,"value":null,"created_at":"2025-08-04T18:14:20.000000Z","updated_at":"2025-08-04T18:14:20.000000Z","actual_value":"No","responsable":{"uuid":"993ee696-ff9c-47a0-af19-1d8d2558a071","form_field_id":376,"display_value":"No","actual_value":"No","is_accepted":true,"is_hidden":false,"position":0,"created_at":"2025-07-28T18:35:49.000000Z","updated_at":"2025-07-28T18:35:49.000000Z"}},{"uuid":"567113d1-ef0c-4f71-bfb1-86417fab38c8","form_submission_id":1002,"form_field_id":377,"responsable_type":null,"responsable_id":null,"value":"https:\/\/cert.trustedform.com\/d93aeef883c063ab21298086fdbaf44e206291eb","created_at":"2025-08-04T18:14:20.000000Z","updated_at":"2025-08-04T18:14:20.000000Z","actual_value":"https:\/\/cert.trustedform.com\/d93aeef883c063ab21298086fdbaf44e206291eb"},{"uuid":"ef8c6a22-f952-4f7f-9b3f-219f2f28b195","form_submission_id":1002,"form_field_id":378,"responsable_type":null,"responsable_id":null,"value":"2800:98:1112:1f4d:3443:c9d:8b6a:a46a","created_at":"2025-08-04T18:14:20.000000Z","updated_at":"2025-08-04T18:14:20.000000Z","actual_value":"2800:98:1112:1f4d:3443:c9d:8b6a:a46a"}]}}
+Respuesta decodificada: Array
+(
+    [success] => 1
+    [code] => 200
+    [locale] => en
+    [slug] => successfully_created_a_new_submission
+    [message] => Successfully created a new submission.
+    [data] => Array
+        (
+            [uuid] => 000aa541-6522-4b6c-bf89-b9708657ed69
+            [name] => Depo Provera - Henry Robinson (2025-08-04)
+            [is_test] => 1
+            [status] => success
+            [reject_reason] => 
+            [validation_errors] => 
+            [api_lead_id] => O3IFHRUW
+            [api_response_message] => Lead Accepted
+            [api_validation_errors] => 
+            [reviewed_at] => 2025-08-04T18:14:20.000000Z
+            [created_at] => 2025-08-04T18:14:19.000000Z
+            [updated_at] => 2025-08-04T18:14:24.000000Z
+            [api_redirect_url] => https://www.totalinjuryhelp.com/hp-thank-you?lead_id=O3IFHRUW
+            [redirect_url] => https://www.totalinjuryhelp.com/hp-thank-you?lead_id=O3IFHRUW
+            [is_reviewed] => 1
+            [is_approved] => 1
+            [is_rejected] => 
+            [form] => Array
+                (
+                    [title] => Depo Posts - InjuryResolve
+                    [slug] => depo-provera-injury-resolve
+                    [auto_approve] => 1
+                    [auto_reject] => 1
+                    [description] => 
+                    [production_at] => 
+                    [disabled_at] => 
+                    [disable_reason] => 
+                    [created_at] => 2025-07-28T18:35:48.000000Z
+                    [updated_at] => 2025-08-01T20:17:02.000000Z
+                    [has_sdk] => 1
+                    [is_production] => 
+                    [is_enabled] => 1
+                )
+
+            [responses] => Array
+                (
+                    [0] => Array
+                        (
+                            [uuid] => 41c9be8d-bc9e-4c04-8e1f-9a8b1b2c2973
+                            [form_submission_id] => 1002
+                            [form_field_id] => 366
+                            [responsable_type] => 
+                            [responsable_id] => 
+                            [value] => Henry
+                            [created_at] => 2025-08-04T18:14:19.000000Z
+                            [updated_at] => 2025-08-04T18:14:19.000000Z
+                            [actual_value] => Henry
+                        )
+
+                    [1] => Array
+                        (
+                            [uuid] => b3299379-351d-4156-ba91-9528395b47b1
+                            [form_submission_id] => 1002
+                            [form_field_id] => 367
+                            [responsable_type] => 
+                            [responsable_id] => 
+                            [value] => Robinson
+                            [created_at] => 2025-08-04T18:14:20.000000Z
+                            [updated_at] => 2025-08-04T18:14:20.000000Z
+                            [actual_value] => Robinson
+                        )
+
+                    [2] => Array
+                        (
+                            [uuid] => d2efa097-df7e-4c3b-a14e-8feb84fefd4c
+                            [form_submission_id] => 1002
+                            [form_field_id] => 368
+                            [responsable_type] => 
+                            [responsable_id] => 
+                            [value] => t7@epic.gt
+                            [created_at] => 2025-08-04T18:14:20.000000Z
+                            [updated_at] => 2025-08-04T18:14:20.000000Z
+                            [actual_value] => t7@epic.gt
+                        )
+
+                    [3] => Array
+                        (
+                            [uuid] => d10124b1-3bde-492b-9549-89d88d1f7a85
+                            [form_submission_id] => 1002
+                            [form_field_id] => 369
+                            [responsable_type] => 
+                            [responsable_id] => 
+                            [value] => 14043851290
+                            [created_at] => 2025-08-04T18:14:20.000000Z
+                            [updated_at] => 2025-08-04T18:14:20.000000Z
+                            [actual_value] => 14043851290
+                        )
+
+                    [4] => Array
+                        (
+                            [uuid] => 9f83c9d0-927d-4c50-a141-332c6ca43400
+                            [form_submission_id] => 1002
+                            [form_field_id] => 370
+                            [responsable_type] => 
+                            [responsable_id] => 
+                            [value] => 30043
+                            [created_at] => 2025-08-04T18:14:20.000000Z
+                            [updated_at] => 2025-08-04T18:14:20.000000Z
+                            [actual_value] => 30043
+                        )
+
+                    [5] => Array
+                        (
+                            [uuid] => 974e706e-62aa-4cd0-9a8c-c88d71047278
+                            [form_submission_id] => 1002
+                            [form_field_id] => 371
+                            [responsable_type] => form_field_choice
+                            [responsable_id] => 1086
+                            [value] => 
+                            [created_at] => 2025-08-04T18:14:20.000000Z
+                            [updated_at] => 2025-08-04T18:14:20.000000Z
+                            [actual_value] => Yes
+                            [responsable] => Array
+                                (
+                                    [uuid] => dab19e8d-2659-4073-ac03-699a355f4287
+                                    [form_field_id] => 371
+                                    [display_value] => Yes
+                                    [actual_value] => Yes
+                                    [is_accepted] => 1
+                                    [is_hidden] => 
+                                    [position] => 0
+                                    [created_at] => 2025-07-28T18:35:48.000000Z
+                                    [updated_at] => 2025-07-28T18:35:48.000000Z
+                                )
+
+                        )
+
+                    [6] => Array
+                        (
+                            [uuid] => 20a90bb6-c734-4e1e-b2e8-2b3b63e32309
+                            [form_submission_id] => 1002
+                            [form_field_id] => 372
+                            [responsable_type] => form_field_choice
+                            [responsable_id] => 1090
+                            [value] => 
+                            [created_at] => 2025-08-04T18:14:20.000000Z
+                            [updated_at] => 2025-08-04T18:14:20.000000Z
+                            [actual_value] => 3 or more years
+                            [responsable] => Array
+                                (
+                                    [uuid] => 0084065c-b84a-4d2b-ba13-68b97e5679d1
+                                    [form_field_id] => 372
+                                    [display_value] => 3 or more years
+                                    [actual_value] => 3 or more years
+                                    [is_accepted] => 1
+                                    [is_hidden] => 
+                                    [position] => 2
+                                    [created_at] => 2025-07-28T18:35:48.000000Z
+                                    [updated_at] => 2025-07-28T18:35:48.000000Z
+                                )
+
+                        )
+
+                    [7] => Array
+                        (
+                            [uuid] => 1c88facb-71eb-415f-b82c-512ef604358a
+                            [form_submission_id] => 1002
+                            [form_field_id] => 373
+                            [responsable_type] => form_field_choice
+                            [responsable_id] => 1094
+                            [value] => 
+                            [created_at] => 2025-08-04T18:14:20.000000Z
+                            [updated_at] => 2025-08-04T18:14:20.000000Z
+                            [actual_value] => Brain Meningioma
+                            [responsable] => Array
+                                (
+                                    [uuid] => 675a8cc2-221a-451a-9180-dd2bef90233f
+                                    [form_field_id] => 373
+                                    [display_value] => Brain Meningioma
+                                    [actual_value] => Brain Meningioma
+                                    [is_accepted] => 1
+                                    [is_hidden] => 
+                                    [position] => 1
+                                    [created_at] => 2025-07-28T18:35:48.000000Z
+                                    [updated_at] => 2025-07-28T18:35:48.000000Z
+                                )
+
+                        )
+
+                    [8] => Array
+                        (
+                            [uuid] => d74f5e1b-07e1-4dd1-839f-e2b6be96cdcb
+                            [form_submission_id] => 1002
+                            [form_field_id] => 374
+                            [responsable_type] => form_field_choice
+                            [responsable_id] => 1104
+                            [value] => 
+                            [created_at] => 2025-08-04T18:14:20.000000Z
+                            [updated_at] => 2025-08-04T18:14:20.000000Z
+                            [actual_value] => Yes
+                            [responsable] => Array
+                                (
+                                    [uuid] => 9e6b5955-f138-42eb-9f4c-5504578aaa40
+                                    [form_field_id] => 374
+                                    [display_value] => Yes
+                                    [actual_value] => Yes
+                                    [is_accepted] => 1
+                                    [is_hidden] => 
+                                    [position] => 0
+                                    [created_at] => 2025-07-28T18:35:49.000000Z
+                                    [updated_at] => 2025-07-28T18:35:49.000000Z
+                                )
+
+                        )
+
+                    [9] => Array
+                        (
+                            [uuid] => 5bc8d347-4fe4-4ccc-9b93-c092b2290e44
+                            [form_submission_id] => 1002
+                            [form_field_id] => 375
+                            [responsable_type] => 
+                            [responsable_id] => 
+                            [value] => test Henry
+                            [created_at] => 2025-08-04T18:14:20.000000Z
+                            [updated_at] => 2025-08-04T18:14:20.000000Z
+                            [actual_value] => test Henry
+                        )
+
+                    [10] => Array
+                        (
+                            [uuid] => dba55d67-3651-4c92-9ca3-6cc6461e0551
+                            [form_submission_id] => 1002
+                            [form_field_id] => 376
+                            [responsable_type] => form_field_choice
+                            [responsable_id] => 1106
+                            [value] => 
+                            [created_at] => 2025-08-04T18:14:20.000000Z
+                            [updated_at] => 2025-08-04T18:14:20.000000Z
+                            [actual_value] => No
+                            [responsable] => Array
+                                (
+                                    [uuid] => 993ee696-ff9c-47a0-af19-1d8d2558a071
+                                    [form_field_id] => 376
+                                    [display_value] => No
+                                    [actual_value] => No
+                                    [is_accepted] => 1
+                                    [is_hidden] => 
+                                    [position] => 0
+                                    [created_at] => 2025-07-28T18:35:49.000000Z
+                                    [updated_at] => 2025-07-28T18:35:49.000000Z
+                                )
+
+                        )
+
+                    [11] => Array
+                        (
+                            [uuid] => 567113d1-ef0c-4f71-bfb1-86417fab38c8
+                            [form_submission_id] => 1002
+                            [form_field_id] => 377
+                            [responsable_type] => 
+                            [responsable_id] => 
+                            [value] => https://cert.trustedform.com/d93aeef883c063ab21298086fdbaf44e206291eb
+                            [created_at] => 2025-08-04T18:14:20.000000Z
+                            [updated_at] => 2025-08-04T18:14:20.000000Z
+                            [actual_value] => https://cert.trustedform.com/d93aeef883c063ab21298086fdbaf44e206291eb
+                        )
+
+                    [12] => Array
+                        (
+                            [uuid] => ef8c6a22-f952-4f7f-9b3f-219f2f28b195
+                            [form_submission_id] => 1002
+                            [form_field_id] => 378
+                            [responsable_type] => 
+                            [responsable_id] => 
+                            [value] => 2800:98:1112:1f4d:3443:c9d:8b6a:a46a
+                            [created_at] => 2025-08-04T18:14:20.000000Z
+                            [updated_at] => 2025-08-04T18:14:20.000000Z
+                            [actual_value] => 2800:98:1112:1f4d:3443:c9d:8b6a:a46a
+                        )
+
+                )
+
+        )
+
+)
+
+[2025-08-04 18:14:24] REDIRECCIÓN EN ELEMENTOR
+URL recibida del API: https://injuryresolve.com/dp-thankyou/
+[2025-08-04 18:14:24] CONFIGURANDO REDIRECCIÓN EN ELEMENTOR
+Llamando add_response_data('redirect_url', 'https://injuryresolve.com/dp-thankyou/')
+[2025-08-04 18:14:24] REDIRECCIÓN AJAX DIRECTA

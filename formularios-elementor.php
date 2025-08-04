@@ -116,28 +116,3 @@ function mimer_api_redirect_url_shortcode() {
     return esc_url($val);
 }
 add_shortcode('mimer_api_redirect_url', 'mimer_api_redirect_url_shortcode');
-
-// NUEVO: Shortcode con JavaScript para redirección automática
-function mimer_auto_redirect_shortcode() {
-    if (session_status() == PHP_SESSION_NONE) {
-        session_start();
-    }
-    
-    // Usar la variable de sesión que contiene la URL del API
-    $redirect_url = isset($_SESSION['mimer_api_redirect_url']) ? $_SESSION['mimer_api_redirect_url'] : '';
-    
-    // Solo redirigir si tenemos una URL diferente a la por defecto y no está vacía
-    if (!empty($redirect_url) && $redirect_url !== 'https://injuryresolve.com/dp-thankyou/') {
-        // NO limpiar la sesión aquí para que el otro shortcode siga funcionando
-        
-        return '<script>
-            console.log("Auto-redirect activado con URL: ' . esc_js($redirect_url) . '");
-            setTimeout(function() {
-                window.location.href = "' . esc_js($redirect_url) . '";
-            }, 2000); // Esperar 2 segundos para poder ver el mensaje
-        </script>';
-    }
-    
-    return '<!-- No hay URL de API para redirección automática -->';
-}
-add_shortcode('mimer_auto_redirect', 'mimer_auto_redirect_shortcode');

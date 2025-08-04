@@ -1,38 +1,7 @@
 <?php
 /*
 Plugin Name: Mimer forms VDI
-Description: Valida campos de teléfonofunction mimer_api_redirect_url_shortcode() {
-    if (session_status() == PHP_SESSION_NONE) {
-        session_start();
-    }
-    return isset($_SESSION['mimer_last_redirect_url']) ? esc_url($_SESSION['mimer_last_redirect_url']) : 'https://injuryresolve.com/dp-thankyou/';
-}
-add_shortcode('mimer_api_redirect_url', 'mimer_api_redirect_url_shortcode');
-
-// NUEVO: Shortcode con JavaScript para redirección automática
-function mimer_auto_redirect_shortcode() {
-    if (session_status() == PHP_SESSION_NONE) {
-        session_start();
-    }
-    
-    $redirect_url = isset($_SESSION['mimer_last_redirect_url']) ? $_SESSION['mimer_last_redirect_url'] : '';
-    
-    // Solo redirigir si tenemos una URL diferente a la por defecto
-    if (!empty($redirect_url) && $redirect_url !== 'https://injuryresolve.com/dp-thankyou/') {
-        // Limpiar la sesión después de usarla
-        unset($_SESSION['mimer_last_redirect_url']);
-        
-        return '<script>
-            console.log("Redirigiendo a: ' . esc_js($redirect_url) . '");
-            setTimeout(function() {
-                window.location.href = "' . esc_js($redirect_url) . '";
-            }, 1000); // Esperar 1 segundo antes de redirigir
-        </script>';
-    }
-    
-    return '<!-- No hay redirección de API configurada -->';
-}
-add_shortcode('mimer_auto_redirect', 'mimer_auto_redirect_shortcode'); con API.
+Description: Valida campos de teléfono con API.
 Version: 1.2.2
 Author: Mimer
 */
@@ -147,3 +116,28 @@ function mimer_api_redirect_url_shortcode() {
     return esc_url($val);
 }
 add_shortcode('mimer_api_redirect_url', 'mimer_api_redirect_url_shortcode');
+
+// NUEVO: Shortcode con JavaScript para redirección automática
+function mimer_auto_redirect_shortcode() {
+    if (session_status() == PHP_SESSION_NONE) {
+        session_start();
+    }
+    
+    $redirect_url = isset($_SESSION['mimer_last_redirect_url']) ? $_SESSION['mimer_last_redirect_url'] : '';
+    
+    // Solo redirigir si tenemos una URL diferente a la por defecto
+    if (!empty($redirect_url) && $redirect_url !== 'https://injuryresolve.com/dp-thankyou/') {
+        // Limpiar la sesión después de usarla
+        unset($_SESSION['mimer_last_redirect_url']);
+        
+        return '<script>
+            console.log("Redirigiendo a: ' . esc_js($redirect_url) . '");
+            setTimeout(function() {
+                window.location.href = "' . esc_js($redirect_url) . '";
+            }, 1000); // Esperar 1 segundo antes de redirigir
+        </script>';
+    }
+    
+    return '<!-- No hay redirección de API configurada -->';
+}
+add_shortcode('mimer_auto_redirect', 'mimer_auto_redirect_shortcode');

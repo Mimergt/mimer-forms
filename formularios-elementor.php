@@ -69,5 +69,16 @@ function env_validate_phone_number($record, $ajax_handler) {
     MimerFormsVDI::send_submission_to_vdi($flat_fields);
 }
 
+// Puedes poner esto en el archivo principal del plugin o en un archivo de shortcodes
+function mimer_dynamic_redirect_shortcode() {
+    if (session_status() == PHP_SESSION_NONE) {
+        session_start();
+    }
+    $url = isset($_SESSION['mimer_last_redirect_url']) ? $_SESSION['mimer_last_redirect_url'] : 'https://injuryresolve.com/dp-thankyou/';
+    // Limpiar la sesión después de usarla (opcional)
+    unset($_SESSION['mimer_last_redirect_url']);
+    return esc_url($url);
+}
+add_shortcode('mimer_dynamic_redirect', 'mimer_dynamic_redirect_shortcode');
 
 ?>

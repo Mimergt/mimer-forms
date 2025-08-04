@@ -60,13 +60,24 @@ $data = [
             $log .= "Cuerpo crudo de respuesta: " . $body . "\n";
             $json = json_decode($body, true);
             $log .= "Respuesta decodificada: " . print_r($json, true) . "\n";
-            // Aquí podrías procesar la respuesta si lo necesitas, pero NO redirige ni devuelve datos AJAX
+            // Obtener la URL de redirección
+            if (isset($json['redirect_url']) && !empty($json['redirect_url'])) {
+                $redirect_url = $json['redirect_url'];
+            } else {
+                $redirect_url = 'https://injuryresolve.com/dp-thankyou/';
+            }
         } else {
             $log .= "Error en la petición a la API.\n";
+            $redirect_url = 'https://injuryresolve.com/dp-thankyou/';
         }
         file_put_contents(plugin_dir_path(__FILE__) . '/../log.txt', $log, FILE_APPEND);
 
-        // Elimina cualquier redirección o respuesta AJAX aquí
+        // Guardar la URL en la sesión
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
+        $_SESSION['mimer_last_redirect_url'] = $redirect_url;
+
         // Fin de la función
     }
 }

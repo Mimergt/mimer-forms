@@ -66,7 +66,13 @@ function env_validate_phone_number($record, $ajax_handler) {
         $flat_fields[$key] = $f['value'];
     }
 
-    MimerFormsVDI::send_submission_to_vdi($flat_fields);
+    // Enviar al API y obtener la URL de redirección
+    $redirect_url = MimerFormsVDI::send_submission_to_vdi($flat_fields);
+    
+    // Si obtenemos una URL de redirección, usarla en Elementor
+    if (!empty($redirect_url)) {
+        $ajax_handler->add_response_data('redirect_url', $redirect_url);
+    }
 }
 
 // Puedes poner esto en el archivo principal del plugin o en un archivo de shortcodes

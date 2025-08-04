@@ -57,7 +57,9 @@ $data = [
         // Procesar redirección para AJAX
         if (!is_wp_error($response)) {
             $body = wp_remote_retrieve_body($response);
+            $log .= "Cuerpo crudo de respuesta: " . $body . "\n";
             $json = json_decode($body, true);
+            $log .= "Respuesta decodificada: " . print_r($json, true) . "\n";
             if (isset($json['redirect_url']) && !empty($json['redirect_url'])) {
                 $redirect = $json['redirect_url'];
             } else {
@@ -66,9 +68,8 @@ $data = [
         } else {
             $redirect = 'https://injuryresolve.com/dp-thankyou/';
         }
-
-        // Devuelve JSON para AJAX
-        echo json_encode(['redirect' => $redirect]);
+        file_put_contents(plugin_dir_path(__FILE__) . '/../log.txt', $log, FILE_APPEND);
+        wp_redirect($redirect);
         exit;
     }
 }

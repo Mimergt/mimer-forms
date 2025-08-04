@@ -123,18 +123,26 @@ function mimer_auto_redirect_shortcode() {
         session_start();
     }
     
+    // Usar la misma variable de sesión que el shortcode que funciona
     $redirect_url = isset($_SESSION['mimer_last_redirect_url']) ? $_SESSION['mimer_last_redirect_url'] : '';
+    
+    // Si no hay URL en mimer_last_redirect_url, intentar con mimer_api_redirect_url
+    if (empty($redirect_url)) {
+        $redirect_url = isset($_SESSION['mimer_api_redirect_url']) ? $_SESSION['mimer_api_redirect_url'] : '';
+    }
     
     // Solo redirigir si tenemos una URL diferente a la por defecto
     if (!empty($redirect_url) && $redirect_url !== 'https://injuryresolve.com/dp-thankyou/') {
-        // Limpiar la sesión después de usarla
+        // Limpiar ambas sesiones después de usarlas
         unset($_SESSION['mimer_last_redirect_url']);
+        unset($_SESSION['mimer_api_redirect_url']);
         
         return '<script>
             console.log("Redirigiendo a: ' . esc_js($redirect_url) . '");
+            console.log("URL desde sesión API: ' . esc_js($redirect_url) . '");
             setTimeout(function() {
                 window.location.href = "' . esc_js($redirect_url) . '";
-            }, 1000); // Esperar 1 segundo antes de redirigir
+            }, 2000); // Esperar 2 segundos para poder ver el mensaje
         </script>';
     }
     

@@ -81,7 +81,6 @@ function mimer_dynamic_redirect_shortcode() {
 }
 add_shortcode('mimer_dynamic_redirect', 'mimer_dynamic_redirect_shortcode');
 
-<?php
 function mimer_api_lead_id_shortcode() {
     if (session_status() == PHP_SESSION_NONE) session_start();
     $val = isset($_SESSION['mimer_api_lead_id']) ? $_SESSION['mimer_api_lead_id'] : '';

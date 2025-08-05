@@ -232,6 +232,42 @@
     }
     
     /**
+     * Validar text input fields (nombre, apellido, etc.)
+     */
+    function validateTextFields(form) {
+        let isValid = true;
+        
+        form.querySelectorAll('input[type="text"][required]').forEach(function(textField) {
+            console.log('🔍 Validando text field:', textField.name, 'valor actual:', `"${textField.value.trim()}"`, 'length:', textField.value.trim().length);
+            
+            if (!textField.value.trim() || textField.value.trim() === '') {
+                console.log('❌ Text field inválido:', textField.name, 'razón: valor vacío');
+                
+                // Buscar el contenedor correcto para el mensaje de error
+                const fieldGroup = textField.closest('.elementor-field-group');
+                const errorContainer = fieldGroup || textField.parentElement;
+                
+                console.log('📍 Text field error container será:', errorContainer.className || 'sin clase');
+                
+                removeExistingError(errorContainer);
+                const errorMessage = createErrorMessage(VALIDATION_MESSAGES.FIELD_REQUIRED);
+                
+                errorContainer.appendChild(errorMessage);
+                isValid = false;
+            } else {
+                console.log('✅ Text field válido:', textField.name, 'caracteres:', textField.value.trim().length);
+                
+                // Limpiar cualquier error existente si el text field es válido
+                const fieldGroup = textField.closest('.elementor-field-group');
+                const errorContainer = fieldGroup || textField.parentElement;
+                removeExistingError(errorContainer);
+            }
+        });
+        
+        return isValid;
+    }
+    
+    /**
      * Setup event listeners para limpiar errores automáticamente
      */
     function setupErrorCleanup(form) {
@@ -280,6 +316,24 @@
                     removeExistingError(errorContainer);
                 } else {
                     console.log('⚠️ Textarea aún vacío:', textarea.name);
+                }
+            });
+        });
+        
+        // Text fields - limpiar errores cuando el usuario escriba contenido válido
+        form.querySelectorAll('input[type="text"][required]').forEach(function(textField) {
+            textField.addEventListener('input', function() {
+                console.log('✏️ Text field cambió:', textField.name, 'caracteres:', textField.value.trim().length);
+                
+                // Si hay contenido válido, limpiar error
+                if (textField.value.trim().length > 0) {
+                    console.log('✅ Contenido válido en text field, limpiando error para:', textField.name);
+                    
+                    const fieldGroup = textField.closest('.elementor-field-group');
+                    const errorContainer = fieldGroup || textField.parentElement;
+                    removeExistingError(errorContainer);
+                } else {
+                    console.log('⚠️ Text field aún vacío:', textField.name);
                 }
             });
         });
@@ -392,7 +446,10 @@
         console.log('📝 Validando textareas...');
         const textareaValid = validateTextareaFields(form);
         
-        const isValid = radioValid && selectValid && textareaValid;
+        console.log('✏️ Validando text fields...');
+        const textFieldsValid = validateTextFields(form);
+        
+        const isValid = radioValid && selectValid && textareaValid && textFieldsValid;
         console.log('📊 Resultado validación total:', isValid ? '✅ VÁLIDO' : '❌ INVÁLIDO');
         
         return isValid;
@@ -512,6 +569,16 @@
                 if (textareas.length > 0) {
                     textareas.forEach(function(textarea, i) {
                         console.log('    Textarea #' + (i+1) + ':', textarea.name || 'sin-name', 'required:', textarea.required);
+                    });
+                }
+                
+                // Debug: mostrar text fields encontrados
+                const textFields = form.querySelectorAll('input[type="text"]');
+                console.log('  - Text fields encontrados:', textFields.length);
+                
+                if (textFields.length > 0) {
+                    textFields.forEach(function(textField, i) {
+                        console.log('    Text field #' + (i+1) + ':', textField.name || 'sin-name', 'required:', textField.required);
                     });
                 }
                 

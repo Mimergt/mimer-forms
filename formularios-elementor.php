@@ -21,7 +21,7 @@ function mimer_enqueue_custom_script() {
         'mimer-form-validation-rules',
         plugin_dir_url(__FILE__) . 'includes/form-validation.js',
         array('jquery'),
-        '2.1', // Agregada validación de textarea "describe your case"
+        '2.2', // Agregada validación de text fields (nombre, apellido)
         true
     );
     

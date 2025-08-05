@@ -7,7 +7,7 @@
 (function() {
     'use strict';
     
-    console.log('🚀 NUEVA VERSION 1.7 - Simplified with emoji icons only!');
+    console.log('🚀 NUEVA VERSION 1.8 - Removed CSS :before, span emoji only!');
     
     // Configuración de mensajes de validación
     const VALIDATION_MESSAGES = {
@@ -309,14 +309,10 @@
         const style = document.createElement('style');
         style.id = 'mimer-validation-icons';
         style.textContent = `
-            /* Estilos para mensajes de error con emoji */
+            /* Estilos para mensajes de error - sin :before, solo emoji del span */
             .elementor-message.elementor-message-danger:before {
-                content: "⚠️ " !important;
-                display: inline-block !important;
-                margin-right: 5px !important;
-                font-style: normal !important;
-                font-weight: normal !important;
-                font-family: inherit !important;
+                content: "" !important;
+                display: none !important;
             }
             
             .elementor-message.elementor-message-danger {

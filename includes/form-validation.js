@@ -164,6 +164,8 @@
      */
     function initFormValidation(form) {
         console.log('🔧 Configurando validación para formulario:', form);
+        console.log('📝 Formulario ID:', form.id);
+        console.log('📝 Formulario clases:', form.className);
         
         // Personalizar mensajes HTML5
         customizeHTML5Messages(form);
@@ -171,41 +173,72 @@
         // Setup limpieza automática de errores
         setupErrorCleanup(form);
         
-        // Validación en submit
+        // Múltiples formas de capturar el submit para asegurar que funcione con Elementor
+        
+        // Método 1: addEventListener normal
         form.addEventListener('submit', function(e) {
-            console.log('📤 Submit detectado! Iniciando validación...');
-            let isValid = true;
-            
-            // Validar radio buttons
-            console.log('🔘 Validando radio buttons...');
-            if (!validateRadioGroups(form)) {
-                console.log('❌ Error en radio buttons');
-                isValid = false;
-            } else {
-                console.log('✅ Radio buttons OK');
+            console.log('📤 Submit Method 1 - addEventListener detectado!');
+            return handleFormSubmit(e, form);
+        });
+        
+        // Método 2: onsubmit property (backup)
+        const originalOnSubmit = form.onsubmit;
+        form.onsubmit = function(e) {
+            console.log('📤 Submit Method 2 - onsubmit detectado!');
+            const result = handleFormSubmit(e, form);
+            if (originalOnSubmit && result) {
+                return originalOnSubmit.call(this, e);
             }
-            
-            // Validar selects
-            console.log('📋 Validando selects...');
-            if (!validateSelectFields(form)) {
-                console.log('❌ Error en selects');
-                isValid = false;
-            } else {
-                console.log('✅ Selects OK');
-            }
-            
-            if (!isValid) {
-                console.log('🛑 Validación falló - Cancelando envío');
-                e.preventDefault();
-                return false;
-            }
-            
-            console.log('🚀 Validación pasó - Permitiendo envío');
-            // Permitir envío normal del formulario
-            return true;
+            return result;
+        };
+        
+        // Método 3: Intercept button clicks
+        const submitButtons = form.querySelectorAll('button[type="submit"], input[type="submit"]');
+        submitButtons.forEach(function(button) {
+            button.addEventListener('click', function(e) {
+                console.log('📤 Submit Method 3 - Button click detectado!', button);
+                // No preventDefault aquí, solo logging
+            });
         });
         
         console.log('✅ Validación configurada para formulario');
+    }
+    
+    /**
+     * Manejar el submit del formulario
+     */
+    function handleFormSubmit(e, form) {
+        console.log('📤 Submit detectado! Iniciando validación...');
+        let isValid = true;
+        
+        // Validar radio buttons
+        console.log('🔘 Validando radio buttons...');
+        if (!validateRadioGroups(form)) {
+            console.log('❌ Error en radio buttons');
+            isValid = false;
+        } else {
+            console.log('✅ Radio buttons OK');
+        }
+        
+        // Validar selects
+        console.log('📋 Validando selects...');
+        if (!validateSelectFields(form)) {
+            console.log('❌ Error en selects');
+            isValid = false;
+        } else {
+            console.log('✅ Selects OK');
+        }
+        
+        if (!isValid) {
+            console.log('🛑 Validación falló - Cancelando envío');
+            e.preventDefault();
+            e.stopPropagation();
+            e.stopImmediatePropagation();
+            return false;
+        }
+        
+        console.log('🚀 Validación pasó - Permitiendo envío');
+        return true;
     }
     
     /**
@@ -218,8 +251,45 @@
         
         forms.forEach(function(form, index) {
             console.log('🎯 Inicializando formulario #' + (index + 1));
+            
+            // Debug: mostrar contenido del formulario
+            console.log('📋 Form details:');
+            console.log('  - ID:', form.id);
+            console.log('  - Action:', form.action);
+            console.log('  - Method:', form.method);
+            
+            // Debug: mostrar radio buttons encontrados
+            const radioGroups = form.querySelectorAll('input[type="radio"]');
+            console.log('  - Radio buttons encontrados:', radioGroups.length);
+            radioGroups.forEach(function(radio, i) {
+                console.log('    Radio #' + (i+1) + ':', radio.name, '=', radio.value);
+            });
+            
+            // Debug: mostrar selects encontrados
+            const selects = form.querySelectorAll('select');
+            console.log('  - Selects encontrados:', selects.length);
+            selects.forEach(function(select, i) {
+                console.log('    Select #' + (i+1) + ':', select.name, 'options:', select.options.length);
+            });
+            
             initFormValidation(form);
         });
+        
+        // Listener global como backup - captura TODOS los submits
+        document.addEventListener('submit', function(e) {
+            console.log('🌐 Submit global detectado! Formulario:', e.target);
+            console.log('🌐 Formulario ID:', e.target.id);
+            console.log('🌐 Formulario clases:', e.target.className);
+            
+            // Solo procesar si es un formulario que nos interesa
+            if (e.target.tagName === 'FORM') {
+                console.log('🌐 Es un formulario válido - procesando...');
+                const result = handleFormSubmit(e, e.target);
+                if (!result) {
+                    console.log('🛑 Listener global canceló el envío');
+                }
+            }
+        }, true); // useCapture = true para interceptar antes que otros handlers
         
         console.log('✅ Mimer Form Validation - Inicialización completa');
     }

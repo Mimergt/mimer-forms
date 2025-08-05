@@ -108,8 +108,10 @@ function mimer_auto_redirect_shortcode() {
     // Si no hay en sesión, revisar cookie backup
     if (empty($redirect_url) && isset($_COOKIE['mimer_redirect_backup'])) {
         $redirect_url = $_COOKIE['mimer_redirect_backup'];
+        // Limpiar cookie INMEDIATAMENTE para evitar bucles
+        setcookie('mimer_redirect_backup', '', time() - 3600, '/');
         file_put_contents(plugin_dir_path(__FILE__) . '/log.txt', 
-            "[" . date('Y-m-d H:i:s') . "] 🍪 URL recuperada de cookie backup: '" . $redirect_url . "'\n", 
+            "[" . date('Y-m-d H:i:s') . "] 🍪 URL recuperada de cookie backup y cookie limpiada: '" . $redirect_url . "'\n", 
             FILE_APPEND);
     }
     
@@ -123,11 +125,8 @@ function mimer_auto_redirect_shortcode() {
     
     // Condición más clara: redirigir si hay URL y no está vacía
     if (!empty($redirect_url)) {
-        // Limpiar la sesión Y la cookie DESPUÉS de obtener la URL
+        // Limpiar solo la sesión (cookie ya se limpió arriba)
         unset($_SESSION['mimer_api_redirect_url']);
-        if (isset($_COOKIE['mimer_redirect_backup'])) {
-            setcookie('mimer_redirect_backup', '', time() - 3600, '/'); // Limpiar cookie
-        }
         
         return '<span id="redirect-message">✅ URL found! You will be redirected in 3 seconds...</span>
         <span style="display:block; color:green; font-size:12px;" id="debug-info">🔍 Debug: ' . esc_html($debug_info) . '</span>

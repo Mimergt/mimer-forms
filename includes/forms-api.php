@@ -40,6 +40,11 @@ $data = [
 
         // Logging simplificado
         $log = "[" . date('Y-m-d H:i:s') . "] " . ($test_mode ? "🧪 MODO PRUEBAS" : "🔴 ENVÍO A VDI") . " - Preparando envío\n";
+        
+        // 📋 AGREGAR JSON PARA VALIDACIÓN EXTERNA
+        $json_payload = json_encode($data, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES);
+        $log .= "📋 JSON QUE SE ENVIARÍA AL API:\n" . $json_payload . "\n";
+        $log .= "🔗 URL DESTINO: " . ($url ?: 'URL_COMENTADA') . "\n";
 
         // Si está en modo de pruebas, simular respuesta
         if ($test_mode) {

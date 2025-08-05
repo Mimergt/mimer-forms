@@ -355,14 +355,14 @@
     function validateZipCodeField(form) {
         let isValid = true;
         
-        const zipField = form.querySelector('input[name*="zip"], input[name*="Zip"], input[name*="ZIP"], input[name*="postal"], input[id*="zip"], input[id*="Zip"], input[id*="ZIP"]');
+        const zipField = form.querySelector('input[name*="zip"], input[name*="Zip"], input[name*="ZIP"], input[name*="postal"], input[id*="zip"], input[id*="Zip"], input[id*="ZIP"], input[type="number"][name*="zip"], input[type="number"][id*="zip"]');
         
         if (!zipField) {
             console.log('📮 No se encontró campo de ZIP code en el formulario');
             return isValid;
         }
         
-        console.log('🔍 Validando ZIP code:', zipField.name || zipField.id, 'valor actual:', `"${zipField.value.trim()}"`);
+        console.log('🔍 Validando ZIP code:', zipField.name || zipField.id, 'tipo:', zipField.type, 'valor actual:', `"${zipField.value.trim()}"`);
         
         const zipValue = zipField.value.trim();
         
@@ -498,17 +498,23 @@
         }
         
         // ZIP code field - limitar entrada y validar en tiempo real
-        const zipField = form.querySelector('input[name*="zip"], input[name*="Zip"], input[name*="ZIP"], input[name*="postal"], input[id*="zip"], input[id*="Zip"], input[id*="ZIP"]');
+        const zipField = form.querySelector('input[name*="zip"], input[name*="Zip"], input[name*="ZIP"], input[name*="postal"], input[id*="zip"], input[id*="Zip"], input[id*="ZIP"], input[type="number"][name*="zip"], input[type="number"][id*="zip"]');
         if (zipField) {
             console.log('📮 Configurando listeners para campo ZIP code:', zipField.name || zipField.id);
-            console.log('📮 ZIP field elemento:', zipField);
+            console.log('📮 ZIP field elemento:', zipField, 'tipo:', zipField.type);
+            
+            // Para campos de tipo number, agregar maxlength mediante setAttribute
+            if (zipField.type === 'number') {
+                zipField.setAttribute('maxlength', '5');
+                console.log('📮 Establecido maxlength=5 para campo number');
+            }
             
             // Función para filtrar entrada
             function filterZipInput(field) {
-                console.log('📮 Filtrando ZIP - Valor antes:', field.value);
+                console.log('📮 Filtrando ZIP - Valor antes:', field.value, 'tipo:', field.type);
                 
-                // Remover cualquier caracter que no sea dígito
-                let value = field.value.replace(/\D/g, '');
+                // Para campos number, el navegador ya filtra no-números, pero podemos limitar longitud
+                let value = field.value.toString().replace(/\D/g, '');
                 
                 // Limitar a máximo 5 dígitos
                 if (value.length > 5) {
@@ -543,7 +549,7 @@
             
             // Event listener para keydown (prevenir entrada de caracteres no válidos)
             zipField.addEventListener('keydown', function(e) {
-                console.log('📮 ZIP keydown - Key:', e.key, 'KeyCode:', e.keyCode);
+                console.log('📮 ZIP keydown - Key:', e.key, 'KeyCode:', e.keyCode, 'campo tipo:', zipField.type);
                 
                 // Permitir teclas de control (backspace, delete, tab, escape, enter)
                 if ([8, 9, 27, 13, 46].indexOf(e.keyCode) !== -1 ||
@@ -556,16 +562,26 @@
                 }
                 
                 // Si ya tiene 5 dígitos y no es una tecla de control, prevenir
-                if (zipField.value.replace(/\D/g, '').length >= 5) {
+                const currentValue = zipField.value.toString().replace(/\D/g, '');
+                if (currentValue.length >= 5) {
                     console.log('📮 ZIP ya tiene 5 dígitos, previniendo entrada adicional');
                     e.preventDefault();
                     return;
                 }
                 
-                // Asegurar que solo se permitan números (0-9)
-                if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
-                    console.log('📮 Caracter no numérico, previniendo:', e.key);
-                    e.preventDefault();
+                // Para campos number, solo validar si ya hay 5 dígitos
+                // El navegador ya filtra caracteres no numéricos en type="number"
+                if (zipField.type === 'number') {
+                    // Solo prevenir si ya hay 5 dígitos
+                    if (currentValue.length >= 5) {
+                        e.preventDefault();
+                    }
+                } else {
+                    // Para campos text, validar caracteres no numéricos
+                    if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
+                        console.log('📮 Caracter no numérico, previniendo:', e.key);
+                        e.preventDefault();
+                    }
                 }
             });
             
@@ -581,6 +597,14 @@
                 // Trigger input event para procesar
                 filterZipInput(zipField);
             });
+            
+            // Para campos number, también agregar un listener especial
+            if (zipField.type === 'number') {
+                zipField.addEventListener('change', function(e) {
+                    console.log('📮 ZIP number field change event');
+                    filterZipInput(zipField);
+                });
+            }
         }
     }
     
@@ -842,7 +866,7 @@
                 }
                 
                 // Debug: mostrar campo de ZIP code encontrado
-                const zipField = form.querySelector('input[name*="zip"], input[name*="Zip"], input[name*="ZIP"], input[name*="postal"], input[id*="zip"], input[id*="Zip"], input[id*="ZIP"]');
+                const zipField = form.querySelector('input[name*="zip"], input[name*="Zip"], input[name*="ZIP"], input[name*="postal"], input[id*="zip"], input[id*="Zip"], input[id*="ZIP"], input[type="number"][name*="zip"], input[type="number"][id*="zip"]');
                 console.log('  - Campo de ZIP code encontrado:', zipField ? 'SÍ' : 'NO');
                 
                 if (zipField) {

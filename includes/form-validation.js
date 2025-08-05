@@ -9,6 +9,7 @@
     
     console.log('🚀 NUEVA VERSION 2.6 - ZIP Code Number Field Support with input filtering!');
     console.log('🆔 CACHE BUSTER - TIMESTAMP: ' + new Date().getTime());
+    console.log('✅ ARCHIVO VALIDATION.JS LIMPIO Y FUNCIONANDO CORRECTAMENTE ✅');
     
     // Configuración de mensajes de validación
     const VALIDATION_MESSAGES = {

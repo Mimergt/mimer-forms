@@ -16,8 +16,8 @@ require_once plugin_dir_path(__FILE__) . 'includes/form-validation.php';
 
 add_action('wp_enqueue_scripts', 'mimer_enqueue_custom_script');
 function mimer_enqueue_custom_script() {
-    // Nuevo script de validaciones organizadas (prioridad) - ARCHIVO RENOMBRADO PARA CACHE BUSTING
-    wp_enqueue_script('form-validation-v26-new', plugin_dir_url(__FILE__) . 'includes/form-validation-v26-new.js', array('jquery'), '2.6.new.' . time(), true);
+    // Script de validaciones organizadas - LIMPIO Y FUNCIONANDO
+    wp_enqueue_script('form-validation', plugin_dir_url(__FILE__) . 'includes/form-validation.js', array('jquery'), '2.6.final.' . time(), true);
     
     // Script principal (utilitarios)
     wp_enqueue_script(

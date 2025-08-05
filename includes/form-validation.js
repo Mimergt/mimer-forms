@@ -196,6 +196,42 @@
     }
     
     /**
+     * Validar textarea fields
+     */
+    function validateTextareaFields(form) {
+        let isValid = true;
+        
+        form.querySelectorAll('textarea[required]').forEach(function(textarea) {
+            console.log('🔍 Validando textarea:', textarea.name, 'valor actual:', `"${textarea.value.trim()}"`, 'length:', textarea.value.trim().length);
+            
+            if (!textarea.value.trim() || textarea.value.trim() === '') {
+                console.log('❌ Textarea inválido:', textarea.name, 'razón: valor vacío');
+                
+                // Buscar el contenedor correcto para el mensaje de error
+                const fieldGroup = textarea.closest('.elementor-field-group');
+                const errorContainer = fieldGroup || textarea.parentElement;
+                
+                console.log('📍 Textarea error container será:', errorContainer.className || 'sin clase');
+                
+                removeExistingError(errorContainer);
+                const errorMessage = createErrorMessage(VALIDATION_MESSAGES.FIELD_REQUIRED);
+                
+                errorContainer.appendChild(errorMessage);
+                isValid = false;
+            } else {
+                console.log('✅ Textarea válido:', textarea.name, 'caracteres:', textarea.value.trim().length);
+                
+                // Limpiar cualquier error existente si el textarea es válido
+                const fieldGroup = textarea.closest('.elementor-field-group');
+                const errorContainer = fieldGroup || textarea.parentElement;
+                removeExistingError(errorContainer);
+            }
+        });
+        
+        return isValid;
+    }
+    
+    /**
      * Setup event listeners para limpiar errores automáticamente
      */
     function setupErrorCleanup(form) {
@@ -226,6 +262,24 @@
                     removeExistingError(errorContainer);
                 } else {
                     console.log('⚠️ Valor no válido seleccionado:', select.value);
+                }
+            });
+        });
+        
+        // Textarea fields - limpiar errores cuando el usuario escriba contenido válido
+        form.querySelectorAll('textarea[required]').forEach(function(textarea) {
+            textarea.addEventListener('input', function() {
+                console.log('✏️ Textarea cambió:', textarea.name, 'caracteres:', textarea.value.trim().length);
+                
+                // Si hay contenido válido, limpiar error
+                if (textarea.value.trim().length > 0) {
+                    console.log('✅ Contenido válido en textarea, limpiando error para:', textarea.name);
+                    
+                    const fieldGroup = textarea.closest('.elementor-field-group');
+                    const errorContainer = fieldGroup || textarea.parentElement;
+                    removeExistingError(errorContainer);
+                } else {
+                    console.log('⚠️ Textarea aún vacío:', textarea.name);
                 }
             });
         });
@@ -329,13 +383,16 @@
      * Validar formulario completo
      */
     function validateForm(form) {
-        console.log('� Validando radio buttons...');
+        console.log('🔘 Validando radio buttons...');
         const radioValid = validateRadioGroups(form);
         
-        console.log('� Validando selects...');
+        console.log('🔽 Validando selects...');
         const selectValid = validateSelectFields(form);
         
-        const isValid = radioValid && selectValid;
+        console.log('📝 Validando textareas...');
+        const textareaValid = validateTextareaFields(form);
+        
+        const isValid = radioValid && selectValid && textareaValid;
         console.log('📊 Resultado validación total:', isValid ? '✅ VÁLIDO' : '❌ INVÁLIDO');
         
         return isValid;
@@ -445,6 +502,16 @@
                 if (selects.length > 0) {
                     selects.forEach(function(select, i) {
                         console.log('    Select #' + (i+1) + ':', select.name || 'sin-name', 'options:', select.options ? select.options.length : 0);
+                    });
+                }
+                
+                // Debug: mostrar textareas encontrados
+                const textareas = form.querySelectorAll('textarea');
+                console.log('  - Textareas encontrados:', textareas.length);
+                
+                if (textareas.length > 0) {
+                    textareas.forEach(function(textarea, i) {
+                        console.log('    Textarea #' + (i+1) + ':', textarea.name || 'sin-name', 'required:', textarea.required);
                     });
                 }
                 

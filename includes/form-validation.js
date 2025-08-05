@@ -7,7 +7,7 @@
 (function() {
     'use strict';
     
-    console.log('🚀 NUEVA VERSION 1.8 - Removed CSS :before, span emoji only!');
+    console.log('🚀 NUEVA VERSION 1.9 - Fixed select wrapper layout issues!');
     
     // Configuración de mensajes de validación
     const VALIDATION_MESSAGES = {
@@ -84,9 +84,21 @@
      * Remover mensajes de error existentes
      */
     function removeExistingError(container) {
+        // Buscar en el container y también en sus elementos hermanos
         const existingError = container.querySelector(SELECTORS.ERROR_MESSAGE);
         if (existingError) {
             existingError.remove();
+            return;
+        }
+        
+        // También buscar errores que puedan estar como hermanos del container
+        const siblingError = container.parentElement ? container.parentElement.querySelector(SELECTORS.ERROR_MESSAGE) : null;
+        if (siblingError) {
+            // Verificar que el error esté relacionado con este container
+            const previousElement = siblingError.previousElementSibling;
+            if (previousElement && (previousElement === container || previousElement.contains(container))) {
+                siblingError.remove();
+            }
         }
     }
     
@@ -144,9 +156,26 @@
         
         form.querySelectorAll(SELECTORS.SELECT_REQUIRED).forEach(function(select) {
             if (!select.value || select.value === '--select--' || select.value === '') {
-                removeExistingError(select.parentElement);
+                // Buscar el contenedor correcto para el mensaje de error
+                const selectWrapper = select.closest('.elementor-select-wrapper');
+                const fieldGroup = select.closest('.elementor-field-group');
+                
+                // Determinar dónde poner el mensaje - después del wrapper, no dentro
+                const errorContainer = selectWrapper ? selectWrapper.parentElement : (fieldGroup || select.parentElement);
+                
+                console.log('📍 Select error - wrapper:', selectWrapper ? 'encontrado' : 'no encontrado');
+                console.log('📍 Error container será:', errorContainer.className || 'sin clase');
+                
+                removeExistingError(errorContainer);
                 const errorMessage = createErrorMessage(VALIDATION_MESSAGES.SELECT_REQUIRED);
-                select.parentElement.appendChild(errorMessage);
+                
+                // Insertar después del wrapper, no dentro
+                if (selectWrapper) {
+                    selectWrapper.insertAdjacentElement('afterend', errorMessage);
+                } else {
+                    errorContainer.appendChild(errorMessage);
+                }
+                
                 isValid = false;
             }
         });
@@ -322,6 +351,20 @@
                 border-left: 3px solid #d72651 !important;
                 background-color: rgba(215, 38, 81, 0.1) !important;
                 border-radius: 3px !important;
+                width: 100% !important;
+                box-sizing: border-box !important;
+                display: block !important;
+            }
+            
+            /* Asegurar que los field groups con selects tengan layout vertical */
+            .elementor-field-group:has(.elementor-select-wrapper + .elementor-message) {
+                flex-direction: column !important;
+            }
+            
+            /* Alternativa más compatible para navegadores que no soportan :has() */
+            .elementor-field-group .elementor-select-wrapper + .elementor-message {
+                width: 100% !important;
+                margin-top: 5px !important;
             }
         `;
         

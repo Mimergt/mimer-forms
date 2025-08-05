@@ -125,7 +125,7 @@ $data = [
         }
         file_put_contents(plugin_dir_path(__FILE__) . '/../log.txt', $log, FILE_APPEND);
 
-        // Guardar la URL en la sesión
+        // Guardar la URL en la sesión Y en cookie como backup
         if (session_status() == PHP_SESSION_NONE) {
             session_start();
         }
@@ -134,6 +134,13 @@ $data = [
         $_SESSION['mimer_api_response_message'] = isset($json['data']['api_response_message']) ? $json['data']['api_response_message'] : '';
         $_SESSION['mimer_api_validation_errors'] = isset($json['data']['api_validation_errors']) ? $json['data']['api_validation_errors'] : '';
         $_SESSION['mimer_api_redirect_url'] = isset($json['data']['api_redirect_url']) ? $json['data']['api_redirect_url'] : '';
+
+        // BACKUP: También guardar en cookie por si falla la sesión
+        $api_redirect_url = isset($json['data']['api_redirect_url']) ? $json['data']['api_redirect_url'] : '';
+        if (!empty($api_redirect_url)) {
+            setcookie('mimer_redirect_backup', $api_redirect_url, time() + 300, '/'); // 5 minutos
+            $log .= "🍪 Cookie backup guardada: " . $api_redirect_url . "\n";
+        }
 
         // Solo guardar en sesión, no devolver nada para redirección
     }

@@ -102,3 +102,29 @@ Respuesta simulada: Array
 
 )
 
+[2025-08-05 22:27:11] Respuesta completa: Array
+(
+    [valid] => 1
+    [number] => 14048736209
+    [local_format] => 4048736209
+    [international_format] => +14048736209
+    [country_prefix] => +1
+    [country_code] => US
+    [country_name] => United States of America
+    [location] => Atlanta
+    [carrier] => 
+    [line_type] => landline
+)
+
+[2025-08-05 22:27:11] ✅ Validación del servidor: Todos los campos OK (13 campos)
+[2025-08-05 22:27:11] 🧪 MODO PRUEBAS - Formulario recibido (13 campos)
+[2025-08-05 22:27:11] 🧪 MODO PRUEBAS - Preparando envío
+🧪 MODO PRUEBAS ACTIVADO - NO se envía al API real
+Simulando respuesta exitosa...
+✅ Respuesta simulada exitosa - Redirect URL: https://injuryresolve.com/dp-thankyou/?api=response_test_mimer
+[2025-08-05 22:27:11] 🧪 MODO PRUEBAS - Preparando envío
+🧪 MODO PRUEBAS ACTIVADO - NO se envía al API real
+Simulando respuesta exitosa...
+✅ Respuesta simulada exitosa - Redirect URL: https://injuryresolve.com/dp-thankyou/?api=response_test_mimer
+[2025-08-05 22:27:12] 🔍 SHORTCODE DEBUG - TODA LA SESIÓN: 
+[2025-08-05 22:27:12] 🎯 SHORTCODE - URL encontrada: ''

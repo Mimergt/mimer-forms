@@ -501,36 +501,85 @@
         const zipField = form.querySelector('input[name*="zip"], input[name*="Zip"], input[name*="ZIP"], input[name*="postal"], input[id*="zip"], input[id*="Zip"], input[id*="ZIP"]');
         if (zipField) {
             console.log('📮 Configurando listeners para campo ZIP code:', zipField.name || zipField.id);
+            console.log('📮 ZIP field elemento:', zipField);
             
-            // Limitar entrada a solo números y máximo 5 dígitos
-            zipField.addEventListener('input', function() {
+            // Función para filtrar entrada
+            function filterZipInput(field) {
+                console.log('📮 Filtrando ZIP - Valor antes:', field.value);
+                
                 // Remover cualquier caracter que no sea dígito
-                let value = zipField.value.replace(/\D/g, '');
+                let value = field.value.replace(/\D/g, '');
                 
                 // Limitar a máximo 5 dígitos
                 if (value.length > 5) {
                     value = value.slice(0, 5);
+                    console.log('📮 ZIP truncado a 5 dígitos:', value);
                 }
                 
-                zipField.value = value;
-                console.log('📮 ZIP code input filtrado:', value);
+                // Actualizar el campo
+                field.value = value;
+                console.log('📮 ZIP field valor final:', field.value);
                 
                 // Si tiene exactamente 5 dígitos, limpiar errores
                 if (value.length === 5) {
                     console.log('✅ ZIP code válido, limpiando errores');
-                    const fieldGroup = zipField.closest('.elementor-field-group');
-                    const errorContainer = fieldGroup || zipField.parentElement;
+                    const fieldGroup = field.closest('.elementor-field-group');
+                    const errorContainer = fieldGroup || field.parentElement;
                     removeExistingError(errorContainer);
+                }
+            }
+            
+            // Event listener para input (escritura normal)
+            zipField.addEventListener('input', function(e) {
+                console.log('📮 ZIP input event triggered');
+                filterZipInput(zipField);
+            });
+            
+            // Event listener para keyup (backup)
+            zipField.addEventListener('keyup', function(e) {
+                console.log('📮 ZIP keyup event triggered');
+                filterZipInput(zipField);
+            });
+            
+            // Event listener para keydown (prevenir entrada de caracteres no válidos)
+            zipField.addEventListener('keydown', function(e) {
+                console.log('📮 ZIP keydown - Key:', e.key, 'KeyCode:', e.keyCode);
+                
+                // Permitir teclas de control (backspace, delete, tab, escape, enter)
+                if ([8, 9, 27, 13, 46].indexOf(e.keyCode) !== -1 ||
+                    // Permitir Ctrl+A, Ctrl+C, Ctrl+V, Ctrl+X
+                    (e.keyCode === 65 && e.ctrlKey === true) ||
+                    (e.keyCode === 67 && e.ctrlKey === true) ||
+                    (e.keyCode === 86 && e.ctrlKey === true) ||
+                    (e.keyCode === 88 && e.ctrlKey === true)) {
+                    return;
+                }
+                
+                // Si ya tiene 5 dígitos y no es una tecla de control, prevenir
+                if (zipField.value.replace(/\D/g, '').length >= 5) {
+                    console.log('📮 ZIP ya tiene 5 dígitos, previniendo entrada adicional');
+                    e.preventDefault();
+                    return;
+                }
+                
+                // Asegurar que solo se permitan números (0-9)
+                if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
+                    console.log('📮 Caracter no numérico, previniendo:', e.key);
+                    e.preventDefault();
                 }
             });
             
             // Prevenir pegar contenido no numérico
             zipField.addEventListener('paste', function(e) {
+                console.log('📮 ZIP paste event triggered');
                 e.preventDefault();
                 const paste = (e.clipboardData || window.clipboardData).getData('text');
                 const numericOnly = paste.replace(/\D/g, '').slice(0, 5);
                 zipField.value = numericOnly;
                 console.log('📮 ZIP code pegado y filtrado:', numericOnly);
+                
+                // Trigger input event para procesar
+                filterZipInput(zipField);
             });
         }
     }

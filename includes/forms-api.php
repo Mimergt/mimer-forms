@@ -34,7 +34,10 @@ $data = [
   "lead-ip-address"             => $_SERVER['REMOTE_ADDR'],
   "lead-zip-code"               => $zip_code,
 ];
-        $url = 'https://api-vdi.luchtech.dev/api/submissions?form=depo-provera-injury-resolve&team=vdi&user=ee5a1aba-6009-4d58-8a16-3810e2f777ad&signature=f6bed0c57b7e6745e427faf65796f2fef47e8fb8ea1c01566ee4ba576f34e0ed';
+        // 🚨 URL DEL API COMENTADA POR SEGURIDAD - MODO PRUEBAS EXTREMAS 🚨
+        // RECORDATORIO: Descomentar cuando se confirme que el modo de pruebas funciona correctamente
+        // $url = 'https://api-vdi.luchtech.dev/api/submissions?form=depo-provera-injury-resolve&team=vdi&user=ee5a1aba-6009-4d58-8a16-3810e2f777ad&signature=f6bed0c57b7e6745e427faf65796f2fef47e8fb8ea1c01566ee4ba576f34e0ed';
+        $url = ''; // URL INTENCIONALMENTE VACÍA PARA PREVENIR ENVÍOS ACCIDENTALES
 
         // Logging
         $log = "[" . date('Y-m-d H:i:s') . "] " . ($test_mode ? "🧪 MODO PRUEBAS" : "🔴 ENVÍO A VDI") . "\n";
@@ -62,19 +65,36 @@ $data = [
             
         } else {
             // Envío real al API
-            $response = wp_remote_post($url, [
-                'headers' => [
-                    'Content-Type' => 'application/json',
-                    'Accept' => 'application/json',
-                ],
-                'body' => json_encode($data),
-                'timeout' => 30, // <-- 30s timeout
-            ]);
-
-            if (is_wp_error($response)) {
-                $log .= "Error: " . $response->get_error_message() . "\n";
+            // 🚨 VERIFICACIÓN DE SEGURIDAD ADICIONAL 🚨
+            if (empty($url)) {
+                $log .= "🛑 ERROR DE SEGURIDAD: URL del API está vacía (comentada intencionalmente)\n";
+                $log .= "🔧 ACCIÓN REQUERIDA: Descomentar la URL del API antes de usar en producción\n";
+                // Simular error para que no se procese
+                $json = [
+                    'error' => 'URL_COMMENTED_FOR_SAFETY',
+                    'data' => [
+                        'api_lead_id' => 'ERROR_NO_URL',
+                        'api_response_message' => 'URL comentada por seguridad',
+                        'api_validation_errors' => 'URL del API no disponible',
+                        'api_redirect_url' => 'https://injuryresolve.com/dp-thankyou/'
+                    ]
+                ];
+                $redirect_url = 'https://injuryresolve.com/dp-thankyou/';
             } else {
-                $log .= "Respuesta: " . wp_remote_retrieve_body($response) . "\n";
+                $response = wp_remote_post($url, [
+                    'headers' => [
+                        'Content-Type' => 'application/json',
+                        'Accept' => 'application/json',
+                    ],
+                    'body' => json_encode($data),
+                    'timeout' => 30, // <-- 30s timeout
+                ]);
+
+                if (is_wp_error($response)) {
+                    $log .= "Error: " . $response->get_error_message() . "\n";
+                } else {
+                    $log .= "Respuesta: " . wp_remote_retrieve_body($response) . "\n";
+                }
             }
         }
 
@@ -86,7 +106,10 @@ $data = [
             // $json ya está definida arriba
         } else {
             // Procesar respuesta real
-            if (!is_wp_error($response)) {
+            if (empty($url)) {
+                // URL comentada por seguridad - ya tenemos $json definida arriba
+                $log .= "🛑 Respuesta de seguridad generada (URL comentada)\n";
+            } else if (!is_wp_error($response)) {
                 $body = wp_remote_retrieve_body($response);
                 $log .= "Cuerpo crudo de respuesta: " . $body . "\n";
                 $json = json_decode($body, true);

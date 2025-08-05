@@ -21,7 +21,7 @@ function mimer_enqueue_custom_script() {
         'mimer-form-validation-rules',
         plugin_dir_url(__FILE__) . 'includes/form-validation.js',
         array('jquery'),
-        '2.2', // Agregada validación de text fields (nombre, apellido)
+        '2.3', // Agregada validación y normalización de teléfono
         true
     );
     

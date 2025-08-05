@@ -268,6 +268,88 @@
     }
     
     /**
+     * Validar y normalizar campo de teléfono con numverify
+     */
+    function validatePhoneField(form) {
+        let isValid = true;
+        
+        const phoneField = form.querySelector('input[name*="phone"], input[name*="Phone"], input[name*="tel"], input[id*="phone"], input[id*="Phone"]');
+        
+        if (!phoneField) {
+            console.log('📞 No se encontró campo de teléfono en el formulario');
+            return isValid;
+        }
+        
+        console.log('🔍 Validando teléfono:', phoneField.name || phoneField.id, 'valor actual:', `"${phoneField.value.trim()}"`);
+        
+        if (!phoneField.value.trim()) {
+            console.log('❌ Teléfono inválido: campo vacío');
+            
+            const fieldGroup = phoneField.closest('.elementor-field-group');
+            const errorContainer = fieldGroup || phoneField.parentElement;
+            
+            removeExistingError(errorContainer);
+            const errorMessage = createErrorMessage('Please enter a valid phone number');
+            errorContainer.appendChild(errorMessage);
+            
+            return false;
+        }
+        
+        // Aquí haríamos la validación con numverify
+        // Por ahora, validamos formato básico y simulamos normalización
+        console.log('📞 Validando teléfono con numverify:', phoneField.value.trim());
+        
+        // TODO: Implementar llamada real a numverify
+        // Por ahora, simulamos la normalización
+        const normalizedPhone = normalizePhoneNumber(phoneField.value.trim());
+        if (normalizedPhone) {
+            console.log('✅ Teléfono válido y normalizado:', normalizedPhone);
+            phoneField.value = normalizedPhone;
+            
+            // Limpiar errores existentes
+            const fieldGroup = phoneField.closest('.elementor-field-group');
+            const errorContainer = fieldGroup || phoneField.parentElement;
+            removeExistingError(errorContainer);
+        } else {
+            console.log('❌ Teléfono inválido: formato no reconocido');
+            
+            const fieldGroup = phoneField.closest('.elementor-field-group');
+            const errorContainer = fieldGroup || phoneField.parentElement;
+            
+            removeExistingError(errorContainer);
+            const errorMessage = createErrorMessage('Please enter a valid US phone number');
+            errorContainer.appendChild(errorMessage);
+            
+            isValid = false;
+        }
+        
+        return isValid;
+    }
+    
+    /**
+     * Normalizar número de teléfono (simulación de numverify)
+     */
+    function normalizePhoneNumber(phone) {
+        // Remover todos los caracteres que no sean dígitos
+        const digitsOnly = phone.replace(/\D/g, '');
+        
+        console.log('📞 Dígitos extraídos:', digitsOnly);
+        
+        // Si tiene 10 dígitos, agregar código de país US (+1)
+        if (digitsOnly.length === 10) {
+            return '1' + digitsOnly;
+        }
+        
+        // Si tiene 11 dígitos y empieza con 1, es válido
+        if (digitsOnly.length === 11 && digitsOnly.startsWith('1')) {
+            return digitsOnly;
+        }
+        
+        // Cualquier otro caso es inválido
+        return null;
+    }
+    
+    /**
      * Setup event listeners para limpiar errores automáticamente
      */
     function setupErrorCleanup(form) {
@@ -337,6 +419,28 @@
                 }
             });
         });
+        
+        // Phone field - validar y normalizar en tiempo real
+        const phoneField = form.querySelector('input[name*="phone"], input[name*="Phone"], input[name*="tel"], input[id*="phone"], input[id*="Phone"]');
+        if (phoneField) {
+            console.log('📞 Configurando listeners para campo de teléfono:', phoneField.name || phoneField.id);
+            
+            phoneField.addEventListener('blur', function() {
+                console.log('📞 Teléfono perdió foco, validando:', phoneField.value);
+                
+                if (phoneField.value.trim()) {
+                    const normalizedPhone = normalizePhoneNumber(phoneField.value.trim());
+                    if (normalizedPhone) {
+                        console.log('✅ Teléfono normalizado automáticamente:', normalizedPhone);
+                        phoneField.value = normalizedPhone;
+                        
+                        const fieldGroup = phoneField.closest('.elementor-field-group');
+                        const errorContainer = fieldGroup || phoneField.parentElement;
+                        removeExistingError(errorContainer);
+                    }
+                }
+            });
+        }
     }
     
     /**
@@ -449,7 +553,10 @@
         console.log('✏️ Validando text fields...');
         const textFieldsValid = validateTextFields(form);
         
-        const isValid = radioValid && selectValid && textareaValid && textFieldsValid;
+        console.log('📞 Validando teléfono...');
+        const phoneValid = validatePhoneField(form);
+        
+        const isValid = radioValid && selectValid && textareaValid && textFieldsValid && phoneValid;
         console.log('📊 Resultado validación total:', isValid ? '✅ VÁLIDO' : '❌ INVÁLIDO');
         
         return isValid;
@@ -580,6 +687,14 @@
                     textFields.forEach(function(textField, i) {
                         console.log('    Text field #' + (i+1) + ':', textField.name || 'sin-name', 'required:', textField.required);
                     });
+                }
+                
+                // Debug: mostrar campo de teléfono encontrado
+                const phoneField = form.querySelector('input[name*="phone"], input[name*="Phone"], input[name*="tel"], input[id*="phone"], input[id*="Phone"]');
+                console.log('  - Campo de teléfono encontrado:', phoneField ? 'SÍ' : 'NO');
+                
+                if (phoneField) {
+                    console.log('    Phone field:', phoneField.name || phoneField.id || 'sin-name', 'type:', phoneField.type, 'required:', phoneField.required);
                 }
                 
                 console.log('🚀 Llamando initFormValidation...');

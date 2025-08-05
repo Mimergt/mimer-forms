@@ -155,7 +155,11 @@
         let isValid = true;
         
         form.querySelectorAll(SELECTORS.SELECT_REQUIRED).forEach(function(select) {
+            console.log('🔍 Validando select:', select.name, 'valor actual:', `"${select.value}"`, 'selectedIndex:', select.selectedIndex);
+            
             if (!select.value || select.value === '--select--' || select.value === '') {
+                console.log('❌ Select inválido:', select.name, 'razón: valor vacío o placeholder');
+                
                 // Buscar el contenedor correcto para el mensaje de error
                 const selectWrapper = select.closest('.elementor-select-wrapper');
                 const fieldGroup = select.closest('.elementor-field-group');
@@ -177,6 +181,14 @@
                 }
                 
                 isValid = false;
+            } else {
+                console.log('✅ Select válido:', select.name, 'valor:', `"${select.value}"`);
+                
+                // Limpiar cualquier error existente si el select es válido
+                const selectWrapper = select.closest('.elementor-select-wrapper');
+                const fieldGroup = select.closest('.elementor-field-group');
+                const errorContainer = selectWrapper ? selectWrapper.parentElement : (fieldGroup || select.parentElement);
+                removeExistingError(errorContainer);
             }
         });
         

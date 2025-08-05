@@ -102,8 +102,8 @@ function mimer_auto_redirect_shortcode() {
     // Debug: agregar logging para ver qué pasa
     $debug_info = "URL en sesión: " . $redirect_url;
     
-    // Solo redirigir si hay una URL válida y diferente a la por defecto
-    if (!empty($redirect_url) && $redirect_url !== 'https://injuryresolve.com/dp-thankyou/') {
+    // Solo redirigir si hay una URL válida y diferente a la por defecto (sin parámetros)
+    if (!empty($redirect_url) && $redirect_url !== 'https://injuryresolve.com/dp-thankyou/' && !empty($redirect_url)) {
         // Limpiar la sesión DESPUÉS de obtener la URL
         unset($_SESSION['mimer_api_redirect_url']);
         

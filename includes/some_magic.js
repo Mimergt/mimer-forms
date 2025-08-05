@@ -29,8 +29,57 @@ document.addEventListener('DOMContentLoaded', function () {
       });
     });
 
+    // Agregar listeners para radio buttons para limpiar errores
+    form.querySelectorAll('input[type="radio"]').forEach(function(radio) {
+      radio.addEventListener('change', function() {
+        // Limpiar error del grupo cuando se selecciona una opción
+        const container = radio.closest('.elementor-field-group');
+        if (container) {
+          let existingError = container.querySelector('.elementor-message');
+          if (existingError) existingError.remove();
+        }
+      });
+    });
+
     form.addEventListener('submit', function(e) {
       let isValid = true;
+      
+      // Validación para radio buttons
+      const radioGroups = {};
+      form.querySelectorAll('input[type="radio"][required]').forEach(function(radio) {
+        const name = radio.name;
+        if (!radioGroups[name]) {
+          radioGroups[name] = {
+            radios: form.querySelectorAll('input[type="radio"][name="' + name + '"]'),
+            isChecked: false,
+            container: radio.closest('.elementor-field-group')
+          };
+        }
+      });
+      
+      // Verificar cada grupo de radio buttons
+      Object.keys(radioGroups).forEach(function(groupName) {
+        const group = radioGroups[groupName];
+        group.isChecked = Array.from(group.radios).some(radio => radio.checked);
+        
+        if (!group.isChecked) {
+          // Eliminar error previo
+          let existingError = group.container.querySelector('.elementor-message');
+          if (existingError) existingError.remove();
+          
+          // Crear mensaje de error
+          const errorMessage = document.createElement('div');
+          errorMessage.className = 'elementor-message elementor-message-danger';
+          errorMessage.textContent = 'Please select one option';
+          group.container.appendChild(errorMessage);
+          
+          isValid = false;
+        } else {
+          // Eliminar error si existe y hay selección
+          let existingError = group.container.querySelector('.elementor-message');
+          if (existingError) existingError.remove();
+        }
+      });
       
       // Validación adicional para selects con valor por defecto
       form.querySelectorAll('select[required]').forEach(function(select) {

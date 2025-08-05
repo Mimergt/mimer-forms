@@ -7,7 +7,7 @@
 (function() {
     'use strict';
     
-    console.log('🚀 NUEVA VERSION 1.4 - Enhanced button detection!');
+    console.log('🚀 NUEVA VERSION 1.5 - Enhanced icons and styling!');
     
     // Configuración de mensajes de validación
     const VALIDATION_MESSAGES = {
@@ -68,7 +68,22 @@
     function createErrorMessage(text) {
         const errorMessage = document.createElement('div');
         errorMessage.className = ERROR_CLASSES;
-        errorMessage.textContent = text;
+        
+        // Crear el icono manualmente para asegurar que aparezca
+        const iconSpan = document.createElement('span');
+        iconSpan.style.cssText = 'display: inline-block; margin-right: 5px; color: #d72651; font-weight: bold;';
+        iconSpan.textContent = '⚠️'; // Emoji como fallback
+        
+        // Intentar usar el icono de Elementor si está disponible
+        if (window.getComputedStyle && document.querySelector('.eicon-warning')) {
+            iconSpan.className = 'eicon-warning';
+            iconSpan.textContent = '';
+            iconSpan.style.cssText += ' font-family: eicons;';
+        }
+        
+        errorMessage.appendChild(iconSpan);
+        errorMessage.appendChild(document.createTextNode(text));
+        
         return errorMessage;
     }
     
@@ -290,10 +305,71 @@
     }
     
     /**
+     * Asegurar que los estilos de iconos estén disponibles
+     */
+    function ensureIconStyles() {
+        // Verificar si ya existe un estilo para los iconos
+        if (document.getElementById('mimer-validation-icons')) {
+            return;
+        }
+        
+        const style = document.createElement('style');
+        style.id = 'mimer-validation-icons';
+        style.textContent = `
+            /* Asegurar que los iconos aparezcan */
+            .elementor-message.elementor-message-danger:before {
+                content: "⚠️";
+                display: inline-block;
+                margin-right: 5px;
+                font-style: normal;
+                font-weight: normal;
+            }
+            
+            /* Si eicons está disponible, usar el icono correcto */
+            .eicons-loaded .elementor-message.elementor-message-danger:before {
+                content: "\\e87f";
+                font-family: eicons;
+            }
+            
+            .elementor-message.elementor-message-danger {
+                color: #d72651;
+                padding: 8px 12px;
+                margin-top: 5px;
+                border-left: 3px solid #d72651;
+                background-color: rgba(215, 38, 81, 0.1);
+                border-radius: 3px;
+            }
+        `;
+        
+        document.head.appendChild(style);
+        console.log('✅ Estilos de iconos agregados');
+        
+        // Detectar si eicons está cargado
+        if (window.getComputedStyle) {
+            const testElement = document.createElement('div');
+            testElement.style.fontFamily = 'eicons';
+            document.body.appendChild(testElement);
+            
+            setTimeout(function() {
+                const computedStyle = window.getComputedStyle(testElement);
+                if (computedStyle.fontFamily.includes('eicons')) {
+                    document.body.classList.add('eicons-loaded');
+                    console.log('✅ Font eicons detectada y habilitada');
+                }
+                document.body.removeChild(testElement);
+            }, 100);
+        }
+    }
+    
+    /**
      * Inicializar cuando el DOM esté listo
      */
     function init() {
         console.log('🔍 Mimer Form Validation - Iniciando...');
+        
+        // Asegurar que los estilos de iconos estén disponibles
+        ensureIconStyles();
+        
         const forms = document.querySelectorAll(SELECTORS.FORM);
         console.log('📋 Formularios encontrados:', forms.length);
         

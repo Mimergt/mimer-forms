@@ -90,17 +90,11 @@ function mimer_api_redirect_url_shortcode() {
 }
 add_shortcode('mimer_api_redirect_url', 'mimer_api_redirect_url_shortcode');
 
-// Shortcode para redirección automática (versión simple y funcional)
+// Shortcode para redirección automática (versión limpia)
 function mimer_auto_redirect_shortcode() {
     if (session_status() == PHP_SESSION_NONE) {
         session_start();
     }
-    
-    // Debug: agregar logging de toda la sesión
-    $session_debug = "TODA LA SESIÓN: " . print_r($_SESSION, true);
-    file_put_contents(plugin_dir_path(__FILE__) . '/log.txt', 
-        "[" . date('Y-m-d H:i:s') . "] 🔍 SHORTCODE DEBUG - " . $session_debug . "\n", 
-        FILE_APPEND);
     
     // Leer la URL de la sesión PRIMERO, luego de cookie como backup
     $redirect_url = isset($_SESSION['mimer_api_redirect_url']) ? $_SESSION['mimer_api_redirect_url'] : '';
@@ -110,50 +104,32 @@ function mimer_auto_redirect_shortcode() {
         $redirect_url = $_COOKIE['mimer_redirect_backup'];
         // Limpiar cookie INMEDIATAMENTE para evitar bucles
         setcookie('mimer_redirect_backup', '', time() - 3600, '/');
-        file_put_contents(plugin_dir_path(__FILE__) . '/log.txt', 
-            "[" . date('Y-m-d H:i:s') . "] 🍪 URL recuperada de cookie backup y cookie limpiada: '" . $redirect_url . "'\n", 
-            FILE_APPEND);
     }
     
-    // Debug: agregar logging para ver qué pasa
-    $debug_info = "Sesión: " . (isset($_SESSION['mimer_api_redirect_url']) ? $_SESSION['mimer_api_redirect_url'] : 'VACÍA') . " | Cookie: " . (isset($_COOKIE['mimer_redirect_backup']) ? $_COOKIE['mimer_redirect_backup'] : 'VACÍA') . " | Final: " . $redirect_url;
-    
-    // Log específico del shortcode
-    file_put_contents(plugin_dir_path(__FILE__) . '/log.txt', 
-        "[" . date('Y-m-d H:i:s') . "] 🎯 SHORTCODE - URL encontrada: '" . $redirect_url . "'\n", 
-        FILE_APPEND);
-    
-    // Condición más clara: redirigir si hay URL y no está vacía
+    // Redirigir si hay URL válida
     if (!empty($redirect_url)) {
-        // Limpiar solo la sesión (cookie ya se limpió arriba)
+        // Limpiar la sesión
         unset($_SESSION['mimer_api_redirect_url']);
         
-        return '<span id="redirect-message">✅ URL found! You will be redirected in 3 seconds...</span>
-        <span style="display:block; color:green; font-size:12px;" id="debug-info">🔍 Debug: ' . esc_html($debug_info) . '</span>
+        return '<span id="redirect-message">You will be redirected in 3 seconds...</span>
         <script>
-            console.log("🚀 Auto redirect: URL encontrada = ' . esc_js($redirect_url) . '");
             let count = 3;
             const msg = document.getElementById("redirect-message");
             
             const timer = setInterval(function() {
                 count--;
-                if (msg) msg.textContent = "✅ Redirecting in " + count + " seconds to: ' . esc_js($redirect_url) . '";
+                if (msg) msg.textContent = "Redirecting in " + count + " seconds...";
                 
                 if (count <= 0) {
                     clearInterval(timer);
-                    if (msg) msg.textContent = "🚀 Redirecting now to: ' . esc_js($redirect_url) . '";
-                    console.log("🔄 Ejecutando redirección a: ' . esc_js($redirect_url) . '");
+                    if (msg) msg.textContent = "Redirecting now...";
                     window.location.href = "' . esc_js($redirect_url) . '";
                 }
             }, 1000);
         </script>';
     }
     
-    // Si no hay URL, mostrar debug más detallado
-    return '<div style="padding:10px; border:1px solid red; background:#ffe6e6;">
-        <span style="color: red;">❌ Auto redirect: No URL found</span><br>
-        <span style="font-size:12px;">🔍 Debug: ' . esc_html($debug_info) . '</span><br>
-        <span style="font-size:10px; color:#666;">💡 Tip: Submit a form first to generate redirect URL</span>
-    </div>';
+    // Si no hay URL, no mostrar nada (silencioso)
+    return '';
 }
 add_shortcode('mimer_auto_redirect', 'mimer_auto_redirect_shortcode');

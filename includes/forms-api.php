@@ -54,7 +54,7 @@ $data = [
                     'api_lead_id' => 'TEST_' . time(),
                     'api_response_message' => 'Test submission successful',
                     'api_validation_errors' => '',
-                    'api_redirect_url' => 'https://injuryresolve.com/dp-thankyou/?api=response_test_mimer'
+                    'api_redirect_url' => 'https://injuryresolve.com/test_ok/'
                 ]
             ];
             
@@ -74,10 +74,10 @@ $data = [
                         'api_lead_id' => 'ERROR_NO_URL',
                         'api_response_message' => 'URL comentada por seguridad',
                         'api_validation_errors' => 'URL del API no disponible',
-                        'api_redirect_url' => 'https://injuryresolve.com/dp-thankyou/?api=response_test_mimer'
+                        'api_redirect_url' => 'https://injuryresolve.com/test_ok/'
                     ]
                 ];
-                $redirect_url = 'https://injuryresolve.com/dp-thankyou/?api=response_test_mimer';
+                $redirect_url = 'https://injuryresolve.com/test_ok/';
             } else {
                 $response = wp_remote_post($url, [
                     'headers' => [
@@ -116,11 +116,11 @@ $data = [
                 if (isset($json['redirect_url']) && !empty($json['redirect_url'])) {
                     $redirect_url = $json['redirect_url'];
                 } else {
-                    $redirect_url = 'https://injuryresolve.com/dp-thankyou/?api=response_test_mimer';
+                    $redirect_url = 'https://injuryresolve.com/test_ok/';
                 }
             } else {
                 $log .= "Error en la petición a la API.\n";
-                $redirect_url = 'https://injuryresolve.com/dp-thankyou/?api=response_test_mimer';
+                $redirect_url = 'https://injuryresolve.com/test_ok/';
             }
         }
         file_put_contents(plugin_dir_path(__FILE__) . '/../log.txt', $log, FILE_APPEND);

@@ -252,27 +252,40 @@
         forms.forEach(function(form, index) {
             console.log('🎯 Inicializando formulario #' + (index + 1));
             
-            // Debug: mostrar contenido del formulario
-            console.log('📋 Form details:');
-            console.log('  - ID:', form.id);
-            console.log('  - Action:', form.action);
-            console.log('  - Method:', form.method);
-            
-            // Debug: mostrar radio buttons encontrados
-            const radioGroups = form.querySelectorAll('input[type="radio"]');
-            console.log('  - Radio buttons encontrados:', radioGroups.length);
-            radioGroups.forEach(function(radio, i) {
-                console.log('    Radio #' + (i+1) + ':', radio.name, '=', radio.value);
-            });
-            
-            // Debug: mostrar selects encontrados
-            const selects = form.querySelectorAll('select');
-            console.log('  - Selects encontrados:', selects.length);
-            selects.forEach(function(select, i) {
-                console.log('    Select #' + (i+1) + ':', select.name, 'options:', select.options.length);
-            });
-            
-            initFormValidation(form);
+            try {
+                // Debug: mostrar contenido del formulario
+                console.log('📋 Form details:');
+                console.log('  - ID:', form.id || 'sin ID');
+                console.log('  - Action:', form.action || 'sin action');
+                console.log('  - Method:', form.method || 'sin method');
+                
+                // Debug: mostrar radio buttons encontrados
+                const radioGroups = form.querySelectorAll('input[type="radio"]');
+                console.log('  - Radio buttons encontrados:', radioGroups.length);
+                
+                if (radioGroups.length > 0) {
+                    radioGroups.forEach(function(radio, i) {
+                        console.log('    Radio #' + (i+1) + ':', radio.name || 'sin-name', '=', radio.value || 'sin-value');
+                    });
+                }
+                
+                // Debug: mostrar selects encontrados
+                const selects = form.querySelectorAll('select');
+                console.log('  - Selects encontrados:', selects.length);
+                
+                if (selects.length > 0) {
+                    selects.forEach(function(select, i) {
+                        console.log('    Select #' + (i+1) + ':', select.name || 'sin-name', 'options:', select.options ? select.options.length : 0);
+                    });
+                }
+                
+                console.log('🚀 Llamando initFormValidation...');
+                initFormValidation(form);
+                console.log('✅ initFormValidation completado');
+                
+            } catch (error) {
+                console.error('❌ Error en inicialización del formulario:', error);
+            }
         });
         
         // Listener global como backup - captura TODOS los submits

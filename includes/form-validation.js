@@ -1,11 +1,13 @@
 /**
  * Mimer Forms VDI - Form Validation
  * Validaciones de formulario en inglés para Elementor Forms
- * Versión: 1.0
+ * Versión: 1.2 - Enhanced debugging
  */
 
 (function() {
     'use strict';
+    
+    console.log('🚀 NUEVA VERSION 1.2 - Form validation cargado!');
     
     // Configuración de mensajes de validación
     const VALIDATION_MESSAGES = {

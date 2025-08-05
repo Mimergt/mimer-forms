@@ -1,13 +1,13 @@
 /**
  * Mimer Forms VDI - Form Validation
  * Validaciones de formulario en inglés para Elementor Forms
- * Versión: 1.2 - Enhanced debugging
+ * Versión: 2.6 - ZIP Code Number Field Support
  */
 
 (function() {
     'use strict';
     
-    console.log('🚀 NUEVA VERSION 1.9 - Fixed select wrapper layout issues!');
+    console.log('🚀 NUEVA VERSION 2.6 - ZIP Code Number Field Support with input filtering!');
     
     // Configuración de mensajes de validación
     const VALIDATION_MESSAGES = {
@@ -865,12 +865,31 @@
                     console.log('    Phone field:', phoneField.name || phoneField.id || 'sin-name', 'type:', phoneField.type, 'required:', phoneField.required);
                 }
                 
+                // Debug: buscar TODOS los inputs que podrían ser ZIP
+                const allInputs = form.querySelectorAll('input');
+                console.log('  - TODOS los inputs encontrados:', allInputs.length);
+                
+                allInputs.forEach(function(input, i) {
+                    const name = input.name || 'sin-name';
+                    const id = input.id || 'sin-id';
+                    const type = input.type || 'sin-type';
+                    
+                    if (name.toLowerCase().includes('zip') || id.toLowerCase().includes('zip') || 
+                        name.toLowerCase().includes('postal') || id.toLowerCase().includes('postal')) {
+                        console.log('    🎯 POSIBLE ZIP FIELD #' + (i+1) + ':', name, 'id:', id, 'type:', type);
+                    } else {
+                        console.log('    Input #' + (i+1) + ':', name, 'id:', id, 'type:', type);
+                    }
+                });
+                
                 // Debug: mostrar campo de ZIP code encontrado
                 const zipField = form.querySelector('input[name*="zip"], input[name*="Zip"], input[name*="ZIP"], input[name*="postal"], input[id*="zip"], input[id*="Zip"], input[id*="ZIP"], input[type="number"][name*="zip"], input[type="number"][id*="zip"]');
                 console.log('  - Campo de ZIP code encontrado:', zipField ? 'SÍ' : 'NO');
                 
                 if (zipField) {
                     console.log('    ZIP field:', zipField.name || zipField.id || 'sin-name', 'type:', zipField.type, 'required:', zipField.required);
+                } else {
+                    console.log('    🔍 No se encontró ZIP field con los selectores actuales');
                 }
                 
                 console.log('🚀 Llamando initFormValidation...');

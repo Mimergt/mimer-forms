@@ -7,7 +7,7 @@
 (function() {
     'use strict';
     
-    console.log('🚀 NUEVA VERSION 1.2 - Form validation cargado!');
+    console.log('🚀 NUEVA VERSION 1.3 - Form validation con Elementor interceptor!');
     
     // Configuración de mensajes de validación
     const VALIDATION_MESSAGES = {
@@ -199,11 +199,54 @@
         submitButtons.forEach(function(button) {
             button.addEventListener('click', function(e) {
                 console.log('📤 Submit Method 3 - Button click detectado!', button);
-                // No preventDefault aquí, solo logging
+                
+                // Para Elementor, interceptamos el click y validamos ANTES del submit
+                console.log('🔍 Validando en button click...');
+                if (!validateForm(form)) {
+                    console.log('🛑 Validación falló en button click - Cancelando');
+                    e.preventDefault();
+                    e.stopPropagation();
+                    e.stopImmediatePropagation();
+                    return false;
+                } else {
+                    console.log('✅ Validación OK en button click - Permitiendo submit');
+                }
             });
         });
         
+        // Método 4: Hook específico para Elementor Pro Forms
+        if (window.elementorProFrontend) {
+            console.log('🎯 Elementor Pro detectado - Agregando hooks');
+            window.elementorProFrontend.hooks.addAction('panel/open_editor/widget/form', function() {
+                console.log('📝 Elementor form hook activado');
+            });
+        }
+        
+        // Método 5: Intercept usando jQuery (si está disponible)
+        if (window.jQuery) {
+            window.jQuery(form).on('submit', function(e) {
+                console.log('📤 Submit Method 5 - jQuery submit detectado!');
+                return handleFormSubmit(e.originalEvent || e, form);
+            });
+        }
+        
         console.log('✅ Validación configurada para formulario');
+    }
+    
+    /**
+     * Validar formulario completo
+     */
+    function validateForm(form) {
+        console.log('� Validando radio buttons...');
+        const radioValid = validateRadioGroups(form);
+        
+        console.log('� Validando selects...');
+        const selectValid = validateSelectFields(form);
+        
+        const isValid = radioValid && selectValid;
+        console.log('📊 Resultado validación total:', isValid ? '✅ VÁLIDO' : '❌ INVÁLIDO');
+        
+        return isValid;
     }
     
     /**
@@ -211,27 +254,8 @@
      */
     function handleFormSubmit(e, form) {
         console.log('📤 Submit detectado! Iniciando validación...');
-        let isValid = true;
         
-        // Validar radio buttons
-        console.log('🔘 Validando radio buttons...');
-        if (!validateRadioGroups(form)) {
-            console.log('❌ Error en radio buttons');
-            isValid = false;
-        } else {
-            console.log('✅ Radio buttons OK');
-        }
-        
-        // Validar selects
-        console.log('📋 Validando selects...');
-        if (!validateSelectFields(form)) {
-            console.log('❌ Error en selects');
-            isValid = false;
-        } else {
-            console.log('✅ Selects OK');
-        }
-        
-        if (!isValid) {
+        if (!validateForm(form)) {
             console.log('🛑 Validación falló - Cancelando envío');
             e.preventDefault();
             e.stopPropagation();

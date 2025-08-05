@@ -23,6 +23,7 @@ class MimerPhoneValidatorAdmin {
     public function register_settings() {
         register_setting('mimer_phone_validator_group', 'mimer_phone_validator_api_key');
         register_setting('mimer_phone_validator_group', 'mimer_phone_validator_enabled');
+        register_setting('mimer_phone_validator_group', 'mimer_test_mode_enabled');
         // Elimina cualquier callback de sanitización para este campo:
         register_setting('mimer_phone_validator_group', 'mimer_trustedform_js', array(
             'sanitize_callback' => null
@@ -37,6 +38,7 @@ class MimerPhoneValidatorAdmin {
             <h2 class="nav-tab-wrapper">
                 <a href="?page=mimer-phone-validator&tab=phone_validator" class="nav-tab <?php echo $active_tab == 'phone_validator' ? 'nav-tab-active' : ''; ?>">Phone Validator</a>
                 <a href="?page=mimer-phone-validator&tab=api" class="nav-tab <?php echo $active_tab == 'api' ? 'nav-tab-active' : ''; ?>">API</a>
+                <a href="?page=mimer-phone-validator&tab=logs" class="nav-tab <?php echo $active_tab == 'logs' ? 'nav-tab-active' : ''; ?>">Logs</a>
             </h2>
             <?php if ($active_tab == 'phone_validator'): ?>
                 <form method="post">
@@ -61,6 +63,7 @@ class MimerPhoneValidatorAdmin {
                     } elseif ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         update_option('mimer_phone_validator_api_key', sanitize_text_field($_POST['mimer_phone_validator_api_key']));
                         update_option('mimer_phone_validator_enabled', isset($_POST['mimer_phone_validator_enabled']) ? 1 : 0);
+                        update_option('mimer_test_mode_enabled', isset($_POST['mimer_test_mode_enabled']) ? 1 : 0);
                         echo '<div class="updated"><p>Opciones guardadas.</p></div>';
                     }
                     settings_fields('mimer_phone_validator_group');
@@ -84,6 +87,14 @@ class MimerPhoneValidatorAdmin {
                                 <label for="mimer_phone_validator_enabled">Activar o desactivar la validación del teléfono</label>
                             </td>
                         </tr>
+                        <tr valign="top">
+                            <th scope="row">🧪 Modo de Pruebas</th>
+                            <td>
+                                <input type="checkbox" name="mimer_test_mode_enabled" value="1" <?php checked(1, get_option('mimer_test_mode_enabled'), true); ?> />
+                                <label for="mimer_test_mode_enabled"><strong>Activar modo de pruebas (NO envía datos al API VDI)</strong></label>
+                                <p class="description" style="color: #d54e21;">⚠️ Cuando está activado, el formulario se procesa normalmente pero NO se envía al API externo. Perfecto para pruebas.</p>
+                            </td>
+                        </tr>
                     </table>
                     <?php submit_button(); ?>
                 </form>
@@ -94,10 +105,19 @@ class MimerPhoneValidatorAdmin {
                         $trustedform_js = isset($_POST['mimer_trustedform_js']) ? $_POST['mimer_trustedform_js'] : '';
                         // Guardar tal cual, sin formatear
                         update_option('mimer_trustedform_js', $trustedform_js);
-                        echo '<div class="updated"><p>TrustedForm code saved.</p></div>';
+                        update_option('mimer_test_mode_enabled', isset($_POST['mimer_test_mode_enabled']) ? 1 : 0);
+                        echo '<div class="updated"><p>Configuración de API guardada.</p></div>';
                     }
                     ?>
                     <table class="form-table">
+                        <tr valign="top">
+                            <th scope="row">🧪 Modo de Pruebas</th>
+                            <td>
+                                <input type="checkbox" name="mimer_test_mode_enabled" value="1" <?php checked(1, get_option('mimer_test_mode_enabled'), true); ?> />
+                                <label for="mimer_test_mode_enabled"><strong>Activar modo de pruebas (NO envía datos al API VDI)</strong></label>
+                                <p class="description" style="color: #d54e21;">⚠️ Cuando está activado, el formulario se procesa normalmente pero NO se envía al API externo. Perfecto para pruebas en vivo.</p>
+                            </td>
+                        </tr>
                         <tr valign="top">
                             <th scope="row">TrustedForm code</th>
                             <td>
@@ -108,6 +128,42 @@ class MimerPhoneValidatorAdmin {
                     </table>
                     <?php submit_button('Save code'); ?>
                 </form>
+            <?php elseif ($active_tab == 'logs'): ?>
+                <div style="background: white; padding: 20px; border: 1px solid #ccc; margin-top: 20px;">
+                    <h3>📋 Logs del Sistema</h3>
+                    <?php 
+                    $test_mode = get_option('mimer_test_mode_enabled', 0);
+                    if ($test_mode) {
+                        echo '<div style="background: #fff3cd; border: 1px solid #ffeaa7; padding: 10px; margin-bottom: 15px; border-radius: 4px;">
+                                <strong>🧪 MODO PRUEBAS ACTIVADO</strong> - Los envíos NO llegan al API real
+                              </div>';
+                    } else {
+                        echo '<div style="background: #d1ecf1; border: 1px solid #bee5eb; padding: 10px; margin-bottom: 15px; border-radius: 4px;">
+                                <strong>🔴 MODO PRODUCCIÓN</strong> - Los envíos SÍ llegan al API real
+                              </div>';
+                    }
+                    
+                    $log_file = plugin_dir_path(__FILE__) . '/../log.txt';
+                    if (file_exists($log_file)) {
+                        $logs = file_get_contents($log_file);
+                        if (isset($_POST['clear_logs'])) {
+                            file_put_contents($log_file, '');
+                            echo '<div class="updated"><p>Logs limpiados.</p></div>';
+                            $logs = '';
+                        }
+                        if (!empty($logs)) {
+                            echo '<form method="post" style="margin-bottom: 10px;">
+                                    <input type="submit" name="clear_logs" class="button button-secondary" value="🗑️ Limpiar Logs" onclick="return confirm(\'¿Estás seguro de limpiar los logs?\')">
+                                  </form>';
+                            echo '<pre style="background: #f1f1f1; padding: 15px; overflow: auto; max-height: 400px; border: 1px solid #ddd; font-size: 12px;">' . esc_html($logs) . '</pre>';
+                        } else {
+                            echo '<p><em>No hay logs disponibles.</em></p>';
+                        }
+                    } else {
+                        echo '<p><em>Archivo de logs no encontrado.</em></p>';
+                    }
+                    ?>
+                </div>
             <?php endif; ?>
         </div>
         <?php

@@ -7,7 +7,7 @@
 (function() {
     'use strict';
     
-    console.log('🚀 NUEVA VERSION 1.5 - Enhanced icons and styling!');
+    console.log('🚀 NUEVA VERSION 1.6 - Fixed icon specificity with !important!');
     
     // Configuración de mensajes de validación
     const VALIDATION_MESSAGES = {
@@ -316,28 +316,29 @@
         const style = document.createElement('style');
         style.id = 'mimer-validation-icons';
         style.textContent = `
-            /* Asegurar que los iconos aparezcan */
+            /* Asegurar que los iconos aparezcan con !important para mayor especificidad */
             .elementor-message.elementor-message-danger:before {
-                content: "⚠️";
-                display: inline-block;
-                margin-right: 5px;
-                font-style: normal;
-                font-weight: normal;
+                content: "⚠️ " !important;
+                display: inline-block !important;
+                margin-right: 5px !important;
+                font-style: normal !important;
+                font-weight: normal !important;
+                font-family: inherit !important;
             }
             
             /* Si eicons está disponible, usar el icono correcto */
             .eicons-loaded .elementor-message.elementor-message-danger:before {
-                content: "\\e87f";
-                font-family: eicons;
+                content: "\\e87f" !important;
+                font-family: eicons !important;
             }
             
             .elementor-message.elementor-message-danger {
-                color: #d72651;
-                padding: 8px 12px;
-                margin-top: 5px;
-                border-left: 3px solid #d72651;
-                background-color: rgba(215, 38, 81, 0.1);
-                border-radius: 3px;
+                color: #d72651 !important;
+                padding: 8px 12px !important;
+                margin-top: 5px !important;
+                border-left: 3px solid #d72651 !important;
+                background-color: rgba(215, 38, 81, 0.1) !important;
+                border-radius: 3px !important;
             }
         `;
         

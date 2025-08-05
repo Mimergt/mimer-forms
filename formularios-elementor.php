@@ -96,11 +96,22 @@ function mimer_auto_redirect_shortcode() {
         session_start();
     }
     
+    // Debug: agregar logging de toda la sesión
+    $session_debug = "TODA LA SESIÓN: " . print_r($_SESSION, true);
+    file_put_contents(plugin_dir_path(__FILE__) . '/log.txt', 
+        "[" . date('Y-m-d H:i:s') . "] 🔍 SHORTCODE DEBUG - " . $session_debug . "\n", 
+        FILE_APPEND);
+    
     // Leer la URL de la sesión
     $redirect_url = isset($_SESSION['mimer_api_redirect_url']) ? $_SESSION['mimer_api_redirect_url'] : '';
     
     // Debug: agregar logging para ver qué pasa
     $debug_info = "URL en sesión: " . $redirect_url;
+    
+    // Log específico del shortcode
+    file_put_contents(plugin_dir_path(__FILE__) . '/log.txt', 
+        "[" . date('Y-m-d H:i:s') . "] 🎯 SHORTCODE - URL encontrada: '" . $redirect_url . "'\n", 
+        FILE_APPEND);
     
     // Condición más clara: redirigir si hay URL y no está vacía
     if (!empty($redirect_url)) {

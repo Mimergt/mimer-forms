@@ -7,7 +7,7 @@
 (function() {
     'use strict';
     
-    console.log('🚀 NUEVA VERSION 1.3 - Form validation con Elementor interceptor!');
+    console.log('🚀 NUEVA VERSION 1.4 - Enhanced button detection!');
     
     // Configuración de mensajes de validación
     const VALIDATION_MESSAGES = {
@@ -196,7 +196,11 @@
         
         // Método 3: Intercept button clicks
         const submitButtons = form.querySelectorAll('button[type="submit"], input[type="submit"]');
-        submitButtons.forEach(function(button) {
+        console.log('🔍 Submit buttons encontrados:', submitButtons.length);
+        
+        submitButtons.forEach(function(button, index) {
+            console.log('🔘 Button #' + (index + 1) + ':', button.id || 'sin-id', button.className || 'sin-class');
+            
             button.addEventListener('click', function(e) {
                 console.log('📤 Submit Method 3 - Button click detectado!', button);
                 
@@ -212,14 +216,32 @@
                     console.log('✅ Validación OK en button click - Permitiendo submit');
                 }
             });
+            
+            // También agregar listener con capture = true para asegurar que se ejecute primero
+            button.addEventListener('click', function(e) {
+                console.log('📤 Submit Method 3B - Button click CAPTURE detectado!');
+            }, true);
         });
         
-        // Método 4: Hook específico para Elementor Pro Forms
-        if (window.elementorProFrontend) {
+        // También buscar cualquier elemento que pueda actuar como botón de submit
+        const allButtons = form.querySelectorAll('button, [type="submit"], .elementor-button');
+        console.log('🔍 Todos los botones encontrados:', allButtons.length);
+        allButtons.forEach(function(btn, i) {
+            console.log('  Button #' + (i+1) + ':', btn.tagName, btn.type || 'sin-type', btn.id || 'sin-id');
+        });
+        
+        // Método 4: Hook específico para Elementor Pro Forms (con verificación segura)
+        if (window.elementorProFrontend && window.elementorProFrontend.hooks && window.elementorProFrontend.hooks.addAction) {
             console.log('🎯 Elementor Pro detectado - Agregando hooks');
-            window.elementorProFrontend.hooks.addAction('panel/open_editor/widget/form', function() {
-                console.log('📝 Elementor form hook activado');
-            });
+            try {
+                window.elementorProFrontend.hooks.addAction('panel/open_editor/widget/form', function() {
+                    console.log('📝 Elementor form hook activado');
+                });
+            } catch (error) {
+                console.log('⚠️ Error en Elementor hook:', error.message);
+            }
+        } else {
+            console.log('ℹ️ Elementor Pro hooks no disponibles - usando otros métodos');
         }
         
         // Método 5: Intercept usando jQuery (si está disponible)

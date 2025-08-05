@@ -21,7 +21,7 @@ function mimer_enqueue_custom_script() {
         'mimer-form-validation-rules',
         plugin_dir_url(__FILE__) . 'includes/form-validation.js',
         array('jquery'),
-        '1.3', // Cambiado para forzar recarga
+        '1.4', // Cambiado para forzar recarga
         true
     );
     

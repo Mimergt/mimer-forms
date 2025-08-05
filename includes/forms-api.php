@@ -6,9 +6,8 @@ class MimerFormsVDI {
         // Verificar si está en modo de pruebas
         $test_mode = get_option('mimer_test_mode_enabled', 0);
         
-        // Log de todos los campos recibidos
-        $debug_log = "[" . date('Y-m-d H:i:s') . "] " . ($test_mode ? "🧪 MODO PRUEBAS" : "🔴 MODO PRODUCCIÓN") . " - CAMPOS ORIGINALES DEL FORMULARIO\n";
-        $debug_log .= print_r($fields, true) . "\n";
+        // Log simplificado de recepción
+        $debug_log = "[" . date('Y-m-d H:i:s') . "] " . ($test_mode ? "🧪 MODO PRUEBAS" : "🔴 MODO PRODUCCIÓN") . " - Formulario recibido (" . count($fields) . " campos)\n";
         file_put_contents(plugin_dir_path(__FILE__) . '/../log.txt', $debug_log, FILE_APPEND);
         // Limpiar número de teléfono
         $lead_phone = preg_replace('/[^0-9]/', '', $fields['lead_phone']);
@@ -39,9 +38,8 @@ $data = [
         // $url = 'https://api-vdi.luchtech.dev/api/submissions?form=depo-provera-injury-resolve&team=vdi&user=ee5a1aba-6009-4d58-8a16-3810e2f777ad&signature=f6bed0c57b7e6745e427faf65796f2fef47e8fb8ea1c01566ee4ba576f34e0ed';
         $url = ''; // URL INTENCIONALMENTE VACÍA PARA PREVENIR ENVÍOS ACCIDENTALES
 
-        // Logging
-        $log = "[" . date('Y-m-d H:i:s') . "] " . ($test_mode ? "🧪 MODO PRUEBAS" : "🔴 ENVÍO A VDI") . "\n";
-        $log .= "Payload: " . print_r($data, true) . "\n";
+        // Logging simplificado
+        $log = "[" . date('Y-m-d H:i:s') . "] " . ($test_mode ? "🧪 MODO PRUEBAS" : "🔴 ENVÍO A VDI") . " - Preparando envío\n";
 
         // Si está en modo de pruebas, simular respuesta
         if ($test_mode) {
@@ -61,7 +59,7 @@ $data = [
             ];
             
             $redirect_url = $json['redirect_url'];
-            $log .= "Respuesta simulada: " . print_r($json, true) . "\n";
+            $log .= "✅ Respuesta simulada exitosa - Redirect URL: " . $json['data']['api_redirect_url'] . "\n";
             
         } else {
             // Envío real al API

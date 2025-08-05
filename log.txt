@@ -1,0 +1,104 @@
+[2025-08-05 22:13:48] Respuesta completa: Array
+(
+    [valid] => 1
+    [number] => 14045097683
+    [local_format] => 4045097683
+    [international_format] => +14045097683
+    [country_prefix] => +1
+    [country_code] => US
+    [country_name] => United States of America
+    [location] => Atlanta
+    [carrier] => T-Mobile USA Inc.
+    [line_type] => mobile
+)
+
+[2025-08-05 22:13:48] 🔍 VALIDACIÓN DEL SERVIDOR
+Campos validados: 13
+Errores encontrados: 0
+---
+[2025-08-05 22:13:48] 🧪 MODO PRUEBAS - CAMPOS ORIGINALES DEL FORMULARIO
+Array
+(
+    [case_depo_provera_taken] => Yes
+    [case_depo_provera_use] => 3 or more years
+    [case_diagnosis] => Yes
+    [case_attorney] => No
+    [case_description] => tst
+    [lead_first_name] => sdtas
+    [lead_last_name] => tsdt
+    [lead_phone] => 14045097683
+    [lead_email] => m@m.com
+    [lead_zip_code] => 30043
+    [accept] => on
+    [trustedform] => 
+    [case_injury] => Brain Meningioma
+)
+
+[2025-08-05 22:13:48] 🧪 MODO PRUEBAS
+Payload: Array
+(
+    [lead-first-name] => sdtas
+    [lead-last-name] => tsdt
+    [lead-email-address] => m@m.com
+    [lead-phone] => 14045097683
+    [case-depo-provera-taken] => Yes
+    [case-depo-provera-use] => 3 or more years
+    [case-injury] => Brain Meningioma
+    [case-diagnosis] => Yes
+    [case-description] => tst
+    [case-attorney] => No
+    [lead-trusted-form-cert-id] => https://cert.trustedform.com/5524978ade69cf6b4955c278e2406679c80de0db
+    [lead-ip-address] => 190.56.113.221
+    [lead-zip-code] => 30043
+)
+
+🧪 MODO PRUEBAS ACTIVADO - NO se envía al API real
+Simulando respuesta exitosa...
+Respuesta simulada: Array
+(
+    [success] => 1
+    [redirect_url] => https://injuryresolve.com/dp-thankyou/
+    [data] => Array
+        (
+            [api_lead_id] => TEST_1754432028
+            [api_response_message] => Test submission successful
+            [api_validation_errors] => 
+            [api_redirect_url] => https://injuryresolve.com/dp-thankyou/?api=response_test_mimer
+        )
+
+)
+
+[2025-08-05 22:13:48] 🧪 MODO PRUEBAS
+Payload: Array
+(
+    [lead-first-name] => sdtas
+    [lead-last-name] => tsdt
+    [lead-email-address] => m@m.com
+    [lead-phone] => 14045097683
+    [case-depo-provera-taken] => Yes
+    [case-depo-provera-use] => 3 or more years
+    [case-injury] => Brain Meningioma
+    [case-diagnosis] => Yes
+    [case-description] => tst
+    [case-attorney] => No
+    [lead-trusted-form-cert-id] => https://cert.trustedform.com/5524978ade69cf6b4955c278e2406679c80de0db
+    [lead-ip-address] => 190.56.113.221
+    [lead-zip-code] => 30043
+)
+
+🧪 MODO PRUEBAS ACTIVADO - NO se envía al API real
+Simulando respuesta exitosa...
+Respuesta simulada: Array
+(
+    [success] => 1
+    [redirect_url] => https://injuryresolve.com/dp-thankyou/
+    [data] => Array
+        (
+            [api_lead_id] => TEST_1754432028
+            [api_response_message] => Test submission successful
+            [api_validation_errors] => 
+            [api_redirect_url] => https://injuryresolve.com/dp-thankyou/?api=response_test_mimer
+        )
+
+)
+

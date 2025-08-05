@@ -105,13 +105,11 @@ class MimerFormValidation {
      */
     public static function log_validation($fields, $errors = []) {
         if (get_option('mimer_test_mode_enabled')) {
-            $log = "[" . date('Y-m-d H:i:s') . "] 🔍 VALIDACIÓN DEL SERVIDOR\n";
-            $log .= "Campos validados: " . count($fields) . "\n";
-            $log .= "Errores encontrados: " . count($errors) . "\n";
-            if (!empty($errors)) {
-                $log .= "Campos con error: " . implode(', ', $errors) . "\n";
+            if (empty($errors)) {
+                $log = "[" . date('Y-m-d H:i:s') . "] ✅ Validación del servidor: Todos los campos OK (" . count($fields) . " campos)\n";
+            } else {
+                $log = "[" . date('Y-m-d H:i:s') . "] ❌ Validación del servidor: " . count($errors) . " errores en: " . implode(', ', $errors) . "\n";
             }
-            $log .= "---\n";
             
             file_put_contents(plugin_dir_path(__FILE__) . '/../log.txt', $log, FILE_APPEND);
         }

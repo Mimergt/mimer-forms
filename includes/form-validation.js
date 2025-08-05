@@ -196,6 +196,27 @@
                 }
             });
         });
+        
+        // Select fields - limpiar errores cuando se selecciona una opción válida
+        form.querySelectorAll('select').forEach(function(select) {
+            select.addEventListener('change', function() {
+                console.log('🔄 Select cambió:', select.name, 'valor:', select.value);
+                
+                // Si se selecciona una opción válida, limpiar error
+                if (select.value && select.value !== '--select--' && select.value !== '') {
+                    console.log('✅ Valor válido seleccionado, limpiando error para:', select.name);
+                    
+                    // Buscar el contenedor donde se mostró el error
+                    const selectWrapper = select.closest('.elementor-select-wrapper');
+                    const fieldGroup = select.closest('.elementor-field-group');
+                    const errorContainer = selectWrapper ? selectWrapper.parentElement : (fieldGroup || select.parentElement);
+                    
+                    removeExistingError(errorContainer);
+                } else {
+                    console.log('⚠️ Valor no válido seleccionado:', select.value);
+                }
+            });
+        });
     }
     
     /**

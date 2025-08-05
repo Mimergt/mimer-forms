@@ -17,13 +17,7 @@ require_once plugin_dir_path(__FILE__) . 'includes/form-validation.php';
 add_action('wp_enqueue_scripts', 'mimer_enqueue_custom_script');
 function mimer_enqueue_custom_script() {
     // Nuevo script de validaciones organizadas (prioridad)
-    wp_enqueue_script(
-        'mimer-form-validation-rules',
-        plugin_dir_url(__FILE__) . 'includes/form-validation.js',
-        array('jquery'),
-        '2.3', // Agregada validación y normalización de teléfono
-        true
-    );
+        wp_enqueue_script('form-validation', plugin_dir_url(__FILE__) . 'includes/form-validation.js', array('jquery'), '2.4', true);
     
     // Script principal (utilitarios)
     wp_enqueue_script(

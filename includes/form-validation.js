@@ -350,6 +350,61 @@
     }
     
     /**
+     * Validar campo de ZIP code (exactamente 5 dígitos)
+     */
+    function validateZipCodeField(form) {
+        let isValid = true;
+        
+        const zipField = form.querySelector('input[name*="zip"], input[name*="Zip"], input[name*="ZIP"], input[name*="postal"], input[id*="zip"], input[id*="Zip"], input[id*="ZIP"]');
+        
+        if (!zipField) {
+            console.log('📮 No se encontró campo de ZIP code en el formulario');
+            return isValid;
+        }
+        
+        console.log('🔍 Validando ZIP code:', zipField.name || zipField.id, 'valor actual:', `"${zipField.value.trim()}"`);
+        
+        const zipValue = zipField.value.trim();
+        
+        if (!zipValue) {
+            console.log('❌ ZIP code inválido: campo vacío');
+            
+            const fieldGroup = zipField.closest('.elementor-field-group');
+            const errorContainer = fieldGroup || zipField.parentElement;
+            
+            removeExistingError(errorContainer);
+            const errorMessage = createErrorMessage('Please enter a valid ZIP code');
+            errorContainer.appendChild(errorMessage);
+            
+            return false;
+        }
+        
+        // Validar que sea exactamente 5 dígitos
+        const zipPattern = /^\d{5}$/;
+        if (!zipPattern.test(zipValue)) {
+            console.log('❌ ZIP code inválido: debe ser exactamente 5 dígitos, recibido:', zipValue, 'length:', zipValue.length);
+            
+            const fieldGroup = zipField.closest('.elementor-field-group');
+            const errorContainer = fieldGroup || zipField.parentElement;
+            
+            removeExistingError(errorContainer);
+            const errorMessage = createErrorMessage('ZIP code must be exactly 5 digits');
+            errorContainer.appendChild(errorMessage);
+            
+            return false;
+        }
+        
+        console.log('✅ ZIP code válido:', zipValue);
+        
+        // Limpiar errores existentes
+        const fieldGroup = zipField.closest('.elementor-field-group');
+        const errorContainer = fieldGroup || zipField.parentElement;
+        removeExistingError(errorContainer);
+        
+        return isValid;
+    }
+    
+    /**
      * Setup event listeners para limpiar errores automáticamente
      */
     function setupErrorCleanup(form) {
@@ -439,6 +494,43 @@
                         removeExistingError(errorContainer);
                     }
                 }
+            });
+        }
+        
+        // ZIP code field - limitar entrada y validar en tiempo real
+        const zipField = form.querySelector('input[name*="zip"], input[name*="Zip"], input[name*="ZIP"], input[name*="postal"], input[id*="zip"], input[id*="Zip"], input[id*="ZIP"]');
+        if (zipField) {
+            console.log('📮 Configurando listeners para campo ZIP code:', zipField.name || zipField.id);
+            
+            // Limitar entrada a solo números y máximo 5 dígitos
+            zipField.addEventListener('input', function() {
+                // Remover cualquier caracter que no sea dígito
+                let value = zipField.value.replace(/\D/g, '');
+                
+                // Limitar a máximo 5 dígitos
+                if (value.length > 5) {
+                    value = value.slice(0, 5);
+                }
+                
+                zipField.value = value;
+                console.log('📮 ZIP code input filtrado:', value);
+                
+                // Si tiene exactamente 5 dígitos, limpiar errores
+                if (value.length === 5) {
+                    console.log('✅ ZIP code válido, limpiando errores');
+                    const fieldGroup = zipField.closest('.elementor-field-group');
+                    const errorContainer = fieldGroup || zipField.parentElement;
+                    removeExistingError(errorContainer);
+                }
+            });
+            
+            // Prevenir pegar contenido no numérico
+            zipField.addEventListener('paste', function(e) {
+                e.preventDefault();
+                const paste = (e.clipboardData || window.clipboardData).getData('text');
+                const numericOnly = paste.replace(/\D/g, '').slice(0, 5);
+                zipField.value = numericOnly;
+                console.log('📮 ZIP code pegado y filtrado:', numericOnly);
             });
         }
     }
@@ -556,7 +648,10 @@
         console.log('📞 Validando teléfono...');
         const phoneValid = validatePhoneField(form);
         
-        const isValid = radioValid && selectValid && textareaValid && textFieldsValid && phoneValid;
+        console.log('📮 Validando ZIP code...');
+        const zipValid = validateZipCodeField(form);
+        
+        const isValid = radioValid && selectValid && textareaValid && textFieldsValid && phoneValid && zipValid;
         console.log('📊 Resultado validación total:', isValid ? '✅ VÁLIDO' : '❌ INVÁLIDO');
         
         return isValid;
@@ -695,6 +790,14 @@
                 
                 if (phoneField) {
                     console.log('    Phone field:', phoneField.name || phoneField.id || 'sin-name', 'type:', phoneField.type, 'required:', phoneField.required);
+                }
+                
+                // Debug: mostrar campo de ZIP code encontrado
+                const zipField = form.querySelector('input[name*="zip"], input[name*="Zip"], input[name*="ZIP"], input[name*="postal"], input[id*="zip"], input[id*="Zip"], input[id*="ZIP"]');
+                console.log('  - Campo de ZIP code encontrado:', zipField ? 'SÍ' : 'NO');
+                
+                if (zipField) {
+                    console.log('    ZIP field:', zipField.name || zipField.id || 'sin-name', 'type:', zipField.type, 'required:', zipField.required);
                 }
                 
                 console.log('🚀 Llamando initFormValidation...');

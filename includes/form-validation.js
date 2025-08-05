@@ -7,7 +7,7 @@
 (function() {
     'use strict';
     
-    console.log('🚀 NUEVA VERSION 1.6 - Fixed icon specificity with !important!');
+    console.log('🚀 NUEVA VERSION 1.7 - Simplified with emoji icons only!');
     
     // Configuración de mensajes de validación
     const VALIDATION_MESSAGES = {
@@ -69,17 +69,10 @@
         const errorMessage = document.createElement('div');
         errorMessage.className = ERROR_CLASSES;
         
-        // Crear el icono manualmente para asegurar que aparezca
+        // Crear el icono usando emoji simple
         const iconSpan = document.createElement('span');
         iconSpan.style.cssText = 'display: inline-block; margin-right: 5px; color: #d72651; font-weight: bold;';
-        iconSpan.textContent = '⚠️'; // Emoji como fallback
-        
-        // Intentar usar el icono de Elementor si está disponible
-        if (window.getComputedStyle && document.querySelector('.eicon-warning')) {
-            iconSpan.className = 'eicon-warning';
-            iconSpan.textContent = '';
-            iconSpan.style.cssText += ' font-family: eicons;';
-        }
+        iconSpan.textContent = '⚠️'; // Emoji directo, sin fallbacks
         
         errorMessage.appendChild(iconSpan);
         errorMessage.appendChild(document.createTextNode(text));
@@ -316,7 +309,7 @@
         const style = document.createElement('style');
         style.id = 'mimer-validation-icons';
         style.textContent = `
-            /* Asegurar que los iconos aparezcan con !important para mayor especificidad */
+            /* Estilos para mensajes de error con emoji */
             .elementor-message.elementor-message-danger:before {
                 content: "⚠️ " !important;
                 display: inline-block !important;
@@ -324,12 +317,6 @@
                 font-style: normal !important;
                 font-weight: normal !important;
                 font-family: inherit !important;
-            }
-            
-            /* Si eicons está disponible, usar el icono correcto */
-            .eicons-loaded .elementor-message.elementor-message-danger:before {
-                content: "\\e87f" !important;
-                font-family: eicons !important;
             }
             
             .elementor-message.elementor-message-danger {
@@ -343,23 +330,7 @@
         `;
         
         document.head.appendChild(style);
-        console.log('✅ Estilos de iconos agregados');
-        
-        // Detectar si eicons está cargado
-        if (window.getComputedStyle) {
-            const testElement = document.createElement('div');
-            testElement.style.fontFamily = 'eicons';
-            document.body.appendChild(testElement);
-            
-            setTimeout(function() {
-                const computedStyle = window.getComputedStyle(testElement);
-                if (computedStyle.fontFamily.includes('eicons')) {
-                    document.body.classList.add('eicons-loaded');
-                    console.log('✅ Font eicons detectada y habilitada');
-                }
-                document.body.removeChild(testElement);
-            }, 100);
-        }
+        console.log('✅ Estilos de iconos emoji agregados');
     }
     
     /**

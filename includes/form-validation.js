@@ -88,14 +88,19 @@
         let isValid = true;
         
         // Agrupar radio buttons por name
-        form.querySelectorAll(SELECTORS.RADIO_REQUIRED).forEach(function(radio) {
+        const radioButtons = form.querySelectorAll(SELECTORS.RADIO_REQUIRED);
+        console.log('🔘 Radio buttons encontrados:', radioButtons.length);
+        
+        radioButtons.forEach(function(radio) {
             const name = radio.name;
+            console.log('📝 Procesando radio:', name);
             if (!radioGroups[name]) {
                 radioGroups[name] = {
                     radios: form.querySelectorAll('input[type="radio"][name="' + name + '"]'),
                     isChecked: false,
                     container: radio.closest(SELECTORS.FIELD_GROUP)
                 };
+                console.log('📦 Grupo creado para:', name, 'Radios en grupo:', radioGroups[name].radios.length);
             }
         });
         
@@ -103,17 +108,21 @@
         Object.keys(radioGroups).forEach(function(groupName) {
             const group = radioGroups[groupName];
             group.isChecked = Array.from(group.radios).some(radio => radio.checked);
+            console.log('🔍 Grupo ' + groupName + ' - Seleccionado:', group.isChecked);
             
             if (!group.isChecked) {
+                console.log('❌ Agregando error para:', groupName);
                 removeExistingError(group.container);
                 const errorMessage = createErrorMessage(VALIDATION_MESSAGES.RADIO_REQUIRED);
                 group.container.appendChild(errorMessage);
                 isValid = false;
             } else {
+                console.log('✅ Limpiando error para:', groupName);
                 removeExistingError(group.container);
             }
         });
         
+        console.log('🔘 Validación radio resultado:', isValid);
         return isValid;
     }
     
@@ -154,6 +163,8 @@
      * Inicializar validación para un formulario
      */
     function initFormValidation(form) {
+        console.log('🔧 Configurando validación para formulario:', form);
+        
         // Personalizar mensajes HTML5
         customizeHTML5Messages(form);
         
@@ -162,34 +173,55 @@
         
         // Validación en submit
         form.addEventListener('submit', function(e) {
+            console.log('📤 Submit detectado! Iniciando validación...');
             let isValid = true;
             
             // Validar radio buttons
+            console.log('🔘 Validando radio buttons...');
             if (!validateRadioGroups(form)) {
+                console.log('❌ Error en radio buttons');
                 isValid = false;
+            } else {
+                console.log('✅ Radio buttons OK');
             }
             
             // Validar selects
+            console.log('📋 Validando selects...');
             if (!validateSelectFields(form)) {
+                console.log('❌ Error en selects');
                 isValid = false;
+            } else {
+                console.log('✅ Selects OK');
             }
             
             if (!isValid) {
+                console.log('🛑 Validación falló - Cancelando envío');
                 e.preventDefault();
                 return false;
             }
             
+            console.log('🚀 Validación pasó - Permitiendo envío');
             // Permitir envío normal del formulario
             return true;
         });
+        
+        console.log('✅ Validación configurada para formulario');
     }
     
     /**
      * Inicializar cuando el DOM esté listo
      */
     function init() {
+        console.log('🔍 Mimer Form Validation - Iniciando...');
         const forms = document.querySelectorAll(SELECTORS.FORM);
-        forms.forEach(initFormValidation);
+        console.log('📋 Formularios encontrados:', forms.length);
+        
+        forms.forEach(function(form, index) {
+            console.log('🎯 Inicializando formulario #' + (index + 1));
+            initFormValidation(form);
+        });
+        
+        console.log('✅ Mimer Form Validation - Inicialización completa');
     }
     
     // Inicializar cuando el DOM esté listo

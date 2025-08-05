@@ -16,21 +16,21 @@ require_once plugin_dir_path(__FILE__) . 'includes/form-validation.php';
 
 add_action('wp_enqueue_scripts', 'mimer_enqueue_custom_script');
 function mimer_enqueue_custom_script() {
-    // Script principal
-    wp_enqueue_script(
-        'mimer-form-validation',
-        plugin_dir_url(__FILE__) . 'includes/some_magic.js',
-        array('jquery'),
-        null,
-        true
-    );
-    
-    // Nuevo script de validaciones organizadas
+    // Nuevo script de validaciones organizadas (prioridad)
     wp_enqueue_script(
         'mimer-form-validation-rules',
         plugin_dir_url(__FILE__) . 'includes/form-validation.js',
         array('jquery'),
-        '1.0',
+        '1.1',
+        true
+    );
+    
+    // Script principal (utilitarios)
+    wp_enqueue_script(
+        'mimer-form-validation',
+        plugin_dir_url(__FILE__) . 'includes/some_magic.js',
+        array('jquery', 'mimer-form-validation-rules'),
+        null,
         true
     );
 }

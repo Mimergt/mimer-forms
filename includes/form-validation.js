@@ -358,7 +358,8 @@
             
             /* Asegurar que los field groups con selects tengan layout vertical */
             .elementor-field-group:has(.elementor-select-wrapper + .elementor-message) {
-                flex-direction: column !important;
+            display:flex;    
+            flex-direction: column !important;
             }
             
             /* Alternativa más compatible para navegadores que no soportan :has() */

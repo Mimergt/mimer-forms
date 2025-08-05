@@ -102,33 +102,37 @@ function mimer_auto_redirect_shortcode() {
     // Debug: agregar logging para ver qué pasa
     $debug_info = "URL en sesión: " . $redirect_url;
     
-    // Solo redirigir si hay una URL válida y diferente a la por defecto (sin parámetros)
-    if (!empty($redirect_url) && $redirect_url !== 'https://injuryresolve.com/dp-thankyou/' && !empty($redirect_url)) {
+    // Condición más clara: redirigir si hay URL y no está vacía
+    if (!empty($redirect_url)) {
         // Limpiar la sesión DESPUÉS de obtener la URL
         unset($_SESSION['mimer_api_redirect_url']);
         
-        return '<span id="redirect-message">You will be redirected in 3 seconds...</span>
-        <span style="display:none;" id="debug-info">' . esc_html($debug_info) . '</span>
+        return '<span id="redirect-message">✅ URL found! You will be redirected in 3 seconds...</span>
+        <span style="display:block; color:green; font-size:12px;" id="debug-info">🔍 Debug: ' . esc_html($debug_info) . '</span>
         <script>
-            console.log("Auto redirect: URL encontrada = ' . esc_js($redirect_url) . '");
+            console.log("🚀 Auto redirect: URL encontrada = ' . esc_js($redirect_url) . '");
             let count = 3;
             const msg = document.getElementById("redirect-message");
             
             const timer = setInterval(function() {
                 count--;
-                if (msg) msg.textContent = "You will be redirected in " + count + " seconds...";
+                if (msg) msg.textContent = "✅ Redirecting in " + count + " seconds to: ' . esc_js($redirect_url) . '";
                 
                 if (count <= 0) {
                     clearInterval(timer);
-                    if (msg) msg.textContent = "Redirecting now...";
-                    console.log("Redirigiendo a: ' . esc_js($redirect_url) . '");
+                    if (msg) msg.textContent = "🚀 Redirecting now to: ' . esc_js($redirect_url) . '";
+                    console.log("🔄 Ejecutando redirección a: ' . esc_js($redirect_url) . '");
                     window.location.href = "' . esc_js($redirect_url) . '";
                 }
             }, 1000);
         </script>';
     }
     
-    // Si no hay URL, mostrar debug
-    return '<span style="color: red;">Auto redirect: No URL found. Debug: ' . esc_html($debug_info) . '</span>';
+    // Si no hay URL, mostrar debug más detallado
+    return '<div style="padding:10px; border:1px solid red; background:#ffe6e6;">
+        <span style="color: red;">❌ Auto redirect: No URL found</span><br>
+        <span style="font-size:12px;">🔍 Debug: ' . esc_html($debug_info) . '</span><br>
+        <span style="font-size:10px; color:#666;">💡 Tip: Submit a form first to generate redirect URL</span>
+    </div>';
 }
 add_shortcode('mimer_auto_redirect', 'mimer_auto_redirect_shortcode');

@@ -9,6 +9,25 @@ class MimerFormsVDI {
         // Log simplificado de recepción
         $debug_log = "[" . date('Y-m-d H:i:s') . "] " . ($test_mode ? "🧪 MODO PRUEBAS" : "🔴 MODO PRODUCCIÓN") . " - Formulario recibido (" . count($fields) . " campos)\n";
         file_put_contents(plugin_dir_path(__FILE__) . '/../log.txt', $debug_log, FILE_APPEND);
+        
+        // 🧠 VALIDACIÓN CRÍTICA: Solo Brain Meningioma puede usar redirección del API
+        $case_diagnosis = isset($fields['case_diagnosis']) ? trim($fields['case_diagnosis']) : '';
+        if ($case_diagnosis !== 'Brain Meningioma') {
+            $log = "[" . date('Y-m-d H:i:s') . "] ⚠️ DIAGNÓSTICO NO VÁLIDO: '" . $case_diagnosis . "' - Redirigiendo a dp_rejected\n";
+            file_put_contents(plugin_dir_path(__FILE__) . '/../log.txt', $log, FILE_APPEND);
+            
+            // Guardar redirección directa a dp_rejected
+            if (session_status() == PHP_SESSION_NONE) {
+                session_start();
+            }
+            $_SESSION['mimer_last_redirect_url'] = 'https://injuryresolve.com/dp_rejected/';
+            setcookie('mimer_redirect_backup', 'https://injuryresolve.com/dp_rejected/', time() + 300, '/');
+            return; // Salir temprano, no procesar API
+        }
+        
+        $debug_log = "[" . date('Y-m-d H:i:s') . "] ✅ DIAGNÓSTICO VÁLIDO: Brain Meningioma - Procesando con API\n";
+        file_put_contents(plugin_dir_path(__FILE__) . '/../log.txt', $debug_log, FILE_APPEND);
+        
         // Limpiar número de teléfono
         $lead_phone = preg_replace('/[^0-9]/', '', $fields['lead_phone']);
         // Asegurar que el código postal se envíe como string

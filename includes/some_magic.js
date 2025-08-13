@@ -4,6 +4,8 @@
  * Las validaciones están en form-validation.js
  */
 
+console.log('🔧 Mimer some_magic.js cargado correctamente');
+
 // Esperar a que TODO esté completamente cargado (incluyendo scripts externos)
 window.addEventListener('load', function() {
   console.log('🔄 Página completamente cargada, iniciando movimiento de campos TrustedForm...');

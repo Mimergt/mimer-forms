@@ -19,12 +19,12 @@ function mimer_enqueue_custom_script() {
     // Script de validaciones organizadas - LIMPIO Y FUNCIONANDO
     wp_enqueue_script('form-validation', plugin_dir_url(__FILE__) . 'includes/form-validation.js', array('jquery'), '2.6.final.' . time(), true);
     
-    // Script principal (utilitarios)
+    // Script principal (utilitarios) - DEPENDENCIA CORREGIDA
     wp_enqueue_script(
         'mimer-form-validation',
         plugin_dir_url(__FILE__) . 'includes/some_magic.js',
-        array('jquery', 'mimer-form-validation-rules'),
-        null,
+        array('jquery'),
+        '1.0.' . time(),
         true
     );
 }

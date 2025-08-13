@@ -74,7 +74,7 @@ $data = [
                     'Accept' => 'application/json',
                 ],
                 'body' => json_encode($data),
-                'timeout' => 30, // <-- 30s timeout
+                'timeout' => 10, // <-- 10s timeout
             ]);
 
             if (is_wp_error($response)) {

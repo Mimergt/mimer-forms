@@ -11,9 +11,9 @@ class MimerFormsVDI {
         file_put_contents(plugin_dir_path(__FILE__) . '/../log.txt', $debug_log, FILE_APPEND);
         
         // 🧠 VALIDACIÓN CRÍTICA: Solo Brain Meningioma puede usar redirección del API
-        $case_diagnosis = isset($fields['case_diagnosis']) ? trim($fields['case_diagnosis']) : '';
-        if ($case_diagnosis !== 'Brain Meningioma') {
-            $log = "[" . date('Y-m-d H:i:s') . "] ⚠️ DIAGNÓSTICO NO VÁLIDO: '" . $case_diagnosis . "' - Redirigiendo a dp_rejected\n";
+        $case_injury = isset($fields['case_injury']) ? trim($fields['case_injury']) : '';
+        if ($case_injury !== 'Brain Meningioma') {
+            $log = "[" . date('Y-m-d H:i:s') . "] ⚠️ DIAGNÓSTICO NO VÁLIDO: '" . $case_injury . "' - Redirigiendo a dp_rejected\n";
             file_put_contents(plugin_dir_path(__FILE__) . '/../log.txt', $log, FILE_APPEND);
             
             // Guardar redirección directa a dp_rejected

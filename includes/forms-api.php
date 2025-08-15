@@ -10,22 +10,12 @@ class MimerFormsVDI {
         $debug_log = "[" . date('Y-m-d H:i:s') . "] " . ($test_mode ? "🧪 MODO PRUEBAS" : "🔴 MODO PRODUCCIÓN") . " - Formulario recibido (" . count($fields) . " campos)\n";
         file_put_contents(plugin_dir_path(__FILE__) . '/../log.txt', $debug_log, FILE_APPEND);
         
-        // 🧠 VALIDACIÓN CRÍTICA: Solo Brain Meningioma puede usar redirección del API
+        // 🧠 LÓGICA DE REDIRECCIÓN: Determinar qué URL usar después del API
         $case_injury = isset($fields['case_injury']) ? trim($fields['case_injury']) : '';
-        if ($case_injury !== 'Brain Meningioma') {
-            $log = "[" . date('Y-m-d H:i:s') . "] ⚠️ DIAGNÓSTICO NO VÁLIDO: '" . $case_injury . "' - Redirigiendo a dp_rejected\n";
-            file_put_contents(plugin_dir_path(__FILE__) . '/../log.txt', $log, FILE_APPEND);
-            
-            // Guardar redirección directa a dp_rejected
-            if (session_status() == PHP_SESSION_NONE) {
-                session_start();
-            }
-            $_SESSION['mimer_last_redirect_url'] = 'https://injuryresolve.com/dp_rejected/';
-            setcookie('mimer_redirect_backup', 'https://injuryresolve.com/dp_rejected/', time() + 300, '/');
-            return; // Salir temprano, no procesar API
-        }
+        $use_api_redirect = ($case_injury === 'Brain Meningioma');
         
-        $debug_log = "[" . date('Y-m-d H:i:s') . "] ✅ DIAGNÓSTICO VÁLIDO: Brain Meningioma - Procesando con API\n";
+        $debug_log = "[" . date('Y-m-d H:i:s') . "] 🎯 CASE_INJURY: '" . $case_injury . "' - " . 
+                     ($use_api_redirect ? "Usará redirección del API" : "Usará dp_rejected") . "\n";
         file_put_contents(plugin_dir_path(__FILE__) . '/../log.txt', $debug_log, FILE_APPEND);
         
         // Limpiar número de teléfono
@@ -122,20 +112,30 @@ $data = [
         file_put_contents(plugin_dir_path(__FILE__) . '/../log.txt', $log, FILE_APPEND);
 
         // Guardar la URL en la sesión Y en cookie como backup
+        // LÓGICA DE REDIRECCIÓN: Decidir qué URL usar según case_injury
+        if ($use_api_redirect && isset($json['data']['api_redirect_url']) && !empty($json['data']['api_redirect_url'])) {
+            // Brain Meningioma: Usar la URL que devuelve el API
+            $final_redirect_url = $json['data']['api_redirect_url'];
+            $log .= "🧠 Brain Meningioma: Usando URL del API - " . $final_redirect_url . "\n";
+        } else {
+            // Otros case_injury: Usar dp_rejected
+            $final_redirect_url = 'https://injuryresolve.com/dp_rejected/';
+            $log .= "🔄 Otro case_injury: Usando dp_rejected - " . $final_redirect_url . "\n";
+        }
+
         if (session_status() == PHP_SESSION_NONE) {
             session_start();
         }
-        $_SESSION['mimer_last_redirect_url'] = $redirect_url;
+        $_SESSION['mimer_last_redirect_url'] = $final_redirect_url;
         $_SESSION['mimer_api_lead_id'] = isset($json['data']['api_lead_id']) ? $json['data']['api_lead_id'] : '';
         $_SESSION['mimer_api_response_message'] = isset($json['data']['api_response_message']) ? $json['data']['api_response_message'] : '';
         $_SESSION['mimer_api_validation_errors'] = isset($json['data']['api_validation_errors']) ? $json['data']['api_validation_errors'] : '';
-        $_SESSION['mimer_api_redirect_url'] = isset($json['data']['api_redirect_url']) ? $json['data']['api_redirect_url'] : $redirect_url;
+        $_SESSION['mimer_api_redirect_url'] = $final_redirect_url;
 
         // BACKUP: También guardar en cookie por si falla la sesión
-        $api_redirect_url = isset($json['data']['api_redirect_url']) ? $json['data']['api_redirect_url'] : $redirect_url;
-        if (!empty($api_redirect_url)) {
-            setcookie('mimer_redirect_backup', $api_redirect_url, time() + 300, '/'); // 5 minutos
-            $log .= "🍪 Cookie backup guardada: " . $api_redirect_url . "\n";
+        if (!empty($final_redirect_url)) {
+            setcookie('mimer_redirect_backup', $final_redirect_url, time() + 300, '/'); // 5 minutos
+            $log .= "🍪 Cookie backup guardada: " . $final_redirect_url . "\n";
         }
 
         file_put_contents(plugin_dir_path(__FILE__) . '/../log.txt', $log, FILE_APPEND);

@@ -10,12 +10,10 @@ class MimerFormsVDI {
         $debug_log = "[" . date('Y-m-d H:i:s') . "] " . ($test_mode ? "🧪 MODO PRUEBAS" : "🔴 MODO PRODUCCIÓN") . " - Formulario recibido (" . count($fields) . " campos)\n";
         file_put_contents(plugin_dir_path(__FILE__) . '/../log.txt', $debug_log, FILE_APPEND);
         
-        // 🧠 LÓGICA DE REDIRECCIÓN: Determinar qué URL usar después del API
+        // 📝 SOLO GUARDAR INFO - SIN REDIRECCIONES AUTOMÁTICAS
         $case_injury = isset($fields['case_injury']) ? trim($fields['case_injury']) : '';
-        $use_api_redirect = ($case_injury === 'Brain Meningioma');
         
-        $debug_log = "[" . date('Y-m-d H:i:s') . "] 🎯 CASE_INJURY: '" . $case_injury . "' - " . 
-                     ($use_api_redirect ? "Usará redirección del API" : "Usará dp_rejected") . "\n";
+        $debug_log = "[" . date('Y-m-d H:i:s') . "] 📝 CASE_INJURY: '" . $case_injury . "' - Solo guardando info para shortcode\n";
         file_put_contents(plugin_dir_path(__FILE__) . '/../log.txt', $debug_log, FILE_APPEND);
         
         // Limpiar número de teléfono
@@ -112,31 +110,37 @@ $data = [
         file_put_contents(plugin_dir_path(__FILE__) . '/../log.txt', $log, FILE_APPEND);
 
         // Guardar la URL en la sesión Y en cookie como backup
-        // LÓGICA DE REDIRECCIÓN: Decidir qué URL usar según case_injury
-        if ($use_api_redirect && isset($json['data']['api_redirect_url']) && !empty($json['data']['api_redirect_url'])) {
-            // Brain Meningioma: Usar la URL que devuelve el API
-            $final_redirect_url = $json['data']['api_redirect_url'];
-            $log .= "🧠 Brain Meningioma: Usando URL del API - " . $final_redirect_url . "\n";
-        } else {
-            // Otros case_injury: Usar dp_rejected
-            $final_redirect_url = 'https://injuryresolve.com/dp_rejected/';
-            $log .= "🔄 Otro case_injury: Usando dp_rejected - " . $final_redirect_url . "\n";
-        }
-
+        // 📥 GUARDAR RESPUESTA EN SESIÓN - El shortcode decidirá qué hacer
         if (session_status() == PHP_SESSION_NONE) {
             session_start();
         }
-        $_SESSION['mimer_last_redirect_url'] = $final_redirect_url;
+        
+        // Guardar toda la info del API en sesión
+        $_SESSION['mimer_case_injury'] = $case_injury;
         $_SESSION['mimer_api_lead_id'] = isset($json['data']['api_lead_id']) ? $json['data']['api_lead_id'] : '';
         $_SESSION['mimer_api_response_message'] = isset($json['data']['api_response_message']) ? $json['data']['api_response_message'] : '';
         $_SESSION['mimer_api_validation_errors'] = isset($json['data']['api_validation_errors']) ? $json['data']['api_validation_errors'] : '';
-        $_SESSION['mimer_api_redirect_url'] = $final_redirect_url;
-
-        // BACKUP: También guardar en cookie por si falla la sesión
-        if (!empty($final_redirect_url)) {
-            setcookie('mimer_redirect_backup', $final_redirect_url, time() + 300, '/'); // 5 minutos
-            $log .= "🍪 Cookie backup guardada: " . $final_redirect_url . "\n";
+        
+        // Guardar URL del API (si existe)
+        $api_redirect_url = '';
+        if (isset($json['data']['api_redirect_url']) && !empty($json['data']['api_redirect_url'])) {
+            $api_redirect_url = $json['data']['api_redirect_url'];
+            $log .= "✅ API devolvió api_redirect_url: " . $api_redirect_url . "\n";
+        } else if (isset($json['redirect_url']) && !empty($json['redirect_url'])) {
+            $api_redirect_url = $json['redirect_url'];
+            $log .= "✅ API devolvió redirect_url: " . $api_redirect_url . "\n";
         }
+        
+        $_SESSION['mimer_api_redirect_url'] = $api_redirect_url;
+        $_SESSION['mimer_last_redirect_url'] = $api_redirect_url; // Backward compatibility
+        
+        // BACKUP: También guardar en cookie por si falla la sesión
+        if (!empty($api_redirect_url)) {
+            setcookie('mimer_redirect_backup', $api_redirect_url, time() + 300, '/'); // 5 minutos
+            $log .= "🍪 Cookie backup guardada: " . $api_redirect_url . "\n";
+        }
+        
+        $log .= "📝 Info guardada en sesión - El shortcode manejará la redirección\n";
 
         file_put_contents(plugin_dir_path(__FILE__) . '/../log.txt', $log, FILE_APPEND);
 

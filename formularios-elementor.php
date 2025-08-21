@@ -90,26 +90,38 @@ function mimer_api_redirect_url_shortcode() {
 }
 add_shortcode('mimer_api_redirect_url', 'mimer_api_redirect_url_shortcode');
 
-// Shortcode para redirección automática (versión limpia)
+// Shortcode para redirección automática - Lógica simplificada
 function mimer_auto_redirect_shortcode() {
     if (session_status() == PHP_SESSION_NONE) {
         session_start();
     }
     
-    // Leer la URL de la sesión PRIMERO, luego de cookie como backup
-    $redirect_url = isset($_SESSION['mimer_api_redirect_url']) ? $_SESSION['mimer_api_redirect_url'] : '';
+    // Obtener URL del API de la sesión
+    $api_redirect_url = isset($_SESSION['mimer_api_redirect_url']) ? $_SESSION['mimer_api_redirect_url'] : '';
     
     // Si no hay en sesión, revisar cookie backup
-    if (empty($redirect_url) && isset($_COOKIE['mimer_redirect_backup'])) {
-        $redirect_url = $_COOKIE['mimer_redirect_backup'];
+    if (empty($api_redirect_url) && isset($_COOKIE['mimer_redirect_backup'])) {
+        $api_redirect_url = $_COOKIE['mimer_redirect_backup'];
         // Limpiar cookie INMEDIATAMENTE para evitar bucles
         setcookie('mimer_redirect_backup', '', time() - 3600, '/');
     }
     
-    // Redirigir si hay URL válida
-    if (!empty($redirect_url)) {
-        // Limpiar la sesión
+    // 🎯 LÓGICA SIMPLIFICADA: URL del API o dp-not-qualified
+    $final_redirect_url = '';
+    
+    if (!empty($api_redirect_url)) {
+        // Si hay URL del API, usarla
+        $final_redirect_url = $api_redirect_url;
+    } else {
+        // Si no hay URL del API, ir a dp-not-qualified
+        $final_redirect_url = 'https://injuryresolve.com/dp-not-qualified/';
+    }
+    
+    // Limpiar sesión después de usar
+    if (!empty($final_redirect_url)) {
         unset($_SESSION['mimer_api_redirect_url']);
+        unset($_SESSION['mimer_case_injury']);
+        unset($_SESSION['mimer_last_redirect_url']);
         
         return '<span id="redirect-message">You will be redirected in 3 seconds...</span>
         <script>
@@ -123,7 +135,7 @@ function mimer_auto_redirect_shortcode() {
                 if (count <= 0) {
                     clearInterval(timer);
                     if (msg) msg.textContent = "Redirecting now...";
-                    window.location.href = "' . esc_js($redirect_url) . '";
+                    window.location.href = "' . esc_js($final_redirect_url) . '";
                 }
             }, 1000);
         </script>';

@@ -106,15 +106,15 @@ function mimer_auto_redirect_shortcode() {
         setcookie('mimer_redirect_backup', '', time() - 3600, '/');
     }
     
-    // 🎯 LÓGICA SIMPLIFICADA: URL del API o dp-not-qualified
+    // 🎯 LÓGICA SIMPLIFICADA: URL del API o dp_finish
     $final_redirect_url = '';
     
     if (!empty($api_redirect_url)) {
         // Si hay URL del API, usarla
         $final_redirect_url = $api_redirect_url;
     } else {
-        // Si no hay URL del API, ir a dp-not-qualified
-        $final_redirect_url = 'https://injuryresolve.com/dp-not-qualified/';
+        // Si no hay URL del API, ir a dp_finish
+        $final_redirect_url = 'https://dev.injuryresolve.com/dp_finish/';
     }
     
     // Limpiar sesión después de usar

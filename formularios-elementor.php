@@ -2,7 +2,7 @@
 /*
 Plugin Name: Mimer forms VDI
 Description: Validaciones, conexion con API y otros.
-Version: 1.5
+Version: 1.51
 Author: Mimer
 */
 
@@ -114,7 +114,7 @@ function mimer_auto_redirect_shortcode() {
         $final_redirect_url = $api_redirect_url;
     } else {
         // Si no hay URL del API, ir a dp_finish
-        $final_redirect_url = 'https://dev.injuryresolve.com/dp_finish/';
+        $final_redirect_url = '/dp_finish/';
     }
     
     // Limpiar sesión después de usar

@@ -3306,3 +3306,127 @@ Simulando respuesta exitosa...
 ✅ Respuesta simulada exitosa - Redirect URL: https://dev.injuryresolve.com/dp-thankyou/
 🧠 Brain Meningioma: Usando URL del API - https://dev.injuryresolve.com/dp-thankyou/
 🍪 Cookie backup guardada: https://dev.injuryresolve.com/dp-thankyou/
+[2025-08-21 22:12:41] Respuesta completa: Array
+(
+    [valid] => 1
+    [number] => 14047501946
+    [local_format] => 4047501946
+    [international_format] => +14047501946
+    [country_prefix] => +1
+    [country_code] => US
+    [country_name] => United States of America
+    [location] => Atlanta
+    [carrier] => T-Mobile USA Inc.
+    [line_type] => mobile
+)
+
+[2025-08-21 22:12:41] ✅ Validación del servidor: Todos los campos OK (11 campos)
+[2025-08-21 22:12:41] 🧪 MODO PRUEBAS - Formulario recibido (11 campos)
+[2025-08-21 22:12:41] 📝 CASE_INJURY: 'Brain Meningioma' - Solo guardando info para shortcode
+[2025-08-21 22:12:41] 🧪 MODO PRUEBAS - Preparando envío
+📋 JSON QUE SE ENVIARÍA AL API:
+{
+    "lead-first-name": "test",
+    "lead-last-name": "test",
+    "lead-email-address": "test@mail.com",
+    "lead-phone": "14047501946",
+    "case-depo-provera-taken": "No",
+    "case-depo-provera-use": null,
+    "case-injury": "Brain Meningioma",
+    "case-diagnosis": "",
+    "case-description": "test",
+    "case-attorney": "No",
+    "lead-trusted-form-cert-id": "not available",
+    "lead-ip-address": "2800:98:1112:1f4d:a025:de8e:8db8:8177",
+    "lead-zip-code": "30043"
+}
+🔗 URL DESTINO: https://api-vdi.luchtech.dev/api/submissions?form=depo-provera-injury-resolve&team=vdi&user=ee5a1aba-6009-4d58-8a16-3810e2f777ad&signature=f6bed0c57b7e6745e427faf65796f2fef47e8fb8ea1c01566ee4ba576f34e0ed
+🧪 MODO PRUEBAS ACTIVADO - NO se envía al API real
+Simulando respuesta exitosa...
+✅ Respuesta simulada exitosa - Redirect URL: https://injuryresolve.com/dp-thankyou/
+[2025-08-21 22:12:41] 🧪 MODO PRUEBAS - Preparando envío
+📋 JSON QUE SE ENVIARÍA AL API:
+{
+    "lead-first-name": "test",
+    "lead-last-name": "test",
+    "lead-email-address": "test@mail.com",
+    "lead-phone": "14047501946",
+    "case-depo-provera-taken": "No",
+    "case-depo-provera-use": null,
+    "case-injury": "Brain Meningioma",
+    "case-diagnosis": "",
+    "case-description": "test",
+    "case-attorney": "No",
+    "lead-trusted-form-cert-id": "not available",
+    "lead-ip-address": "2800:98:1112:1f4d:a025:de8e:8db8:8177",
+    "lead-zip-code": "30043"
+}
+🔗 URL DESTINO: https://api-vdi.luchtech.dev/api/submissions?form=depo-provera-injury-resolve&team=vdi&user=ee5a1aba-6009-4d58-8a16-3810e2f777ad&signature=f6bed0c57b7e6745e427faf65796f2fef47e8fb8ea1c01566ee4ba576f34e0ed
+🧪 MODO PRUEBAS ACTIVADO - NO se envía al API real
+Simulando respuesta exitosa...
+✅ Respuesta simulada exitosa - Redirect URL: https://injuryresolve.com/dp-thankyou/
+✅ API devolvió api_redirect_url: https://injuryresolve.com/dp-thankyou/
+🍪 Cookie backup guardada: https://injuryresolve.com/dp-thankyou/
+📝 Info guardada en sesión - El shortcode manejará la redirección
+[2025-08-21 22:13:27] Respuesta completa: Array
+(
+    [valid] => 1
+    [number] => 14047501946
+    [local_format] => 4047501946
+    [international_format] => +14047501946
+    [country_prefix] => +1
+    [country_code] => US
+    [country_name] => United States of America
+    [location] => Atlanta
+    [carrier] => T-Mobile USA Inc.
+    [line_type] => mobile
+)
+
+[2025-08-21 22:13:27] ✅ Validación del servidor: Todos los campos OK (13 campos)
+[2025-08-21 22:13:27] 🧪 MODO PRUEBAS - Formulario recibido (13 campos)
+[2025-08-21 22:13:27] 📝 CASE_INJURY: 'Brain Meningioma' - Solo guardando info para shortcode
+[2025-08-21 22:13:27] 🧪 MODO PRUEBAS - Preparando envío
+📋 JSON QUE SE ENVIARÍA AL API:
+{
+    "lead-first-name": "testcase",
+    "lead-last-name": "case",
+    "lead-email-address": "mail@test.com",
+    "lead-phone": "14047501946",
+    "case-depo-provera-taken": "Yes",
+    "case-depo-provera-use": "3 or more years",
+    "case-injury": "Brain Meningioma",
+    "case-diagnosis": "",
+    "case-description": "test",
+    "case-attorney": "No",
+    "lead-trusted-form-cert-id": "not available",
+    "lead-ip-address": "2800:98:1112:1f4d:a025:de8e:8db8:8177",
+    "lead-zip-code": "30043"
+}
+🔗 URL DESTINO: https://api-vdi.luchtech.dev/api/submissions?form=depo-provera-injury-resolve&team=vdi&user=ee5a1aba-6009-4d58-8a16-3810e2f777ad&signature=f6bed0c57b7e6745e427faf65796f2fef47e8fb8ea1c01566ee4ba576f34e0ed
+🧪 MODO PRUEBAS ACTIVADO - NO se envía al API real
+Simulando respuesta exitosa...
+✅ Respuesta simulada exitosa - Redirect URL: https://injuryresolve.com/dp-thankyou/
+[2025-08-21 22:13:27] 🧪 MODO PRUEBAS - Preparando envío
+📋 JSON QUE SE ENVIARÍA AL API:
+{
+    "lead-first-name": "testcase",
+    "lead-last-name": "case",
+    "lead-email-address": "mail@test.com",
+    "lead-phone": "14047501946",
+    "case-depo-provera-taken": "Yes",
+    "case-depo-provera-use": "3 or more years",
+    "case-injury": "Brain Meningioma",
+    "case-diagnosis": "",
+    "case-description": "test",
+    "case-attorney": "No",
+    "lead-trusted-form-cert-id": "not available",
+    "lead-ip-address": "2800:98:1112:1f4d:a025:de8e:8db8:8177",
+    "lead-zip-code": "30043"
+}
+🔗 URL DESTINO: https://api-vdi.luchtech.dev/api/submissions?form=depo-provera-injury-resolve&team=vdi&user=ee5a1aba-6009-4d58-8a16-3810e2f777ad&signature=f6bed0c57b7e6745e427faf65796f2fef47e8fb8ea1c01566ee4ba576f34e0ed
+🧪 MODO PRUEBAS ACTIVADO - NO se envía al API real
+Simulando respuesta exitosa...
+✅ Respuesta simulada exitosa - Redirect URL: https://injuryresolve.com/dp-thankyou/
+✅ API devolvió api_redirect_url: https://injuryresolve.com/dp-thankyou/
+🍪 Cookie backup guardada: https://injuryresolve.com/dp-thankyou/
+📝 Info guardada en sesión - El shortcode manejará la redirección

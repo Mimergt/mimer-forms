@@ -22,7 +22,11 @@ class MimerFormsVDI {
         $zip_code = (string) $fields['lead_zip_code'];
         $attorney = strtolower(trim($fields['case_attorney'])) === 'yes' ? 'Yes' : 'No';
 
-        $trustedform = isset($_POST['xxTrustedFormToken']) ? sanitize_text_field($_POST['xxTrustedFormToken']) : 'not available';
+        // Solo mapear el token TrustedForm, si no está dejar en blanco
+        $trustedform = '';
+        if (isset($fields['trustedform_token']) && !empty($fields['trustedform_token'])) {
+            $trustedform = sanitize_text_field($fields['trustedform_token']);
+        }
 
         // Mapear los campos del formulario de Elementor a los campos requeridos por VDI
 $data = [
@@ -42,10 +46,12 @@ $data = [
   // 🆕 CAMPOS ACTUALIZADOS
   "other-injections"            => isset($fields['other_injections']) ? $fields['other_injections'] : '',
   "case-depo-provera-ba03"      => isset($fields['case_depo_provera_ba03']) ? $fields['case_depo_provera_ba03'] : '',
-  "trustedform-cert"            => isset($fields['trustedform_cert']) ? $fields['trustedform_cert'] : '',
-  "trustedform-token"           => isset($fields['trustedform_token']) ? $fields['trustedform_token'] : '',
-  "trustedform-ping"            => isset($fields['trustedform_ping']) ? $fields['trustedform_ping'] : '',
 ];
+        
+        // 🔍 DEBUG: Log de TrustedForm capturado
+        $debug_log = "[" . date('Y-m-d H:i:s') . "] 🔍 TrustedForm capturado: " . $trustedform . "\n";
+        file_put_contents(plugin_dir_path(__FILE__) . '/../log.txt', $debug_log, FILE_APPEND);
+        
         // 🚨 URL DEL API COMENTADA POR SEGURIDAD - MODO PRUEBAS EXTREMAS 🚨
         // RECORDATORIO: Descomentar cuando se confirme que el modo de pruebas funciona correctamente
         $url = 'https://api-vdi.luchtech.dev/api/submissions?form=depo-provera-injury-resolve&team=vdi&user=ee5a1aba-6009-4d58-8a16-3810e2f777ad&signature=f6bed0c57b7e6745e427faf65796f2fef47e8fb8ea1c01566ee4ba576f34e0ed';

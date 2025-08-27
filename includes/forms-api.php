@@ -22,10 +22,12 @@ class MimerFormsVDI {
         $zip_code = (string) $fields['lead_zip_code'];
         $attorney = strtolower(trim($fields['case_attorney'])) === 'yes' ? 'Yes' : 'No';
 
-        // Solo mapear el token TrustedForm, si no está dejar en blanco
+        // Mapear trustedform_token, y si no existe, usar trustedform_cert
         $trustedform = '';
         if (isset($fields['trustedform_token']) && !empty($fields['trustedform_token'])) {
             $trustedform = sanitize_text_field($fields['trustedform_token']);
+        } elseif (isset($fields['trustedform_cert']) && !empty($fields['trustedform_cert'])) {
+            $trustedform = sanitize_text_field($fields['trustedform_cert']);
         }
 
         // Mapear los campos del formulario de Elementor a los campos requeridos por VDI

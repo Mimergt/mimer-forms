@@ -28,6 +28,10 @@ class MimerFormsVDI {
             $trustedform = sanitize_text_field($fields['trustedform_token']);
         } elseif (isset($fields['trustedform_cert']) && !empty($fields['trustedform_cert'])) {
             $trustedform = sanitize_text_field($fields['trustedform_cert']);
+        } elseif (isset($_POST['form-field-trustedform_1']) && !empty($_POST['form-field-trustedform_1'])) {
+            $trustedform = sanitize_text_field($_POST['form-field-trustedform_1']);
+        } elseif (isset($_POST['form-field-trustedform']) && !empty($_POST['form-field-trustedform'])) {
+            $trustedform = sanitize_text_field($_POST['form-field-trustedform']);
         }
 
         // Mapear los campos del formulario de Elementor a los campos requeridos por VDI

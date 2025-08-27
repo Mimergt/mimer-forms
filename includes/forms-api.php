@@ -32,13 +32,19 @@ $data = [
   "lead-phone"                  => $lead_phone,
   "case-depo-provera-taken"     => $fields['case_depo_provera_taken'],
   "case-depo-provera-use"       => $fields['case_depo_provera_use'],
-  "case-injury"                 => $fields['case_injury'], // <--- NUEVO CAMPO
+  "case-injury"                 => $fields['case_injury'],
   "case-diagnosis"              => '',
-  "case-description"            => $fields['case_description'],
+  "case-description"            => isset($fields['case_description']) ? $fields['case_description'] : '',
   "case-attorney"               => $attorney,
   "lead-trusted-form-cert-id"   => $trustedform,
   "lead-ip-address"             => $_SERVER['REMOTE_ADDR'],
   "lead-zip-code"               => $zip_code,
+  // 🆕 CAMPOS ACTUALIZADOS
+  "other-injections"            => isset($fields['other_injections']) ? $fields['other_injections'] : '',
+  "case-depo-provera-ba03"      => isset($fields['case_depo_provera_ba03']) ? $fields['case_depo_provera_ba03'] : '',
+  "trustedform-cert"            => isset($fields['trustedform_cert']) ? $fields['trustedform_cert'] : '',
+  "trustedform-token"           => isset($fields['trustedform_token']) ? $fields['trustedform_token'] : '',
+  "trustedform-ping"            => isset($fields['trustedform_ping']) ? $fields['trustedform_ping'] : '',
 ];
         // 🚨 URL DEL API COMENTADA POR SEGURIDAD - MODO PRUEBAS EXTREMAS 🚨
         // RECORDATORIO: Descomentar cuando se confirme que el modo de pruebas funciona correctamente

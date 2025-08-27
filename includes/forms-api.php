@@ -22,7 +22,7 @@ class MimerFormsVDI {
         $zip_code = (string) $fields['lead_zip_code'];
         $attorney = strtolower(trim($fields['case_attorney'])) === 'yes' ? 'Yes' : 'No';
 
-           $trustedform = $fields['trustedform'];
+          $trustedform = isset($_POST['xxTrustedFormToken']) ? sanitize_text_field($_POST['xxTrustedFormToken']) : 'not available';
 
         // Mapear los campos del formulario de Elementor a los campos requeridos por VDI
 $data = [

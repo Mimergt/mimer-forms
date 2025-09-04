@@ -39,6 +39,7 @@ $data = [
   "lead-trusted-form-cert-id"   => $trustedform,
   "lead-ip-address"             => $_SERVER['REMOTE_ADDR'],
   "lead-zip-code"               => $zip_code,
+  "lead-state"                  => isset($fields['lead_state']) ? $fields['lead_state'] : '', // <-- NUEVO CAMPO
   // 🆕 CAMPOS ACTUALIZADOS
   "other-injections"            => isset($fields['other_injections']) ? $fields['other_injections'] : '',
   "case-depo-provera-ba03"      => isset($fields['case_depo_provera_ba03']) ? $fields['case_depo_provera_ba03'] : '',

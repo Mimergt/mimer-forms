@@ -24,6 +24,7 @@ class MimerPhoneValidatorAdmin {
         register_setting('mimer_phone_validator_group', 'mimer_phone_validator_api_key');
         register_setting('mimer_phone_validator_group', 'mimer_phone_validator_enabled');
         register_setting('mimer_phone_validator_group', 'mimer_test_mode_enabled');
+        register_setting('mimer_phone_validator_group', 'mimer_redirections_enabled');
         // Elimina cualquier callback de sanitización para este campo:
         register_setting('mimer_phone_validator_group', 'mimer_trustedform_js', array(
             'sanitize_callback' => null
@@ -106,6 +107,7 @@ class MimerPhoneValidatorAdmin {
                         // Guardar tal cual, sin formatear
                         update_option('mimer_trustedform_js', $trustedform_js);
                         update_option('mimer_test_mode_enabled', isset($_POST['mimer_test_mode_enabled']) ? 1 : 0);
+                        update_option('mimer_redirections_enabled', isset($_POST['mimer_redirections_enabled']) ? 1 : 0);
                         echo '<div class="updated"><p>Configuración de API guardada.</p></div>';
                     }
                     ?>
@@ -116,6 +118,14 @@ class MimerPhoneValidatorAdmin {
                                 <input type="checkbox" name="mimer_test_mode_enabled" value="1" <?php checked(1, get_option('mimer_test_mode_enabled'), true); ?> />
                                 <label for="mimer_test_mode_enabled"><strong>Activar modo de pruebas (NO envía datos al API VDI)</strong></label>
                                 <p class="description" style="color: #d54e21;">⚠️ Cuando está activado, el formulario se procesa normalmente pero NO se envía al API externo. Perfecto para pruebas en vivo.</p>
+                            </td>
+                        </tr>
+                        <tr valign="top">
+                            <th scope="row">🎯 Redirecciones Automáticas</th>
+                            <td>
+                                <input type="checkbox" name="mimer_redirections_enabled" value="1" <?php checked(1, get_option('mimer_redirections_enabled', 1), true); ?> />
+                                <label for="mimer_redirections_enabled"><strong>Activar redirecciones basadas en respuesta del API</strong></label>
+                                <p class="description" style="color: #0073aa;">🔄 Cuando está activado, el plugin procesa la respuesta del API y maneja redirecciones automáticamente. Si está desactivado, Elementor maneja las redirecciones directamente.</p>
                             </td>
                         </tr>
                         <tr valign="top">

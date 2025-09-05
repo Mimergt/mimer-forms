@@ -3,7 +3,44 @@ if (!defined('ABSPATH')) exit;
 
 class MimerFormsVDI {
     public static function send_submission_to_vdi($fields) {
-        // Verificar si está en modo de pruebas
+        // V        }
+
+        // Solo procesar redirecciones si están habilitadas
+        if ($redirections_enabled && isset($redirect_url)) {
+            // Guardar la URL en la sesión Y en cookie como backup
+            if (session_status() == PHP_SESSION_NONE) {
+                session_start();
+            }
+            
+            // Guardar toda la info del API en sesión
+            $_SESSION['mimer_case_injury'] = $case_injury;
+            $_SESSION['mimer_api_lead_id'] = isset($json['data']['api_lead_id']) ? $json['data']['api_lead_id'] : '';
+            $_SESSION['mimer_api_response_message'] = isset($json['data']['api_response_message']) ? $json['data']['api_response_message'] : '';
+            $_SESSION['mimer_api_validation_errors'] = isset($json['data']['api_validation_errors']) ? $json['data']['api_validation_errors'] : '';
+            
+            // Guardar URL del API (si existe)
+            $api_redirect_url = '';
+            if (isset($json['data']['api_redirect_url']) && !empty($json['data']['api_redirect_url'])) {
+                $api_redirect_url = $json['data']['api_redirect_url'];
+                $log .= "✅ API devolvió api_redirect_url: " . $api_redirect_url . "\n";
+            } else if (isset($json['redirect_url']) && !empty($json['redirect_url'])) {
+                $api_redirect_url = $json['redirect_url'];
+                $log .= "✅ API devolvió redirect_url: " . $api_redirect_url . "\n";
+            }
+            
+            $_SESSION['mimer_api_redirect_url'] = $api_redirect_url;
+            $_SESSION['mimer_last_redirect_url'] = $api_redirect_url; // Backward compatibility
+            
+            // BACKUP: También guardar en cookie por si falla la sesión
+            if (!empty($api_redirect_url)) {
+                setcookie('mimer_redirect_backup', $api_redirect_url, time() + 300, '/'); // 5 minutos
+                $log .= "🍪 Cookie backup guardada: " . $api_redirect_url . "\n";
+            }
+            
+            $log .= "📝 Info guardada en sesión - El shortcode manejará la redirección\n";
+        }
+
+        $log .= "🎯 PROCESAMIENTO COMPLETO\n";ficar si está en modo de pruebas
         $test_mode = get_option('mimer_test_mode_enabled', 0);
         
         // Log simplificado de recepción
@@ -62,12 +99,36 @@ $data = [
         $log .= "📋 JSON QUE SE ENVÍA AL API:\n" . $json_payload . "\n";
         $log .= "🔗 URL DESTINO: " . ($url ?: 'URL_COMENTADA') . "\n";
 
+        // Verificar si las redirecciones están habilitadas
+        $redirections_enabled = get_option('mimer_redirections_enabled', 1); // Por defecto activadas
+        $log .= "🎯 REDIRECCIONES: " . ($redirections_enabled ? 'ACTIVADAS' : 'DESACTIVADAS') . "\n";
+
         // Si está en modo de pruebas, solo log
         if ($test_mode) {
             $log .= "🧪 MODO PRUEBAS ACTIVADO - NO se envía al API real\n";
-            $log .= "✅ Datos preparados correctamente para envío\n";
+            
+            if ($redirections_enabled) {
+                $log .= "Simulando respuesta exitosa...\n";
+                
+                // Simular respuesta exitosa del API con parámetro de prueba
+                $json = [
+                    'success' => true,
+                    'redirect_url' => 'https://injuryresolve.com/dp-thankyou/',
+                    'data' => [
+                        'api_lead_id' => 'TEST_' . time(),
+                        'api_response_message' => 'Test submission successful',
+                        'api_validation_errors' => '',
+                        'api_redirect_url' => 'https://injuryresolve.com/dp-thankyou/'
+                    ]
+                ];
+                
+                $redirect_url = $json['redirect_url'];
+                $log .= "✅ Respuesta simulada exitosa - Redirect URL: " . $json['data']['api_redirect_url'] . "\n";
+            } else {
+                $log .= "✅ Datos preparados correctamente para envío (redirecciones desactivadas)\n";
+            }
         } else {
-            // Envío real al API - SOLO ENVIAR, NO PROCESAR RESPUESTA
+            // Envío real al API
             $response = wp_remote_post($url, [
                 'headers' => [
                     'Content-Type' => 'application/json',
@@ -79,14 +140,32 @@ $data = [
 
             if (is_wp_error($response)) {
                 $log .= "❌ Error en petición: " . $response->get_error_message() . "\n";
+                if ($redirections_enabled) {
+                    $redirect_url = 'https://injuryresolve.com/dp_rejected/';
+                }
             } else {
+                $body = wp_remote_retrieve_body($response);
                 $status_code = wp_remote_retrieve_response_code($response);
                 $log .= "✅ Datos enviados al API - Código respuesta: " . $status_code . "\n";
+                $log .= "📥 Respuesta recibida: " . $body . "\n";
                 
-                // Solo log de respuesta para debug, no procesamos redirecciones
-                $body = wp_remote_retrieve_body($response);
-                if (!empty($body)) {
-                    $log .= "📥 Respuesta del API: " . substr($body, 0, 200) . "...\n";
+                if ($redirections_enabled) {
+                    $json = json_decode($body, true);
+                    
+                    // Verificar si el API devuelve una URL de redirección válida
+                    if (isset($json['redirect_url']) && !empty($json['redirect_url'])) {
+                        $redirect_url = $json['redirect_url'];
+                        $log .= "✅ API devolvió redirect_url: " . $redirect_url . "\n";
+                    } else if (isset($json['data']['api_redirect_url']) && !empty($json['data']['api_redirect_url'])) {
+                        $redirect_url = $json['data']['api_redirect_url'];
+                        $log .= "✅ API devolvió api_redirect_url: " . $redirect_url . "\n";
+                    } else {
+                        // Solo usar dp_rejected cuando el API NO devuelva redirección
+                        $redirect_url = 'https://injuryresolve.com/dp_rejected/';
+                        $log .= "⚠️ API no devolvió URL de redirección - usando dp_rejected\n";
+                    }
+                } else {
+                    $log .= "🎯 Redirecciones desactivadas - Elementor maneja la redirección\n";
                 }
             }
         }

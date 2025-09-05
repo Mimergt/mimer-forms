@@ -33,16 +33,16 @@ $data = [
   "case-depo-provera-taken"     => $fields['case_depo_provera_taken'],
   "case-depo-provera-use"       => $fields['case_depo_provera_use'],
   "case-injury"                 => $fields['case_injury'],
-  "case-diagnosis"              => '',
+//  "case-diagnosis"              => '',
   "case-description"            => isset($fields['case_description']) ? $fields['case_description'] : '',
   "case-attorney"               => $attorney,
-  "lead-trusted-form-cert-id"   => $trustedform,
+  "lead-trusted-form-url"   => $trustedform,
   "lead-ip-address"             => $_SERVER['REMOTE_ADDR'],
   "lead-zip-code"               => $zip_code,
   "lead-state"                  => isset($fields['lead_state']) ? $fields['lead_state'] : '', // <-- NUEVO CAMPO
   // 🆕 CAMPOS ACTUALIZADOS
   "other-injections"            => isset($fields['other_injections']) ? $fields['other_injections'] : '',
-  "case-depo-provera-ba03"      => isset($fields['case_depo_provera_ba03']) ? $fields['case_depo_provera_ba03'] : '',
+ // "case-depo-provera-ba03"      => isset($fields['case_depo_provera_ba03']) ? $fields['case_depo_provera_ba03'] : '',
 ];
         
         // 🔍 DEBUG: Log de TrustedForm capturado
@@ -51,7 +51,7 @@ $data = [
         
         // 🚨 URL DEL API COMENTADA POR SEGURIDAD - MODO PRUEBAS EXTREMAS 🚨
         // RECORDATORIO: Descomentar cuando se confirme que el modo de pruebas funciona correctamente
-        $url = 'https://api-vdi.luchtech.dev/api/submissions?form=depo-provera-injury-resolve&team=vdi&user=ee5a1aba-6009-4d58-8a16-3810e2f777ad&signature=f6bed0c57b7e6745e427faf65796f2fef47e8fb8ea1c01566ee4ba576f34e0ed';
+        $url = 'https://api.valuedirectinc.com/api/submissions?form=ir-lca-depo-post&team=vdi&user=ee5a1aba-6009-4d58-8a16-3810e2f777ad&signature=89a78284fe446f579d91ad0768e326e505f40a6bfa95ebf03c38f90eb110d453';
         // $url = ''; // URL INTENCIONALMENTE VACÍA PARA PREVENIR ENVÍOS ACCIDENTALES
 
         // Logging simplificado

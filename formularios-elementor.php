@@ -58,90 +58,13 @@ function env_validate_phone_number($record, $ajax_handler) {
     MimerFormsVDI::send_submission_to_vdi($flat_fields);
 }
 
-function mimer_api_lead_id_shortcode() {
-    if (session_status() == PHP_SESSION_NONE) session_start();
-    $val = isset($_SESSION['mimer_api_lead_id']) ? $_SESSION['mimer_api_lead_id'] : '';
-    unset($_SESSION['mimer_api_lead_id']);
-    return esc_html($val);
-}
-add_shortcode('mimer_api_lead_id', 'mimer_api_lead_id_shortcode');
+// 🎯 Shortcode simplificado para v1.6 - Solo mensaje, sin redirecciones
+function mimer_auto_redirect_shortcode($atts) {
+    $atts = shortcode_atts([
+        'message' => 'Formulario enviado correctamente. Procesando...',
+        'class' => 'mimer-message',
+    ], $atts);
 
-function mimer_api_response_message_shortcode() {
-    if (session_status() == PHP_SESSION_NONE) session_start();
-    $val = isset($_SESSION['mimer_api_response_message']) ? $_SESSION['mimer_api_response_message'] : '';
-    unset($_SESSION['mimer_api_response_message']);
-    return esc_html($val);
+    // Solo mostrar mensaje - Elementor maneja las redirecciones
+    return '<div class="' . esc_attr($atts['class']) . '">' . esc_html($atts['message']) . '</div>';
 }
-add_shortcode('mimer_api_response_message', 'mimer_api_response_message_shortcode');
-
-function mimer_api_validation_errors_shortcode() {
-    if (session_status() == PHP_SESSION_NONE) session_start();
-    $val = isset($_SESSION['mimer_api_validation_errors']) ? $_SESSION['mimer_api_validation_errors'] : '';
-    unset($_SESSION['mimer_api_validation_errors']);
-    return esc_html($val);
-}
-add_shortcode('mimer_api_validation_errors', 'mimer_api_validation_errors_shortcode');
-
-function mimer_api_redirect_url_shortcode() {
-    if (session_status() == PHP_SESSION_NONE) session_start();
-    $val = isset($_SESSION['mimer_api_redirect_url']) ? $_SESSION['mimer_api_redirect_url'] : '';
-    // NO limpiar la sesión aquí para que el auto redirect pueda usarla
-    return esc_url($val);
-}
-add_shortcode('mimer_api_redirect_url', 'mimer_api_redirect_url_shortcode');
-
-// Shortcode para redirección automática - Lógica simplificada
-function mimer_auto_redirect_shortcode() {
-    if (session_status() == PHP_SESSION_NONE) {
-        session_start();
-    }
-    
-    // Obtener URL del API de la sesión
-    $api_redirect_url = isset($_SESSION['mimer_api_redirect_url']) ? $_SESSION['mimer_api_redirect_url'] : '';
-    
-    // Si no hay en sesión, revisar cookie backup
-    if (empty($api_redirect_url) && isset($_COOKIE['mimer_redirect_backup'])) {
-        $api_redirect_url = $_COOKIE['mimer_redirect_backup'];
-        // Limpiar cookie INMEDIATAMENTE para evitar bucles
-        setcookie('mimer_redirect_backup', '', time() - 3600, '/');
-    }
-    
-    // 🎯 LÓGICA SIMPLIFICADA: URL del API o dp_finish
-    $final_redirect_url = '';
-    
-    if (!empty($api_redirect_url)) {
-        // Si hay URL del API, usarla
-        $final_redirect_url = $api_redirect_url;
-    } else {
-        // Si no hay URL del API, ir a dp_finish
-        $final_redirect_url = '/dp_finish/';
-    }
-    
-    // Limpiar sesión después de usar
-    if (!empty($final_redirect_url)) {
-        unset($_SESSION['mimer_api_redirect_url']);
-        unset($_SESSION['mimer_case_injury']);
-        unset($_SESSION['mimer_last_redirect_url']);
-        
-        return '<span id="redirect-message">You will be redirected in 3 seconds...</span>
-        <script>
-            let count = 3;
-            const msg = document.getElementById("redirect-message");
-            
-            const timer = setInterval(function() {
-                count--;
-                if (msg) msg.textContent = "Redirecting in " + count + " seconds...";
-                
-                if (count <= 0) {
-                    clearInterval(timer);
-                    if (msg) msg.textContent = "Redirecting now...";
-                    window.location.href = "' . esc_js($final_redirect_url) . '";
-                }
-            }, 1000);
-        </script>';
-    }
-    
-    // Si no hay URL, no mostrar nada (silencioso)
-    return '';
-}
-add_shortcode('mimer_auto_redirect', 'mimer_auto_redirect_shortcode');

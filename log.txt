@@ -3430,3 +3430,1261 @@ Simulando respuesta exitosa...
 ✅ API devolvió api_redirect_url: https://injuryresolve.com/dp-thankyou/
 🍪 Cookie backup guardada: https://injuryresolve.com/dp-thankyou/
 📝 Info guardada en sesión - El shortcode manejará la redirección
+[2025-09-04 17:59:38] 🔴 MODO PRODUCCIÓN - Formulario recibido (4 campos)
+[2025-09-04 17:59:38] 📝 CASE_INJURY: '' - Solo guardando info para shortcode
+[2025-09-04 17:59:38] 🔍 TrustedForm capturado: not available
+[2025-09-04 17:59:38] 🔴 ENVÍO A VDI - Preparando envío
+📋 JSON QUE SE ENVIARÍA AL API:
+{
+    "lead-first-name": null,
+    "lead-last-name": null,
+    "lead-email-address": null,
+    "lead-phone": "",
+    "case-depo-provera-taken": null,
+    "case-depo-provera-use": null,
+    "case-injury": null,
+    "case-diagnosis": "",
+    "case-description": "",
+    "case-attorney": "No",
+    "lead-trusted-form-cert-id": "not available",
+    "lead-ip-address": "190.56.113.221",
+    "lead-zip-code": "",
+    "lead-state": "",
+    "other-injections": "",
+    "case-depo-provera-ba03": ""
+}
+🔗 URL DESTINO: https://api-vdi.luchtech.dev/api/submissions?form=depo-provera-injury-resolve&team=vdi&user=ee5a1aba-6009-4d58-8a16-3810e2f777ad&signature=f6bed0c57b7e6745e427faf65796f2fef47e8fb8ea1c01566ee4ba576f34e0ed
+📥 Respuesta recibida: {"success":false,"code":422,"locale":"en","slug":"the_lead_first_name_field_is_required_and_9_more_errors","message":"The lead-first-name field is required. (and 9 more errors)","errors":{"lead-first-name":["The lead-first-name field is required."],"lead-last-name":["The lead-last-name field is required."],"lead-email-address":["The lead-email-address field is required."],"lead-phone":["The lead-phone field is required."],"lead-zip-code":["The lead-zip-code field is required."],"case-depo-provera-taken":["The case-depo-provera-taken field is required."],"case-depo-provera-use":["The case-depo-provera-use field is required."],"case-injury":["The case-injury field is required."],"case-description":["The case-description field is required."],"lead-trusted-form-cert-id":["The lead-trusted-form-cert-id field must be a valid URL."]}}
+⚠️ API no devolvió URL de redirección - usando dp_rejected
+[2025-09-04 17:59:38] 🔴 ENVÍO A VDI - Preparando envío
+📋 JSON QUE SE ENVIARÍA AL API:
+{
+    "lead-first-name": null,
+    "lead-last-name": null,
+    "lead-email-address": null,
+    "lead-phone": "",
+    "case-depo-provera-taken": null,
+    "case-depo-provera-use": null,
+    "case-injury": null,
+    "case-diagnosis": "",
+    "case-description": "",
+    "case-attorney": "No",
+    "lead-trusted-form-cert-id": "not available",
+    "lead-ip-address": "190.56.113.221",
+    "lead-zip-code": "",
+    "lead-state": "",
+    "other-injections": "",
+    "case-depo-provera-ba03": ""
+}
+🔗 URL DESTINO: https://api-vdi.luchtech.dev/api/submissions?form=depo-provera-injury-resolve&team=vdi&user=ee5a1aba-6009-4d58-8a16-3810e2f777ad&signature=f6bed0c57b7e6745e427faf65796f2fef47e8fb8ea1c01566ee4ba576f34e0ed
+📥 Respuesta recibida: {"success":false,"code":422,"locale":"en","slug":"the_lead_first_name_field_is_required_and_9_more_errors","message":"The lead-first-name field is required. (and 9 more errors)","errors":{"lead-first-name":["The lead-first-name field is required."],"lead-last-name":["The lead-last-name field is required."],"lead-email-address":["The lead-email-address field is required."],"lead-phone":["The lead-phone field is required."],"lead-zip-code":["The lead-zip-code field is required."],"case-depo-provera-taken":["The case-depo-provera-taken field is required."],"case-depo-provera-use":["The case-depo-provera-use field is required."],"case-injury":["The case-injury field is required."],"case-description":["The case-description field is required."],"lead-trusted-form-cert-id":["The lead-trusted-form-cert-id field must be a valid URL."]}}
+⚠️ API no devolvió URL de redirección - usando dp_rejected
+📝 Info guardada en sesión - El shortcode manejará la redirección
+[2025-09-04 18:00:36] 🔴 MODO PRODUCCIÓN - Formulario recibido (4 campos)
+[2025-09-04 18:00:36] 📝 CASE_INJURY: '' - Solo guardando info para shortcode
+[2025-09-04 18:00:36] 🔍 TrustedForm capturado: not available
+[2025-09-04 18:00:36] 🔴 ENVÍO A VDI - Preparando envío
+📋 JSON QUE SE ENVIARÍA AL API:
+{
+    "lead-first-name": null,
+    "lead-last-name": null,
+    "lead-email-address": null,
+    "lead-phone": "",
+    "case-depo-provera-taken": null,
+    "case-depo-provera-use": null,
+    "case-injury": null,
+    "case-diagnosis": "",
+    "case-description": "",
+    "case-attorney": "No",
+    "lead-trusted-form-cert-id": "not available",
+    "lead-ip-address": "190.56.113.221",
+    "lead-zip-code": "",
+    "lead-state": "",
+    "other-injections": "",
+    "case-depo-provera-ba03": ""
+}
+🔗 URL DESTINO: https://api-vdi.luchtech.dev/api/submissions?form=depo-provera-injury-resolve&team=vdi&user=ee5a1aba-6009-4d58-8a16-3810e2f777ad&signature=f6bed0c57b7e6745e427faf65796f2fef47e8fb8ea1c01566ee4ba576f34e0ed
+📥 Respuesta recibida: {"success":false,"code":422,"locale":"en","slug":"the_lead_first_name_field_is_required_and_9_more_errors","message":"The lead-first-name field is required. (and 9 more errors)","errors":{"lead-first-name":["The lead-first-name field is required."],"lead-last-name":["The lead-last-name field is required."],"lead-email-address":["The lead-email-address field is required."],"lead-phone":["The lead-phone field is required."],"lead-zip-code":["The lead-zip-code field is required."],"case-depo-provera-taken":["The case-depo-provera-taken field is required."],"case-depo-provera-use":["The case-depo-provera-use field is required."],"case-injury":["The case-injury field is required."],"case-description":["The case-description field is required."],"lead-trusted-form-cert-id":["The lead-trusted-form-cert-id field must be a valid URL."]}}
+⚠️ API no devolvió URL de redirección - usando dp_rejected
+[2025-09-04 18:00:36] 🔴 ENVÍO A VDI - Preparando envío
+📋 JSON QUE SE ENVIARÍA AL API:
+{
+    "lead-first-name": null,
+    "lead-last-name": null,
+    "lead-email-address": null,
+    "lead-phone": "",
+    "case-depo-provera-taken": null,
+    "case-depo-provera-use": null,
+    "case-injury": null,
+    "case-diagnosis": "",
+    "case-description": "",
+    "case-attorney": "No",
+    "lead-trusted-form-cert-id": "not available",
+    "lead-ip-address": "190.56.113.221",
+    "lead-zip-code": "",
+    "lead-state": "",
+    "other-injections": "",
+    "case-depo-provera-ba03": ""
+}
+🔗 URL DESTINO: https://api-vdi.luchtech.dev/api/submissions?form=depo-provera-injury-resolve&team=vdi&user=ee5a1aba-6009-4d58-8a16-3810e2f777ad&signature=f6bed0c57b7e6745e427faf65796f2fef47e8fb8ea1c01566ee4ba576f34e0ed
+📥 Respuesta recibida: {"success":false,"code":422,"locale":"en","slug":"the_lead_first_name_field_is_required_and_9_more_errors","message":"The lead-first-name field is required. (and 9 more errors)","errors":{"lead-first-name":["The lead-first-name field is required."],"lead-last-name":["The lead-last-name field is required."],"lead-email-address":["The lead-email-address field is required."],"lead-phone":["The lead-phone field is required."],"lead-zip-code":["The lead-zip-code field is required."],"case-depo-provera-taken":["The case-depo-provera-taken field is required."],"case-depo-provera-use":["The case-depo-provera-use field is required."],"case-injury":["The case-injury field is required."],"case-description":["The case-description field is required."],"lead-trusted-form-cert-id":["The lead-trusted-form-cert-id field must be a valid URL."]}}
+⚠️ API no devolvió URL de redirección - usando dp_rejected
+📝 Info guardada en sesión - El shortcode manejará la redirección
+[2025-09-04 18:00:57] 🔴 MODO PRODUCCIÓN - Formulario recibido (4 campos)
+[2025-09-04 18:00:57] 📝 CASE_INJURY: '' - Solo guardando info para shortcode
+[2025-09-04 18:00:57] 🔍 TrustedForm capturado: not available
+[2025-09-04 18:00:57] 🔴 ENVÍO A VDI - Preparando envío
+📋 JSON QUE SE ENVIARÍA AL API:
+{
+    "lead-first-name": null,
+    "lead-last-name": null,
+    "lead-email-address": null,
+    "lead-phone": "",
+    "case-depo-provera-taken": null,
+    "case-depo-provera-use": null,
+    "case-injury": null,
+    "case-diagnosis": "",
+    "case-description": "",
+    "case-attorney": "No",
+    "lead-trusted-form-cert-id": "not available",
+    "lead-ip-address": "190.56.113.221",
+    "lead-zip-code": "",
+    "lead-state": "",
+    "other-injections": "",
+    "case-depo-provera-ba03": ""
+}
+🔗 URL DESTINO: https://api-vdi.luchtech.dev/api/submissions?form=depo-provera-injury-resolve&team=vdi&user=ee5a1aba-6009-4d58-8a16-3810e2f777ad&signature=f6bed0c57b7e6745e427faf65796f2fef47e8fb8ea1c01566ee4ba576f34e0ed
+📥 Respuesta recibida: {"success":false,"code":422,"locale":"en","slug":"the_lead_first_name_field_is_required_and_9_more_errors","message":"The lead-first-name field is required. (and 9 more errors)","errors":{"lead-first-name":["The lead-first-name field is required."],"lead-last-name":["The lead-last-name field is required."],"lead-email-address":["The lead-email-address field is required."],"lead-phone":["The lead-phone field is required."],"lead-zip-code":["The lead-zip-code field is required."],"case-depo-provera-taken":["The case-depo-provera-taken field is required."],"case-depo-provera-use":["The case-depo-provera-use field is required."],"case-injury":["The case-injury field is required."],"case-description":["The case-description field is required."],"lead-trusted-form-cert-id":["The lead-trusted-form-cert-id field must be a valid URL."]}}
+⚠️ API no devolvió URL de redirección - usando dp_rejected
+[2025-09-04 18:00:57] 🔴 ENVÍO A VDI - Preparando envío
+📋 JSON QUE SE ENVIARÍA AL API:
+{
+    "lead-first-name": null,
+    "lead-last-name": null,
+    "lead-email-address": null,
+    "lead-phone": "",
+    "case-depo-provera-taken": null,
+    "case-depo-provera-use": null,
+    "case-injury": null,
+    "case-diagnosis": "",
+    "case-description": "",
+    "case-attorney": "No",
+    "lead-trusted-form-cert-id": "not available",
+    "lead-ip-address": "190.56.113.221",
+    "lead-zip-code": "",
+    "lead-state": "",
+    "other-injections": "",
+    "case-depo-provera-ba03": ""
+}
+🔗 URL DESTINO: https://api-vdi.luchtech.dev/api/submissions?form=depo-provera-injury-resolve&team=vdi&user=ee5a1aba-6009-4d58-8a16-3810e2f777ad&signature=f6bed0c57b7e6745e427faf65796f2fef47e8fb8ea1c01566ee4ba576f34e0ed
+📥 Respuesta recibida: {"success":false,"code":422,"locale":"en","slug":"the_lead_first_name_field_is_required_and_9_more_errors","message":"The lead-first-name field is required. (and 9 more errors)","errors":{"lead-first-name":["The lead-first-name field is required."],"lead-last-name":["The lead-last-name field is required."],"lead-email-address":["The lead-email-address field is required."],"lead-phone":["The lead-phone field is required."],"lead-zip-code":["The lead-zip-code field is required."],"case-depo-provera-taken":["The case-depo-provera-taken field is required."],"case-depo-provera-use":["The case-depo-provera-use field is required."],"case-injury":["The case-injury field is required."],"case-description":["The case-description field is required."],"lead-trusted-form-cert-id":["The lead-trusted-form-cert-id field must be a valid URL."]}}
+⚠️ API no devolvió URL de redirección - usando dp_rejected
+📝 Info guardada en sesión - El shortcode manejará la redirección
+[2025-09-04 18:01:18] 🔴 MODO PRODUCCIÓN - Formulario recibido (4 campos)
+[2025-09-04 18:01:18] 📝 CASE_INJURY: '' - Solo guardando info para shortcode
+[2025-09-04 18:01:18] 🔍 TrustedForm capturado: not available
+[2025-09-04 18:01:18] 🔴 ENVÍO A VDI - Preparando envío
+📋 JSON QUE SE ENVIARÍA AL API:
+{
+    "lead-first-name": null,
+    "lead-last-name": null,
+    "lead-email-address": null,
+    "lead-phone": "",
+    "case-depo-provera-taken": null,
+    "case-depo-provera-use": null,
+    "case-injury": null,
+    "case-diagnosis": "",
+    "case-description": "",
+    "case-attorney": "No",
+    "lead-trusted-form-cert-id": "not available",
+    "lead-ip-address": "190.56.113.221",
+    "lead-zip-code": "",
+    "lead-state": "",
+    "other-injections": "",
+    "case-depo-provera-ba03": ""
+}
+🔗 URL DESTINO: https://api-vdi.luchtech.dev/api/submissions?form=depo-provera-injury-resolve&team=vdi&user=ee5a1aba-6009-4d58-8a16-3810e2f777ad&signature=f6bed0c57b7e6745e427faf65796f2fef47e8fb8ea1c01566ee4ba576f34e0ed
+📥 Respuesta recibida: {"success":false,"code":422,"locale":"en","slug":"the_lead_first_name_field_is_required_and_9_more_errors","message":"The lead-first-name field is required. (and 9 more errors)","errors":{"lead-first-name":["The lead-first-name field is required."],"lead-last-name":["The lead-last-name field is required."],"lead-email-address":["The lead-email-address field is required."],"lead-phone":["The lead-phone field is required."],"lead-zip-code":["The lead-zip-code field is required."],"case-depo-provera-taken":["The case-depo-provera-taken field is required."],"case-depo-provera-use":["The case-depo-provera-use field is required."],"case-injury":["The case-injury field is required."],"case-description":["The case-description field is required."],"lead-trusted-form-cert-id":["The lead-trusted-form-cert-id field must be a valid URL."]}}
+⚠️ API no devolvió URL de redirección - usando dp_rejected
+[2025-09-04 18:01:18] 🔴 ENVÍO A VDI - Preparando envío
+📋 JSON QUE SE ENVIARÍA AL API:
+{
+    "lead-first-name": null,
+    "lead-last-name": null,
+    "lead-email-address": null,
+    "lead-phone": "",
+    "case-depo-provera-taken": null,
+    "case-depo-provera-use": null,
+    "case-injury": null,
+    "case-diagnosis": "",
+    "case-description": "",
+    "case-attorney": "No",
+    "lead-trusted-form-cert-id": "not available",
+    "lead-ip-address": "190.56.113.221",
+    "lead-zip-code": "",
+    "lead-state": "",
+    "other-injections": "",
+    "case-depo-provera-ba03": ""
+}
+🔗 URL DESTINO: https://api-vdi.luchtech.dev/api/submissions?form=depo-provera-injury-resolve&team=vdi&user=ee5a1aba-6009-4d58-8a16-3810e2f777ad&signature=f6bed0c57b7e6745e427faf65796f2fef47e8fb8ea1c01566ee4ba576f34e0ed
+📥 Respuesta recibida: {"success":false,"code":422,"locale":"en","slug":"the_lead_first_name_field_is_required_and_9_more_errors","message":"The lead-first-name field is required. (and 9 more errors)","errors":{"lead-first-name":["The lead-first-name field is required."],"lead-last-name":["The lead-last-name field is required."],"lead-email-address":["The lead-email-address field is required."],"lead-phone":["The lead-phone field is required."],"lead-zip-code":["The lead-zip-code field is required."],"case-depo-provera-taken":["The case-depo-provera-taken field is required."],"case-depo-provera-use":["The case-depo-provera-use field is required."],"case-injury":["The case-injury field is required."],"case-description":["The case-description field is required."],"lead-trusted-form-cert-id":["The lead-trusted-form-cert-id field must be a valid URL."]}}
+⚠️ API no devolvió URL de redirección - usando dp_rejected
+📝 Info guardada en sesión - El shortcode manejará la redirección
+[2025-09-04 18:02:12] 🔴 MODO PRODUCCIÓN - Formulario recibido (4 campos)
+[2025-09-04 18:02:12] 📝 CASE_INJURY: '' - Solo guardando info para shortcode
+[2025-09-04 18:02:12] 🔍 TrustedForm capturado: not available
+[2025-09-04 18:02:12] 🔴 ENVÍO A VDI - Preparando envío
+📋 JSON QUE SE ENVIARÍA AL API:
+{
+    "lead-first-name": null,
+    "lead-last-name": null,
+    "lead-email-address": null,
+    "lead-phone": "",
+    "case-depo-provera-taken": null,
+    "case-depo-provera-use": null,
+    "case-injury": null,
+    "case-diagnosis": "",
+    "case-description": "",
+    "case-attorney": "No",
+    "lead-trusted-form-cert-id": "not available",
+    "lead-ip-address": "190.56.113.221",
+    "lead-zip-code": "",
+    "lead-state": "",
+    "other-injections": "",
+    "case-depo-provera-ba03": ""
+}
+🔗 URL DESTINO: https://api-vdi.luchtech.dev/api/submissions?form=depo-provera-injury-resolve&team=vdi&user=ee5a1aba-6009-4d58-8a16-3810e2f777ad&signature=f6bed0c57b7e6745e427faf65796f2fef47e8fb8ea1c01566ee4ba576f34e0ed
+📥 Respuesta recibida: {"success":false,"code":422,"locale":"en","slug":"the_lead_first_name_field_is_required_and_9_more_errors","message":"The lead-first-name field is required. (and 9 more errors)","errors":{"lead-first-name":["The lead-first-name field is required."],"lead-last-name":["The lead-last-name field is required."],"lead-email-address":["The lead-email-address field is required."],"lead-phone":["The lead-phone field is required."],"lead-zip-code":["The lead-zip-code field is required."],"case-depo-provera-taken":["The case-depo-provera-taken field is required."],"case-depo-provera-use":["The case-depo-provera-use field is required."],"case-injury":["The case-injury field is required."],"case-description":["The case-description field is required."],"lead-trusted-form-cert-id":["The lead-trusted-form-cert-id field must be a valid URL."]}}
+⚠️ API no devolvió URL de redirección - usando dp_rejected
+[2025-09-04 18:02:12] 🔴 ENVÍO A VDI - Preparando envío
+📋 JSON QUE SE ENVIARÍA AL API:
+{
+    "lead-first-name": null,
+    "lead-last-name": null,
+    "lead-email-address": null,
+    "lead-phone": "",
+    "case-depo-provera-taken": null,
+    "case-depo-provera-use": null,
+    "case-injury": null,
+    "case-diagnosis": "",
+    "case-description": "",
+    "case-attorney": "No",
+    "lead-trusted-form-cert-id": "not available",
+    "lead-ip-address": "190.56.113.221",
+    "lead-zip-code": "",
+    "lead-state": "",
+    "other-injections": "",
+    "case-depo-provera-ba03": ""
+}
+🔗 URL DESTINO: https://api-vdi.luchtech.dev/api/submissions?form=depo-provera-injury-resolve&team=vdi&user=ee5a1aba-6009-4d58-8a16-3810e2f777ad&signature=f6bed0c57b7e6745e427faf65796f2fef47e8fb8ea1c01566ee4ba576f34e0ed
+📥 Respuesta recibida: {"success":false,"code":422,"locale":"en","slug":"the_lead_first_name_field_is_required_and_9_more_errors","message":"The lead-first-name field is required. (and 9 more errors)","errors":{"lead-first-name":["The lead-first-name field is required."],"lead-last-name":["The lead-last-name field is required."],"lead-email-address":["The lead-email-address field is required."],"lead-phone":["The lead-phone field is required."],"lead-zip-code":["The lead-zip-code field is required."],"case-depo-provera-taken":["The case-depo-provera-taken field is required."],"case-depo-provera-use":["The case-depo-provera-use field is required."],"case-injury":["The case-injury field is required."],"case-description":["The case-description field is required."],"lead-trusted-form-cert-id":["The lead-trusted-form-cert-id field must be a valid URL."]}}
+⚠️ API no devolvió URL de redirección - usando dp_rejected
+📝 Info guardada en sesión - El shortcode manejará la redirección
+[2025-09-04 18:02:48] 🔴 MODO PRODUCCIÓN - Formulario recibido (4 campos)
+[2025-09-04 18:02:48] 📝 CASE_INJURY: '' - Solo guardando info para shortcode
+[2025-09-04 18:02:48] 🔍 TrustedForm capturado: not available
+[2025-09-04 18:02:48] 🔴 ENVÍO A VDI - Preparando envío
+📋 JSON QUE SE ENVIARÍA AL API:
+{
+    "lead-first-name": null,
+    "lead-last-name": null,
+    "lead-email-address": null,
+    "lead-phone": "",
+    "case-depo-provera-taken": null,
+    "case-depo-provera-use": null,
+    "case-injury": null,
+    "case-diagnosis": "",
+    "case-description": "",
+    "case-attorney": "No",
+    "lead-trusted-form-cert-id": "not available",
+    "lead-ip-address": "190.56.113.221",
+    "lead-zip-code": "",
+    "lead-state": "",
+    "other-injections": "",
+    "case-depo-provera-ba03": ""
+}
+🔗 URL DESTINO: https://api-vdi.luchtech.dev/api/submissions?form=depo-provera-injury-resolve&team=vdi&user=ee5a1aba-6009-4d58-8a16-3810e2f777ad&signature=f6bed0c57b7e6745e427faf65796f2fef47e8fb8ea1c01566ee4ba576f34e0ed
+📥 Respuesta recibida: {"success":false,"code":422,"locale":"en","slug":"the_lead_first_name_field_is_required_and_9_more_errors","message":"The lead-first-name field is required. (and 9 more errors)","errors":{"lead-first-name":["The lead-first-name field is required."],"lead-last-name":["The lead-last-name field is required."],"lead-email-address":["The lead-email-address field is required."],"lead-phone":["The lead-phone field is required."],"lead-zip-code":["The lead-zip-code field is required."],"case-depo-provera-taken":["The case-depo-provera-taken field is required."],"case-depo-provera-use":["The case-depo-provera-use field is required."],"case-injury":["The case-injury field is required."],"case-description":["The case-description field is required."],"lead-trusted-form-cert-id":["The lead-trusted-form-cert-id field must be a valid URL."]}}
+⚠️ API no devolvió URL de redirección - usando dp_rejected
+[2025-09-04 18:02:48] 🔴 ENVÍO A VDI - Preparando envío
+📋 JSON QUE SE ENVIARÍA AL API:
+{
+    "lead-first-name": null,
+    "lead-last-name": null,
+    "lead-email-address": null,
+    "lead-phone": "",
+    "case-depo-provera-taken": null,
+    "case-depo-provera-use": null,
+    "case-injury": null,
+    "case-diagnosis": "",
+    "case-description": "",
+    "case-attorney": "No",
+    "lead-trusted-form-cert-id": "not available",
+    "lead-ip-address": "190.56.113.221",
+    "lead-zip-code": "",
+    "lead-state": "",
+    "other-injections": "",
+    "case-depo-provera-ba03": ""
+}
+🔗 URL DESTINO: https://api-vdi.luchtech.dev/api/submissions?form=depo-provera-injury-resolve&team=vdi&user=ee5a1aba-6009-4d58-8a16-3810e2f777ad&signature=f6bed0c57b7e6745e427faf65796f2fef47e8fb8ea1c01566ee4ba576f34e0ed
+📥 Respuesta recibida: {"success":false,"code":422,"locale":"en","slug":"the_lead_first_name_field_is_required_and_9_more_errors","message":"The lead-first-name field is required. (and 9 more errors)","errors":{"lead-first-name":["The lead-first-name field is required."],"lead-last-name":["The lead-last-name field is required."],"lead-email-address":["The lead-email-address field is required."],"lead-phone":["The lead-phone field is required."],"lead-zip-code":["The lead-zip-code field is required."],"case-depo-provera-taken":["The case-depo-provera-taken field is required."],"case-depo-provera-use":["The case-depo-provera-use field is required."],"case-injury":["The case-injury field is required."],"case-description":["The case-description field is required."],"lead-trusted-form-cert-id":["The lead-trusted-form-cert-id field must be a valid URL."]}}
+⚠️ API no devolvió URL de redirección - usando dp_rejected
+📝 Info guardada en sesión - El shortcode manejará la redirección
+[2025-09-04 18:03:25] 🔴 MODO PRODUCCIÓN - Formulario recibido (4 campos)
+[2025-09-04 18:03:25] 📝 CASE_INJURY: '' - Solo guardando info para shortcode
+[2025-09-04 18:03:25] 🔍 TrustedForm capturado: not available
+[2025-09-04 18:03:25] 🔴 ENVÍO A VDI - Preparando envío
+📋 JSON QUE SE ENVIARÍA AL API:
+{
+    "lead-first-name": null,
+    "lead-last-name": null,
+    "lead-email-address": null,
+    "lead-phone": "",
+    "case-depo-provera-taken": null,
+    "case-depo-provera-use": null,
+    "case-injury": null,
+    "case-diagnosis": "",
+    "case-description": "",
+    "case-attorney": "No",
+    "lead-trusted-form-cert-id": "not available",
+    "lead-ip-address": "190.56.113.221",
+    "lead-zip-code": "",
+    "lead-state": "",
+    "other-injections": "",
+    "case-depo-provera-ba03": ""
+}
+🔗 URL DESTINO: https://api-vdi.luchtech.dev/api/submissions?form=depo-provera-injury-resolve&team=vdi&user=ee5a1aba-6009-4d58-8a16-3810e2f777ad&signature=f6bed0c57b7e6745e427faf65796f2fef47e8fb8ea1c01566ee4ba576f34e0ed
+📥 Respuesta recibida: {"success":false,"code":422,"locale":"en","slug":"the_lead_first_name_field_is_required_and_9_more_errors","message":"The lead-first-name field is required. (and 9 more errors)","errors":{"lead-first-name":["The lead-first-name field is required."],"lead-last-name":["The lead-last-name field is required."],"lead-email-address":["The lead-email-address field is required."],"lead-phone":["The lead-phone field is required."],"lead-zip-code":["The lead-zip-code field is required."],"case-depo-provera-taken":["The case-depo-provera-taken field is required."],"case-depo-provera-use":["The case-depo-provera-use field is required."],"case-injury":["The case-injury field is required."],"case-description":["The case-description field is required."],"lead-trusted-form-cert-id":["The lead-trusted-form-cert-id field must be a valid URL."]}}
+⚠️ API no devolvió URL de redirección - usando dp_rejected
+[2025-09-04 18:03:25] 🔴 ENVÍO A VDI - Preparando envío
+📋 JSON QUE SE ENVIARÍA AL API:
+{
+    "lead-first-name": null,
+    "lead-last-name": null,
+    "lead-email-address": null,
+    "lead-phone": "",
+    "case-depo-provera-taken": null,
+    "case-depo-provera-use": null,
+    "case-injury": null,
+    "case-diagnosis": "",
+    "case-description": "",
+    "case-attorney": "No",
+    "lead-trusted-form-cert-id": "not available",
+    "lead-ip-address": "190.56.113.221",
+    "lead-zip-code": "",
+    "lead-state": "",
+    "other-injections": "",
+    "case-depo-provera-ba03": ""
+}
+🔗 URL DESTINO: https://api-vdi.luchtech.dev/api/submissions?form=depo-provera-injury-resolve&team=vdi&user=ee5a1aba-6009-4d58-8a16-3810e2f777ad&signature=f6bed0c57b7e6745e427faf65796f2fef47e8fb8ea1c01566ee4ba576f34e0ed
+📥 Respuesta recibida: {"success":false,"code":422,"locale":"en","slug":"the_lead_first_name_field_is_required_and_9_more_errors","message":"The lead-first-name field is required. (and 9 more errors)","errors":{"lead-first-name":["The lead-first-name field is required."],"lead-last-name":["The lead-last-name field is required."],"lead-email-address":["The lead-email-address field is required."],"lead-phone":["The lead-phone field is required."],"lead-zip-code":["The lead-zip-code field is required."],"case-depo-provera-taken":["The case-depo-provera-taken field is required."],"case-depo-provera-use":["The case-depo-provera-use field is required."],"case-injury":["The case-injury field is required."],"case-description":["The case-description field is required."],"lead-trusted-form-cert-id":["The lead-trusted-form-cert-id field must be a valid URL."]}}
+⚠️ API no devolvió URL de redirección - usando dp_rejected
+📝 Info guardada en sesión - El shortcode manejará la redirección
+[2025-09-04 18:03:42] 🔴 MODO PRODUCCIÓN - Formulario recibido (4 campos)
+[2025-09-04 18:03:42] 📝 CASE_INJURY: '' - Solo guardando info para shortcode
+[2025-09-04 18:03:42] 🔍 TrustedForm capturado: not available
+[2025-09-04 18:03:42] 🔴 ENVÍO A VDI - Preparando envío
+📋 JSON QUE SE ENVIARÍA AL API:
+{
+    "lead-first-name": null,
+    "lead-last-name": null,
+    "lead-email-address": null,
+    "lead-phone": "",
+    "case-depo-provera-taken": null,
+    "case-depo-provera-use": null,
+    "case-injury": null,
+    "case-diagnosis": "",
+    "case-description": "",
+    "case-attorney": "No",
+    "lead-trusted-form-cert-id": "not available",
+    "lead-ip-address": "190.56.113.221",
+    "lead-zip-code": "",
+    "lead-state": "",
+    "other-injections": "",
+    "case-depo-provera-ba03": ""
+}
+🔗 URL DESTINO: https://api-vdi.luchtech.dev/api/submissions?form=depo-provera-injury-resolve&team=vdi&user=ee5a1aba-6009-4d58-8a16-3810e2f777ad&signature=f6bed0c57b7e6745e427faf65796f2fef47e8fb8ea1c01566ee4ba576f34e0ed
+📥 Respuesta recibida: {"success":false,"code":422,"locale":"en","slug":"the_lead_first_name_field_is_required_and_9_more_errors","message":"The lead-first-name field is required. (and 9 more errors)","errors":{"lead-first-name":["The lead-first-name field is required."],"lead-last-name":["The lead-last-name field is required."],"lead-email-address":["The lead-email-address field is required."],"lead-phone":["The lead-phone field is required."],"lead-zip-code":["The lead-zip-code field is required."],"case-depo-provera-taken":["The case-depo-provera-taken field is required."],"case-depo-provera-use":["The case-depo-provera-use field is required."],"case-injury":["The case-injury field is required."],"case-description":["The case-description field is required."],"lead-trusted-form-cert-id":["The lead-trusted-form-cert-id field must be a valid URL."]}}
+⚠️ API no devolvió URL de redirección - usando dp_rejected
+[2025-09-04 18:03:42] 🔴 ENVÍO A VDI - Preparando envío
+📋 JSON QUE SE ENVIARÍA AL API:
+{
+    "lead-first-name": null,
+    "lead-last-name": null,
+    "lead-email-address": null,
+    "lead-phone": "",
+    "case-depo-provera-taken": null,
+    "case-depo-provera-use": null,
+    "case-injury": null,
+    "case-diagnosis": "",
+    "case-description": "",
+    "case-attorney": "No",
+    "lead-trusted-form-cert-id": "not available",
+    "lead-ip-address": "190.56.113.221",
+    "lead-zip-code": "",
+    "lead-state": "",
+    "other-injections": "",
+    "case-depo-provera-ba03": ""
+}
+🔗 URL DESTINO: https://api-vdi.luchtech.dev/api/submissions?form=depo-provera-injury-resolve&team=vdi&user=ee5a1aba-6009-4d58-8a16-3810e2f777ad&signature=f6bed0c57b7e6745e427faf65796f2fef47e8fb8ea1c01566ee4ba576f34e0ed
+📥 Respuesta recibida: {"success":false,"code":422,"locale":"en","slug":"the_lead_first_name_field_is_required_and_9_more_errors","message":"The lead-first-name field is required. (and 9 more errors)","errors":{"lead-first-name":["The lead-first-name field is required."],"lead-last-name":["The lead-last-name field is required."],"lead-email-address":["The lead-email-address field is required."],"lead-phone":["The lead-phone field is required."],"lead-zip-code":["The lead-zip-code field is required."],"case-depo-provera-taken":["The case-depo-provera-taken field is required."],"case-depo-provera-use":["The case-depo-provera-use field is required."],"case-injury":["The case-injury field is required."],"case-description":["The case-description field is required."],"lead-trusted-form-cert-id":["The lead-trusted-form-cert-id field must be a valid URL."]}}
+⚠️ API no devolvió URL de redirección - usando dp_rejected
+📝 Info guardada en sesión - El shortcode manejará la redirección
+[2025-09-04 18:06:30] 🔴 MODO PRODUCCIÓN - Formulario recibido (4 campos)
+[2025-09-04 18:06:30] 📝 CASE_INJURY: '' - Solo guardando info para shortcode
+[2025-09-04 18:06:30] 🔍 TrustedForm capturado: not available
+[2025-09-04 18:06:30] 🔴 ENVÍO A VDI - Preparando envío
+📋 JSON QUE SE ENVIARÍA AL API:
+{
+    "lead-first-name": null,
+    "lead-last-name": null,
+    "lead-email-address": null,
+    "lead-phone": "",
+    "case-depo-provera-taken": null,
+    "case-depo-provera-use": null,
+    "case-injury": null,
+    "case-diagnosis": "",
+    "case-description": "",
+    "case-attorney": "No",
+    "lead-trusted-form-cert-id": "not available",
+    "lead-ip-address": "190.56.113.221",
+    "lead-zip-code": "",
+    "lead-state": "",
+    "other-injections": "",
+    "case-depo-provera-ba03": ""
+}
+🔗 URL DESTINO: https://api-vdi.luchtech.dev/api/submissions?form=depo-provera-injury-resolve&team=vdi&user=ee5a1aba-6009-4d58-8a16-3810e2f777ad&signature=f6bed0c57b7e6745e427faf65796f2fef47e8fb8ea1c01566ee4ba576f34e0ed
+📥 Respuesta recibida: {"success":false,"code":422,"locale":"en","slug":"the_lead_first_name_field_is_required_and_9_more_errors","message":"The lead-first-name field is required. (and 9 more errors)","errors":{"lead-first-name":["The lead-first-name field is required."],"lead-last-name":["The lead-last-name field is required."],"lead-email-address":["The lead-email-address field is required."],"lead-phone":["The lead-phone field is required."],"lead-zip-code":["The lead-zip-code field is required."],"case-depo-provera-taken":["The case-depo-provera-taken field is required."],"case-depo-provera-use":["The case-depo-provera-use field is required."],"case-injury":["The case-injury field is required."],"case-description":["The case-description field is required."],"lead-trusted-form-cert-id":["The lead-trusted-form-cert-id field must be a valid URL."]}}
+⚠️ API no devolvió URL de redirección - usando dp_rejected
+[2025-09-04 18:06:30] 🔴 ENVÍO A VDI - Preparando envío
+📋 JSON QUE SE ENVIARÍA AL API:
+{
+    "lead-first-name": null,
+    "lead-last-name": null,
+    "lead-email-address": null,
+    "lead-phone": "",
+    "case-depo-provera-taken": null,
+    "case-depo-provera-use": null,
+    "case-injury": null,
+    "case-diagnosis": "",
+    "case-description": "",
+    "case-attorney": "No",
+    "lead-trusted-form-cert-id": "not available",
+    "lead-ip-address": "190.56.113.221",
+    "lead-zip-code": "",
+    "lead-state": "",
+    "other-injections": "",
+    "case-depo-provera-ba03": ""
+}
+🔗 URL DESTINO: https://api-vdi.luchtech.dev/api/submissions?form=depo-provera-injury-resolve&team=vdi&user=ee5a1aba-6009-4d58-8a16-3810e2f777ad&signature=f6bed0c57b7e6745e427faf65796f2fef47e8fb8ea1c01566ee4ba576f34e0ed
+📥 Respuesta recibida: {"success":false,"code":422,"locale":"en","slug":"the_lead_first_name_field_is_required_and_9_more_errors","message":"The lead-first-name field is required. (and 9 more errors)","errors":{"lead-first-name":["The lead-first-name field is required."],"lead-last-name":["The lead-last-name field is required."],"lead-email-address":["The lead-email-address field is required."],"lead-phone":["The lead-phone field is required."],"lead-zip-code":["The lead-zip-code field is required."],"case-depo-provera-taken":["The case-depo-provera-taken field is required."],"case-depo-provera-use":["The case-depo-provera-use field is required."],"case-injury":["The case-injury field is required."],"case-description":["The case-description field is required."],"lead-trusted-form-cert-id":["The lead-trusted-form-cert-id field must be a valid URL."]}}
+⚠️ API no devolvió URL de redirección - usando dp_rejected
+📝 Info guardada en sesión - El shortcode manejará la redirección
+[2025-09-04 18:57:38] Respuesta completa: Array
+(
+    [valid] => 1
+    [number] => 14155552671
+    [local_format] => 4155552671
+    [international_format] => +14155552671
+    [country_prefix] => +1
+    [country_code] => US
+    [country_name] => United States of America
+    [location] => 
+    [carrier] => 
+    [line_type] => special_services
+)
+
+[2025-09-04 18:57:38] ✅ Validación del servidor: Todos los campos OK (25 campos)
+[2025-09-04 18:57:38] 🧪 MODO PRUEBAS - Formulario recibido (25 campos)
+[2025-09-04 18:57:38] 📝 CASE_INJURY: 'Brain Tumor' - Solo guardando info para shortcode
+[2025-09-04 18:57:38] 🔍 TrustedForm capturado: https://cert.trustedform.com/a1bddc70e09b2f085aec82124b8959121f1641fe
+[2025-09-04 18:57:38] 🧪 MODO PRUEBAS - Preparando envío
+📋 JSON QUE SE ENVIARÍA AL API:
+{
+    "lead-first-name": "Mimer",
+    "lead-last-name": "test",
+    "lead-email-address": "m@epic.gt",
+    "lead-phone": "14155552671",
+    "case-depo-provera-taken": "Yes",
+    "case-depo-provera-use": "1 year",
+    "case-injury": "Brain Tumor",
+    "case-description": "test",
+    "case-attorney": "No",
+    "lead-trusted-form-cert-id": "https://cert.trustedform.com/a1bddc70e09b2f085aec82124b8959121f1641fe",
+    "lead-ip-address": "190.56.113.221",
+    "lead-zip-code": "30043",
+    "lead-state": "GA"
+}
+🔗 URL DESTINO: https://api-vdi.luchtech.dev/api/submissions?form=depo-provera-injury-resolve&team=vdi&user=ee5a1aba-6009-4d58-8a16-3810e2f777ad&signature=f6bed0c57b7e6745e427faf65796f2fef47e8fb8ea1c01566ee4ba576f34e0ed
+🧪 MODO PRUEBAS ACTIVADO - NO se envía al API real
+Simulando respuesta exitosa...
+✅ Respuesta simulada exitosa - Redirect URL: https://injuryresolve.com/dp-thankyou/
+[2025-09-04 18:57:38] 🧪 MODO PRUEBAS - Preparando envío
+📋 JSON QUE SE ENVIARÍA AL API:
+{
+    "lead-first-name": "Mimer",
+    "lead-last-name": "test",
+    "lead-email-address": "m@epic.gt",
+    "lead-phone": "14155552671",
+    "case-depo-provera-taken": "Yes",
+    "case-depo-provera-use": "1 year",
+    "case-injury": "Brain Tumor",
+    "case-description": "test",
+    "case-attorney": "No",
+    "lead-trusted-form-cert-id": "https://cert.trustedform.com/a1bddc70e09b2f085aec82124b8959121f1641fe",
+    "lead-ip-address": "190.56.113.221",
+    "lead-zip-code": "30043",
+    "lead-state": "GA"
+}
+🔗 URL DESTINO: https://api-vdi.luchtech.dev/api/submissions?form=depo-provera-injury-resolve&team=vdi&user=ee5a1aba-6009-4d58-8a16-3810e2f777ad&signature=f6bed0c57b7e6745e427faf65796f2fef47e8fb8ea1c01566ee4ba576f34e0ed
+🧪 MODO PRUEBAS ACTIVADO - NO se envía al API real
+Simulando respuesta exitosa...
+✅ Respuesta simulada exitosa - Redirect URL: https://injuryresolve.com/dp-thankyou/
+✅ API devolvió api_redirect_url: https://injuryresolve.com/dp-thankyou/
+🍪 Cookie backup guardada: https://injuryresolve.com/dp-thankyou/
+📝 Info guardada en sesión - El shortcode manejará la redirección
+[2025-09-04 19:18:22] Respuesta completa: Array
+(
+    [valid] => 1
+    [number] => 12345678901
+    [local_format] => 2345678901
+    [international_format] => +12345678901
+    [country_prefix] => +1
+    [country_code] => US
+    [country_name] => United States of America
+    [location] => Salem
+    [carrier] => 
+    [line_type] => landline
+)
+
+[2025-09-04 19:18:22] ✅ Validación del servidor: Todos los campos OK (25 campos)
+[2025-09-04 19:18:22] 🧪 MODO PRUEBAS - Formulario recibido (25 campos)
+[2025-09-04 19:18:22] 📝 CASE_INJURY: 'Spinal Meningioma' - Solo guardando info para shortcode
+[2025-09-04 19:18:22] 🔍 TrustedForm capturado: https://cert.trustedform.com/2412d790fcbd3bf33d89a57fe8e5adde637d9608
+[2025-09-04 19:18:22] 🧪 MODO PRUEBAS - Preparando envío
+📋 JSON QUE SE ENVIARÍA AL API:
+{
+    "lead-first-name": "Test",
+    "lead-last-name": "Doe",
+    "lead-email-address": "test@mail.com",
+    "lead-phone": "12345678901",
+    "case-depo-provera-taken": "Yes, Depo-Provera",
+    "case-depo-provera-use": "3 or more years",
+    "case-injury": "Spinal Meningioma",
+    "case-description": "This is a test submission",
+    "case-attorney": "No",
+    "lead-trusted-form-cert-id": "https://cert.trustedform.com/2412d790fcbd3bf33d89a57fe8e5adde637d9608",
+    "lead-ip-address": "2800:98:1112:1f4d:1d94:1233:e421:f99e",
+    "lead-zip-code": "30045",
+    "lead-state": "Georgia",
+    "other-injections": ""
+}
+🔗 URL DESTINO: https://api-vdi.luchtech.dev/api/submissions?form=depo-provera-injury-resolve&team=vdi&user=ee5a1aba-6009-4d58-8a16-3810e2f777ad&signature=f6bed0c57b7e6745e427faf65796f2fef47e8fb8ea1c01566ee4ba576f34e0ed
+🧪 MODO PRUEBAS ACTIVADO - NO se envía al API real
+Simulando respuesta exitosa...
+✅ Respuesta simulada exitosa - Redirect URL: https://injuryresolve.com/dp-thankyou/
+[2025-09-04 19:18:22] 🧪 MODO PRUEBAS - Preparando envío
+📋 JSON QUE SE ENVIARÍA AL API:
+{
+    "lead-first-name": "Test",
+    "lead-last-name": "Doe",
+    "lead-email-address": "test@mail.com",
+    "lead-phone": "12345678901",
+    "case-depo-provera-taken": "Yes, Depo-Provera",
+    "case-depo-provera-use": "3 or more years",
+    "case-injury": "Spinal Meningioma",
+    "case-description": "This is a test submission",
+    "case-attorney": "No",
+    "lead-trusted-form-cert-id": "https://cert.trustedform.com/2412d790fcbd3bf33d89a57fe8e5adde637d9608",
+    "lead-ip-address": "2800:98:1112:1f4d:1d94:1233:e421:f99e",
+    "lead-zip-code": "30045",
+    "lead-state": "Georgia",
+    "other-injections": ""
+}
+🔗 URL DESTINO: https://api-vdi.luchtech.dev/api/submissions?form=depo-provera-injury-resolve&team=vdi&user=ee5a1aba-6009-4d58-8a16-3810e2f777ad&signature=f6bed0c57b7e6745e427faf65796f2fef47e8fb8ea1c01566ee4ba576f34e0ed
+🧪 MODO PRUEBAS ACTIVADO - NO se envía al API real
+Simulando respuesta exitosa...
+✅ Respuesta simulada exitosa - Redirect URL: https://injuryresolve.com/dp-thankyou/
+✅ API devolvió api_redirect_url: https://injuryresolve.com/dp-thankyou/
+🍪 Cookie backup guardada: https://injuryresolve.com/dp-thankyou/
+📝 Info guardada en sesión - El shortcode manejará la redirección
+[2025-09-04 19:22:22] Respuesta completa: Array
+(
+    [valid] => 1
+    [number] => 12345678901
+    [local_format] => 2345678901
+    [international_format] => +12345678901
+    [country_prefix] => +1
+    [country_code] => US
+    [country_name] => United States of America
+    [location] => Salem
+    [carrier] => 
+    [line_type] => landline
+)
+
+[2025-09-04 19:22:22] 🔴 MODO PRODUCCIÓN - Formulario recibido (25 campos)
+[2025-09-04 19:22:22] 📝 CASE_INJURY: 'Spinal Meningioma' - Solo guardando info para shortcode
+[2025-09-04 19:22:22] 🔍 TrustedForm capturado: https://cert.trustedform.com/937cda60b4aa114db5f0af6159b1516a3d10776b
+[2025-09-04 19:22:22] 🔴 ENVÍO A VDI - Preparando envío
+📋 JSON QUE SE ENVIARÍA AL API:
+{
+    "lead-first-name": "Test Mimer",
+    "lead-last-name": "Doe",
+    "lead-email-address": "testjeremydoe@gmail.com",
+    "lead-phone": "12345678901",
+    "case-depo-provera-taken": "Yes, Depo-Provera",
+    "case-depo-provera-use": "3 or more years",
+    "case-injury": "Spinal Meningioma",
+    "case-description": "This is a test submission",
+    "case-attorney": "No",
+    "lead-trusted-form-cert-id": "https://cert.trustedform.com/937cda60b4aa114db5f0af6159b1516a3d10776b",
+    "lead-ip-address": "2800:98:1112:1f4d:1d94:1233:e421:f99e",
+    "lead-zip-code": "30043",
+    "lead-state": "Georgia",
+    "other-injections": ""
+}
+🔗 URL DESTINO: https://api-vdi.luchtech.dev/api/submissions?form=depo-provera-injury-resolve&team=vdi&user=ee5a1aba-6009-4d58-8a16-3810e2f777ad&signature=f6bed0c57b7e6745e427faf65796f2fef47e8fb8ea1c01566ee4ba576f34e0ed
+📥 Respuesta recibida: {"success":false,"code":422,"locale":"en","slug":"the_selected_case_depo_provera_taken_is_invalid","message":"The selected case-depo-provera-taken is invalid.","errors":{"case-depo-provera-taken":["The selected case-depo-provera-taken is invalid."]}}
+⚠️ API no devolvió URL de redirección - usando dp_rejected
+[2025-09-04 19:22:22] 🔴 ENVÍO A VDI - Preparando envío
+📋 JSON QUE SE ENVIARÍA AL API:
+{
+    "lead-first-name": "Test Mimer",
+    "lead-last-name": "Doe",
+    "lead-email-address": "testjeremydoe@gmail.com",
+    "lead-phone": "12345678901",
+    "case-depo-provera-taken": "Yes, Depo-Provera",
+    "case-depo-provera-use": "3 or more years",
+    "case-injury": "Spinal Meningioma",
+    "case-description": "This is a test submission",
+    "case-attorney": "No",
+    "lead-trusted-form-cert-id": "https://cert.trustedform.com/937cda60b4aa114db5f0af6159b1516a3d10776b",
+    "lead-ip-address": "2800:98:1112:1f4d:1d94:1233:e421:f99e",
+    "lead-zip-code": "30043",
+    "lead-state": "Georgia",
+    "other-injections": ""
+}
+🔗 URL DESTINO: https://api-vdi.luchtech.dev/api/submissions?form=depo-provera-injury-resolve&team=vdi&user=ee5a1aba-6009-4d58-8a16-3810e2f777ad&signature=f6bed0c57b7e6745e427faf65796f2fef47e8fb8ea1c01566ee4ba576f34e0ed
+📥 Respuesta recibida: {"success":false,"code":422,"locale":"en","slug":"the_selected_case_depo_provera_taken_is_invalid","message":"The selected case-depo-provera-taken is invalid.","errors":{"case-depo-provera-taken":["The selected case-depo-provera-taken is invalid."]}}
+⚠️ API no devolvió URL de redirección - usando dp_rejected
+📝 Info guardada en sesión - El shortcode manejará la redirección
+[2025-09-04 19:27:35] Respuesta completa: Array
+(
+    [valid] => 1
+    [number] => 12345678901
+    [local_format] => 2345678901
+    [international_format] => +12345678901
+    [country_prefix] => +1
+    [country_code] => US
+    [country_name] => United States of America
+    [location] => Salem
+    [carrier] => 
+    [line_type] => landline
+)
+
+[2025-09-04 19:27:35] 🔴 MODO PRODUCCIÓN - Formulario recibido (25 campos)
+[2025-09-04 19:27:35] 📝 CASE_INJURY: 'Spinal Meningioma' - Solo guardando info para shortcode
+[2025-09-04 19:27:35] 🔍 TrustedForm capturado: https://cert.trustedform.com/70ea5b24e6481e8f508eb417f15257b79ce44e7a
+[2025-09-04 19:27:35] 🔴 ENVÍO A VDI - Preparando envío
+📋 JSON QUE SE ENVIARÍA AL API:
+{
+    "lead-first-name": "Test Mimer",
+    "lead-last-name": "Doe",
+    "lead-email-address": "mail@test.com",
+    "lead-phone": "12345678901",
+    "case-depo-provera-taken": "Yes, Depo Provera",
+    "case-depo-provera-use": "3 or more years",
+    "case-injury": "Spinal Meningioma",
+    "case-description": "This is a test submission",
+    "case-attorney": "No",
+    "lead-trusted-form-cert-id": "https://cert.trustedform.com/70ea5b24e6481e8f508eb417f15257b79ce44e7a",
+    "lead-ip-address": "2800:98:1112:1f4d:1d94:1233:e421:f99e",
+    "lead-zip-code": "30043",
+    "lead-state": "Georgia",
+    "other-injections": ""
+}
+🔗 URL DESTINO: https://api-vdi.luchtech.dev/api/submissions?form=depo-provera-injury-resolve&team=vdi&user=ee5a1aba-6009-4d58-8a16-3810e2f777ad&signature=f6bed0c57b7e6745e427faf65796f2fef47e8fb8ea1c01566ee4ba576f34e0ed
+📥 Respuesta recibida: {"success":false,"code":422,"locale":"en","slug":"the_selected_case_depo_provera_taken_is_invalid","message":"The selected case-depo-provera-taken is invalid.","errors":{"case-depo-provera-taken":["The selected case-depo-provera-taken is invalid."]}}
+⚠️ API no devolvió URL de redirección - usando dp_rejected
+[2025-09-04 19:27:35] 🔴 ENVÍO A VDI - Preparando envío
+📋 JSON QUE SE ENVIARÍA AL API:
+{
+    "lead-first-name": "Test Mimer",
+    "lead-last-name": "Doe",
+    "lead-email-address": "mail@test.com",
+    "lead-phone": "12345678901",
+    "case-depo-provera-taken": "Yes, Depo Provera",
+    "case-depo-provera-use": "3 or more years",
+    "case-injury": "Spinal Meningioma",
+    "case-description": "This is a test submission",
+    "case-attorney": "No",
+    "lead-trusted-form-cert-id": "https://cert.trustedform.com/70ea5b24e6481e8f508eb417f15257b79ce44e7a",
+    "lead-ip-address": "2800:98:1112:1f4d:1d94:1233:e421:f99e",
+    "lead-zip-code": "30043",
+    "lead-state": "Georgia",
+    "other-injections": ""
+}
+🔗 URL DESTINO: https://api-vdi.luchtech.dev/api/submissions?form=depo-provera-injury-resolve&team=vdi&user=ee5a1aba-6009-4d58-8a16-3810e2f777ad&signature=f6bed0c57b7e6745e427faf65796f2fef47e8fb8ea1c01566ee4ba576f34e0ed
+📥 Respuesta recibida: {"success":false,"code":422,"locale":"en","slug":"the_selected_case_depo_provera_taken_is_invalid","message":"The selected case-depo-provera-taken is invalid.","errors":{"case-depo-provera-taken":["The selected case-depo-provera-taken is invalid."]}}
+⚠️ API no devolvió URL de redirección - usando dp_rejected
+📝 Info guardada en sesión - El shortcode manejará la redirección
+[2025-09-04 19:42:12] Respuesta completa: Array
+(
+    [valid] => 1
+    [number] => 12025550123
+    [local_format] => 2025550123
+    [international_format] => +12025550123
+    [country_prefix] => +1
+    [country_code] => US
+    [country_name] => United States of America
+    [location] => 
+    [carrier] => 
+    [line_type] => special_services
+)
+
+[2025-09-04 19:42:12] 🔴 MODO PRODUCCIÓN - Formulario recibido (25 campos)
+[2025-09-04 19:42:12] 📝 CASE_INJURY: 'Spinal Meningioma' - Solo guardando info para shortcode
+[2025-09-04 19:42:12] 🔍 TrustedForm capturado: https://cert.trustedform.com/a8681b8894672c321f18a76fb541f347bd545489
+[2025-09-04 19:42:12] 🔴 ENVÍO A VDI - Preparando envío
+📋 JSON QUE SE ENVIARÍA AL API:
+{
+    "lead-first-name": "Mimer",
+    "lead-last-name": "test",
+    "lead-email-address": "m@epic.gt",
+    "lead-phone": "12025550123",
+    "case-depo-provera-taken": "Yes, Depo Provera",
+    "case-depo-provera-use": "3 or more years",
+    "case-injury": "Spinal Meningioma",
+    "case-description": "thi is a test case",
+    "case-attorney": "No",
+    "lead-trusted-form-cert-id": "https://cert.trustedform.com/a8681b8894672c321f18a76fb541f347bd545489",
+    "lead-ip-address": "2800:98:1112:1f4d:740f:72f8:97ee:d522",
+    "lead-zip-code": "30043",
+    "lead-state": "Georgia",
+    "other-injections": ""
+}
+🔗 URL DESTINO: https://api.valuedirectinc.com/api/submissions?form=ir-lca-depo-post&team=vdi&user=ee5a1aba-6009-4d58-8a16-3810e2f777ad&signature=89a78284fe446f579d91ad0768e326e505f40a6bfa95ebf03c38f90eb110d453
+📥 Respuesta recibida: {"success":false,"code":422,"locale":"en","slug":"the_lead_trusted_form_url_field_is_required","message":"The lead-trusted-form-url field is required.","errors":{"lead-trusted-form-url":["The lead-trusted-form-url field is required."]}}
+⚠️ API no devolvió URL de redirección - usando dp_rejected
+[2025-09-04 19:42:12] 🔴 ENVÍO A VDI - Preparando envío
+📋 JSON QUE SE ENVIARÍA AL API:
+{
+    "lead-first-name": "Mimer",
+    "lead-last-name": "test",
+    "lead-email-address": "m@epic.gt",
+    "lead-phone": "12025550123",
+    "case-depo-provera-taken": "Yes, Depo Provera",
+    "case-depo-provera-use": "3 or more years",
+    "case-injury": "Spinal Meningioma",
+    "case-description": "thi is a test case",
+    "case-attorney": "No",
+    "lead-trusted-form-cert-id": "https://cert.trustedform.com/a8681b8894672c321f18a76fb541f347bd545489",
+    "lead-ip-address": "2800:98:1112:1f4d:740f:72f8:97ee:d522",
+    "lead-zip-code": "30043",
+    "lead-state": "Georgia",
+    "other-injections": ""
+}
+🔗 URL DESTINO: https://api.valuedirectinc.com/api/submissions?form=ir-lca-depo-post&team=vdi&user=ee5a1aba-6009-4d58-8a16-3810e2f777ad&signature=89a78284fe446f579d91ad0768e326e505f40a6bfa95ebf03c38f90eb110d453
+📥 Respuesta recibida: {"success":false,"code":422,"locale":"en","slug":"the_lead_trusted_form_url_field_is_required","message":"The lead-trusted-form-url field is required.","errors":{"lead-trusted-form-url":["The lead-trusted-form-url field is required."]}}
+⚠️ API no devolvió URL de redirección - usando dp_rejected
+📝 Info guardada en sesión - El shortcode manejará la redirección
+[2025-09-04 19:46:42] Respuesta completa: Array
+(
+    [valid] => 1
+    [number] => 12025550123
+    [local_format] => 2025550123
+    [international_format] => +12025550123
+    [country_prefix] => +1
+    [country_code] => US
+    [country_name] => United States of America
+    [location] => 
+    [carrier] => 
+    [line_type] => special_services
+)
+
+[2025-09-04 19:46:42] 🔴 MODO PRODUCCIÓN - Formulario recibido (25 campos)
+[2025-09-04 19:46:42] 📝 CASE_INJURY: 'Spinal Meningioma' - Solo guardando info para shortcode
+[2025-09-04 19:46:42] 🔍 TrustedForm capturado: https://cert.trustedform.com/c9086d2c3075fae393e37f839b1dd4d34affd581
+[2025-09-04 19:46:42] 🔴 ENVÍO A VDI - Preparando envío
+📋 JSON QUE SE ENVIARÍA AL API:
+{
+    "lead-first-name": "Mimer",
+    "lead-last-name": "test",
+    "lead-email-address": "m@epic.gt",
+    "lead-phone": "12025550123",
+    "case-depo-provera-taken": "Yes, Depo Provera",
+    "case-depo-provera-use": "3 or more years",
+    "case-injury": "Spinal Meningioma",
+    "case-description": "This is a test submission",
+    "case-attorney": "No",
+    "lead-trusted-form-url": "https://cert.trustedform.com/c9086d2c3075fae393e37f839b1dd4d34affd581",
+    "lead-ip-address": "2800:98:1112:1f4d:740f:72f8:97ee:d522",
+    "lead-zip-code": "30043",
+    "lead-state": "Georgia",
+    "other-injections": ""
+}
+🔗 URL DESTINO: https://api.valuedirectinc.com/api/submissions?form=ir-lca-depo-post&team=vdi&user=ee5a1aba-6009-4d58-8a16-3810e2f777ad&signature=89a78284fe446f579d91ad0768e326e505f40a6bfa95ebf03c38f90eb110d453
+📥 Respuesta recibida: {"success":true,"code":200,"locale":"en","slug":"successfully_created_a_new_submission","message":"Successfully created a new submission.","data":{"uuid":"c10a8bf0-4fb6-4e61-bb92-5bb545c256fd","name":"IR-LCA-DP - Mimer test (2025-09-04)","is_test":true,"status":"failed","reject_reason":"Submission failed the strict validation.","validation_errors":{"case-injury":["The selected case-injury is invalid."]},"api_lead_id":null,"api_response_message":null,"api_validation_errors":null,"reviewed_at":"2025-09-04T19:46:43.000000Z","created_at":"2025-09-04T19:46:43.000000Z","updated_at":"2025-09-04T19:46:43.000000Z","api_redirect_url":null,"redirect_url":null,"is_reviewed":true,"is_approved":false,"is_rejected":true,"form":{"title":"IR LCA Depo Post","slug":"ir-lca-depo-post","sdk":"affi-media","auto_approve":false,"auto_reject":true,"description":null,"production_at":null,"disabled_at":null,"disable_reason":null,"created_at":"2025-09-04T18:03:37.000000Z","updated_at":"2025-09-04T18:06:55.000000Z","has_sdk":true,"is_production":false,"is_enabled":true},"responses":[{"uuid":"341604cc-6abd-438b-8e4d-58ecd346405c","form_submission_id":1081,"form_field_id":395,"responsable_type":null,"responsable_id":null,"value":"Mimer","created_at":"2025-09-04T19:46:43.000000Z","updated_at":"2025-09-04T19:46:43.000000Z","actual_value":"Mimer"},{"uuid":"98ba2eed-01f5-4dfe-ad63-db3272dac1dc","form_submission_id":1081,"form_field_id":396,"responsable_type":null,"responsable_id":null,"value":"test","created_at":"2025-09-04T19:46:43.000000Z","updated_at":"2025-09-04T19:46:43.000000Z","actual_value":"test"},{"uuid":"7ee38f34-7bbd-43c3-8f27-fdaaf2535749","form_submission_id":1081,"form_field_id":397,"responsable_type":null,"responsable_id":null,"value":"m@epic.gt","created_at":"2025-09-04T19:46:43.000000Z","updated_at":"2025-09-04T19:46:43.000000Z","actual_value":"m@epic.gt"},{"uuid":"d47521cf-0462-473d-b0df-85c2a4aa3e4d","form_submission_id":1081,"form_field_id":398,"responsable_type":null,"responsable_id":null,"value":"12025550123","created_at":"2025-09-04T19:46:43.000000Z","updated_at":"2025-09-04T19:46:43.000000Z","actual_value":"12025550123"},{"uuid":"24674c51-a4be-404b-977c-891c9f7d7026","form_submission_id":1081,"form_field_id":399,"responsable_type":"form_field_choice","responsable_id":1177,"value":null,"created_at":"2025-09-04T19:46:43.000000Z","updated_at":"2025-09-04T19:46:43.000000Z","actual_value":"GA","responsable":{"uuid":"86770088-38b5-470c-97dc-0887ff9ce88b","form_field_id":399,"display_value":"Georgia","actual_value":"GA","is_accepted":true,"is_hidden":false,"position":10,"created_at":"2025-09-04T18:03:37.000000Z","updated_at":"2025-09-04T18:03:37.000000Z"}},{"uuid":"962c9c9a-d201-4435-9662-6c7a31421c2e","form_submission_id":1081,"form_field_id":400,"responsable_type":null,"responsable_id":null,"value":"30043","created_at":"2025-09-04T19:46:43.000000Z","updated_at":"2025-09-04T19:46:43.000000Z","actual_value":"30043"},{"uuid":"e5419909-3f08-49b4-afd9-607f3da523f9","form_submission_id":1081,"form_field_id":401,"responsable_type":"form_field_choice","responsable_id":1220,"value":null,"created_at":"2025-09-04T19:46:43.000000Z","updated_at":"2025-09-04T19:46:43.000000Z","actual_value":"Yes","responsable":{"uuid":"b3584392-eb13-44a4-8cb4-5a886dcd3e9e","form_field_id":401,"display_value":"Yes, Depo Provera","actual_value":"Yes","is_accepted":true,"is_hidden":false,"position":0,"created_at":"2025-09-04T18:03:37.000000Z","updated_at":"2025-09-04T18:03:37.000000Z"}},{"uuid":"c53c7ce1-5295-425e-9e0a-f46a102df4cb","form_submission_id":1081,"form_field_id":403,"responsable_type":"form_field_choice","responsable_id":1237,"value":null,"created_at":"2025-09-04T19:46:43.000000Z","updated_at":"2025-09-04T19:46:43.000000Z","actual_value":"3 or more years","responsable":{"uuid":"28edad1f-682d-452f-af5b-201d054a843a","form_field_id":403,"display_value":"3 or more years","actual_value":"3 or more years","is_accepted":true,"is_hidden":false,"position":3,"created_at":"2025-09-04T18:03:38.000000Z","updated_at":"2025-09-04T18:03:38.000000Z"}},{"uuid":"148ca776-f586-4da6-9c68-8dee5a6abf5b","form_submission_id":1081,"form_field_id":405,"responsable_type":"form_field_choice","responsable_id":1271,"value":null,"created_at":"2025-09-04T19:46:43.000000Z","updated_at":"2025-09-04T19:46:43.000000Z","actual_value":"Other injury","responsable":{"uuid":"cc7ebbd7-ff3c-4b5b-a568-da0147d99685","form_field_id":405,"display_value":"Spinal Meningioma","actual_value":"Other injury","is_accepted":false,"is_hidden":false,"position":30,"created_at":"2025-09-04T18:03:38.000000Z","updated_at":"2025-09-04T18:03:38.000000Z"}},{"uuid":"8b7b0465-b1da-4e5f-b75a-33eb63700d81","form_submission_id":1081,"form_field_id":406,"responsable_type":null,"responsable_id":null,"value":"This is a test submission","created_at":"2025-09-04T19:46:43.000000Z","updated_at":"2025-09-04T19:46:43.000000Z","actual_value":"This is a test submission"},{"uuid":"9fc4dfaf-7c93-45a5-97a3-6f9844b0a986","form_submission_id":1081,"form_field_id":407,"responsable_type":"form_field_choice","responsable_id":1274,"value":null,"created_at":"2025-09-04T19:46:43.000000Z","updated_at":"2025-09-04T19:46:43.000000Z","actual_value":"No","responsable":{"uuid":"2b3ea938-2008-431f-9a0c-ca5966b799f2","form_field_id":407,"display_value":"No","actual_value":"No","is_accepted":true,"is_hidden":false,"position":0,"created_at":"2025-09-04T18:03:38.000000Z","updated_at":"2025-09-04T18:03:38.000000Z"}},{"uuid":"40008f72-1386-4a19-a09f-3ac992aa6c9d","form_submission_id":1081,"form_field_id":408,"responsable_type":null,"responsable_id":null,"value":"https:\/\/cert.trustedform.com\/c9086d2c3075fae393e37f839b1dd4d34affd581","created_at":"2025-09-04T19:46:43.000000Z","updated_at":"2025-09-04T19:46:43.000000Z","actual_value":"https:\/\/cert.trustedform.com\/c9086d2c3075fae393e37f839b1dd4d34affd581"},{"uuid":"0e9735ab-1398-45ce-87bf-d6d27b68ea7c","form_submission_id":1081,"form_field_id":409,"responsable_type":null,"responsable_id":null,"value":"2800:98:1112:1f4d:740f:72f8:97ee:d522","created_at":"2025-09-04T19:46:43.000000Z","updated_at":"2025-09-04T19:46:43.000000Z","actual_value":"2800:98:1112:1f4d:740f:72f8:97ee:d522"}]}}
+⚠️ API no devolvió URL de redirección - usando dp_rejected
+[2025-09-04 19:46:42] 🔴 ENVÍO A VDI - Preparando envío
+📋 JSON QUE SE ENVIARÍA AL API:
+{
+    "lead-first-name": "Mimer",
+    "lead-last-name": "test",
+    "lead-email-address": "m@epic.gt",
+    "lead-phone": "12025550123",
+    "case-depo-provera-taken": "Yes, Depo Provera",
+    "case-depo-provera-use": "3 or more years",
+    "case-injury": "Spinal Meningioma",
+    "case-description": "This is a test submission",
+    "case-attorney": "No",
+    "lead-trusted-form-url": "https://cert.trustedform.com/c9086d2c3075fae393e37f839b1dd4d34affd581",
+    "lead-ip-address": "2800:98:1112:1f4d:740f:72f8:97ee:d522",
+    "lead-zip-code": "30043",
+    "lead-state": "Georgia",
+    "other-injections": ""
+}
+🔗 URL DESTINO: https://api.valuedirectinc.com/api/submissions?form=ir-lca-depo-post&team=vdi&user=ee5a1aba-6009-4d58-8a16-3810e2f777ad&signature=89a78284fe446f579d91ad0768e326e505f40a6bfa95ebf03c38f90eb110d453
+📥 Respuesta recibida: {"success":true,"code":200,"locale":"en","slug":"successfully_created_a_new_submission","message":"Successfully created a new submission.","data":{"uuid":"c10a8bf0-4fb6-4e61-bb92-5bb545c256fd","name":"IR-LCA-DP - Mimer test (2025-09-04)","is_test":true,"status":"failed","reject_reason":"Submission failed the strict validation.","validation_errors":{"case-injury":["The selected case-injury is invalid."]},"api_lead_id":null,"api_response_message":null,"api_validation_errors":null,"reviewed_at":"2025-09-04T19:46:43.000000Z","created_at":"2025-09-04T19:46:43.000000Z","updated_at":"2025-09-04T19:46:43.000000Z","api_redirect_url":null,"redirect_url":null,"is_reviewed":true,"is_approved":false,"is_rejected":true,"form":{"title":"IR LCA Depo Post","slug":"ir-lca-depo-post","sdk":"affi-media","auto_approve":false,"auto_reject":true,"description":null,"production_at":null,"disabled_at":null,"disable_reason":null,"created_at":"2025-09-04T18:03:37.000000Z","updated_at":"2025-09-04T18:06:55.000000Z","has_sdk":true,"is_production":false,"is_enabled":true},"responses":[{"uuid":"341604cc-6abd-438b-8e4d-58ecd346405c","form_submission_id":1081,"form_field_id":395,"responsable_type":null,"responsable_id":null,"value":"Mimer","created_at":"2025-09-04T19:46:43.000000Z","updated_at":"2025-09-04T19:46:43.000000Z","actual_value":"Mimer"},{"uuid":"98ba2eed-01f5-4dfe-ad63-db3272dac1dc","form_submission_id":1081,"form_field_id":396,"responsable_type":null,"responsable_id":null,"value":"test","created_at":"2025-09-04T19:46:43.000000Z","updated_at":"2025-09-04T19:46:43.000000Z","actual_value":"test"},{"uuid":"7ee38f34-7bbd-43c3-8f27-fdaaf2535749","form_submission_id":1081,"form_field_id":397,"responsable_type":null,"responsable_id":null,"value":"m@epic.gt","created_at":"2025-09-04T19:46:43.000000Z","updated_at":"2025-09-04T19:46:43.000000Z","actual_value":"m@epic.gt"},{"uuid":"d47521cf-0462-473d-b0df-85c2a4aa3e4d","form_submission_id":1081,"form_field_id":398,"responsable_type":null,"responsable_id":null,"value":"12025550123","created_at":"2025-09-04T19:46:43.000000Z","updated_at":"2025-09-04T19:46:43.000000Z","actual_value":"12025550123"},{"uuid":"24674c51-a4be-404b-977c-891c9f7d7026","form_submission_id":1081,"form_field_id":399,"responsable_type":"form_field_choice","responsable_id":1177,"value":null,"created_at":"2025-09-04T19:46:43.000000Z","updated_at":"2025-09-04T19:46:43.000000Z","actual_value":"GA","responsable":{"uuid":"86770088-38b5-470c-97dc-0887ff9ce88b","form_field_id":399,"display_value":"Georgia","actual_value":"GA","is_accepted":true,"is_hidden":false,"position":10,"created_at":"2025-09-04T18:03:37.000000Z","updated_at":"2025-09-04T18:03:37.000000Z"}},{"uuid":"962c9c9a-d201-4435-9662-6c7a31421c2e","form_submission_id":1081,"form_field_id":400,"responsable_type":null,"responsable_id":null,"value":"30043","created_at":"2025-09-04T19:46:43.000000Z","updated_at":"2025-09-04T19:46:43.000000Z","actual_value":"30043"},{"uuid":"e5419909-3f08-49b4-afd9-607f3da523f9","form_submission_id":1081,"form_field_id":401,"responsable_type":"form_field_choice","responsable_id":1220,"value":null,"created_at":"2025-09-04T19:46:43.000000Z","updated_at":"2025-09-04T19:46:43.000000Z","actual_value":"Yes","responsable":{"uuid":"b3584392-eb13-44a4-8cb4-5a886dcd3e9e","form_field_id":401,"display_value":"Yes, Depo Provera","actual_value":"Yes","is_accepted":true,"is_hidden":false,"position":0,"created_at":"2025-09-04T18:03:37.000000Z","updated_at":"2025-09-04T18:03:37.000000Z"}},{"uuid":"c53c7ce1-5295-425e-9e0a-f46a102df4cb","form_submission_id":1081,"form_field_id":403,"responsable_type":"form_field_choice","responsable_id":1237,"value":null,"created_at":"2025-09-04T19:46:43.000000Z","updated_at":"2025-09-04T19:46:43.000000Z","actual_value":"3 or more years","responsable":{"uuid":"28edad1f-682d-452f-af5b-201d054a843a","form_field_id":403,"display_value":"3 or more years","actual_value":"3 or more years","is_accepted":true,"is_hidden":false,"position":3,"created_at":"2025-09-04T18:03:38.000000Z","updated_at":"2025-09-04T18:03:38.000000Z"}},{"uuid":"148ca776-f586-4da6-9c68-8dee5a6abf5b","form_submission_id":1081,"form_field_id":405,"responsable_type":"form_field_choice","responsable_id":1271,"value":null,"created_at":"2025-09-04T19:46:43.000000Z","updated_at":"2025-09-04T19:46:43.000000Z","actual_value":"Other injury","responsable":{"uuid":"cc7ebbd7-ff3c-4b5b-a568-da0147d99685","form_field_id":405,"display_value":"Spinal Meningioma","actual_value":"Other injury","is_accepted":false,"is_hidden":false,"position":30,"created_at":"2025-09-04T18:03:38.000000Z","updated_at":"2025-09-04T18:03:38.000000Z"}},{"uuid":"8b7b0465-b1da-4e5f-b75a-33eb63700d81","form_submission_id":1081,"form_field_id":406,"responsable_type":null,"responsable_id":null,"value":"This is a test submission","created_at":"2025-09-04T19:46:43.000000Z","updated_at":"2025-09-04T19:46:43.000000Z","actual_value":"This is a test submission"},{"uuid":"9fc4dfaf-7c93-45a5-97a3-6f9844b0a986","form_submission_id":1081,"form_field_id":407,"responsable_type":"form_field_choice","responsable_id":1274,"value":null,"created_at":"2025-09-04T19:46:43.000000Z","updated_at":"2025-09-04T19:46:43.000000Z","actual_value":"No","responsable":{"uuid":"2b3ea938-2008-431f-9a0c-ca5966b799f2","form_field_id":407,"display_value":"No","actual_value":"No","is_accepted":true,"is_hidden":false,"position":0,"created_at":"2025-09-04T18:03:38.000000Z","updated_at":"2025-09-04T18:03:38.000000Z"}},{"uuid":"40008f72-1386-4a19-a09f-3ac992aa6c9d","form_submission_id":1081,"form_field_id":408,"responsable_type":null,"responsable_id":null,"value":"https:\/\/cert.trustedform.com\/c9086d2c3075fae393e37f839b1dd4d34affd581","created_at":"2025-09-04T19:46:43.000000Z","updated_at":"2025-09-04T19:46:43.000000Z","actual_value":"https:\/\/cert.trustedform.com\/c9086d2c3075fae393e37f839b1dd4d34affd581"},{"uuid":"0e9735ab-1398-45ce-87bf-d6d27b68ea7c","form_submission_id":1081,"form_field_id":409,"responsable_type":null,"responsable_id":null,"value":"2800:98:1112:1f4d:740f:72f8:97ee:d522","created_at":"2025-09-04T19:46:43.000000Z","updated_at":"2025-09-04T19:46:43.000000Z","actual_value":"2800:98:1112:1f4d:740f:72f8:97ee:d522"}]}}
+⚠️ API no devolvió URL de redirección - usando dp_rejected
+📝 Info guardada en sesión - El shortcode manejará la redirección
+[2025-09-04 21:31:59] Respuesta completa: Array
+(
+    [valid] => 1
+    [number] => 14046781239
+    [local_format] => 4046781239
+    [international_format] => +14046781239
+    [country_prefix] => +1
+    [country_code] => US
+    [country_name] => United States of America
+    [location] => Atlanta
+    [carrier] => 
+    [line_type] => landline
+)
+
+[2025-09-04 21:31:59] 🔴 MODO PRODUCCIÓN - Formulario recibido (25 campos)
+[2025-09-04 21:31:59] 📝 CASE_INJURY: 'Brain Meningioma' - Solo guardando info para shortcode
+[2025-09-04 21:31:59] 🔍 TrustedForm capturado: https://cert.trustedform.com/5f092aa33ef38b3b7c2f2f4e84add10ac57d8c1f
+[2025-09-04 21:31:59] 🔴 ENVÍO A VDI - Preparando envío
+📋 JSON QUE SE ENVIARÍA AL API:
+{
+    "lead-first-name": "Elmer",
+    "lead-last-name": "Calderon",
+    "lead-email-address": "mimer@edngt.com",
+    "lead-phone": "14046781239",
+    "case-depo-provera-taken": "Yes, Depo Provera",
+    "case-depo-provera-use": "3 or more years",
+    "case-injury": "Brain Meningioma",
+    "case-description": "This is my case",
+    "case-attorney": "No",
+    "lead-trusted-form-url": "https://cert.trustedform.com/5f092aa33ef38b3b7c2f2f4e84add10ac57d8c1f",
+    "lead-ip-address": "2800:98:1112:1f4d:740f:72f8:97ee:d522",
+    "lead-zip-code": "30043",
+    "lead-state": "Georgia",
+    "other-injections": ""
+}
+🔗 URL DESTINO: https://api.valuedirectinc.com/api/submissions?form=ir-lca-depo-post&team=vdi&user=ee5a1aba-6009-4d58-8a16-3810e2f777ad&signature=89a78284fe446f579d91ad0768e326e505f40a6bfa95ebf03c38f90eb110d453
+📥 Respuesta recibida: {"success":true,"code":200,"locale":"en","slug":"successfully_created_a_new_submission","message":"Successfully created a new submission.","data":{"uuid":"49a471dc-0b4e-4ba3-9b27-057484144e9e","name":"IR-LCA-DP - Elmer Calderon (2025-09-04)","is_test":true,"status":"failed","reject_reason":"Submission failed the strict validation.","validation_errors":{"case-injury":["The selected case-injury is invalid."]},"api_lead_id":null,"api_response_message":null,"api_validation_errors":null,"reviewed_at":"2025-09-04T21:32:01.000000Z","created_at":"2025-09-04T21:32:00.000000Z","updated_at":"2025-09-04T21:32:01.000000Z","api_redirect_url":null,"redirect_url":null,"is_reviewed":true,"is_approved":false,"is_rejected":true,"form":{"title":"IR LCA Depo Post","slug":"ir-lca-depo-post","sdk":"affi-media","auto_approve":false,"auto_reject":true,"description":null,"production_at":null,"disabled_at":null,"disable_reason":null,"created_at":"2025-09-04T18:03:37.000000Z","updated_at":"2025-09-04T18:06:55.000000Z","has_sdk":true,"is_production":false,"is_enabled":true},"responses":[{"uuid":"80b1ecd0-692e-4c97-8105-e391c18671aa","form_submission_id":1083,"form_field_id":395,"responsable_type":null,"responsable_id":null,"value":"Elmer","created_at":"2025-09-04T21:32:00.000000Z","updated_at":"2025-09-04T21:32:00.000000Z","actual_value":"Elmer"},{"uuid":"98ee4b13-b0c3-4230-906f-373bd7bec3f8","form_submission_id":1083,"form_field_id":396,"responsable_type":null,"responsable_id":null,"value":"Calderon","created_at":"2025-09-04T21:32:00.000000Z","updated_at":"2025-09-04T21:32:00.000000Z","actual_value":"Calderon"},{"uuid":"0baf9b7d-0558-4d07-9c6d-023c90406858","form_submission_id":1083,"form_field_id":397,"responsable_type":null,"responsable_id":null,"value":"mimer@edngt.com","created_at":"2025-09-04T21:32:00.000000Z","updated_at":"2025-09-04T21:32:00.000000Z","actual_value":"mimer@edngt.com"},{"uuid":"2fe45302-ce80-4204-8fdd-d13ed545e1b6","form_submission_id":1083,"form_field_id":398,"responsable_type":null,"responsable_id":null,"value":"14046781239","created_at":"2025-09-04T21:32:00.000000Z","updated_at":"2025-09-04T21:32:00.000000Z","actual_value":"14046781239"},{"uuid":"847bb1fd-f9bc-4860-a762-38095d21107d","form_submission_id":1083,"form_field_id":399,"responsable_type":"form_field_choice","responsable_id":1177,"value":null,"created_at":"2025-09-04T21:32:00.000000Z","updated_at":"2025-09-04T21:32:00.000000Z","actual_value":"GA","responsable":{"uuid":"86770088-38b5-470c-97dc-0887ff9ce88b","form_field_id":399,"display_value":"Georgia","actual_value":"GA","is_accepted":true,"is_hidden":false,"position":10,"created_at":"2025-09-04T18:03:37.000000Z","updated_at":"2025-09-04T18:03:37.000000Z"}},{"uuid":"e86279c1-a24a-4d78-ab58-c3241b1c6149","form_submission_id":1083,"form_field_id":400,"responsable_type":null,"responsable_id":null,"value":"30043","created_at":"2025-09-04T21:32:00.000000Z","updated_at":"2025-09-04T21:32:00.000000Z","actual_value":"30043"},{"uuid":"2cbd731b-a70a-43de-b454-0eef74940310","form_submission_id":1083,"form_field_id":401,"responsable_type":"form_field_choice","responsable_id":1220,"value":null,"created_at":"2025-09-04T21:32:00.000000Z","updated_at":"2025-09-04T21:32:00.000000Z","actual_value":"Yes","responsable":{"uuid":"b3584392-eb13-44a4-8cb4-5a886dcd3e9e","form_field_id":401,"display_value":"Yes, Depo Provera","actual_value":"Yes","is_accepted":true,"is_hidden":false,"position":0,"created_at":"2025-09-04T18:03:37.000000Z","updated_at":"2025-09-04T18:03:37.000000Z"}},{"uuid":"280e273a-5f35-44f3-8500-e7d3c16ed61f","form_submission_id":1083,"form_field_id":403,"responsable_type":"form_field_choice","responsable_id":1237,"value":null,"created_at":"2025-09-04T21:32:00.000000Z","updated_at":"2025-09-04T21:32:00.000000Z","actual_value":"3 or more years","responsable":{"uuid":"28edad1f-682d-452f-af5b-201d054a843a","form_field_id":403,"display_value":"3 or more years","actual_value":"3 or more years","is_accepted":true,"is_hidden":false,"position":3,"created_at":"2025-09-04T18:03:38.000000Z","updated_at":"2025-09-04T18:03:38.000000Z"}},{"uuid":"60f1e4c3-ed43-46cc-8a68-f337727ae06b","form_submission_id":1083,"form_field_id":405,"responsable_type":"form_field_choice","responsable_id":1244,"value":null,"created_at":"2025-09-04T21:32:00.000000Z","updated_at":"2025-09-04T21:32:00.000000Z","actual_value":"Brain meningioma","responsable":{"uuid":"9822452c-5b19-4383-b83f-0b3604332d41","form_field_id":405,"display_value":"Brain Meningioma","actual_value":"Brain meningioma","is_accepted":true,"is_hidden":false,"position":3,"created_at":"2025-09-04T18:03:38.000000Z","updated_at":"2025-09-04T18:03:38.000000Z"}},{"uuid":"4de7350d-98f4-4961-a661-7ac89c2c4c82","form_submission_id":1083,"form_field_id":406,"responsable_type":null,"responsable_id":null,"value":"This is my case","created_at":"2025-09-04T21:32:00.000000Z","updated_at":"2025-09-04T21:32:00.000000Z","actual_value":"This is my case"},{"uuid":"e2689c8b-d456-45da-9941-6ffb0f49dc2c","form_submission_id":1083,"form_field_id":407,"responsable_type":"form_field_choice","responsable_id":1274,"value":null,"created_at":"2025-09-04T21:32:00.000000Z","updated_at":"2025-09-04T21:32:00.000000Z","actual_value":"No","responsable":{"uuid":"2b3ea938-2008-431f-9a0c-ca5966b799f2","form_field_id":407,"display_value":"No","actual_value":"No","is_accepted":true,"is_hidden":false,"position":0,"created_at":"2025-09-04T18:03:38.000000Z","updated_at":"2025-09-04T18:03:38.000000Z"}},{"uuid":"9797ee98-c8ef-485b-8916-636948f9222d","form_submission_id":1083,"form_field_id":408,"responsable_type":null,"responsable_id":null,"value":"https:\/\/cert.trustedform.com\/5f092aa33ef38b3b7c2f2f4e84add10ac57d8c1f","created_at":"2025-09-04T21:32:00.000000Z","updated_at":"2025-09-04T21:32:00.000000Z","actual_value":"https:\/\/cert.trustedform.com\/5f092aa33ef38b3b7c2f2f4e84add10ac57d8c1f"},{"uuid":"e75e5d91-3771-4911-8c71-feebaf9a9971","form_submission_id":1083,"form_field_id":409,"responsable_type":null,"responsable_id":null,"value":"2800:98:1112:1f4d:740f:72f8:97ee:d522","created_at":"2025-09-04T21:32:00.000000Z","updated_at":"2025-09-04T21:32:00.000000Z","actual_value":"2800:98:1112:1f4d:740f:72f8:97ee:d522"}]}}
+⚠️ API no devolvió URL de redirección - usando dp_rejected
+[2025-09-04 21:31:59] 🔴 ENVÍO A VDI - Preparando envío
+📋 JSON QUE SE ENVIARÍA AL API:
+{
+    "lead-first-name": "Elmer",
+    "lead-last-name": "Calderon",
+    "lead-email-address": "mimer@edngt.com",
+    "lead-phone": "14046781239",
+    "case-depo-provera-taken": "Yes, Depo Provera",
+    "case-depo-provera-use": "3 or more years",
+    "case-injury": "Brain Meningioma",
+    "case-description": "This is my case",
+    "case-attorney": "No",
+    "lead-trusted-form-url": "https://cert.trustedform.com/5f092aa33ef38b3b7c2f2f4e84add10ac57d8c1f",
+    "lead-ip-address": "2800:98:1112:1f4d:740f:72f8:97ee:d522",
+    "lead-zip-code": "30043",
+    "lead-state": "Georgia",
+    "other-injections": ""
+}
+🔗 URL DESTINO: https://api.valuedirectinc.com/api/submissions?form=ir-lca-depo-post&team=vdi&user=ee5a1aba-6009-4d58-8a16-3810e2f777ad&signature=89a78284fe446f579d91ad0768e326e505f40a6bfa95ebf03c38f90eb110d453
+📥 Respuesta recibida: {"success":true,"code":200,"locale":"en","slug":"successfully_created_a_new_submission","message":"Successfully created a new submission.","data":{"uuid":"49a471dc-0b4e-4ba3-9b27-057484144e9e","name":"IR-LCA-DP - Elmer Calderon (2025-09-04)","is_test":true,"status":"failed","reject_reason":"Submission failed the strict validation.","validation_errors":{"case-injury":["The selected case-injury is invalid."]},"api_lead_id":null,"api_response_message":null,"api_validation_errors":null,"reviewed_at":"2025-09-04T21:32:01.000000Z","created_at":"2025-09-04T21:32:00.000000Z","updated_at":"2025-09-04T21:32:01.000000Z","api_redirect_url":null,"redirect_url":null,"is_reviewed":true,"is_approved":false,"is_rejected":true,"form":{"title":"IR LCA Depo Post","slug":"ir-lca-depo-post","sdk":"affi-media","auto_approve":false,"auto_reject":true,"description":null,"production_at":null,"disabled_at":null,"disable_reason":null,"created_at":"2025-09-04T18:03:37.000000Z","updated_at":"2025-09-04T18:06:55.000000Z","has_sdk":true,"is_production":false,"is_enabled":true},"responses":[{"uuid":"80b1ecd0-692e-4c97-8105-e391c18671aa","form_submission_id":1083,"form_field_id":395,"responsable_type":null,"responsable_id":null,"value":"Elmer","created_at":"2025-09-04T21:32:00.000000Z","updated_at":"2025-09-04T21:32:00.000000Z","actual_value":"Elmer"},{"uuid":"98ee4b13-b0c3-4230-906f-373bd7bec3f8","form_submission_id":1083,"form_field_id":396,"responsable_type":null,"responsable_id":null,"value":"Calderon","created_at":"2025-09-04T21:32:00.000000Z","updated_at":"2025-09-04T21:32:00.000000Z","actual_value":"Calderon"},{"uuid":"0baf9b7d-0558-4d07-9c6d-023c90406858","form_submission_id":1083,"form_field_id":397,"responsable_type":null,"responsable_id":null,"value":"mimer@edngt.com","created_at":"2025-09-04T21:32:00.000000Z","updated_at":"2025-09-04T21:32:00.000000Z","actual_value":"mimer@edngt.com"},{"uuid":"2fe45302-ce80-4204-8fdd-d13ed545e1b6","form_submission_id":1083,"form_field_id":398,"responsable_type":null,"responsable_id":null,"value":"14046781239","created_at":"2025-09-04T21:32:00.000000Z","updated_at":"2025-09-04T21:32:00.000000Z","actual_value":"14046781239"},{"uuid":"847bb1fd-f9bc-4860-a762-38095d21107d","form_submission_id":1083,"form_field_id":399,"responsable_type":"form_field_choice","responsable_id":1177,"value":null,"created_at":"2025-09-04T21:32:00.000000Z","updated_at":"2025-09-04T21:32:00.000000Z","actual_value":"GA","responsable":{"uuid":"86770088-38b5-470c-97dc-0887ff9ce88b","form_field_id":399,"display_value":"Georgia","actual_value":"GA","is_accepted":true,"is_hidden":false,"position":10,"created_at":"2025-09-04T18:03:37.000000Z","updated_at":"2025-09-04T18:03:37.000000Z"}},{"uuid":"e86279c1-a24a-4d78-ab58-c3241b1c6149","form_submission_id":1083,"form_field_id":400,"responsable_type":null,"responsable_id":null,"value":"30043","created_at":"2025-09-04T21:32:00.000000Z","updated_at":"2025-09-04T21:32:00.000000Z","actual_value":"30043"},{"uuid":"2cbd731b-a70a-43de-b454-0eef74940310","form_submission_id":1083,"form_field_id":401,"responsable_type":"form_field_choice","responsable_id":1220,"value":null,"created_at":"2025-09-04T21:32:00.000000Z","updated_at":"2025-09-04T21:32:00.000000Z","actual_value":"Yes","responsable":{"uuid":"b3584392-eb13-44a4-8cb4-5a886dcd3e9e","form_field_id":401,"display_value":"Yes, Depo Provera","actual_value":"Yes","is_accepted":true,"is_hidden":false,"position":0,"created_at":"2025-09-04T18:03:37.000000Z","updated_at":"2025-09-04T18:03:37.000000Z"}},{"uuid":"280e273a-5f35-44f3-8500-e7d3c16ed61f","form_submission_id":1083,"form_field_id":403,"responsable_type":"form_field_choice","responsable_id":1237,"value":null,"created_at":"2025-09-04T21:32:00.000000Z","updated_at":"2025-09-04T21:32:00.000000Z","actual_value":"3 or more years","responsable":{"uuid":"28edad1f-682d-452f-af5b-201d054a843a","form_field_id":403,"display_value":"3 or more years","actual_value":"3 or more years","is_accepted":true,"is_hidden":false,"position":3,"created_at":"2025-09-04T18:03:38.000000Z","updated_at":"2025-09-04T18:03:38.000000Z"}},{"uuid":"60f1e4c3-ed43-46cc-8a68-f337727ae06b","form_submission_id":1083,"form_field_id":405,"responsable_type":"form_field_choice","responsable_id":1244,"value":null,"created_at":"2025-09-04T21:32:00.000000Z","updated_at":"2025-09-04T21:32:00.000000Z","actual_value":"Brain meningioma","responsable":{"uuid":"9822452c-5b19-4383-b83f-0b3604332d41","form_field_id":405,"display_value":"Brain Meningioma","actual_value":"Brain meningioma","is_accepted":true,"is_hidden":false,"position":3,"created_at":"2025-09-04T18:03:38.000000Z","updated_at":"2025-09-04T18:03:38.000000Z"}},{"uuid":"4de7350d-98f4-4961-a661-7ac89c2c4c82","form_submission_id":1083,"form_field_id":406,"responsable_type":null,"responsable_id":null,"value":"This is my case","created_at":"2025-09-04T21:32:00.000000Z","updated_at":"2025-09-04T21:32:00.000000Z","actual_value":"This is my case"},{"uuid":"e2689c8b-d456-45da-9941-6ffb0f49dc2c","form_submission_id":1083,"form_field_id":407,"responsable_type":"form_field_choice","responsable_id":1274,"value":null,"created_at":"2025-09-04T21:32:00.000000Z","updated_at":"2025-09-04T21:32:00.000000Z","actual_value":"No","responsable":{"uuid":"2b3ea938-2008-431f-9a0c-ca5966b799f2","form_field_id":407,"display_value":"No","actual_value":"No","is_accepted":true,"is_hidden":false,"position":0,"created_at":"2025-09-04T18:03:38.000000Z","updated_at":"2025-09-04T18:03:38.000000Z"}},{"uuid":"9797ee98-c8ef-485b-8916-636948f9222d","form_submission_id":1083,"form_field_id":408,"responsable_type":null,"responsable_id":null,"value":"https:\/\/cert.trustedform.com\/5f092aa33ef38b3b7c2f2f4e84add10ac57d8c1f","created_at":"2025-09-04T21:32:00.000000Z","updated_at":"2025-09-04T21:32:00.000000Z","actual_value":"https:\/\/cert.trustedform.com\/5f092aa33ef38b3b7c2f2f4e84add10ac57d8c1f"},{"uuid":"e75e5d91-3771-4911-8c71-feebaf9a9971","form_submission_id":1083,"form_field_id":409,"responsable_type":null,"responsable_id":null,"value":"2800:98:1112:1f4d:740f:72f8:97ee:d522","created_at":"2025-09-04T21:32:00.000000Z","updated_at":"2025-09-04T21:32:00.000000Z","actual_value":"2800:98:1112:1f4d:740f:72f8:97ee:d522"}]}}
+⚠️ API no devolvió URL de redirección - usando dp_rejected
+📝 Info guardada en sesión - El shortcode manejará la redirección
+[2025-09-04 21:42:33] Respuesta completa: Array
+(
+    [valid] => 1
+    [number] => 14045557890
+    [local_format] => 4045557890
+    [international_format] => +14045557890
+    [country_prefix] => +1
+    [country_code] => US
+    [country_name] => United States of America
+    [location] => 
+    [carrier] => 
+    [line_type] => special_services
+)
+
+[2025-09-04 21:42:33] 🔴 MODO PRODUCCIÓN - Formulario recibido (25 campos)
+[2025-09-04 21:42:33] 📝 CASE_INJURY: 'Brain Meningioma' - Solo guardando info para shortcode
+[2025-09-04 21:42:33] 🔍 TrustedForm capturado: https://cert.trustedform.com/b4990553ed100120e8f6331c8067120d654b6b4b
+[2025-09-04 21:42:33] 🔴 ENVÍO A VDI - Preparando envío
+📋 JSON QUE SE ENVIARÍA AL API:
+{
+    "lead-first-name": "William",
+    "lead-last-name": "Wallace",
+    "lead-email-address": "wallace@epic.gt",
+    "lead-phone": "14045557890",
+    "case-depo-provera-taken": "Yes, Depo Provera",
+    "case-depo-provera-use": "3 or more years",
+    "case-injury": "Brain Meningioma",
+    "case-description": "My case description for the landing page depo provera form.",
+    "case-attorney": "No",
+    "lead-trusted-form-url": "https://cert.trustedform.com/b4990553ed100120e8f6331c8067120d654b6b4b",
+    "lead-ip-address": "2800:98:1112:1f4d:740f:72f8:97ee:d522",
+    "lead-zip-code": "50001",
+    "lead-state": "Iowa",
+    "other-injections": ""
+}
+🔗 URL DESTINO: https://api.valuedirectinc.com/api/submissions?form=ir-lca-depo-post&team=vdi&user=ee5a1aba-6009-4d58-8a16-3810e2f777ad&signature=89a78284fe446f579d91ad0768e326e505f40a6bfa95ebf03c38f90eb110d453
+📥 Respuesta recibida: {"success":true,"code":200,"locale":"en","slug":"successfully_created_a_new_submission","message":"Successfully created a new submission.","data":{"uuid":"28911a98-54b8-4163-93b9-ab62bfc9ff2c","name":"IR-LCA-DP - William Wallace (2025-09-04)","is_test":true,"status":"failed","reject_reason":"Submission failed the strict validation.","validation_errors":{"case-injury":["The selected case-injury is invalid."]},"api_lead_id":null,"api_response_message":null,"api_validation_errors":null,"reviewed_at":"2025-09-04T21:42:34.000000Z","created_at":"2025-09-04T21:42:34.000000Z","updated_at":"2025-09-04T21:42:34.000000Z","api_redirect_url":null,"redirect_url":null,"is_reviewed":true,"is_approved":false,"is_rejected":true,"form":{"title":"IR LCA Depo Post","slug":"ir-lca-depo-post","sdk":"affi-media","auto_approve":false,"auto_reject":true,"description":null,"production_at":null,"disabled_at":null,"disable_reason":null,"created_at":"2025-09-04T18:03:37.000000Z","updated_at":"2025-09-04T18:06:55.000000Z","has_sdk":true,"is_production":false,"is_enabled":true},"responses":[{"uuid":"fde66a39-ce3b-454a-b4b3-750daa4ef620","form_submission_id":1084,"form_field_id":395,"responsable_type":null,"responsable_id":null,"value":"William","created_at":"2025-09-04T21:42:34.000000Z","updated_at":"2025-09-04T21:42:34.000000Z","actual_value":"William"},{"uuid":"b6c8967d-33c1-4683-bad8-e497c46bf42e","form_submission_id":1084,"form_field_id":396,"responsable_type":null,"responsable_id":null,"value":"Wallace","created_at":"2025-09-04T21:42:34.000000Z","updated_at":"2025-09-04T21:42:34.000000Z","actual_value":"Wallace"},{"uuid":"54e46410-a5bd-4e3c-85e9-7c409ca99356","form_submission_id":1084,"form_field_id":397,"responsable_type":null,"responsable_id":null,"value":"wallace@epic.gt","created_at":"2025-09-04T21:42:34.000000Z","updated_at":"2025-09-04T21:42:34.000000Z","actual_value":"wallace@epic.gt"},{"uuid":"77a257a4-3c6b-4140-9300-ec2e75afbe21","form_submission_id":1084,"form_field_id":398,"responsable_type":null,"responsable_id":null,"value":"14045557890","created_at":"2025-09-04T21:42:34.000000Z","updated_at":"2025-09-04T21:42:34.000000Z","actual_value":"14045557890"},{"uuid":"bbadb2ac-3360-48c2-a4fa-19498e303a29","form_submission_id":1084,"form_field_id":399,"responsable_type":"form_field_choice","responsable_id":1182,"value":null,"created_at":"2025-09-04T21:42:34.000000Z","updated_at":"2025-09-04T21:42:34.000000Z","actual_value":"IA","responsable":{"uuid":"6a709615-9448-47a5-b2d1-071166b7d960","form_field_id":399,"display_value":"Iowa","actual_value":"IA","is_accepted":true,"is_hidden":false,"position":15,"created_at":"2025-09-04T18:03:37.000000Z","updated_at":"2025-09-04T18:03:37.000000Z"}},{"uuid":"df47b11a-6e3c-43ff-9fc1-6ab54a640fcc","form_submission_id":1084,"form_field_id":400,"responsable_type":null,"responsable_id":null,"value":"50001","created_at":"2025-09-04T21:42:34.000000Z","updated_at":"2025-09-04T21:42:34.000000Z","actual_value":"50001"},{"uuid":"9fec003a-c06d-4722-9732-90e309c6d2d6","form_submission_id":1084,"form_field_id":401,"responsable_type":"form_field_choice","responsable_id":1220,"value":null,"created_at":"2025-09-04T21:42:34.000000Z","updated_at":"2025-09-04T21:42:34.000000Z","actual_value":"Yes","responsable":{"uuid":"b3584392-eb13-44a4-8cb4-5a886dcd3e9e","form_field_id":401,"display_value":"Yes, Depo Provera","actual_value":"Yes","is_accepted":true,"is_hidden":false,"position":0,"created_at":"2025-09-04T18:03:37.000000Z","updated_at":"2025-09-04T18:03:37.000000Z"}},{"uuid":"8545e305-3a11-4698-9332-fe49bc48dc9d","form_submission_id":1084,"form_field_id":403,"responsable_type":"form_field_choice","responsable_id":1237,"value":null,"created_at":"2025-09-04T21:42:34.000000Z","updated_at":"2025-09-04T21:42:34.000000Z","actual_value":"3 or more years","responsable":{"uuid":"28edad1f-682d-452f-af5b-201d054a843a","form_field_id":403,"display_value":"3 or more years","actual_value":"3 or more years","is_accepted":true,"is_hidden":false,"position":3,"created_at":"2025-09-04T18:03:38.000000Z","updated_at":"2025-09-04T18:03:38.000000Z"}},{"uuid":"4509b3c8-fc80-44c7-802d-e3f41e2f1016","form_submission_id":1084,"form_field_id":405,"responsable_type":"form_field_choice","responsable_id":1244,"value":null,"created_at":"2025-09-04T21:42:34.000000Z","updated_at":"2025-09-04T21:42:34.000000Z","actual_value":"Brain meningioma","responsable":{"uuid":"9822452c-5b19-4383-b83f-0b3604332d41","form_field_id":405,"display_value":"Brain Meningioma","actual_value":"Brain meningioma","is_accepted":true,"is_hidden":false,"position":3,"created_at":"2025-09-04T18:03:38.000000Z","updated_at":"2025-09-04T18:03:38.000000Z"}},{"uuid":"a7d85f4c-6d02-43db-8c62-856e9a89ba80","form_submission_id":1084,"form_field_id":406,"responsable_type":null,"responsable_id":null,"value":"My case description for the landing page depo provera form.","created_at":"2025-09-04T21:42:34.000000Z","updated_at":"2025-09-04T21:42:34.000000Z","actual_value":"My case description for the landing page depo provera form."},{"uuid":"f39823c9-64e8-43b2-bba0-0a4a1b0cf4d7","form_submission_id":1084,"form_field_id":407,"responsable_type":"form_field_choice","responsable_id":1274,"value":null,"created_at":"2025-09-04T21:42:34.000000Z","updated_at":"2025-09-04T21:42:34.000000Z","actual_value":"No","responsable":{"uuid":"2b3ea938-2008-431f-9a0c-ca5966b799f2","form_field_id":407,"display_value":"No","actual_value":"No","is_accepted":true,"is_hidden":false,"position":0,"created_at":"2025-09-04T18:03:38.000000Z","updated_at":"2025-09-04T18:03:38.000000Z"}},{"uuid":"a4b50058-437c-44d3-b9d8-ef2bbe0c2536","form_submission_id":1084,"form_field_id":408,"responsable_type":null,"responsable_id":null,"value":"https:\/\/cert.trustedform.com\/b4990553ed100120e8f6331c8067120d654b6b4b","created_at":"2025-09-04T21:42:34.000000Z","updated_at":"2025-09-04T21:42:34.000000Z","actual_value":"https:\/\/cert.trustedform.com\/b4990553ed100120e8f6331c8067120d654b6b4b"},{"uuid":"6472e748-c36e-4638-904b-4d075ff9f8fa","form_submission_id":1084,"form_field_id":409,"responsable_type":null,"responsable_id":null,"value":"2800:98:1112:1f4d:740f:72f8:97ee:d522","created_at":"2025-09-04T21:42:34.000000Z","updated_at":"2025-09-04T21:42:34.000000Z","actual_value":"2800:98:1112:1f4d:740f:72f8:97ee:d522"}]}}
+⚠️ API no devolvió URL de redirección - usando dp_rejected
+[2025-09-04 21:42:33] 🔴 ENVÍO A VDI - Preparando envío
+📋 JSON QUE SE ENVIARÍA AL API:
+{
+    "lead-first-name": "William",
+    "lead-last-name": "Wallace",
+    "lead-email-address": "wallace@epic.gt",
+    "lead-phone": "14045557890",
+    "case-depo-provera-taken": "Yes, Depo Provera",
+    "case-depo-provera-use": "3 or more years",
+    "case-injury": "Brain Meningioma",
+    "case-description": "My case description for the landing page depo provera form.",
+    "case-attorney": "No",
+    "lead-trusted-form-url": "https://cert.trustedform.com/b4990553ed100120e8f6331c8067120d654b6b4b",
+    "lead-ip-address": "2800:98:1112:1f4d:740f:72f8:97ee:d522",
+    "lead-zip-code": "50001",
+    "lead-state": "Iowa",
+    "other-injections": ""
+}
+🔗 URL DESTINO: https://api.valuedirectinc.com/api/submissions?form=ir-lca-depo-post&team=vdi&user=ee5a1aba-6009-4d58-8a16-3810e2f777ad&signature=89a78284fe446f579d91ad0768e326e505f40a6bfa95ebf03c38f90eb110d453
+📥 Respuesta recibida: {"success":true,"code":200,"locale":"en","slug":"successfully_created_a_new_submission","message":"Successfully created a new submission.","data":{"uuid":"28911a98-54b8-4163-93b9-ab62bfc9ff2c","name":"IR-LCA-DP - William Wallace (2025-09-04)","is_test":true,"status":"failed","reject_reason":"Submission failed the strict validation.","validation_errors":{"case-injury":["The selected case-injury is invalid."]},"api_lead_id":null,"api_response_message":null,"api_validation_errors":null,"reviewed_at":"2025-09-04T21:42:34.000000Z","created_at":"2025-09-04T21:42:34.000000Z","updated_at":"2025-09-04T21:42:34.000000Z","api_redirect_url":null,"redirect_url":null,"is_reviewed":true,"is_approved":false,"is_rejected":true,"form":{"title":"IR LCA Depo Post","slug":"ir-lca-depo-post","sdk":"affi-media","auto_approve":false,"auto_reject":true,"description":null,"production_at":null,"disabled_at":null,"disable_reason":null,"created_at":"2025-09-04T18:03:37.000000Z","updated_at":"2025-09-04T18:06:55.000000Z","has_sdk":true,"is_production":false,"is_enabled":true},"responses":[{"uuid":"fde66a39-ce3b-454a-b4b3-750daa4ef620","form_submission_id":1084,"form_field_id":395,"responsable_type":null,"responsable_id":null,"value":"William","created_at":"2025-09-04T21:42:34.000000Z","updated_at":"2025-09-04T21:42:34.000000Z","actual_value":"William"},{"uuid":"b6c8967d-33c1-4683-bad8-e497c46bf42e","form_submission_id":1084,"form_field_id":396,"responsable_type":null,"responsable_id":null,"value":"Wallace","created_at":"2025-09-04T21:42:34.000000Z","updated_at":"2025-09-04T21:42:34.000000Z","actual_value":"Wallace"},{"uuid":"54e46410-a5bd-4e3c-85e9-7c409ca99356","form_submission_id":1084,"form_field_id":397,"responsable_type":null,"responsable_id":null,"value":"wallace@epic.gt","created_at":"2025-09-04T21:42:34.000000Z","updated_at":"2025-09-04T21:42:34.000000Z","actual_value":"wallace@epic.gt"},{"uuid":"77a257a4-3c6b-4140-9300-ec2e75afbe21","form_submission_id":1084,"form_field_id":398,"responsable_type":null,"responsable_id":null,"value":"14045557890","created_at":"2025-09-04T21:42:34.000000Z","updated_at":"2025-09-04T21:42:34.000000Z","actual_value":"14045557890"},{"uuid":"bbadb2ac-3360-48c2-a4fa-19498e303a29","form_submission_id":1084,"form_field_id":399,"responsable_type":"form_field_choice","responsable_id":1182,"value":null,"created_at":"2025-09-04T21:42:34.000000Z","updated_at":"2025-09-04T21:42:34.000000Z","actual_value":"IA","responsable":{"uuid":"6a709615-9448-47a5-b2d1-071166b7d960","form_field_id":399,"display_value":"Iowa","actual_value":"IA","is_accepted":true,"is_hidden":false,"position":15,"created_at":"2025-09-04T18:03:37.000000Z","updated_at":"2025-09-04T18:03:37.000000Z"}},{"uuid":"df47b11a-6e3c-43ff-9fc1-6ab54a640fcc","form_submission_id":1084,"form_field_id":400,"responsable_type":null,"responsable_id":null,"value":"50001","created_at":"2025-09-04T21:42:34.000000Z","updated_at":"2025-09-04T21:42:34.000000Z","actual_value":"50001"},{"uuid":"9fec003a-c06d-4722-9732-90e309c6d2d6","form_submission_id":1084,"form_field_id":401,"responsable_type":"form_field_choice","responsable_id":1220,"value":null,"created_at":"2025-09-04T21:42:34.000000Z","updated_at":"2025-09-04T21:42:34.000000Z","actual_value":"Yes","responsable":{"uuid":"b3584392-eb13-44a4-8cb4-5a886dcd3e9e","form_field_id":401,"display_value":"Yes, Depo Provera","actual_value":"Yes","is_accepted":true,"is_hidden":false,"position":0,"created_at":"2025-09-04T18:03:37.000000Z","updated_at":"2025-09-04T18:03:37.000000Z"}},{"uuid":"8545e305-3a11-4698-9332-fe49bc48dc9d","form_submission_id":1084,"form_field_id":403,"responsable_type":"form_field_choice","responsable_id":1237,"value":null,"created_at":"2025-09-04T21:42:34.000000Z","updated_at":"2025-09-04T21:42:34.000000Z","actual_value":"3 or more years","responsable":{"uuid":"28edad1f-682d-452f-af5b-201d054a843a","form_field_id":403,"display_value":"3 or more years","actual_value":"3 or more years","is_accepted":true,"is_hidden":false,"position":3,"created_at":"2025-09-04T18:03:38.000000Z","updated_at":"2025-09-04T18:03:38.000000Z"}},{"uuid":"4509b3c8-fc80-44c7-802d-e3f41e2f1016","form_submission_id":1084,"form_field_id":405,"responsable_type":"form_field_choice","responsable_id":1244,"value":null,"created_at":"2025-09-04T21:42:34.000000Z","updated_at":"2025-09-04T21:42:34.000000Z","actual_value":"Brain meningioma","responsable":{"uuid":"9822452c-5b19-4383-b83f-0b3604332d41","form_field_id":405,"display_value":"Brain Meningioma","actual_value":"Brain meningioma","is_accepted":true,"is_hidden":false,"position":3,"created_at":"2025-09-04T18:03:38.000000Z","updated_at":"2025-09-04T18:03:38.000000Z"}},{"uuid":"a7d85f4c-6d02-43db-8c62-856e9a89ba80","form_submission_id":1084,"form_field_id":406,"responsable_type":null,"responsable_id":null,"value":"My case description for the landing page depo provera form.","created_at":"2025-09-04T21:42:34.000000Z","updated_at":"2025-09-04T21:42:34.000000Z","actual_value":"My case description for the landing page depo provera form."},{"uuid":"f39823c9-64e8-43b2-bba0-0a4a1b0cf4d7","form_submission_id":1084,"form_field_id":407,"responsable_type":"form_field_choice","responsable_id":1274,"value":null,"created_at":"2025-09-04T21:42:34.000000Z","updated_at":"2025-09-04T21:42:34.000000Z","actual_value":"No","responsable":{"uuid":"2b3ea938-2008-431f-9a0c-ca5966b799f2","form_field_id":407,"display_value":"No","actual_value":"No","is_accepted":true,"is_hidden":false,"position":0,"created_at":"2025-09-04T18:03:38.000000Z","updated_at":"2025-09-04T18:03:38.000000Z"}},{"uuid":"a4b50058-437c-44d3-b9d8-ef2bbe0c2536","form_submission_id":1084,"form_field_id":408,"responsable_type":null,"responsable_id":null,"value":"https:\/\/cert.trustedform.com\/b4990553ed100120e8f6331c8067120d654b6b4b","created_at":"2025-09-04T21:42:34.000000Z","updated_at":"2025-09-04T21:42:34.000000Z","actual_value":"https:\/\/cert.trustedform.com\/b4990553ed100120e8f6331c8067120d654b6b4b"},{"uuid":"6472e748-c36e-4638-904b-4d075ff9f8fa","form_submission_id":1084,"form_field_id":409,"responsable_type":null,"responsable_id":null,"value":"2800:98:1112:1f4d:740f:72f8:97ee:d522","created_at":"2025-09-04T21:42:34.000000Z","updated_at":"2025-09-04T21:42:34.000000Z","actual_value":"2800:98:1112:1f4d:740f:72f8:97ee:d522"}]}}
+⚠️ API no devolvió URL de redirección - usando dp_rejected
+📝 Info guardada en sesión - El shortcode manejará la redirección
+[2025-09-04 22:01:25] Respuesta completa: Array
+(
+    [valid] => 1
+    [number] => 12025550123
+    [local_format] => 2025550123
+    [international_format] => +12025550123
+    [country_prefix] => +1
+    [country_code] => US
+    [country_name] => United States of America
+    [location] => 
+    [carrier] => 
+    [line_type] => special_services
+)
+
+[2025-09-04 22:01:25] ✅ Validación del servidor: Todos los campos OK (25 campos)
+[2025-09-04 22:01:25] 🧪 MODO PRUEBAS - Formulario recibido (25 campos)
+[2025-09-04 22:01:25] 📝 CASE_INJURY: 'Brain Meningioma' - Solo guardando info para shortcode
+[2025-09-04 22:01:25] 🔍 TrustedForm capturado: https://cert.trustedform.com/1e967d7182646fb78f216a8d0add920a11680fd3
+[2025-09-04 22:01:25] 🧪 MODO PRUEBAS - Preparando envío
+📋 JSON QUE SE ENVIARÍA AL API:
+{
+    "lead-first-name": "test",
+    "lead-last-name": "tset",
+    "lead-email-address": "m@epic.gt",
+    "lead-phone": "12025550123",
+    "case-depo-provera-taken": "Yes, Depo Provera",
+    "case-depo-provera-use": "1 year",
+    "case-injury": "Brain Meningioma",
+    "case-description": "test",
+    "case-attorney": "No",
+    "lead-trusted-form-url": "https://cert.trustedform.com/1e967d7182646fb78f216a8d0add920a11680fd3",
+    "lead-ip-address": "2800:98:1112:1f4d:740f:72f8:97ee:d522",
+    "lead-zip-code": "30043",
+    "lead-state": "Alabama",
+    "other-injections": ""
+}
+🔗 URL DESTINO: https://api.valuedirectinc.com/api/submissions?form=ir-lca-depo-post&team=vdi&user=ee5a1aba-6009-4d58-8a16-3810e2f777ad&signature=89a78284fe446f579d91ad0768e326e505f40a6bfa95ebf03c38f90eb110d453
+🧪 MODO PRUEBAS ACTIVADO - NO se envía al API real
+Simulando respuesta exitosa...
+✅ Respuesta simulada exitosa - Redirect URL: https://injuryresolve.com/dp-thankyou/
+[2025-09-04 22:01:25] 🧪 MODO PRUEBAS - Preparando envío
+📋 JSON QUE SE ENVIARÍA AL API:
+{
+    "lead-first-name": "test",
+    "lead-last-name": "tset",
+    "lead-email-address": "m@epic.gt",
+    "lead-phone": "12025550123",
+    "case-depo-provera-taken": "Yes, Depo Provera",
+    "case-depo-provera-use": "1 year",
+    "case-injury": "Brain Meningioma",
+    "case-description": "test",
+    "case-attorney": "No",
+    "lead-trusted-form-url": "https://cert.trustedform.com/1e967d7182646fb78f216a8d0add920a11680fd3",
+    "lead-ip-address": "2800:98:1112:1f4d:740f:72f8:97ee:d522",
+    "lead-zip-code": "30043",
+    "lead-state": "Alabama",
+    "other-injections": ""
+}
+🔗 URL DESTINO: https://api.valuedirectinc.com/api/submissions?form=ir-lca-depo-post&team=vdi&user=ee5a1aba-6009-4d58-8a16-3810e2f777ad&signature=89a78284fe446f579d91ad0768e326e505f40a6bfa95ebf03c38f90eb110d453
+🧪 MODO PRUEBAS ACTIVADO - NO se envía al API real
+Simulando respuesta exitosa...
+✅ Respuesta simulada exitosa - Redirect URL: https://injuryresolve.com/dp-thankyou/
+✅ API devolvió api_redirect_url: https://injuryresolve.com/dp-thankyou/
+🍪 Cookie backup guardada: https://injuryresolve.com/dp-thankyou/
+📝 Info guardada en sesión - El shortcode manejará la redirección
+[2025-09-04 22:20:44] Respuesta completa: Array
+(
+    [valid] => 1
+    [number] => 14045557890
+    [local_format] => 4045557890
+    [international_format] => +14045557890
+    [country_prefix] => +1
+    [country_code] => US
+    [country_name] => United States of America
+    [location] => 
+    [carrier] => 
+    [line_type] => special_services
+)
+
+[2025-09-04 22:20:44] ✅ Validación del servidor: Todos los campos OK (26 campos)
+[2025-09-04 22:20:44] 🧪 MODO PRUEBAS - Formulario recibido (26 campos)
+[2025-09-04 22:20:44] 📝 CASE_INJURY: 'Brain Meningioma' - Solo guardando info para shortcode
+[2025-09-04 22:20:44] 🔍 TrustedForm capturado: https://cert.trustedform.com/bc3ae26ddfcabd0f54b8bb6ddc2e22463b10b027
+[2025-09-04 22:20:44] 🧪 MODO PRUEBAS - Preparando envío
+📋 JSON QUE SE ENVIARÍA AL API:
+{
+    "lead-first-name": "test",
+    "lead-last-name": "test",
+    "lead-email-address": "m@epic.gt",
+    "lead-phone": "14045557890",
+    "case-depo-provera-taken": "Yes, Depo Provera",
+    "case-depo-provera-use": "1 year",
+    "case-injury": "Brain Meningioma",
+    "case-description": "test",
+    "case-attorney": "No",
+    "lead-trusted-form-url": "https://cert.trustedform.com/bc3ae26ddfcabd0f54b8bb6ddc2e22463b10b027",
+    "lead-ip-address": "2800:98:1112:1f4d:740f:72f8:97ee:d522",
+    "lead-zip-code": "30043",
+    "lead-state": "Alabama",
+    "other-injections": ""
+}
+🔗 URL DESTINO: https://api.valuedirectinc.com/api/submissions?form=ir-lca-depo-post&team=vdi&user=ee5a1aba-6009-4d58-8a16-3810e2f777ad&signature=89a78284fe446f579d91ad0768e326e505f40a6bfa95ebf03c38f90eb110d453
+🧪 MODO PRUEBAS ACTIVADO - NO se envía al API real
+Simulando respuesta exitosa...
+✅ Respuesta simulada exitosa - Redirect URL: https://injuryresolve.com/dp-thankyou/
+[2025-09-04 22:20:44] 🧪 MODO PRUEBAS - Preparando envío
+📋 JSON QUE SE ENVIARÍA AL API:
+{
+    "lead-first-name": "test",
+    "lead-last-name": "test",
+    "lead-email-address": "m@epic.gt",
+    "lead-phone": "14045557890",
+    "case-depo-provera-taken": "Yes, Depo Provera",
+    "case-depo-provera-use": "1 year",
+    "case-injury": "Brain Meningioma",
+    "case-description": "test",
+    "case-attorney": "No",
+    "lead-trusted-form-url": "https://cert.trustedform.com/bc3ae26ddfcabd0f54b8bb6ddc2e22463b10b027",
+    "lead-ip-address": "2800:98:1112:1f4d:740f:72f8:97ee:d522",
+    "lead-zip-code": "30043",
+    "lead-state": "Alabama",
+    "other-injections": ""
+}
+🔗 URL DESTINO: https://api.valuedirectinc.com/api/submissions?form=ir-lca-depo-post&team=vdi&user=ee5a1aba-6009-4d58-8a16-3810e2f777ad&signature=89a78284fe446f579d91ad0768e326e505f40a6bfa95ebf03c38f90eb110d453
+🧪 MODO PRUEBAS ACTIVADO - NO se envía al API real
+Simulando respuesta exitosa...
+✅ Respuesta simulada exitosa - Redirect URL: https://injuryresolve.com/dp-thankyou/
+✅ API devolvió api_redirect_url: https://injuryresolve.com/dp-thankyou/
+🍪 Cookie backup guardada: https://injuryresolve.com/dp-thankyou/
+📝 Info guardada en sesión - El shortcode manejará la redirección
+[2025-09-04 22:26:51] Respuesta completa: Array
+(
+    [valid] => 1
+    [number] => 14044327619
+    [local_format] => 4044327619
+    [international_format] => +14044327619
+    [country_prefix] => +1
+    [country_code] => US
+    [country_name] => United States of America
+    [location] => Atlanta
+    [carrier] => AT&T Mobility LLC
+    [line_type] => mobile
+)
+
+[2025-09-04 22:26:51] ✅ Validación del servidor: Todos los campos OK (26 campos)
+[2025-09-04 22:26:51] 🧪 MODO PRUEBAS - Formulario recibido (26 campos)
+[2025-09-04 22:26:51] 📝 CASE_INJURY: 'Brain Meningioma' - Solo guardando info para shortcode
+[2025-09-04 22:26:51] 🔍 TrustedForm capturado: https://cert.trustedform.com/9d0ed8dab179b9bf43720e2ade04062ef2dd54d7
+[2025-09-04 22:26:51] 🧪 MODO PRUEBAS - Preparando envío
+📋 JSON QUE SE ENVIARÍA AL API:
+{
+    "lead-first-name": "tws",
+    "lead-last-name": "asdtst",
+    "lead-email-address": "m@test.com",
+    "lead-phone": "14044327619",
+    "case-depo-provera-taken": "Yes, Depo Provera",
+    "case-depo-provera-use": "1 year",
+    "case-injury": "Brain Meningioma",
+    "case-description": "twwt",
+    "case-attorney": "No",
+    "lead-trusted-form-url": "https://cert.trustedform.com/9d0ed8dab179b9bf43720e2ade04062ef2dd54d7",
+    "lead-ip-address": "2800:98:1112:1f4d:740f:72f8:97ee:d522",
+    "lead-zip-code": "30043",
+    "lead-state": "Alabama",
+    "other-injections": ""
+}
+🔗 URL DESTINO: https://api.valuedirectinc.com/api/submissions?form=ir-lca-depo-post&team=vdi&user=ee5a1aba-6009-4d58-8a16-3810e2f777ad&signature=89a78284fe446f579d91ad0768e326e505f40a6bfa95ebf03c38f90eb110d453
+🧪 MODO PRUEBAS ACTIVADO - NO se envía al API real
+Simulando respuesta exitosa...
+✅ Respuesta simulada exitosa - Redirect URL: https://injuryresolve.com/dp-thankyou/
+[2025-09-04 22:26:51] 🧪 MODO PRUEBAS - Preparando envío
+📋 JSON QUE SE ENVIARÍA AL API:
+{
+    "lead-first-name": "tws",
+    "lead-last-name": "asdtst",
+    "lead-email-address": "m@test.com",
+    "lead-phone": "14044327619",
+    "case-depo-provera-taken": "Yes, Depo Provera",
+    "case-depo-provera-use": "1 year",
+    "case-injury": "Brain Meningioma",
+    "case-description": "twwt",
+    "case-attorney": "No",
+    "lead-trusted-form-url": "https://cert.trustedform.com/9d0ed8dab179b9bf43720e2ade04062ef2dd54d7",
+    "lead-ip-address": "2800:98:1112:1f4d:740f:72f8:97ee:d522",
+    "lead-zip-code": "30043",
+    "lead-state": "Alabama",
+    "other-injections": ""
+}
+🔗 URL DESTINO: https://api.valuedirectinc.com/api/submissions?form=ir-lca-depo-post&team=vdi&user=ee5a1aba-6009-4d58-8a16-3810e2f777ad&signature=89a78284fe446f579d91ad0768e326e505f40a6bfa95ebf03c38f90eb110d453
+🧪 MODO PRUEBAS ACTIVADO - NO se envía al API real
+Simulando respuesta exitosa...
+✅ Respuesta simulada exitosa - Redirect URL: https://injuryresolve.com/dp-thankyou/
+✅ API devolvió api_redirect_url: https://injuryresolve.com/dp-thankyou/
+🍪 Cookie backup guardada: https://injuryresolve.com/dp-thankyou/
+📝 Info guardada en sesión - El shortcode manejará la redirección
+[2025-09-04 22:59:23] Respuesta completa: Array
+(
+    [valid] => 1
+    [number] => 14049823765
+    [local_format] => 4049823765
+    [international_format] => +14049823765
+    [country_prefix] => +1
+    [country_code] => US
+    [country_name] => United States of America
+    [location] => Atlanta
+    [carrier] => 
+    [line_type] => landline
+)
+
+[2025-09-04 22:59:23] ✅ Validación del servidor: Todos los campos OK (26 campos)
+[2025-09-04 22:59:23] 🧪 MODO PRUEBAS - Formulario recibido (26 campos)
+[2025-09-04 22:59:23] 📝 CASE_INJURY: 'Brain Meningioma' - Solo guardando info para shortcode
+[2025-09-04 22:59:23] 🔍 TrustedForm capturado: https://cert.trustedform.com/64004c84178360bd8a4bfda5ef1c3584a4147d42
+[2025-09-04 22:59:23] 🧪 MODO PRUEBAS - Preparando envío
+📋 JSON QUE SE ENVIARÍA AL API:
+{
+    "lead-first-name": "tsts",
+    "lead-last-name": "stst",
+    "lead-email-address": "m@ets.com",
+    "lead-phone": "14049823765",
+    "case-depo-provera-taken": "Yes, Depo Provera",
+    "case-depo-provera-use": "1 year",
+    "case-injury": "Brain Meningioma",
+    "case-description": "test",
+    "case-attorney": "No",
+    "lead-trusted-form-url": "https://cert.trustedform.com/64004c84178360bd8a4bfda5ef1c3584a4147d42",
+    "lead-ip-address": "2800:98:1112:1f4d:740f:72f8:97ee:d522",
+    "lead-zip-code": "30045",
+    "lead-state": "Alabama",
+    "other-injections": ""
+}
+🔗 URL DESTINO: https://api.valuedirectinc.com/api/submissions?form=ir-lca-depo-post&team=vdi&user=ee5a1aba-6009-4d58-8a16-3810e2f777ad&signature=89a78284fe446f579d91ad0768e326e505f40a6bfa95ebf03c38f90eb110d453
+🧪 MODO PRUEBAS ACTIVADO - NO se envía al API real
+Simulando respuesta exitosa...
+✅ Respuesta simulada exitosa - Redirect URL: https://injuryresolve.com/dp-thankyou/
+[2025-09-04 22:59:23] 🧪 MODO PRUEBAS - Preparando envío
+📋 JSON QUE SE ENVIARÍA AL API:
+{
+    "lead-first-name": "tsts",
+    "lead-last-name": "stst",
+    "lead-email-address": "m@ets.com",
+    "lead-phone": "14049823765",
+    "case-depo-provera-taken": "Yes, Depo Provera",
+    "case-depo-provera-use": "1 year",
+    "case-injury": "Brain Meningioma",
+    "case-description": "test",
+    "case-attorney": "No",
+    "lead-trusted-form-url": "https://cert.trustedform.com/64004c84178360bd8a4bfda5ef1c3584a4147d42",
+    "lead-ip-address": "2800:98:1112:1f4d:740f:72f8:97ee:d522",
+    "lead-zip-code": "30045",
+    "lead-state": "Alabama",
+    "other-injections": ""
+}
+🔗 URL DESTINO: https://api.valuedirectinc.com/api/submissions?form=ir-lca-depo-post&team=vdi&user=ee5a1aba-6009-4d58-8a16-3810e2f777ad&signature=89a78284fe446f579d91ad0768e326e505f40a6bfa95ebf03c38f90eb110d453
+🧪 MODO PRUEBAS ACTIVADO - NO se envía al API real
+Simulando respuesta exitosa...
+✅ Respuesta simulada exitosa - Redirect URL: https://injuryresolve.com/dp-thankyou/
+✅ API devolvió api_redirect_url: https://injuryresolve.com/dp-thankyou/
+🍪 Cookie backup guardada: https://injuryresolve.com/dp-thankyou/
+📝 Info guardada en sesión - El shortcode manejará la redirección
+[2025-09-05 18:52:35] Respuesta completa: Array
+(
+    [valid] => 1
+    [number] => 14045672134
+    [local_format] => 4045672134
+    [international_format] => +14045672134
+    [country_prefix] => +1
+    [country_code] => US
+    [country_name] => United States of America
+    [location] => Atlanta
+    [carrier] => T-Mobile USA Inc.
+    [line_type] => mobile
+)
+
+[2025-09-05 18:52:35] 🔴 MODO PRODUCCIÓN - Formulario recibido (26 campos)
+[2025-09-05 18:52:35] 📝 CASE_INJURY: 'Brain Meningioma' - Solo guardando info para shortcode
+[2025-09-05 18:52:35] 🔍 TrustedForm capturado: https://cert.trustedform.com/c827c5bb286143a403334dda5562a903897d3208
+[2025-09-05 18:52:35] 🔴 ENVÍO A VDI - Preparando envío
+📋 JSON QUE SE ENVIARÍA AL API:
+{
+    "lead-first-name": "Yamal",
+    "lead-last-name": "Williams",
+    "lead-email-address": "yamal@epic.gt",
+    "lead-phone": "14045672134",
+    "case-depo-provera-taken": "Yes, Depo Provera",
+    "case-depo-provera-use": "3 or more years",
+    "case-injury": "Brain Meningioma",
+    "case-description": "this is my case description for a OK test. Mimer.",
+    "case-attorney": "No",
+    "lead-trusted-form-url": "https://cert.trustedform.com/c827c5bb286143a403334dda5562a903897d3208",
+    "lead-ip-address": "190.56.17.10",
+    "lead-zip-code": "30043",
+    "lead-state": "Georgia",
+    "other-injections": ""
+}
+🔗 URL DESTINO: https://api.valuedirectinc.com/api/submissions?form=ir-lca-depo-post&team=vdi&user=ee5a1aba-6009-4d58-8a16-3810e2f777ad&signature=89a78284fe446f579d91ad0768e326e505f40a6bfa95ebf03c38f90eb110d453
+📥 Respuesta recibida: {"success":true,"code":200,"locale":"en","slug":"successfully_created_a_new_submission","message":"Successfully created a new submission.","data":{"uuid":"9cb3bdd7-1200-4bc6-9d0d-6512f0e4381b","name":"IR-LCA-DP - Yamal Williams (2025-09-05)","is_test":true,"status":"pending","reject_reason":null,"validation_errors":null,"api_lead_id":null,"api_response_message":null,"api_validation_errors":null,"reviewed_at":null,"created_at":"2025-09-05T18:52:35.000000Z","updated_at":"2025-09-05T18:52:35.000000Z","api_redirect_url":null,"redirect_url":null,"is_reviewed":false,"is_approved":false,"is_rejected":false,"form":{"title":"IR LCA Depo Post","slug":"ir-lca-depo-post","sdk":"affi-media","auto_approve":false,"auto_reject":true,"description":null,"production_at":null,"disabled_at":null,"disable_reason":null,"created_at":"2025-09-04T18:03:37.000000Z","updated_at":"2025-09-04T18:06:55.000000Z","has_sdk":true,"is_production":false,"is_enabled":true},"responses":[{"uuid":"eda09082-487b-40ae-8a26-bd8c70157eeb","form_submission_id":1087,"form_field_id":395,"responsable_type":null,"responsable_id":null,"value":"Yamal","created_at":"2025-09-05T18:52:35.000000Z","updated_at":"2025-09-05T18:52:35.000000Z","actual_value":"Yamal"},{"uuid":"a7c289b2-fe52-4a33-ba27-2043b6d4724d","form_submission_id":1087,"form_field_id":396,"responsable_type":null,"responsable_id":null,"value":"Williams","created_at":"2025-09-05T18:52:35.000000Z","updated_at":"2025-09-05T18:52:35.000000Z","actual_value":"Williams"},{"uuid":"8fb0d4da-1c7c-4c31-922a-5968f2412a4f","form_submission_id":1087,"form_field_id":397,"responsable_type":null,"responsable_id":null,"value":"yamal@epic.gt","created_at":"2025-09-05T18:52:35.000000Z","updated_at":"2025-09-05T18:52:35.000000Z","actual_value":"yamal@epic.gt"},{"uuid":"aff756d2-7a24-41d3-8bfc-f14c950d1e77","form_submission_id":1087,"form_field_id":398,"responsable_type":null,"responsable_id":null,"value":"14045672134","created_at":"2025-09-05T18:52:35.000000Z","updated_at":"2025-09-05T18:52:35.000000Z","actual_value":"14045672134"},{"uuid":"52f55125-86f3-492f-a7a9-5ae7a65f386e","form_submission_id":1087,"form_field_id":399,"responsable_type":"form_field_choice","responsable_id":1177,"value":null,"created_at":"2025-09-05T18:52:35.000000Z","updated_at":"2025-09-05T18:52:35.000000Z","actual_value":"GA","responsable":{"uuid":"86770088-38b5-470c-97dc-0887ff9ce88b","form_field_id":399,"display_value":"Georgia","actual_value":"GA","is_accepted":true,"is_hidden":false,"position":10,"created_at":"2025-09-04T18:03:37.000000Z","updated_at":"2025-09-04T18:03:37.000000Z"}},{"uuid":"07994153-9e49-4863-a606-3c34bba0bd1e","form_submission_id":1087,"form_field_id":400,"responsable_type":null,"responsable_id":null,"value":"30043","created_at":"2025-09-05T18:52:35.000000Z","updated_at":"2025-09-05T18:52:35.000000Z","actual_value":"30043"},{"uuid":"d6a486dd-f6e1-493e-8307-23491a2bb8af","form_submission_id":1087,"form_field_id":401,"responsable_type":"form_field_choice","responsable_id":1220,"value":null,"created_at":"2025-09-05T18:52:35.000000Z","updated_at":"2025-09-05T18:52:35.000000Z","actual_value":"Yes","responsable":{"uuid":"b3584392-eb13-44a4-8cb4-5a886dcd3e9e","form_field_id":401,"display_value":"Yes, Depo Provera","actual_value":"Yes","is_accepted":true,"is_hidden":false,"position":0,"created_at":"2025-09-04T18:03:37.000000Z","updated_at":"2025-09-04T18:03:37.000000Z"}},{"uuid":"83eeaaf6-bea1-4f4d-bb1b-dffcdd27ae0c","form_submission_id":1087,"form_field_id":403,"responsable_type":"form_field_choice","responsable_id":1237,"value":null,"created_at":"2025-09-05T18:52:35.000000Z","updated_at":"2025-09-05T18:52:35.000000Z","actual_value":"3 or more years","responsable":{"uuid":"28edad1f-682d-452f-af5b-201d054a843a","form_field_id":403,"display_value":"3 or more years","actual_value":"3 or more years","is_accepted":true,"is_hidden":false,"position":3,"created_at":"2025-09-04T18:03:38.000000Z","updated_at":"2025-09-04T18:03:38.000000Z"}},{"uuid":"a23501e9-7879-4fbb-8ff3-17cee90c20b8","form_submission_id":1087,"form_field_id":405,"responsable_type":"form_field_choice","responsable_id":1244,"value":null,"created_at":"2025-09-05T18:52:35.000000Z","updated_at":"2025-09-05T18:52:35.000000Z","actual_value":"Brain meningioma","responsable":{"uuid":"9822452c-5b19-4383-b83f-0b3604332d41","form_field_id":405,"display_value":"Brain Meningioma","actual_value":"Brain meningioma","is_accepted":true,"is_hidden":false,"position":3,"created_at":"2025-09-04T18:03:38.000000Z","updated_at":"2025-09-04T18:03:38.000000Z"}},{"uuid":"710f57b7-dfd8-43c3-9d22-53ca47f1d0f2","form_submission_id":1087,"form_field_id":406,"responsable_type":null,"responsable_id":null,"value":"this is my case description for a OK test. Mimer.","created_at":"2025-09-05T18:52:35.000000Z","updated_at":"2025-09-05T18:52:35.000000Z","actual_value":"this is my case description for a OK test. Mimer."},{"uuid":"8e7140c4-e90e-45fd-9e37-33ef9707f349","form_submission_id":1087,"form_field_id":407,"responsable_type":"form_field_choice","responsable_id":1274,"value":null,"created_at":"2025-09-05T18:52:35.000000Z","updated_at":"2025-09-05T18:52:35.000000Z","actual_value":"No","responsable":{"uuid":"2b3ea938-2008-431f-9a0c-ca5966b799f2","form_field_id":407,"display_value":"No","actual_value":"No","is_accepted":true,"is_hidden":false,"position":0,"created_at":"2025-09-04T18:03:38.000000Z","updated_at":"2025-09-04T18:03:38.000000Z"}},{"uuid":"bce9db81-654e-4de3-9a63-d8fa6fc324e5","form_submission_id":1087,"form_field_id":408,"responsable_type":null,"responsable_id":null,"value":"https:\/\/cert.trustedform.com\/c827c5bb286143a403334dda5562a903897d3208","created_at":"2025-09-05T18:52:35.000000Z","updated_at":"2025-09-05T18:52:35.000000Z","actual_value":"https:\/\/cert.trustedform.com\/c827c5bb286143a403334dda5562a903897d3208"},{"uuid":"b4ad0786-5b8f-4494-bc1e-309e1ac33f6a","form_submission_id":1087,"form_field_id":409,"responsable_type":null,"responsable_id":null,"value":"190.56.17.10","created_at":"2025-09-05T18:52:35.000000Z","updated_at":"2025-09-05T18:52:35.000000Z","actual_value":"190.56.17.10"}]}}
+⚠️ API no devolvió URL de redirección - usando dp_rejected
+[2025-09-05 18:52:35] 🔴 ENVÍO A VDI - Preparando envío
+📋 JSON QUE SE ENVIARÍA AL API:
+{
+    "lead-first-name": "Yamal",
+    "lead-last-name": "Williams",
+    "lead-email-address": "yamal@epic.gt",
+    "lead-phone": "14045672134",
+    "case-depo-provera-taken": "Yes, Depo Provera",
+    "case-depo-provera-use": "3 or more years",
+    "case-injury": "Brain Meningioma",
+    "case-description": "this is my case description for a OK test. Mimer.",
+    "case-attorney": "No",
+    "lead-trusted-form-url": "https://cert.trustedform.com/c827c5bb286143a403334dda5562a903897d3208",
+    "lead-ip-address": "190.56.17.10",
+    "lead-zip-code": "30043",
+    "lead-state": "Georgia",
+    "other-injections": ""
+}
+🔗 URL DESTINO: https://api.valuedirectinc.com/api/submissions?form=ir-lca-depo-post&team=vdi&user=ee5a1aba-6009-4d58-8a16-3810e2f777ad&signature=89a78284fe446f579d91ad0768e326e505f40a6bfa95ebf03c38f90eb110d453
+📥 Respuesta recibida: {"success":true,"code":200,"locale":"en","slug":"successfully_created_a_new_submission","message":"Successfully created a new submission.","data":{"uuid":"9cb3bdd7-1200-4bc6-9d0d-6512f0e4381b","name":"IR-LCA-DP - Yamal Williams (2025-09-05)","is_test":true,"status":"pending","reject_reason":null,"validation_errors":null,"api_lead_id":null,"api_response_message":null,"api_validation_errors":null,"reviewed_at":null,"created_at":"2025-09-05T18:52:35.000000Z","updated_at":"2025-09-05T18:52:35.000000Z","api_redirect_url":null,"redirect_url":null,"is_reviewed":false,"is_approved":false,"is_rejected":false,"form":{"title":"IR LCA Depo Post","slug":"ir-lca-depo-post","sdk":"affi-media","auto_approve":false,"auto_reject":true,"description":null,"production_at":null,"disabled_at":null,"disable_reason":null,"created_at":"2025-09-04T18:03:37.000000Z","updated_at":"2025-09-04T18:06:55.000000Z","has_sdk":true,"is_production":false,"is_enabled":true},"responses":[{"uuid":"eda09082-487b-40ae-8a26-bd8c70157eeb","form_submission_id":1087,"form_field_id":395,"responsable_type":null,"responsable_id":null,"value":"Yamal","created_at":"2025-09-05T18:52:35.000000Z","updated_at":"2025-09-05T18:52:35.000000Z","actual_value":"Yamal"},{"uuid":"a7c289b2-fe52-4a33-ba27-2043b6d4724d","form_submission_id":1087,"form_field_id":396,"responsable_type":null,"responsable_id":null,"value":"Williams","created_at":"2025-09-05T18:52:35.000000Z","updated_at":"2025-09-05T18:52:35.000000Z","actual_value":"Williams"},{"uuid":"8fb0d4da-1c7c-4c31-922a-5968f2412a4f","form_submission_id":1087,"form_field_id":397,"responsable_type":null,"responsable_id":null,"value":"yamal@epic.gt","created_at":"2025-09-05T18:52:35.000000Z","updated_at":"2025-09-05T18:52:35.000000Z","actual_value":"yamal@epic.gt"},{"uuid":"aff756d2-7a24-41d3-8bfc-f14c950d1e77","form_submission_id":1087,"form_field_id":398,"responsable_type":null,"responsable_id":null,"value":"14045672134","created_at":"2025-09-05T18:52:35.000000Z","updated_at":"2025-09-05T18:52:35.000000Z","actual_value":"14045672134"},{"uuid":"52f55125-86f3-492f-a7a9-5ae7a65f386e","form_submission_id":1087,"form_field_id":399,"responsable_type":"form_field_choice","responsable_id":1177,"value":null,"created_at":"2025-09-05T18:52:35.000000Z","updated_at":"2025-09-05T18:52:35.000000Z","actual_value":"GA","responsable":{"uuid":"86770088-38b5-470c-97dc-0887ff9ce88b","form_field_id":399,"display_value":"Georgia","actual_value":"GA","is_accepted":true,"is_hidden":false,"position":10,"created_at":"2025-09-04T18:03:37.000000Z","updated_at":"2025-09-04T18:03:37.000000Z"}},{"uuid":"07994153-9e49-4863-a606-3c34bba0bd1e","form_submission_id":1087,"form_field_id":400,"responsable_type":null,"responsable_id":null,"value":"30043","created_at":"2025-09-05T18:52:35.000000Z","updated_at":"2025-09-05T18:52:35.000000Z","actual_value":"30043"},{"uuid":"d6a486dd-f6e1-493e-8307-23491a2bb8af","form_submission_id":1087,"form_field_id":401,"responsable_type":"form_field_choice","responsable_id":1220,"value":null,"created_at":"2025-09-05T18:52:35.000000Z","updated_at":"2025-09-05T18:52:35.000000Z","actual_value":"Yes","responsable":{"uuid":"b3584392-eb13-44a4-8cb4-5a886dcd3e9e","form_field_id":401,"display_value":"Yes, Depo Provera","actual_value":"Yes","is_accepted":true,"is_hidden":false,"position":0,"created_at":"2025-09-04T18:03:37.000000Z","updated_at":"2025-09-04T18:03:37.000000Z"}},{"uuid":"83eeaaf6-bea1-4f4d-bb1b-dffcdd27ae0c","form_submission_id":1087,"form_field_id":403,"responsable_type":"form_field_choice","responsable_id":1237,"value":null,"created_at":"2025-09-05T18:52:35.000000Z","updated_at":"2025-09-05T18:52:35.000000Z","actual_value":"3 or more years","responsable":{"uuid":"28edad1f-682d-452f-af5b-201d054a843a","form_field_id":403,"display_value":"3 or more years","actual_value":"3 or more years","is_accepted":true,"is_hidden":false,"position":3,"created_at":"2025-09-04T18:03:38.000000Z","updated_at":"2025-09-04T18:03:38.000000Z"}},{"uuid":"a23501e9-7879-4fbb-8ff3-17cee90c20b8","form_submission_id":1087,"form_field_id":405,"responsable_type":"form_field_choice","responsable_id":1244,"value":null,"created_at":"2025-09-05T18:52:35.000000Z","updated_at":"2025-09-05T18:52:35.000000Z","actual_value":"Brain meningioma","responsable":{"uuid":"9822452c-5b19-4383-b83f-0b3604332d41","form_field_id":405,"display_value":"Brain Meningioma","actual_value":"Brain meningioma","is_accepted":true,"is_hidden":false,"position":3,"created_at":"2025-09-04T18:03:38.000000Z","updated_at":"2025-09-04T18:03:38.000000Z"}},{"uuid":"710f57b7-dfd8-43c3-9d22-53ca47f1d0f2","form_submission_id":1087,"form_field_id":406,"responsable_type":null,"responsable_id":null,"value":"this is my case description for a OK test. Mimer.","created_at":"2025-09-05T18:52:35.000000Z","updated_at":"2025-09-05T18:52:35.000000Z","actual_value":"this is my case description for a OK test. Mimer."},{"uuid":"8e7140c4-e90e-45fd-9e37-33ef9707f349","form_submission_id":1087,"form_field_id":407,"responsable_type":"form_field_choice","responsable_id":1274,"value":null,"created_at":"2025-09-05T18:52:35.000000Z","updated_at":"2025-09-05T18:52:35.000000Z","actual_value":"No","responsable":{"uuid":"2b3ea938-2008-431f-9a0c-ca5966b799f2","form_field_id":407,"display_value":"No","actual_value":"No","is_accepted":true,"is_hidden":false,"position":0,"created_at":"2025-09-04T18:03:38.000000Z","updated_at":"2025-09-04T18:03:38.000000Z"}},{"uuid":"bce9db81-654e-4de3-9a63-d8fa6fc324e5","form_submission_id":1087,"form_field_id":408,"responsable_type":null,"responsable_id":null,"value":"https:\/\/cert.trustedform.com\/c827c5bb286143a403334dda5562a903897d3208","created_at":"2025-09-05T18:52:35.000000Z","updated_at":"2025-09-05T18:52:35.000000Z","actual_value":"https:\/\/cert.trustedform.com\/c827c5bb286143a403334dda5562a903897d3208"},{"uuid":"b4ad0786-5b8f-4494-bc1e-309e1ac33f6a","form_submission_id":1087,"form_field_id":409,"responsable_type":null,"responsable_id":null,"value":"190.56.17.10","created_at":"2025-09-05T18:52:35.000000Z","updated_at":"2025-09-05T18:52:35.000000Z","actual_value":"190.56.17.10"}]}}
+⚠️ API no devolvió URL de redirección - usando dp_rejected
+📝 Info guardada en sesión - El shortcode manejará la redirección

@@ -2,7 +2,7 @@
 /*
 Plugin Name: Mimer forms VDI
 Description: Validaciones, conexion con API y otros.
-Version: 1.52
+Version: 1.6
 Author: Mimer
 */
 

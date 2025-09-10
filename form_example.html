@@ -74,7 +74,7 @@
     ];
     
     radioFields.forEach(function(fieldName) {
-      $('#dp_form').on(
+      $('#roundup_form').on(
         'change',
         'input[type="radio"][name="form_fields[' + fieldName + ']"]',
         function () {
@@ -101,7 +101,7 @@
     
     selectFields.forEach(function(fieldName) {
       // Manejar selects normales
-      $('#dp_form').on('change', '#form-field-' + fieldName, function () {
+      $('#roundup_form').on('change', '#form-field-' + fieldName, function () {
         console.log('Change detectado en select ' + fieldName + ':', $(this).val()); // DEBUG
         if ($(this).val() && $(this).val() !== '-- Select one--                          ') {
           console.log('Select válido para ' + fieldName + ', avanzando paso...'); // DEBUG
@@ -115,7 +115,7 @@
       });
       
       // Manejar Select2 (si está presente)
-      $('#dp_form').on('select2:select', '#form-field-' + fieldName, function (e) {
+      $('#roundup_form').on('select2:select', '#form-field-' + fieldName, function (e) {
         console.log('Select2 change detectado en ' + fieldName + ':', $(this).val()); // DEBUG
         var data = e.params.data;
         if (data.id && data.id !== '-- Select one--                          ') {
@@ -163,15 +163,13 @@
 </script>
 
 
-
-
 		<form class="elementor-form" method="post" id="roundup_form" name="RoundUp-form" aria-label="RoundUp-form">
 			<input type="hidden" name="post_id" value="1476">
 			<input type="hidden" name="form_id" value="roundup_form">
 			<input type="hidden" name="referer_title" value="RoundUp Lawsuit">							<input type="hidden" name="queried_id" value="1476">
 			
-			<div class="e-form__indicators e-form__indicators--type-progress_bar"><div class="e-form__indicators__indicator__progress"><div class="e-form__indicators__indicator__progress__meter">12%</div></div></div><div class="elementor-form-fields-wrapper elementor-labels-above">
-								<div class="elementor-field-type-step elementor-column elementor-field-group-field_ee3fc9a elementor-col-100 e-form__step">
+			<div class="e-form__indicators e-form__indicators--type-progress_bar"><div class="e-form__indicators__indicator__progress"><div class="e-form__indicators__indicator__progress__meter" style="width: 25%;">12%</div></div></div><div class="elementor-form-fields-wrapper elementor-labels-above">
+								<div class="elementor-field-type-step elementor-column elementor-field-group-field_ee3fc9a elementor-col-100 e-form__step elementor-hidden">
 							<div class="e-field-step elementor-hidden" data-label="1" data-previousbutton="" data-nextbutton="" data-iconurl="" data-iconlibrary="fas fa-star" data-icon="&lt;svg class=&quot;e-font-icon-svg e-fas-star&quot; viewBox=&quot;0 0 576 512&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot;&gt;&lt;path d=&quot;M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;"></div>
 
 						<div class="elementor-field-type-html elementor-field-group elementor-column elementor-field-group-field_b703ba1 elementor-col-100">
@@ -192,7 +190,7 @@
     </span>
 </a>				</div><div class="e-form__buttons elementor-column elementor-col-100"><div class="elementor-field-group e-form__buttons__wrapper elementor-field-type-next"><button type="button" class="elementor-button elementor-size-sm e-form__buttons__wrapper__button e-form__buttons__wrapper__button-next" data-direction="next">Next</button></div></div></div>
 								
-								<div class="elementor-field-type-step elementor-column elementor-field-group-field_d5a7cf1 elementor-col-100 e-form__step elementor-hidden">
+								<div class="elementor-field-type-step elementor-column elementor-field-group-field_d5a7cf1 elementor-col-100 e-form__step">
 							<div class="e-field-step elementor-hidden" data-label="11" data-previousbutton="" data-nextbutton="" data-iconurl="" data-iconlibrary="fas fa-star" data-icon="&lt;svg class=&quot;e-font-icon-svg e-fas-star&quot; viewBox=&quot;0 0 576 512&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot;&gt;&lt;path d=&quot;M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;"></div>
 
 						<div class="elementor-field-type-radio elementor-field-group elementor-column elementor-field-group-case_exposed elementor-col-100 elementor-field-required">
@@ -225,8 +223,8 @@
 								<div class="elementor-field elementor-select-wrapper remove-before ">
 			<div class="select-caret-down-wrapper">
 				<svg aria-hidden="true" class="e-font-icon-svg e-eicon-caret-down" viewBox="0 0 571.4 571.4" xmlns="http://www.w3.org/2000/svg"><path d="M571 393Q571 407 561 418L311 668Q300 679 286 679T261 668L11 418Q0 407 0 393T11 368 36 357H536Q550 357 561 368T571 393Z"></path></svg>			</div>
-			<select name="form_fields[case_injury]" id="form-field-case_injury" class="elementor-field-textual elementor-size-sm" required="required">
-									<option value="-- Select one--&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp; ">-- Select one--&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp; </option>
+			<select name="form_fields[case_injury]" id="form-field-case_injury" class="elementor-field-textual elementor-size-sm select2-hidden-accessible" required="required" data-select2-id="select2-data-form-field-case_injury" tabindex="-1" aria-hidden="true">
+									<option value="-- Select one--&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp; " data-select2-id="select2-data-2-dfqd">-- Select one--&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp; </option>
 									<option value="Anaplastic Large T/Null-Cell Lymphoma (T/N-ALCL)">Anaplastic Large T/Null-Cell Lymphoma (T/N-ALCL)</option>
 									<option value="B-Cell Lymphoma ">B-Cell Lymphoma </option>
 									<option value="Burkitt Lymphoma (B-BL)">Burkitt Lymphoma (B-BL)</option>
@@ -242,7 +240,7 @@
 									<option value="Hairy Cell Lymphoma">Hairy Cell Lymphoma</option>
 									<option value="Other cancer ">Other cancer </option>
 									<option value="No cancer">No cancer</option>
-							</select>
+							</select><span class="select2 select2-container select2-container--default" dir="ltr" data-select2-id="select2-data-1-27ym" style="width: 100%;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-disabled="false" aria-labelledby="select2-form-field-case_injury-container" aria-controls="select2-form-field-case_injury-container"><span class="select2-selection__rendered" id="select2-form-field-case_injury-container" role="textbox" aria-readonly="true" title="-- Select one--&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp; ">-- Select one--&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp; </span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
 		</div>
 						</div><div class="e-form__buttons elementor-column elementor-col-100"><div class="elementor-field-group e-form__buttons__wrapper elementor-field-type-previous"><button type="button" class="elementor-button elementor-size-sm e-form__buttons__wrapper__button e-form__buttons__wrapper__button-previous" data-direction="previous">Previous</button></div><div class="elementor-field-group e-form__buttons__wrapper elementor-field-type-next"><button type="button" class="elementor-button elementor-size-sm e-form__buttons__wrapper__button e-form__buttons__wrapper__button-next" data-direction="next">Next</button></div></div></div>
 								
@@ -255,8 +253,8 @@
 								<div class="elementor-field elementor-select-wrapper remove-before ">
 			<div class="select-caret-down-wrapper">
 				<svg aria-hidden="true" class="e-font-icon-svg e-eicon-caret-down" viewBox="0 0 571.4 571.4" xmlns="http://www.w3.org/2000/svg"><path d="M571 393Q571 407 561 418L311 668Q300 679 286 679T261 668L11 418Q0 407 0 393T11 368 36 357H536Q550 357 561 368T571 393Z"></path></svg>			</div>
-			<select name="form_fields[year_were_diagnosed]" id="form-field-year_were_diagnosed" class="elementor-field-textual elementor-size-sm" required="required">
-									<option value="-- Select one--&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp; ">-- Select one--&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp; </option>
+			<select name="form_fields[year_were_diagnosed]" id="form-field-year_were_diagnosed" class="elementor-field-textual elementor-size-sm select2-hidden-accessible" required="required" data-select2-id="select2-data-form-field-year_were_diagnosed" tabindex="-1" aria-hidden="true">
+									<option value="-- Select one--&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp; " data-select2-id="select2-data-4-shib">-- Select one--&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp; </option>
 									<option value="Before 2000">Before 2000</option>
 									<option value="2000">2000</option>
 									<option value="2001">2001</option>
@@ -283,7 +281,7 @@
 									<option value="2022">2022</option>
 									<option value="2023">2023</option>
 									<option value="2024">2024</option>
-							</select>
+							</select><span class="select2 select2-container select2-container--default" dir="ltr" data-select2-id="select2-data-3-m17g" style="width: 100%;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-disabled="false" aria-labelledby="select2-form-field-year_were_diagnosed-container" aria-controls="select2-form-field-year_were_diagnosed-container"><span class="select2-selection__rendered" id="select2-form-field-year_were_diagnosed-container" role="textbox" aria-readonly="true" title="-- Select one--&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp; ">-- Select one--&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp; </span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
 		</div>
 						</div><div class="e-form__buttons elementor-column elementor-col-100"><div class="elementor-field-group e-form__buttons__wrapper elementor-field-type-previous"><button type="button" class="elementor-button elementor-size-sm e-form__buttons__wrapper__button e-form__buttons__wrapper__button-previous" data-direction="previous">Previous</button></div><div class="elementor-field-group e-form__buttons__wrapper elementor-field-type-next"><button type="button" class="elementor-button elementor-size-sm e-form__buttons__wrapper__button e-form__buttons__wrapper__button-next" data-direction="next">Next</button></div></div></div>
 								
@@ -296,14 +294,14 @@
 								<div class="elementor-field elementor-select-wrapper remove-before ">
 			<div class="select-caret-down-wrapper">
 				<svg aria-hidden="true" class="e-font-icon-svg e-eicon-caret-down" viewBox="0 0 571.4 571.4" xmlns="http://www.w3.org/2000/svg"><path d="M571 393Q571 407 561 418L311 668Q300 679 286 679T261 668L11 418Q0 407 0 393T11 368 36 357H536Q550 357 561 368T571 393Z"></path></svg>			</div>
-			<select name="form_fields[case_age_category]" id="form-field-case_age_category" class="elementor-field-textual elementor-size-sm" required="required">
-									<option value="-- Select one--&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp; ">-- Select one--&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp; </option>
+			<select name="form_fields[case_age_category]" id="form-field-case_age_category" class="elementor-field-textual elementor-size-sm select2-hidden-accessible" required="required" data-select2-id="select2-data-form-field-case_age_category" tabindex="-1" aria-hidden="true">
+									<option value="-- Select one--&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp; " data-select2-id="select2-data-6-cw3o">-- Select one--&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp; </option>
 									<option value="18-29">18-29</option>
 									<option value="30-49">30-49</option>
 									<option value="50-65">50-65</option>
 									<option value="65-79">65-79</option>
 									<option value="80+">80+</option>
-							</select>
+							</select><span class="select2 select2-container select2-container--default" dir="ltr" data-select2-id="select2-data-5-d1ad" style="width: 100%;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-disabled="false" aria-labelledby="select2-form-field-case_age_category-container" aria-controls="select2-form-field-case_age_category-container"><span class="select2-selection__rendered" id="select2-form-field-case_age_category-container" role="textbox" aria-readonly="true" title="-- Select one--&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp; ">-- Select one--&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp; </span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
 		</div>
 						</div><div class="e-form__buttons elementor-column elementor-col-100"><div class="elementor-field-group e-form__buttons__wrapper elementor-field-type-previous"><button type="button" class="elementor-button elementor-size-sm e-form__buttons__wrapper__button e-form__buttons__wrapper__button-previous" data-direction="previous">Previous</button></div><div class="elementor-field-group e-form__buttons__wrapper elementor-field-type-next"><button type="button" class="elementor-button elementor-size-sm e-form__buttons__wrapper__button e-form__buttons__wrapper__button-next" data-direction="next">Next</button></div></div></div>
 								
@@ -365,4 +363,4 @@
 								
 								
 			</div>
-		<input type="hidden" name="form-field-trustedform" value="https://cert.trustedform.com/94a38031f2eb3c5631b6eb82508e8035adbb976b" id="form-field-trustedform_0"><input type="hidden" name="xxTrustedFormToken" value="https://cert.trustedform.com/94a38031f2eb3c5631b6eb82508e8035adbb976b" id="xxTrustedFormToken_0"><input type="hidden" name="xxTrustedFormPingUrl" value="https://ping.trustedform.com/0.qYF3-xtLwmoMgPODo5QJs9OI8kQuraxKtgQBzh9QFOZccyEQHv_IizxyBCj152_0U2VWerc.n6FlOyGUdKx0XU9cgI-3HA.WmQayuCJvW82oW37jCp9zw" id="xxTrustedFormPingUrl_0"></form>
+		<input type="hidden" name="form-field-trustedform" value="https://cert.trustedform.com/c8729f08d0bb89e9beaa066c4359cffd183d061a" id="form-field-trustedform_0"><input type="hidden" name="xxTrustedFormToken" value="https://cert.trustedform.com/c8729f08d0bb89e9beaa066c4359cffd183d061a" id="xxTrustedFormToken_0"><input type="hidden" name="xxTrustedFormPingUrl" value="https://ping.trustedform.com/0.fSW-IqRYP5ySh75ecXinp7nF4Ebtr1dTCLoNtCIJEp9s8D-MLErVEpvgyqYLUGlgmuuT764.kdJA7y4B11MPUPf1fj_tcg.av3CtTWiYCMG_suPZJ-3FA" id="xxTrustedFormPingUrl_0"></form>

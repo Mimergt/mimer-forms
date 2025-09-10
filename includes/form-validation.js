@@ -7,9 +7,8 @@
 (function() {
     'use strict';
     
-    console.log('🚀 NUEVA VERSION 2.6 - ZIP Code Number Field Support with input filtering!');
-    console.log('🆔 CACHE BUSTER - TIMESTAMP: ' + new Date().getTime());
-    console.log('✅ ARCHIVO VALIDATION.JS LIMPIO Y FUNCIONANDO CORRECTAMENTE ✅');
+    // Logging silencioso - solo info esencial
+    console.log('✅ Mimer Forms VDI v2.6 - Cargado');
     
     // Configuración de mensajes de validación
     const VALIDATION_MESSAGES = {

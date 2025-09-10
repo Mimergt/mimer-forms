@@ -1,8 +1,8 @@
 <?php
 /*
 Plugin Name: Mimer forms VDI
-Description: Validaciones, conexion con API y otros.
-Version: 1.6
+Description: Sistema unificado multi-formulario con detección automática. Soporta Depo Provera, RoundUp y futuros formularios con configuración modular.
+Version: 2.0-unified-system
 Author: Mimer
 */
 

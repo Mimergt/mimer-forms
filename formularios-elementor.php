@@ -3,7 +3,7 @@
  * Plugin Name: Mimer Forms VDI
  * Plugin URI: https://github.com/Mimergt/mimer-forms
  * Description: Sistema unificado multi-formulario con detección automática y Select2 integrado. Soporta Depo Provera, RoundUp y futuros formularios con selectores modernos.
- * Version: 2.5.6-duplicate-fix
+ * Version: 2.5.7-ajax-redirect-fix
  * Author: Mimer
  * Author URI: https://github.com/Mimergt
  * Text Domain: mimer-forms-vdi
@@ -200,22 +200,8 @@ function mimer_auto_redirect_shortcode($atts) {
 }
 add_shortcode('mimer_auto_redirect', 'mimer_auto_redirect_shortcode');
 
-// 🔄 AJAX Handler para prevenir errores 500 en admin-ajax.php
-add_action('wp_ajax_elementor_pro_forms_send_form', 'handle_elementor_ajax_submission');
-add_action('wp_ajax_nopriv_elementor_pro_forms_send_form', 'handle_elementor_ajax_submission');
-
-function handle_elementor_ajax_submission() {
-    // Log del intento AJAX
-    $log = "[" . date('Y-m-d H:i:s') . "] 🔄 AJAX Handler ejecutado - Previniendo error 500\n";
-    file_put_contents(plugin_dir_path(__FILE__) . '/log.txt', $log, FILE_APPEND);
-    
-    // Este handler previene el error 500 pero no procesa los datos
-    // Los datos ya son procesados por el hook elementor_pro/forms/validation
-    wp_send_json_success([
-        'message' => 'Form processed successfully',
-        'data' => []
-    ]);
-}
+// 🔄 AJAX Handler removido - Permitir que Elementor maneje completamente el envío
+// El procesamiento se hace únicamente a través del hook elementor_pro/forms/validation
 
 // 🎯 Solo mostrar Admin page si el usuario puede gestionar opciones
 add_action('init', function() {

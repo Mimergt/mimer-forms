@@ -3,62 +3,70 @@ if (!defined('ABSPATH')) exit;
 
 class MimerFormsVDI {
     
-    // Configuración unificada para múltiples formularios
-    private static $form_configs = array(
-        'depo_provera' => array(
-            'api_form_id' => 'ir-lca-depo-post',
-            'signature' => '89a78284fe446f579d91ad0768e326e505f40a6bfa95ebf03c38f90eb110d453',
-            'detection_fields' => array('case_depo_provera_taken', 'case_depo_provera_use'),
-            'thank_you_url' => 'https://injuryresolve.com/dp-thankyou/',
-            'rejected_url' => 'https://injuryresolve.com/dp_rejected/',
-            'field_mappings' => array(
-                "lead-first-name" => 'lead_first_name',
-                "lead-last-name" => 'lead_last_name',
-                "lead-email-address" => 'lead_email',
-                "lead-phone" => 'lead_phone',
-                "case-depo-provera-taken" => 'case_depo_provera_taken',
-                "case-depo-provera-use" => 'case_depo_provera_use',
-                "case-injury" => 'case_injury',
-                "case-description" => 'case_description',
-                "case-attorney" => 'case_attorney',
-                "lead-trusted-form-url" => 'trustedform',
-                "lead-zip-code" => 'lead_zip_code',
-                "lead-state" => 'lead_state',
-                "other-injections" => 'other_injections'
-            )
-        ),
-                'roundup' => array(
-            'url' => 'https://api.valuedirectinc.com/api/submissions',
-            'query_params' => array(
-                'form' => 'ir-lca-roundup-post',
-                'team' => 'vdi',
-                'user' => get_option('mimer_roundup_user', 'ee5a1aba-6009-4d58-8a16-3810e2f777ad'),
-                'signature' => get_option('mimer_roundup_signature', '07c959ecf53e021ffb537dc16e60e7557297eae33536cd6b7a2d153d259fdd2f')
-            ),
-            'detection_fields' => array('case_exposed', 'case_injury'),
-            'thank_you_url' => 'https://injuryresolve.com/roundup-thankyou/',
-            'rejected_url' => 'https://injuryresolve.com/roundup-rejected/',
-            'field_mappings' => array(
-                'lead_first_name' => 'lead-first-name',
-                'lead_last_name' => 'lead-last-name',
-                'lead_email' => 'lead-email-address',
-                'lead_phone' => 'lead-phone',
-                'case_exposed' => 'case-exposed',
-                'case_exposed_duration' => 'case-exposed-duration',
-                'case_year_diagnosed' => 'case-year-were-diagnosed',
-                'case_age_category' => 'case-age-category',
-                'case_injury' => 'case-injury',
-                'case_attorney' => 'case-attorney',
-                'trusted_form_cert_url' => 'lead-trusted-form-url'
-            )
+    // Configuración estática para Depo Provera
+    private static $depo_provera_config = array(
+        'api_form_id' => 'ir-lca-depo-post',
+        'signature' => '89a78284fe446f579d91ad0768e326e505f40a6bfa95ebf03c38f90eb110d453',
+        'detection_fields' => array('case_depo_provera_taken', 'case_depo_provera_use'),
+        'thank_you_url' => 'https://injuryresolve.com/dp-thankyou/',
+        'rejected_url' => 'https://injuryresolve.com/dp_rejected/',
+        'field_mappings' => array(
+            "lead-first-name" => 'lead_first_name',
+            "lead-last-name" => 'lead_last_name',
+            "lead-email-address" => 'lead_email',
+            "lead-phone" => 'lead_phone',
+            "case-depo-provera-taken" => 'case_depo_provera_taken',
+            "case-depo-provera-use" => 'case_depo_provera_use',
+            "case-injury" => 'case_injury',
+            "case-description" => 'case_description',
+            "case-attorney" => 'case_attorney',
+            "lead-trusted-form-url" => 'trustedform',
+            "lead-zip-code" => 'lead_zip_code',
+            "lead-state" => 'lead_state',
+            "other-injections" => 'other_injections'
         )
     );
+    
+    /**
+     * Obtiene la configuración de formularios dinámicamente
+     */
+    private static function get_form_configs() {
+        return array(
+            'depo_provera' => self::$depo_provera_config,
+            'roundup' => array(
+                'url' => 'https://api.valuedirectinc.com/api/submissions',
+                'query_params' => array(
+                    'form' => 'ir-lca-roundup-post',
+                    'team' => 'vdi',
+                    'user' => get_option('mimer_roundup_user', 'ee5a1aba-6009-4d58-8a16-3810e2f777ad'),
+                    'signature' => get_option('mimer_roundup_signature', '07c959ecf53e021ffb537dc16e60e7557297eae33536cd6b7a2d153d259fdd2f')
+                ),
+                'detection_fields' => array('case_exposed', 'case_injury'),
+                'thank_you_url' => 'https://injuryresolve.com/roundup-thankyou/',
+                'rejected_url' => 'https://injuryresolve.com/roundup-rejected/',
+                'field_mappings' => array(
+                    'lead_first_name' => 'lead-first-name',
+                    'lead_last_name' => 'lead-last-name',
+                    'lead_email' => 'lead-email-address',
+                    'lead_phone' => 'lead-phone',
+                    'case_exposed' => 'case-exposed',
+                    'case_exposed_duration' => 'case-exposed-duration',
+                    'case_year_diagnosed' => 'case-year-were-diagnosed',
+                    'case_age_category' => 'case-age-category',
+                    'case_injury' => 'case-injury',
+                    'case_attorney' => 'case-attorney',
+                    'trusted_form_cert_url' => 'lead-trusted-form-url'
+                )
+            )
+        );
+    }
     
     /**
      * Detecta automáticamente el tipo de formulario basado en los campos enviados
      */
     private static function detect_form_type($fields) {
-        foreach (self::$form_configs as $form_type => $config) {
+        $form_configs = self::get_form_configs();
+        foreach ($form_configs as $form_type => $config) {
             $all_detected = true;
             foreach ($config['detection_fields'] as $detection_field) {
                 if (!isset($fields[$detection_field])) {
@@ -76,7 +84,8 @@ class MimerFormsVDI {
     public static function send_submission_to_vdi($fields) {
         // 🔍 DETECCIÓN AUTOMÁTICA DEL TIPO DE FORMULARIO
         $form_type = self::detect_form_type($fields);
-        $form_config = self::$form_configs[$form_type];
+        $form_configs = self::get_form_configs();
+        $form_config = $form_configs[$form_type];
         
         // Verificar si está en modo de pruebas
         $test_mode = get_option('mimer_test_mode_enabled', 0);

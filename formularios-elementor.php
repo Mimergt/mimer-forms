@@ -1,8 +1,8 @@
 <?php
 /*
 Plugin Name: Mimer forms VDI
-Description: Sistema unificado multi-formulario con detección automática. Soporta Depo Provera, RoundUp y futuros formularios con configuración modular.
-Version: 2.0-unified-system
+Description: Sistema unificado multi-formulario con detección automática y Select2 integrado. Soporta Depo Provera, RoundUp y futuros formularios con selectores modernos.
+Version: 2.1-select2-integration
 Author: Mimer
 */
 

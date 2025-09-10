@@ -195,5 +195,3 @@ class MimerPhoneValidatorAdmin {
         return '<div id="trusted_code">' . $trustedform_js . '</div>';
     }
 }
-
-new MimerPhoneValidatorAdmin();

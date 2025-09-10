@@ -3,7 +3,7 @@
  * Plugin Name: Mimer Forms VDI
  * Plugin URI: https://github.com/Mimergt/mimer-forms
  * Description: Sistema unificado multi-formulario con detección automática y Select2 integrado. Soporta Depo Provera, RoundUp y futuros formularios con selectores modernos.
- * Version: 2.5.5-header-fix
+ * Version: 2.5.6-duplicate-fix
  * Author: Mimer
  * Author URI: https://github.com/Mimergt
  * Text Domain: mimer-forms-vdi

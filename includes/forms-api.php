@@ -27,25 +27,27 @@ class MimerFormsVDI {
                 "other-injections" => 'other_injections'
             )
         ),
-        'roundup' => array(
-            'api_form_id' => 'ir-lca-roundup-post',
-            'signature' => '07c959ecf7b84b7c8e5d2a1f5e8c4b7a2d1e',
-            'detection_fields' => array('exposed', 'injury'),
-            'thank_you_url' => 'https://injuryresolve.com/ru-thankyou/',
-            'rejected_url' => 'https://injuryresolve.com/ru_rejected/',
+                'roundup' => array(
+            'url' => 'https://api.valuedirectinc.com/api/submissions',
+            'query_params' => array(
+                'form' => 'ir-lca-roundup-post',
+                'team' => 'vdi',
+                'user' => get_option('mimer_roundup_user', ''),
+                'signature' => get_option('mimer_roundup_signature', '')
+            ),
+            'detection_fields' => array('case_exposed', 'case_injury'),
             'field_mappings' => array(
-                "lead-first-name" => 'lead_first_name',
-                "lead-last-name" => 'lead_last_name',
-                "lead-email-address" => 'lead_email',
-                "lead-phone" => 'lead_phone',
-                "case-exposed" => 'exposed',
-                "case-attorney" => 'attorney',
-                "case-exposed-duration" => 'exposed_duration',
-                "case-injury" => 'injury',
-                "case-year-were-diagnosed" => 'year_were_diagnosed',
-                "case-age-category" => 'age',
-                "case-description" => 'case_brief',
-                "lead-trusted-form-url" => 'trustedform'
+                'lead_first_name' => 'lead-first-name',
+                'lead_last_name' => 'lead-last-name',
+                'lead_email' => 'lead-email-address',
+                'lead_phone' => 'lead-phone',
+                'case_exposed' => 'case-exposed',
+                'case_exposed_duration' => 'case-exposed-duration',
+                'case_year_diagnosed' => 'case-year-were-diagnosed',
+                'case_age_category' => 'case-age-category',
+                'case_injury' => 'case-injury',
+                'case_attorney' => 'case-attorney',
+                'trusted_form_cert_url' => 'lead-trusted-form-url'
             )
         )
     );

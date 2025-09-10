@@ -13,6 +13,7 @@ require_once plugin_dir_path(__FILE__) . 'admin/back-end.php';
 require_once plugin_dir_path(__FILE__) . 'includes/class-numverify.php';
 require_once plugin_dir_path(__FILE__) . 'includes/forms-api.php';
 require_once plugin_dir_path(__FILE__) . 'includes/form-validation.php';
+require_once plugin_dir_path(__FILE__) . 'includes/select2-handler.php';
 
 add_action('wp_enqueue_scripts', 'mimer_enqueue_custom_script');
 function mimer_enqueue_custom_script() {

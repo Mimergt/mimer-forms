@@ -25,6 +25,7 @@ class MimerPhoneValidatorAdmin {
         register_setting('mimer_phone_validator_group', 'mimer_phone_validator_enabled');
         register_setting('mimer_phone_validator_group', 'mimer_test_mode_enabled');
         register_setting('mimer_phone_validator_group', 'mimer_redirections_enabled');
+        register_setting('mimer_phone_validator_group', 'mimer_select2_enabled');
         // Elimina cualquier callback de sanitización para este campo:
         register_setting('mimer_phone_validator_group', 'mimer_trustedform_js', array(
             'sanitize_callback' => null
@@ -65,6 +66,7 @@ class MimerPhoneValidatorAdmin {
                         update_option('mimer_phone_validator_api_key', sanitize_text_field($_POST['mimer_phone_validator_api_key']));
                         update_option('mimer_phone_validator_enabled', isset($_POST['mimer_phone_validator_enabled']) ? 1 : 0);
                         update_option('mimer_test_mode_enabled', isset($_POST['mimer_test_mode_enabled']) ? 1 : 0);
+                        update_option('mimer_select2_enabled', isset($_POST['mimer_select2_enabled']) ? 1 : 0);
                         echo '<div class="updated"><p>Opciones guardadas.</p></div>';
                     }
                     settings_fields('mimer_phone_validator_group');
@@ -94,6 +96,14 @@ class MimerPhoneValidatorAdmin {
                                 <input type="checkbox" name="mimer_test_mode_enabled" value="1" <?php checked(1, get_option('mimer_test_mode_enabled'), true); ?> />
                                 <label for="mimer_test_mode_enabled"><strong>Activar modo de pruebas (NO envía datos al API VDI)</strong></label>
                                 <p class="description" style="color: #d54e21;">⚠️ Cuando está activado, el formulario se procesa normalmente pero NO se envía al API externo. Perfecto para pruebas.</p>
+                            </td>
+                        </tr>
+                        <tr valign="top">
+                            <th scope="row">🎨 Enhanced Selects (Select2)</th>
+                            <td>
+                                <input type="checkbox" name="mimer_select2_enabled" value="1" <?php checked(1, get_option('mimer_select2_enabled'), true); ?> />
+                                <label for="mimer_select2_enabled"><strong>Activar Select2 para selectores modernos con búsqueda</strong></label>
+                                <p class="description" style="color: #0073aa;">✨ Convierte los selectores de formularios en dropdowns modernos con búsqueda, mejor UX y diseño responsive. Compatible con Elementor Pro.</p>
                             </td>
                         </tr>
                     </table>

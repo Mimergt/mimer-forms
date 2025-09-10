@@ -1,3 +1,167 @@
+<script>
+  jQuery(document).ready(function ($) {
+    $('#inicio_form').on('click', function (e) {
+      e.preventDefault(); // Previene comportamiento por defecto si fuera <a> o <button type="submit">
+
+      // Ocultar #inicio
+      $('#inicio').hide();
+
+      // Mostrar #the_form
+      $('#the_form').show();
+    });
+  });
+  jQuery(document).ready(function ($) {
+    $('#siguiente-form1').on('click', function (e) {
+      e.preventDefault(); // Previene comportamiento por defecto si fuera <a> o <button type="submit">
+
+      // Ocultar #inicio
+      $('#disclaimer').hide();
+
+    });
+  });
+
+  jQuery(document).ready(function ($) {
+    console.log('Script cargado - jQuery ready'); // DEBUG
+    
+    // Función genérica para avanzar paso
+    function avanzarPaso($step) {
+      const $form = $step.closest('form');
+      const $currentStepElement = $step;
+      const $nextStepElement = $step.next('.e-form__step');
+      
+      if ($nextStepElement.length) {
+        // Obtener números de paso
+        const currentStepIndex = $('.e-form__step').index($currentStepElement);
+        const nextStepIndex = currentStepIndex + 1;
+        
+        // Ocultar paso actual
+        $currentStepElement.addClass('elementor-hidden');
+        // Mostrar siguiente paso
+        $nextStepElement.removeClass('elementor-hidden');
+        
+        // Actualizar el indicador de progreso
+        const $progressBarAlt2 = $form.find('.e-form__indicators');
+        if ($progressBarAlt2.length) {
+          // Actualizar la barra de progreso visual
+          const $progressMeter = $progressBarAlt2.find('.e-form__indicators__indicator__progress__meter');
+          if ($progressMeter.length) {
+            const totalSteps = $('.e-form__step').length;
+            const progressPercentage = ((nextStepIndex + 1) / totalSteps) * 100;
+            $progressMeter.css('width', progressPercentage + '%');
+            console.log('Barra de progreso actualizada:', progressPercentage + '%'); // DEBUG
+          }
+        }
+        
+        // Trigger eventos de Elementor si existen
+        try {
+          $form.trigger('step_changed', [nextStepIndex]);
+          $nextStepElement.trigger('step_activated');
+        } catch(eventError) {
+          console.log('Error al activar eventos:', eventError); // DEBUG
+        }
+        
+        console.log('Paso cambiado de', currentStepIndex, 'a', nextStepIndex); // DEBUG
+      } else {
+        console.log('No hay siguiente paso'); // DEBUG
+      }
+    }
+
+    // Avanzar automáticamente para todos los campos de radio del formulario actual
+    const radioFields = [
+      'case_exposed',
+      'case_attorney', 
+      'case_exposed_duration'
+    ];
+    
+    radioFields.forEach(function(fieldName) {
+      $('#dp_form').on(
+        'change',
+        'input[type="radio"][name="form_fields[' + fieldName + ']"]',
+        function () {
+          console.log('Change detectado en radio ' + fieldName + ':', this.id, 'checked:', this.checked); // DEBUG
+          if (this.checked) {
+            console.log('Radio válido para ' + fieldName + ', avanzando paso...'); // DEBUG
+            const $step = $(this).closest('.e-form__step');
+            
+            // Usar nuestra función genérica para avanzar
+            setTimeout(function() {
+              avanzarPaso($step);
+            }, 300); // Pequeño delay para asegurar que el cambio se procese
+          }
+        }
+      );
+    });
+
+    // Configurar todos los selects del formulario para avanzar automáticamente
+    const selectFields = [
+      'case_injury',
+      'year_were_diagnosed',
+      'case_age_category'
+    ];
+    
+    selectFields.forEach(function(fieldName) {
+      // Manejar selects normales
+      $('#dp_form').on('change', '#form-field-' + fieldName, function () {
+        console.log('Change detectado en select ' + fieldName + ':', $(this).val()); // DEBUG
+        if ($(this).val() && $(this).val() !== '-- Select one--                          ') {
+          console.log('Select válido para ' + fieldName + ', avanzando paso...'); // DEBUG
+          const $step = $(this).closest('.e-form__step');
+          
+          // Usar nuestra función genérica para avanzar
+          setTimeout(function() {
+            avanzarPaso($step);
+          }, 300); // Pequeño delay para asegurar que el cambio se procese
+        }
+      });
+      
+      // Manejar Select2 (si está presente)
+      $('#dp_form').on('select2:select', '#form-field-' + fieldName, function (e) {
+        console.log('Select2 change detectado en ' + fieldName + ':', $(this).val()); // DEBUG
+        var data = e.params.data;
+        if (data.id && data.id !== '-- Select one--                          ') {
+          console.log('Select2 válido para ' + fieldName + ', avanzando paso...'); // DEBUG
+          const $step = $(this).closest('.e-form__step');
+          
+          // Usar nuestra función genérica para avanzar
+          setTimeout(function() {
+            avanzarPaso($step);
+          }, 300); // Pequeño delay para asegurar que el cambio se procese
+        }
+      });
+    });
+
+    // DEBUG: Verificar que los campos existen
+    console.log('Radios "case_exposed" encontrados:', $('input[type="radio"][name="form_fields[case_exposed]"]').length);
+    console.log('Radios "case_attorney" encontrados:', $('input[type="radio"][name="form_fields[case_attorney]"]').length);
+    console.log('Radios "case_exposed_duration" encontrados:', $('input[type="radio"][name="form_fields[case_exposed_duration]"]').length);
+    console.log('Select "case_injury" encontrado:', $('#form-field-case_injury').length);
+    console.log('Select "year_were_diagnosed" encontrado:', $('#form-field-year_were_diagnosed').length);
+    console.log('Select "case_age_category" encontrado:', $('#form-field-case_age_category').length);
+
+    $(document).on('click', '#siguiente-form, #siguiente-form1', function (e) {
+      e.preventDefault();
+      console.log('Click en botón personalizado:', this.id); // DEBUG
+      
+      // Buscar el paso actual visible
+      var $currentStep = $('.e-form__step').filter(function() {
+        return !$(this).hasClass('elementor-hidden') && $(this).css('display') !== 'none';
+      }).first();
+      
+      console.log('Paso actual encontrado:', $currentStep.length, $currentStep[0]); // DEBUG
+      
+      if ($currentStep.length) {
+        // Usar nuestra función genérica para avanzar
+        avanzarPaso($currentStep);
+      } else {
+        console.log('No se encontró paso actual visible'); // DEBUG
+      }
+    });
+    
+    // Mensaje de confirmación de carga
+    console.log('Formulario configurado correctamente. Todos los radios y selects avanzan automáticamente.'); // DEBUG
+  });
+</script>
+
 <form class="elementor-form" method="post" id="dp_form" name="RoundUp-form" aria-label="RoundUp-form">
 			<input type="hidden" name="post_id" value="1476">
 			<input type="hidden" name="form_id" value="08bc4e0">

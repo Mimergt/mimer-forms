@@ -32,10 +32,12 @@ class MimerFormsVDI {
             'query_params' => array(
                 'form' => 'ir-lca-roundup-post',
                 'team' => 'vdi',
-                'user' => get_option('mimer_roundup_user', ''),
-                'signature' => get_option('mimer_roundup_signature', '')
+                'user' => get_option('mimer_roundup_user', 'ee5a1aba-6009-4d58-8a16-3810e2f777ad'),
+                'signature' => get_option('mimer_roundup_signature', '07c959ecf53e021ffb537dc16e60e7557297eae33536cd6b7a2d153d259fdd2f')
             ),
             'detection_fields' => array('case_exposed', 'case_injury'),
+            'thank_you_url' => 'https://injuryresolve.com/roundup-thankyou/',
+            'rejected_url' => 'https://injuryresolve.com/roundup-rejected/',
             'field_mappings' => array(
                 'lead_first_name' => 'lead-first-name',
                 'lead_last_name' => 'lead-last-name',
@@ -88,7 +90,7 @@ class MimerFormsVDI {
         if ($form_type === 'depo_provera') {
             $case_injury = isset($fields['case_injury']) ? trim($fields['case_injury']) : '';
         } else if ($form_type === 'roundup') {
-            $case_injury = isset($fields['injury']) ? trim($fields['injury']) : '';
+            $case_injury = isset($fields['case_injury']) ? trim($fields['case_injury']) : '';
         }
         
         $debug_log = "[" . date('Y-m-d H:i:s') . "] 📝 CASE_INJURY (" . $form_type . "): '" . $case_injury . "' - Solo guardando info para shortcode\n";
@@ -106,7 +108,7 @@ class MimerFormsVDI {
         if ($form_type === 'depo_provera') {
             $attorney_field = isset($fields['case_attorney']) ? trim($fields['case_attorney']) : '';
         } else if ($form_type === 'roundup') {
-            $attorney_field = isset($fields['attorney']) ? trim($fields['attorney']) : '';
+            $attorney_field = isset($fields['case_attorney']) ? trim($fields['case_attorney']) : '';
         }
         $attorney = strtolower($attorney_field) === 'yes' ? 'Yes' : 'No';
 
@@ -139,7 +141,14 @@ class MimerFormsVDI {
         file_put_contents(plugin_dir_path(__FILE__) . '/../log.txt', $debug_log, FILE_APPEND);
         
         // 🔗 URL DEL API DINÁMICA SEGÚN EL TIPO DE FORMULARIO
-        $url = 'https://api.valuedirectinc.com/api/submissions?form=' . $form_config['api_form_id'] . '&team=vdi&user=ee5a1aba-6009-4d58-8a16-3810e2f777ad&signature=' . $form_config['signature'];
+        if ($form_type === 'roundup') {
+            // Para RoundUp usar la nueva estructura
+            $query_params = http_build_query($form_config['query_params']);
+            $url = $form_config['url'] . '?' . $query_params;
+        } else {
+            // Para Depo Provera usar la estructura original
+            $url = 'https://api.valuedirectinc.com/api/submissions?form=' . $form_config['api_form_id'] . '&team=vdi&user=ee5a1aba-6009-4d58-8a16-3810e2f777ad&signature=' . $form_config['signature'];
+        }
 
         // Logging simplificado
         $log = "[" . date('Y-m-d H:i:s') . "] " . ($test_mode ? "🧪 MODO PRUEBAS" : "🔴 ENVÍO A VDI") . " - Preparando envío\n";

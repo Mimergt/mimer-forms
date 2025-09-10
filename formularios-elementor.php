@@ -2,7 +2,7 @@
 /*
 Plugin Name: Mimer forms VDI
 Description: Sistema unificado multi-formulario con detección automática y Select2 integrado. Soporta Depo Provera, RoundUp y futuros formularios con selectores modernos.
-Version: 2.5.3-init-fix
+Version: 2.5.4-class-fix
 Author: Mimer
 */
 
@@ -210,6 +210,6 @@ function handle_elementor_ajax_submission() {
 // 🎯 Solo mostrar Admin page si el usuario puede gestionar opciones
 add_action('init', function() {
     if (is_admin() && current_user_can('manage_options')) {
-        new MimerFormsVDIBackend();
+        new MimerPhoneValidatorAdmin();
     }
 });

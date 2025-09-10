@@ -1,10 +1,20 @@
 <?php
-/*
-Plugin Name: Mimer forms VDI
-Description: Sistema unificado multi-formulario con detección automática y Select2 integrado. Soporta Depo Provera, RoundUp y futuros formularios con selectores modernos.
-Version: 2.5.4-class-fix
-Author: Mimer
-*/
+/**
+ * Plugin Name: Mimer Forms VDI
+ * Plugin URI: https://github.com/Mimergt/mimer-forms
+ * Description: Sistema unificado multi-formulario con detección automática y Select2 integrado. Soporta Depo Provera, RoundUp y futuros formularios con selectores modernos.
+ * Version: 2.5.5-header-fix
+ * Author: Mimer
+ * Author URI: https://github.com/Mimergt
+ * Text Domain: mimer-forms-vdi
+ * Domain Path: /languages
+ * Requires at least: 5.0
+ * Tested up to: 6.3
+ * Requires PHP: 7.4
+ * Network: false
+ * License: GPL v2 or later
+ * License URI: https://www.gnu.org/licenses/gpl-2.0.html
+ */
 
 if (!defined('ABSPATH')) exit;
 

@@ -62,9 +62,18 @@ class MimerFormsVDI {
     }
     
     /**
-     * Detecta automáticamente el tipo de formulario basado en los campos enviados
+     * Detecta automáticamente el tipo de formulario basado en ID o campos enviados
      */
-    private static function detect_form_type($fields) {
+    private static function detect_form_type($fields, $form_id = null) {
+        // 🎯 DETECCIÓN POR ID DE FORMULARIO (PRIORIDAD)
+        if ($form_id) {
+            if ($form_id === 'roundup_form') {
+                return 'roundup';
+            }
+            // Agregar más IDs aquí para otros formularios en el futuro
+        }
+        
+        // 🔍 DETECCIÓN POR CAMPOS (FALLBACK)
         $form_configs = self::get_form_configs();
         foreach ($form_configs as $form_type => $config) {
             $all_detected = true;
@@ -81,17 +90,18 @@ class MimerFormsVDI {
         return 'depo_provera'; // Fallback al formulario original
     }
     
-    public static function send_submission_to_vdi($fields) {
-        // 🔍 DETECCIÓN AUTOMÁTICA DEL TIPO DE FORMULARIO
-        $form_type = self::detect_form_type($fields);
+    public static function send_submission_to_vdi($fields, $form_id = null) {
+        // 🔍 DETECCIÓN AUTOMÁTICA DEL TIPO DE FORMULARIO (CON ID PRIORITARIO)
+        $form_type = self::detect_form_type($fields, $form_id);
         $form_configs = self::get_form_configs();
         $form_config = $form_configs[$form_type];
         
         // Verificar si está en modo de pruebas
         $test_mode = get_option('mimer_test_mode_enabled', 0);
         
-        // Log simplificado de recepción
-        $debug_log = "[" . date('Y-m-d H:i:s') . "] " . ($test_mode ? "🧪 MODO PRUEBAS" : "🔴 MODO PRODUCCIÓN") . " - Formulario detectado: " . strtoupper($form_type) . " (" . count($fields) . " campos)\n";
+        // Log simplificado de recepción con método de detección
+        $detection_method = $form_id ? "ID: $form_id" : "CAMPOS";
+        $debug_log = "[" . date('Y-m-d H:i:s') . "] " . ($test_mode ? "🧪 MODO PRUEBAS" : "🔴 MODO PRODUCCIÓN") . " - Formulario detectado: " . strtoupper($form_type) . " (" . count($fields) . " campos) [Detección: $detection_method]\n";
         file_put_contents(plugin_dir_path(__FILE__) . '/../log.txt', $debug_log, FILE_APPEND);
         
         // 📝 GUARDAR INFO ESPECÍFICA POR TIPO DE FORMULARIO

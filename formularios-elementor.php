@@ -55,8 +55,20 @@ function env_validate_phone_number($record, $ajax_handler) {
         $flat_fields[$key] = $f['value'];
     }
 
-    // Enviar al API (sin manejar redirección aquí)
-    MimerFormsVDI::send_submission_to_vdi($flat_fields);
+    // 🆔 OBTENER ID DEL FORMULARIO PARA DETECCIÓN MEJORADA
+    $form_id = null;
+    if (method_exists($record, 'get_form_settings')) {
+        $form_settings = $record->get_form_settings();
+        $form_id = isset($form_settings['form_id']) ? $form_settings['form_id'] : null;
+    }
+    
+    // Si no se encuentra por el método anterior, intentar obtenerlo del HTML/DOM
+    if (!$form_id && isset($_POST['form_id'])) {
+        $form_id = sanitize_text_field($_POST['form_id']);
+    }
+
+    // Enviar al API con ID de formulario para mejor detección
+    MimerFormsVDI::send_submission_to_vdi($flat_fields, $form_id);
 }
 
 // 📝 Shortcodes para mostrar datos del API (solo si redirecciones están activadas)

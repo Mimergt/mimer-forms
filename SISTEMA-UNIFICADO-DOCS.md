@@ -212,9 +212,31 @@ Los logs ahora incluyen información de detección:
 
 El sistema v2.0-unified-system está **listo para producción** con todas las validaciones completadas y testing exhaustivo realizado.
 
+## 📋 Changelog
+
+### v2.2-roundup-field-mapping (Actual)
+- 🔧 **RoundUp Field Fix**: Corrección crítica en mapeo de campos RoundUp
+- 🔧 **Detection Update**: Campos de detección actualizados a `case_exposed`, `case_injury`
+- 🔧 **Mapping Correction**: Mapeo desde `case_exposed` → `case-exposed` (API)
+- ✅ **Test Added**: Nuevo test de detección automática (`test-roundup-detection.php`)
+- ✅ **Production Ready**: Compatibilidad con formularios reales de producción
+
+### v2.1-select2-integration
+- ✅ **Select2 Integration**: CDN-based Select2 4.1.0-rc.0 con diseño responsivo
+- ✅ **Admin Controls**: Toggle para activar/desactivar Select2 desde admin
+- ✅ **Mobile Optimization**: Búsqueda deshabilitada en dispositivos móviles
+- ✅ **Elementor Compatibility**: Detección automática de formularios Elementor
+- ✅ **Multi-step Support**: Compatible con formularios de múltiples pasos
+
+### v2.0-unified-system
+- ✅ **Sistema Unificado**: Detección automática entre Depo Provera y RoundUp
+- ✅ **Multi-Form API**: Configuración centralizada para múltiples formularios
+- ✅ **Auto-Detection**: Algoritmo inteligente basado en campos específicos
+- ✅ **Logging Mejorado**: Información detallada por tipo de formulario
+
 ---
 
-**Versión:** v2.0-unified-system  
+**Versión:** v2.2-roundup-field-mapping  
 **Autor:** Sistema de IA  
 **Fecha:** 2024  
 **Estado:** ✅ PRODUCCIÓN READY

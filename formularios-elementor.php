@@ -1,7 +1,40 @@
 <?php
 /**
  * Plugin Name: Mimer Forms VDI
- * Plugin URI: https://github.com/Mimergt/mimer-forms
+ * Plugin URI: // Evitar doble procesamiento usando un flag
+add_action('init', 'mimer_init_session_flag');
+function mimer_init_session_flag() {
+    if (session_status() == PHP_SESSION_NONE) {
+        session_start();
+    }
+}
+
+// Interceptar AJAX solo para logging y control
+add_action('wp_ajax_elementor_pro_forms_send_form', 'mimer_control_ajax_processing', 1);
+add_action('wp_ajax_nopriv_elementor_pro_forms_send_form', 'mimer_control_ajax_processing', 1);
+
+function mimer_control_ajax_processing() {
+    // Verificar si es nuestro formulario
+    if (isset($_POST['form_fields']) && (isset($_POST['form_fields']['case_exposed']) || isset($_POST['form_fields']['case_depo_provera_taken']))) {
+        
+        // Verificar si ya procesamos este formulario
+        if (isset($_SESSION['mimer_form_processed']) && $_SESSION['mimer_form_processed'] === true) {
+            $debug_log = "[" . date('Y-m-d H:i:s') . "] ✅ AJAX SKIP - Formulario ya procesado por hook\n";
+            file_put_contents(plugin_dir_path(__FILE__) . 'log.txt', $debug_log, FILE_APPEND);
+            
+            // Devolver éxito simulado
+            wp_send_json_success([
+                'message' => 'Form already processed via validation hook',
+                'mimer_processed' => true
+            ]);
+        } else {
+            // Marcar que vamos a procesar por AJAX
+            $_SESSION['mimer_ajax_processing'] = true;
+            $debug_log = "[" . date('Y-m-d H:i:s') . "] 🔄 AJAX PROCESSING - Iniciando procesamiento AJAX\n";
+            file_put_contents(plugin_dir_path(__FILE__) . 'log.txt', $debug_log, FILE_APPEND);
+        }
+    }
+}m/Mimergt/mimer-forms
  * Description: Sistema unificado multi-formulario con detección automática y Select2 integrado. Soporta Depo Provera, RoundUp y futuros formularios con selectores modernos.
  * Version: 2.5.7-ajax-redirect-fix
  * Author: Mimer
@@ -38,6 +71,15 @@ function mimer_enqueue_custom_script() {
         '1.0.' . time(),
         true
     );
+    
+    // Script para manejar respuestas AJAX especiales
+    wp_enqueue_script(
+        'mimer-ajax-handler',
+        plugin_dir_url(__FILE__) . 'includes/ajax-handler.js',
+        array('jquery'),
+        '1.0.' . time(),
+        true
+    );
 }
 
 
@@ -46,15 +88,21 @@ add_action('elementor_pro/forms/validation', 'env_validate_phone_number', 10, 2)
 // Hook adicional para limpiar respuesta después del procesamiento
 add_action('elementor_pro/forms/process', 'mimer_clean_response_after_processing', 999, 2);
 
-// Log para debugging - sin interferir con AJAX
-add_action('wp_ajax_elementor_pro_forms_send_form', 'mimer_log_ajax_processing', 1);
-add_action('wp_ajax_nopriv_elementor_pro_forms_send_form', 'mimer_log_ajax_processing', 1);
+// Deshabilitar AJAX completamente para nuestros formularios
+add_action('wp_ajax_elementor_pro_forms_send_form', 'mimer_disable_ajax_for_our_forms', 1);
+add_action('wp_ajax_nopriv_elementor_pro_forms_send_form', 'mimer_disable_ajax_for_our_forms', 1);
 
-function mimer_log_ajax_processing() {
-    // Solo log para debugging, no interferir con el procesamiento
+function mimer_disable_ajax_for_our_forms() {
+    // Verificar si es nuestro formulario
     if (isset($_POST['form_fields']) && (isset($_POST['form_fields']['case_exposed']) || isset($_POST['form_fields']['case_depo_provera_taken']))) {
-        $debug_log = "[" . date('Y-m-d H:i:s') . "] 🔄 AJAX Handler ejecutado - Form detectado\n";
+        $debug_log = "[" . date('Y-m-d H:i:s') . "] � AJAX BLOQUEADO - Forzando uso de hook de validación\n";
         file_put_contents(plugin_dir_path(__FILE__) . 'log.txt', $debug_log, FILE_APPEND);
+        
+        // Devolver error específico para evitar doble procesamiento
+        wp_send_json_error([
+            'message' => 'Form processed via validation hook',
+            'mimer_processed' => true
+        ]);
     }
 }
 
@@ -74,6 +122,22 @@ function env_validate_phone_number($record, $ajax_handler) {
         // No es nuestro formulario, no procesar
         return;
     }
+
+    // Verificar si ya se está procesando por AJAX
+    if (session_status() == PHP_SESSION_NONE) {
+        session_start();
+    }
+    
+    if (isset($_SESSION['mimer_ajax_processing']) && $_SESSION['mimer_ajax_processing'] === true) {
+        // Ya se está procesando por AJAX, saltear este hook
+        $debug_log = "[" . date('Y-m-d H:i:s') . "] ⏭️ HOOK SKIP - Ya procesando por AJAX\n";
+        file_put_contents(plugin_dir_path(__FILE__) . 'log.txt', $debug_log, FILE_APPEND);
+        unset($_SESSION['mimer_ajax_processing']);
+        return;
+    }
+
+    // Marcar que procesamos por hook
+    $_SESSION['mimer_form_processed'] = true;
 
     // Log de procesamiento para debugging
     $debug_log = "[" . date('Y-m-d H:i:s') . "] 🔄 ELEMENTOR HOOK - Procesando nuestro formulario con " . count($fields) . " campos\n";
@@ -122,9 +186,17 @@ function env_validate_phone_number($record, $ajax_handler) {
         $debug_log = "[" . date('Y-m-d H:i:s') . "] ✅ API PROCESSING - Completado exitosamente\n";
         file_put_contents(plugin_dir_path(__FILE__) . 'log.txt', $debug_log, FILE_APPEND);
         
+        // Limpiar flags de sesión
+        unset($_SESSION['mimer_form_processed']);
+        unset($_SESSION['mimer_ajax_processing']);
+        
     } catch (Exception $e) {
         $debug_log = "[" . date('Y-m-d H:i:s') . "] ❌ API ERROR - " . $e->getMessage() . "\n";
         file_put_contents(plugin_dir_path(__FILE__) . 'log.txt', $debug_log, FILE_APPEND);
+        
+        // Limpiar flags de sesión en caso de error también
+        unset($_SESSION['mimer_form_processed']);
+        unset($_SESSION['mimer_ajax_processing']);
         
         // Añadir error a Elementor
         $ajax_handler->add_error_message('Ocurrió un error procesando el formulario. Por favor intente nuevamente.');

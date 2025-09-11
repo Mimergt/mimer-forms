@@ -2,34 +2,7 @@
 /**
  * Plugin Name: Mimer Forms VDI
  * Plugin URI: https://github.com/Mimergt/mimer-forms
- * Description: Sistem// 🚨 DEBUG: Log para verificar si el plugin se está cargando en thankyou pages
-add_action('wp_head', function() {
-    if (strpos($_SERVER['REQUEST_URI'], 'thankyou') !== false || strpos($_SERVER['REQUEST_URI'], 'thank') !== false) {
-        $debug_log = "[" . date('Y-m-d H:i:s') . "] 🔍 PLUGIN CARGADO en página: " . $_SERVER['REQUEST_URI'] . "\n";
-        file_put_contents(plugin_dir_path(__FILE__) . 'log.txt', $debug_log, FILE_APPEND);
-    }
-});
-
-// 🔒 MODO DE EMERGENCIA: Deshabilitar todos los shortcodes en páginas thank you
-add_action('wp', function() {
-    if (strpos($_SERVER['REQUEST_URI'], 'thankyou') !== false || strpos($_SERVER['REQUEST_URI'], 'thank') !== false) {
-        // Log de emergencia
-        $debug_log = "[" . date('Y-m-d H:i:s') . "] 🚨 MODO EMERGENCIA: Deshabilitando shortcodes en " . $_SERVER['REQUEST_URI'] . "\n";
-        file_put_contents(plugin_dir_path(__FILE__) . 'log.txt', $debug_log, FILE_APPEND);
-        
-        // Remover temporalmente todos nuestros shortcodes
-        remove_shortcode('mimer_api_lead_id');
-        remove_shortcode('mimer_api_response_message');
-        remove_shortcode('mimer_api_validation_errors');
-        remove_shortcode('mimer_case_injury');
-        remove_shortcode('mimer_api_redirect_url');
-        remove_shortcode('mimer_auto_redirect');
-        remove_shortcode('mimer_debug');
-        
-        $debug_log = "[" . date('Y-m-d H:i:s') . "] ✅ Shortcodes removidos temporalmente\n";
-        file_put_contents(plugin_dir_path(__FILE__) . 'log.txt', $debug_log, FILE_APPEND);
-    }
-});cado multi-formulario con detección automática y Select2 integrado. Soporta Depo Provera, RoundUp y futuros formularios con selectores modernos.
+ * Description: Sistem// ✅ PROBLEMA RESUELTO: Los shortcodes problemáticos fueron removidos de las páginas thankyoucado multi-formulario con detección automática y Select2 integrado. Soporta Depo Provera, RoundUp y futuros formularios con selectores modernos.
  * Version: 2.7-test-mode-fix
  * Author: Mimer
  * Author URI: https://github.com/Mimergt
@@ -244,14 +217,8 @@ function mimer_auto_redirect_shortcode($atts = []) {
     // 🔒 VERIFICAR SI LAS REDIRECCIONES ESTÁN HABILITADAS
     $redirections_enabled = get_option('mimer_redirections_enabled', 1);
     
-    // 🚨 DEBUG: Log para verificar comportamiento
-    $debug_log = "[" . date('Y-m-d H:i:s') . "] 🔄 mimer_auto_redirect ejecutado - Redirecciones: " . ($redirections_enabled ? "ACTIVAS" : "DESACTIVADAS") . "\n";
-    file_put_contents(plugin_dir_path(__FILE__) . 'log.txt', $debug_log, FILE_APPEND);
-    
     if (!$redirections_enabled) {
         // Si están desactivadas, no hacer nada (página normal)
-        $debug_log = "[" . date('Y-m-d H:i:s') . "] ✅ Redirecciones desactivadas - shortcode NO interfiere\n";
-        file_put_contents(plugin_dir_path(__FILE__) . 'log.txt', $debug_log, FILE_APPEND);
         return '';
     }
     
@@ -262,15 +229,9 @@ function mimer_auto_redirect_shortcode($atts = []) {
     // Solo redirigir si hay URL en sesión
     $redirect_url = isset($_SESSION['mimer_api_redirect_url']) ? $_SESSION['mimer_api_redirect_url'] : '';
     
-    $debug_log = "[" . date('Y-m-d H:i:s') . "] 🔗 URL redirección en sesión: '" . $redirect_url . "'\n";
-    file_put_contents(plugin_dir_path(__FILE__) . 'log.txt', $debug_log, FILE_APPEND);
-    
     if (!empty($redirect_url)) {
         // Limpiar la sesión
         unset($_SESSION['mimer_api_redirect_url']);
-        
-        $debug_log = "[" . date('Y-m-d H:i:s') . "] ⚠️ REDIRIGIENDO A: $redirect_url\n";
-        file_put_contents(plugin_dir_path(__FILE__) . 'log.txt', $debug_log, FILE_APPEND);
         
         return '<span id="redirect-message">You will be redirected in 3 seconds...</span>
         <script>

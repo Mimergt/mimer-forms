@@ -114,3 +114,65 @@ Array
 [2025-09-11 01:28:32] 🧪 MODO PRUEBAS ACTIVO - NO se envía al API real
 ✅ Datos preparados correctamente para envío
 🎯 Para envío real: desactivar modo de pruebas en admin
+[2025-09-11 01:31:44] 🔍 PLUGIN CARGADO en página: /up-thankyou/
+[2025-09-11 01:32:09] 🔍 PLUGIN CARGADO en página: /up-thankyou/
+[2025-09-11 01:32:17] 🔍 PLUGIN CARGADO en página: /up-thankyou/?elementor-preview=1521&ver=1757554335
+[2025-09-11 01:35:29] Respuesta completa: Array
+(
+    [valid] => 1
+    [number] => 14049387541
+    [local_format] => 4049387541
+    [international_format] => +14049387541
+    [country_prefix] => +1
+    [country_code] => US
+    [country_name] => United States of America
+    [location] => Atlanta
+    [carrier] => Cellco Partnership (Verizon Wireless)
+    [line_type] => mobile
+)
+
+[2025-09-11 01:35:29] 🎯 Detectado formulario ROUNDUP - enviando...
+[2025-09-11 01:35:29] 🚨 VERSIÓN NUEVA v2.6 - RoundUp con JSON iniciando...
+[2025-09-11 01:35:29] 📤 🧪 MODO PRUEBAS - Enviando formulario roundup al API
+🔗 URL: https://api.valuedirectinc.com/api/submissions?form=ir-lca-roundup-post&team=vdi&user=ee5a1aba-6009-4d58-8a16-3810e2f777ad&signature=07c959ecf53e021ffb537dc16e60e7557297eae33536cd6b7a2d153d259fdd2f
+📝 DATOS QUE SE ENVIARÍAN:
+Array
+(
+    [lead-first-name] => ssdfa
+    [lead-last-name] => asdf
+    [lead-email-address] => fds@mail.com
+    [lead-phone] => 14049387541
+    [case-exposed] => Yes, directly exposed
+    [case-exposed-duration] => Less than 1 year
+    [case-injury] => Anaplastic Large T/Null-Cell Lymphoma (T/N-ALCL)
+    [case-year-were-diagnosed] => Before 2000
+    [case-age-category] => 18-29
+    [case-description] => test
+    [case-attorney] => No
+    [lead-trusted-form-url] => https://cert.trustedform.com/ec735b511aa5a41f012296cd5b2e104e1129a719
+    [lead-ip-address] => 2800:98:1112:1f4d:3520:fe86:9604:a1bd
+    [lead-zip-code] => 
+)
+
+📦 FORMATO: JSON (Content-Type: application/json)
+🔄 JSON BODY: {
+    "lead-first-name": "ssdfa",
+    "lead-last-name": "asdf",
+    "lead-email-address": "fds@mail.com",
+    "lead-phone": "14049387541",
+    "case-exposed": "Yes, directly exposed",
+    "case-exposed-duration": "Less than 1 year",
+    "case-injury": "Anaplastic Large T\/Null-Cell Lymphoma (T\/N-ALCL)",
+    "case-year-were-diagnosed": "Before 2000",
+    "case-age-category": "18-29",
+    "case-description": "test",
+    "case-attorney": "No",
+    "lead-trusted-form-url": "https:\/\/cert.trustedform.com\/ec735b511aa5a41f012296cd5b2e104e1129a719",
+    "lead-ip-address": "2800:98:1112:1f4d:3520:fe86:9604:a1bd",
+    "lead-zip-code": ""
+}
+[2025-09-11 01:35:29] 🧪 MODO PRUEBAS ACTIVO - NO se envía al API real
+✅ Datos preparados correctamente para envío
+🎯 Para envío real: desactivar modo de pruebas en admin
+
+[2025-09-11 01:35:30] 🔍 PLUGIN CARGADO en página: /up-thankyou/

@@ -1,1 +1,31 @@
 [2025-09-10 23:52:37] 🔄 AJAX Handler ejecutado - Previniendo error 500
+[2025-09-11 00:02:33] Respuesta completa: Array
+(
+    [valid] => 1
+    [number] => 14047412908
+    [local_format] => 4047412908
+    [international_format] => +14047412908
+    [country_prefix] => +1
+    [country_code] => US
+    [country_name] => United States of America
+    [location] => Atlanta
+    [carrier] => 
+    [line_type] => landline
+)
+
+[2025-09-11 00:02:33] ✅ Validación del servidor: Todos los campos OK (24 campos)
+[2025-09-11 00:03:40] Respuesta completa: Array
+(
+    [valid] => 1
+    [number] => 14047412908
+    [local_format] => 4047412908
+    [international_format] => +14047412908
+    [country_prefix] => +1
+    [country_code] => US
+    [country_name] => United States of America
+    [location] => Atlanta
+    [carrier] => 
+    [line_type] => landline
+)
+
+[2025-09-11 00:03:40] ✅ Validación del servidor: Todos los campos OK (24 campos)

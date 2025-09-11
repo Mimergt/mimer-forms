@@ -43,10 +43,24 @@ function mimer_enqueue_custom_script() {
 
 add_action('elementor_pro/forms/validation', 'env_validate_phone_number', 10, 2);
 
+// Prevenir conflictos con admin-ajax.php
+add_action('wp_ajax_elementor_pro_forms_send_form', 'mimer_prevent_ajax_conflict', 1);
+add_action('wp_ajax_nopriv_elementor_pro_forms_send_form', 'mimer_prevent_ajax_conflict', 1);
 
+function mimer_prevent_ajax_conflict() {
+    // Verificar si es nuestro formulario
+    if (isset($_POST['form_fields']) && (isset($_POST['form_fields']['case_exposed']) || isset($_POST['form_fields']['case_depo_provera_taken']))) {
+        // Detener el procesamiento AJAX y usar nuestro hook normal
+        wp_die('Mimer Forms: Using validation hook instead of AJAX', 'Mimer Forms', array('response' => 200));
+    }
+}
 
 function env_validate_phone_number($record, $ajax_handler) {
     $fields = $record->get('fields');
+
+    // Log de procesamiento para debugging
+    $debug_log = "[" . date('Y-m-d H:i:s') . "] 🔄 ELEMENTOR HOOK - Procesando formulario con " . count($fields) . " campos\n";
+    file_put_contents(plugin_dir_path(__FILE__) . 'log.txt', $debug_log, FILE_APPEND);
 
     // Usar la nueva clase de validación
     $validation_passed = MimerFormValidation::validate_form($fields, $ajax_handler);
@@ -56,6 +70,8 @@ function env_validate_phone_number($record, $ajax_handler) {
     
     // Si hay errores de validación, no continuar
     if (!$validation_passed) {
+        $debug_log = "[" . date('Y-m-d H:i:s') . "] ❌ VALIDACIÓN FALLÓ - Deteniendo procesamiento\n";
+        file_put_contents(plugin_dir_path(__FILE__) . 'log.txt', $debug_log, FILE_APPEND);
         return;
     }
 

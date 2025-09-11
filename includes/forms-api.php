@@ -40,24 +40,31 @@ class MimerFormsVDI {
     }
 
     /**
-     * ✅ FUNCIÓN SIMPLIFICADA PARA ROUNDUP
+     * ✅ FUNCIÓN SIMPLIFICADA PARA ROUNDUP - CAMPOS CORREGIDOS
      */
     public static function send_roundup_to_api($fields) {
         // Limpiar número de teléfono
         $lead_phone = preg_replace('/[^0-9]/', '', $fields['lead_phone']);
         
-        // Mapear campos RoundUp
+        // Obtener TrustedForm
+        $trustedform = isset($_POST['xxTrustedFormToken']) ? sanitize_text_field($_POST['xxTrustedFormToken']) : 'not available';
+        
+        // ✅ MAPEAR TODOS LOS CAMPOS ROUNDUP CORRECTAMENTE
         $data = [
             "lead-first-name" => $fields['lead_first_name'],
             "lead-last-name" => $fields['lead_last_name'],
             "lead-email-address" => $fields['lead_email'],
             "lead-phone" => $lead_phone,
             "case-exposed" => $fields['case_exposed'],
+            "case-exposed-duration" => isset($fields['case_exposed_duration']) ? $fields['case_exposed_duration'] : '',
             "case-injury" => $fields['case_injury'],
-            "case-description" => $fields['case_description'],
+            "case-year-were-diagnosed" => isset($fields['year_were_diagnosed']) ? $fields['year_were_diagnosed'] : '',
+            "case-age-category" => isset($fields['case_age_category']) ? $fields['case_age_category'] : '',
+            "case-description" => isset($fields['case_brief']) ? $fields['case_brief'] : '',
             "case-attorney" => strtolower(trim($fields['case_attorney'])) === 'yes' ? 'Yes' : 'No',
+            "lead-trusted-form-cert-id" => $trustedform,
             "lead-ip-address" => $_SERVER['REMOTE_ADDR'],
-            "lead-zip-code" => (string) $fields['lead_zip_code'],
+            "lead-zip-code" => isset($fields['lead_zip_code']) ? (string) $fields['lead_zip_code'] : '',
         ];
 
         $url = 'https://api.valuedirectinc.com/api/submissions?form=ir-lca-roundup-post&team=vdi&user=ee5a1aba-6009-4d58-8a16-3810e2f777ad&signature=07c959ecf53e021ffb537dc16e60e7557297eae33536cd6b7a2d153d259fdd2f';
@@ -73,8 +80,10 @@ class MimerFormsVDI {
             session_start();
         }
 
-        // Log simple
+        // ✅ LOG DETALLADO: Datos que se envían
         $debug_log = "[" . date('Y-m-d H:i:s') . "] 📤 Enviando formulario $form_type al API\n";
+        $debug_log .= "🔗 URL: $url\n";
+        $debug_log .= "📝 DATOS ENVIADOS:\n" . print_r($data, true) . "\n";
         file_put_contents(plugin_dir_path(__FILE__) . '/../log.txt', $debug_log, FILE_APPEND);
 
         // Llamada API simple
@@ -94,6 +103,13 @@ class MimerFormsVDI {
 
         $body = wp_remote_retrieve_body($response);
         $response_data = json_decode($body, true);
+
+        // ✅ LOG DETALLADO: Respuesta del API
+        $debug_log = "[" . date('Y-m-d H:i:s') . "] 📥 RESPUESTA DEL API:\n";
+        $debug_log .= "HTTP Status: " . wp_remote_retrieve_response_code($response) . "\n";
+        $debug_log .= "Response Body: " . $body . "\n";
+        $debug_log .= "Parsed Data: " . print_r($response_data, true) . "\n";
+        file_put_contents(plugin_dir_path(__FILE__) . '/../log.txt', $debug_log, FILE_APPEND);
 
         // Procesar respuesta simple
         if (isset($response_data['accepted']) && $response_data['accepted']) {

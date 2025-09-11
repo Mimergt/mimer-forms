@@ -1,1 +1,1 @@
-[2025-09-11 00:44:36] � AJAX BLOCKED - Bloqueando AJAX para formulario Mimer
+[2025-09-10 19:06:56] 🧹 LOG LIMPIADO PARA DEBUGGING

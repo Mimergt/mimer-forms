@@ -62,7 +62,7 @@ class MimerFormsVDI {
             "case-age-category" => isset($fields['case_age_category']) ? $fields['case_age_category'] : '',
             "case-description" => isset($fields['case_brief']) ? $fields['case_brief'] : '',
             "case-attorney" => strtolower(trim($fields['case_attorney'])) === 'yes' ? 'Yes' : 'No',
-            "lead-trusted-form-cert-id" => $trustedform,
+            "lead-trusted-form-url" => $trustedform,
             "lead-ip-address" => $_SERVER['REMOTE_ADDR'],
             "lead-zip-code" => isset($fields['lead_zip_code']) ? (string) $fields['lead_zip_code'] : '',
         ];
@@ -86,13 +86,27 @@ class MimerFormsVDI {
         $debug_log .= "📝 DATOS ENVIADOS:\n" . print_r($data, true) . "\n";
         file_put_contents(plugin_dir_path(__FILE__) . '/../log.txt', $debug_log, FILE_APPEND);
 
-        // Llamada API simple
-        $response = wp_remote_post($url, array(
-            'method' => 'POST',
-            'timeout' => 30,
-            'headers' => array('Content-Type' => 'application/x-www-form-urlencoded'),
-            'body' => http_build_query($data)
-        ));
+        // ✅ LLAMADA API CORREGIDA: JSON para RoundUp, form-data para Depo Provera
+        if ($form_type === 'roundup') {
+            // RoundUp API espera JSON
+            $response = wp_remote_post($url, array(
+                'method' => 'POST',
+                'timeout' => 30,
+                'headers' => array(
+                    'Content-Type' => 'application/json',
+                    'Accept' => 'application/json'
+                ),
+                'body' => json_encode($data)
+            ));
+        } else {
+            // Depo Provera API espera form-data
+            $response = wp_remote_post($url, array(
+                'method' => 'POST',
+                'timeout' => 30,
+                'headers' => array('Content-Type' => 'application/x-www-form-urlencoded'),
+                'body' => http_build_query($data)
+            ));
+        }
 
         if (is_wp_error($response)) {
             $error_message = $response->get_error_message();

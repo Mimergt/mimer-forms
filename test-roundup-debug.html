@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test RoundUp Form - Debugging</title>
+</head>
+<body>
+    <h2>Test RoundUp Form - Debugging</h2>
+    <p><strong>Instrucciones:</strong> Usa este formulario simple para probar el procesamiento del API sin el formulario multi-paso completo.</p>
+    
+    <form method="post" action="/wp-admin/admin-ajax.php">
+        <input type="hidden" name="action" value="elementor_pro_forms_send_form">
+        <input type="hidden" name="form_id" value="roundup_test">
+        
+        <h3>Campos Básicos</h3>
+        <label>First Name: <input type="text" name="form_fields[lead_first_name]" value="John" required></label><br><br>
+        <label>Last Name: <input type="text" name="form_fields[lead_last_name]" value="Doe" required></label><br><br>
+        <label>Email: <input type="email" name="form_fields[lead_email]" value="john.doe@test.com" required></label><br><br>
+        <label>Phone: <input type="tel" name="form_fields[lead_phone]" value="4047412908" required></label><br><br>
+        
+        <h3>RoundUp Específico</h3>
+        <label>Case Exposed: 
+            <select name="form_fields[case_exposed]" required>
+                <option value="">Select...</option>
+                <option value="Yes, directly exposed" selected>Yes, directly exposed</option>
+                <option value="Yes, indirectly exposed">Yes, indirectly exposed</option>
+                <option value="Not exposed">Not exposed</option>
+            </select>
+        </label><br><br>
+        
+        <label>Case Attorney: 
+            <select name="form_fields[case_attorney]" required>
+                <option value="">Select...</option>
+                <option value="No" selected>No</option>
+                <option value="Yes">Yes</option>
+            </select>
+        </label><br><br>
+        
+        <label>Exposure Duration: 
+            <select name="form_fields[case_exposed_duration]">
+                <option value="">Select...</option>
+                <option value="Less than 1 year">Less than 1 year</option>
+                <option value="1 year">1 year</option>
+                <option value="2 or more years" selected>2 or more years</option>
+                <option value="Not exposed">Not exposed</option>
+            </select>
+        </label><br><br>
+        
+        <label>Case Injury: 
+            <select name="form_fields[case_injury]" required>
+                <option value="">Select...</option>
+                <option value="Non-Hodgkin's Lymphoma (NHL)" selected>Non-Hodgkin's Lymphoma (NHL)</option>
+                <option value="B-Cell Lymphoma">B-Cell Lymphoma</option>
+                <option value="Other cancer">Other cancer</option>
+                <option value="No cancer">No cancer</option>
+            </select>
+        </label><br><br>
+        
+        <label>Year Diagnosed: 
+            <select name="form_fields[year_were_diagnosed]">
+                <option value="">Select...</option>
+                <option value="Before 2000">Before 2000</option>
+                <option value="2020" selected>2020</option>
+                <option value="2021">2021</option>
+                <option value="2022">2022</option>
+                <option value="2023">2023</option>
+                <option value="2024">2024</option>
+            </select>
+        </label><br><br>
+        
+        <label>Age Category: 
+            <select name="form_fields[case_age_category]">
+                <option value="">Select...</option>
+                <option value="Under 18">Under 18</option>
+                <option value="18-30">18-30</option>
+                <option value="31-50">31-50</option>
+                <option value="51-65" selected>51-65</option>
+                <option value="66-80">66-80</option>
+                <option value="80+">80+</option>
+            </select>
+        </label><br><br>
+        
+        <label>Case Description: 
+            <textarea name="form_fields[case_brief]" rows="3">Used RoundUp for 5 years in my garden. Diagnosed with NHL in 2020.</textarea>
+        </label><br><br>
+        
+        <input type="hidden" name="xxTrustedFormToken" value="test-trusted-form-token">
+        
+        <button type="submit" style="background: #007cba; color: white; padding: 10px 20px; border: none; font-size: 16px;">
+            🧪 TEST ROUNDUP FORM
+        </button>
+    </form>
+    
+    <div style="margin-top: 30px; padding: 15px; background: #f9f9f9; border-radius: 5px;">
+        <h3>✅ Próximos pasos después del envío:</h3>
+        <ol>
+            <li>Revisar el log.txt para ver los datos enviados</li>
+            <li>Verificar la respuesta del API</li>
+            <li>Comprobar si está siendo aceptado o rechazado</li>
+            <li>Ajustar campos si es necesario</li>
+        </ol>
+        
+        <p><strong>Log location:</strong> <code>mimer-forms/log.txt</code></p>
+    </div>
+</body>
+</html>

@@ -194,6 +194,62 @@ function mimer_api_redirect_url_shortcode() {
 }
 add_shortcode('mimer_api_redirect_url', 'mimer_api_redirect_url_shortcode');
 
+// ✅ SHORTCODE AUTO-REDIRECT QUE RESPETA CONFIGURACIÓN ADMIN
+function mimer_auto_redirect_shortcode($atts = []) {
+    // 🔒 VERIFICAR SI LAS REDIRECCIONES ESTÁN HABILITADAS
+    $redirections_enabled = get_option('mimer_redirections_enabled', 1);
+    
+    // 🚨 DEBUG: Log para verificar comportamiento
+    $debug_log = "[" . date('Y-m-d H:i:s') . "] 🔄 mimer_auto_redirect ejecutado - Redirecciones: " . ($redirections_enabled ? "ACTIVAS" : "DESACTIVADAS") . "\n";
+    file_put_contents(plugin_dir_path(__FILE__) . 'log.txt', $debug_log, FILE_APPEND);
+    
+    if (!$redirections_enabled) {
+        // Si están desactivadas, no hacer nada (página normal)
+        $debug_log = "[" . date('Y-m-d H:i:s') . "] ✅ Redirecciones desactivadas - shortcode NO interfiere\n";
+        file_put_contents(plugin_dir_path(__FILE__) . 'log.txt', $debug_log, FILE_APPEND);
+        return '';
+    }
+    
+    if (session_status() == PHP_SESSION_NONE) {
+        session_start();
+    }
+    
+    // Solo redirigir si hay URL en sesión
+    $redirect_url = isset($_SESSION['mimer_api_redirect_url']) ? $_SESSION['mimer_api_redirect_url'] : '';
+    
+    $debug_log = "[" . date('Y-m-d H:i:s') . "] 🔗 URL redirección en sesión: '" . $redirect_url . "'\n";
+    file_put_contents(plugin_dir_path(__FILE__) . 'log.txt', $debug_log, FILE_APPEND);
+    
+    if (!empty($redirect_url)) {
+        // Limpiar la sesión
+        unset($_SESSION['mimer_api_redirect_url']);
+        
+        $debug_log = "[" . date('Y-m-d H:i:s') . "] ⚠️ REDIRIGIENDO A: $redirect_url\n";
+        file_put_contents(plugin_dir_path(__FILE__) . 'log.txt', $debug_log, FILE_APPEND);
+        
+        return '<span id="redirect-message">You will be redirected in 3 seconds...</span>
+        <script>
+            let count = 3;
+            const msg = document.getElementById("redirect-message");
+            
+            const timer = setInterval(function() {
+                count--;
+                if (msg) msg.textContent = "Redirecting in " + count + " seconds...";
+                
+                if (count <= 0) {
+                    clearInterval(timer);
+                    if (msg) msg.textContent = "Redirecting now...";
+                    window.location.href = "' . esc_js($redirect_url) . '";
+                }
+            }, 1000);
+        </script>';
+    }
+    
+    // Si no hay URL, no mostrar nada (página normal)
+    return '';
+}
+add_shortcode('mimer_auto_redirect', 'mimer_auto_redirect_shortcode');
+
 // Crear una sola instancia del admin
 if (is_admin()) {
     new MimerPhoneValidatorAdmin();

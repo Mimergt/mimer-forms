@@ -172,13 +172,18 @@ class MimerFormsVDI {
             $url = 'https://api.valuedirectinc.com/api/submissions?form=' . $form_config['api_form_id'] . '&team=vdi&user=ee5a1aba-6009-4d58-8a16-3810e2f777ad&signature=' . $form_config['signature'];
         }
 
-        // Logging simplificado
-        $log = "[" . date('Y-m-d H:i:s') . "] " . ($test_mode ? "🧪 MODO PRUEBAS" : "🔴 ENVÍO A VDI") . " - Preparando envío\n";
+        // Logging detallado para validación
+        $log = "[" . date('Y-m-d H:i:s') . "] " . ($test_mode ? "🧪 MODO PRUEBAS" : "🔴 ENVÍO A VDI") . " - Preparando envío para " . strtoupper($form_type) . "\n";
         
-        // 📋 AGREGAR JSON PARA VALIDACIÓN EXTERNA
+        // 📋 JSON COMPLETO PARA VALIDACIÓN EXTERNA
         $json_payload = json_encode($data, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES);
-        $log .= "📋 JSON QUE SE ENVÍA AL API:\n" . $json_payload . "\n";
+        $log .= "═══════════════════════════════════════════════════════════════\n";
+        $log .= "📋 JSON QUE SE ENVÍA AL API (" . strtoupper($form_type) . " - " . count($data) . " campos):\n";
+        $log .= $json_payload . "\n";
+        $log .= "═══════════════════════════════════════════════════════════════\n";
         $log .= "🔗 URL DESTINO: " . ($url ?: 'URL_COMENTADA') . "\n";
+        $log .= "📊 TIPO FORMULARIO: " . strtoupper($form_type) . "\n";
+        $log .= "🆔 FORM ID: " . ($form_id ?: 'NO DETECTADO') . "\n";
 
         // Verificar si las redirecciones están habilitadas
         $redirections_enabled = get_option('mimer_redirections_enabled', 1); // Por defecto activadas

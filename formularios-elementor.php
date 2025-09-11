@@ -3,7 +3,7 @@
  * Plugin Name: Mimer Forms VDI
  * Plugin URI: https://github.com/Mimergt/mimer-forms
  * Description: Sistema unificado multi-formulario con detección automática y Select2 integrado. Soporta Depo Provera, RoundUp y futuros formularios con selectores modernos.
- * Version: 2.5.8-fixed-header
+ * Version: 2.6-simplified
  * Author: Mimer
  * Author URI: https://github.com/Mimergt
  * Text Domain: mimer-forms-vdi
@@ -25,25 +25,23 @@ require_once plugin_dir_path(__FILE__) . 'includes/forms-api.php';
 require_once plugin_dir_path(__FILE__) . 'includes/form-validation.php';
 require_once plugin_dir_path(__FILE__) . 'includes/select2-handler.php';
 
-// Enqueue scripts
+// ✅ SCRIPTS SIMPLIFICADOS - SIN INTERCEPTORES AJAX COMPLEJOS
 add_action('wp_enqueue_scripts', 'mimer_enqueue_custom_script');
 function mimer_enqueue_custom_script() {
-    // Script de validaciones organizadas - LIMPIO Y FUNCIONANDO
-    wp_enqueue_script('form-validation', plugin_dir_url(__FILE__) . 'includes/form-validation.js', array('jquery'), '2.6.final.' . time(), true);
+    // Select2 CSS y JS desde CDN
+    wp_enqueue_style('select2-css', 'https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css');
+    wp_enqueue_script('select2-js', 'https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js', array('jquery'), null, true);
     
-    // Script principal (utilitarios) - DEPENDENCIA CORREGIDA
+    // Nuestro handler de Select2
+    wp_enqueue_script('select2-handler', plugin_dir_url(__FILE__) . 'includes/select2-handler.php', array('jquery', 'select2-js'), '1.0.' . time(), true);
+    
+    // Script de validaciones principales
+    wp_enqueue_script('form-validation', plugin_dir_url(__FILE__) . 'includes/form-validation.js', array('jquery'), '2.6.simple.' . time(), true);
+    
+    // Script principal básico
     wp_enqueue_script(
         'mimer-form-validation',
         plugin_dir_url(__FILE__) . 'includes/some_magic.js',
-        array('jquery'),
-        '1.0.' . time(),
-        true
-    );
-    
-    // Script para manejar respuestas AJAX especiales
-    wp_enqueue_script(
-        'mimer-ajax-handler',
-        plugin_dir_url(__FILE__) . 'includes/ajax-handler.js',
         array('jquery'),
         '1.0.' . time(),
         true
@@ -58,20 +56,7 @@ function mimer_init_session_flag() {
     }
 }
 
-// Bloquear AJAX completamente para nuestros formularios
-add_action('wp_ajax_elementor_pro_forms_send_form', 'mimer_block_ajax_processing', 1);
-add_action('wp_ajax_nopriv_elementor_pro_forms_send_form', 'mimer_block_ajax_processing', 1);
-
-function mimer_block_ajax_processing() {
-    // Verificar si es nuestro formulario y bloquearlo completamente
-    if (isset($_POST['form_fields']) && (isset($_POST['form_fields']['case_exposed']) || isset($_POST['form_fields']['case_depo_provera_taken']))) {
-        $debug_log = "[" . date('Y-m-d H:i:s') . "] � AJAX BLOCKED - Bloqueando AJAX para formulario Mimer\n";
-        file_put_contents(plugin_dir_path(__FILE__) . 'log.txt', $debug_log, FILE_APPEND);
-        
-        // Terminar inmediatamente para prevenir procesamiento AJAX
-        wp_die('Mimer Forms: AJAX processing disabled for this form type', 'Mimer Forms', array('response' => 200));
-    }
-}
+// ✅ VERSIÓN SIMPLIFICADA - SIN BLOQUEO AJAX
 
 // Hook principal de validación de Elementor Pro
 add_action('elementor_pro/forms/validation', 'env_validate_phone_number', 10, 2);
@@ -79,105 +64,50 @@ add_action('elementor_pro/forms/validation', 'env_validate_phone_number', 10, 2)
 function env_validate_phone_number($record, $ajax_handler) {
     $fields = $record->get('fields');
 
-    // Verificar si es uno de nuestros formularios objetivo
-    $our_form = false;
+    // ✅ DETECCIÓN SIMPLE: Verificar si es uno de nuestros formularios
+    $is_depo_form = false;
+    $is_roundup_form = false;
+    
     foreach ($fields as $field) {
-        if (isset($field['id']) && (strpos($field['id'], 'case_exposed') !== false || strpos($field['id'], 'case_depo_provera_taken') !== false)) {
-            $our_form = true;
-            break;
+        if (isset($field['id'])) {
+            if (strpos($field['id'], 'case_depo_provera_taken') !== false) {
+                $is_depo_form = true;
+                break;
+            }
+            if (strpos($field['id'], 'case_exposed') !== false) {
+                $is_roundup_form = true;
+                break;
+            }
         }
     }
     
-    if (!$our_form) {
-        // No es nuestro formulario, no procesar
+    // Si no es nuestro formulario, salir silenciosamente
+    if (!$is_depo_form && !$is_roundup_form) {
         return;
     }
 
-    // Inicializar sesión si es necesario
-    if (session_status() == PHP_SESSION_NONE) {
-        session_start();
-    }
-
-    // Log de procesamiento para debugging
-    $debug_log = "[" . date('Y-m-d H:i:s') . "] 🔄 ELEMENTOR HOOK - Procesando nuestro formulario con " . count($fields) . " campos\n";
-    file_put_contents(plugin_dir_path(__FILE__) . 'log.txt', $debug_log, FILE_APPEND);
-
-    // Usar la nueva clase de validación
+    // ✅ LÓGICA SIMPLE: Validar → Procesar → Enviar
     $validation_passed = MimerFormValidation::validate_form($fields, $ajax_handler);
     
-    // Log de validación (solo en modo pruebas)
-    MimerFormValidation::log_validation($fields);
-    
-    // Si hay errores de validación, no continuar
     if (!$validation_passed) {
-        $debug_log = "[" . date('Y-m-d H:i:s') . "] ❌ VALIDACIÓN FALLÓ - Deteniendo procesamiento\n";
-        file_put_contents(plugin_dir_path(__FILE__) . 'log.txt', $debug_log, FILE_APPEND);
-        return;
+        return; // Salir si hay errores de validación
     }
 
-    // Extraer solo los valores planos de los campos
+    // ✅ PREPARAR CAMPOS PARA API
     $flat_fields = [];
     foreach ($fields as $key => $f) {
         $flat_fields[$key] = $f['value'];
     }
 
-    // 🆔 OBTENER ID DEL FORMULARIO PARA DETECCIÓN MEJORADA
-    $form_id = null;
-    if (method_exists($record, 'get_form_settings')) {
-        $form_settings = $record->get_form_settings();
-        $form_id = isset($form_settings['form_id']) ? $form_settings['form_id'] : null;
-    }
-    
-    // Si no se encuentra por el método anterior, intentar obtenerlo del HTML/DOM
-    if (!$form_id && isset($_POST['form_id'])) {
-        $form_id = sanitize_text_field($_POST['form_id']);
-    }
-
-    // Enviar al API con ID de formulario para mejor detección
-    try {
-        // Limpiar cualquier output buffer antes del procesamiento
-        if (ob_get_level()) {
-            ob_clean();
-        }
-        
-        MimerFormsVDI::send_submission_to_vdi($flat_fields, $form_id);
-        
-        $debug_log = "[" . date('Y-m-d H:i:s') . "] ✅ API PROCESSING - Completado exitosamente\n";
-        file_put_contents(plugin_dir_path(__FILE__) . 'log.txt', $debug_log, FILE_APPEND);
-        
-    } catch (Exception $e) {
-        $debug_log = "[" . date('Y-m-d H:i:s') . "] ❌ API ERROR - " . $e->getMessage() . "\n";
-        file_put_contents(plugin_dir_path(__FILE__) . 'log.txt', $debug_log, FILE_APPEND);
-        
-        // Añadir error a Elementor
-        $ajax_handler->add_error_message('Ocurrió un error procesando el formulario. Por favor intente nuevamente.');
+    // ✅ ENVIAR AL API - LÓGICA SIMPLE COMO EN v1.4
+    if ($is_depo_form) {
+        MimerFormsVDI::send_depo_provera_to_api($flat_fields);
+    } elseif ($is_roundup_form) {
+        MimerFormsVDI::send_roundup_to_api($flat_fields);
     }
 }
 
-// Hook adicional para limpiar respuesta después del procesamiento
-add_action('elementor_pro/forms/process', 'mimer_clean_response_after_processing', 999, 2);
-
-function mimer_clean_response_after_processing($record, $ajax_handler) {
-    // Verificar si es uno de nuestros formularios
-    $fields = $record->get('fields');
-    $our_form = false;
-    foreach ($fields as $field) {
-        if (isset($field['id']) && (strpos($field['id'], 'case_exposed') !== false || strpos($field['id'], 'case_depo_provera_taken') !== false)) {
-            $our_form = true;
-            break;
-        }
-    }
-    
-    if ($our_form) {
-        // Limpiar cualquier output buffer residual
-        while (ob_get_level()) {
-            ob_end_clean();
-        }
-        
-        $debug_log = "[" . date('Y-m-d H:i:s') . "] 🧹 CLEAN RESPONSE - Output buffer limpiado\n";
-        file_put_contents(plugin_dir_path(__FILE__) . 'log.txt', $debug_log, FILE_APPEND);
-    }
-}
+// ✅ VERSIÓN SIMPLIFICADA - SIN HOOKS ADICIONALES COMPLEJOS
 
 // 📝 Shortcodes para mostrar datos del API (solo si redirecciones están activadas)
 function mimer_api_lead_id_shortcode() {

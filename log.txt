@@ -1,17 +1,1 @@
-[2025-09-11 00:40:46] 🔄 AJAX DETECTED - Form detectado, continuando con procesamiento normal
-[2025-09-11 00:40:46] 🔄 ELEMENTOR HOOK - Procesando nuestro formulario con 24 campos
-[2025-09-11 00:40:46] Respuesta completa: Array
-(
-    [valid] => 1
-    [number] => 14049387541
-    [local_format] => 4049387541
-    [international_format] => +14049387541
-    [country_prefix] => +1
-    [country_code] => US
-    [country_name] => United States of America
-    [location] => Atlanta
-    [carrier] => Cellco Partnership (Verizon Wireless)
-    [line_type] => mobile
-)
-
-[2025-09-11 00:40:46] ✅ Validación del servidor: Todos los campos OK (24 campos)
+[2025-09-11 00:44:36] � AJAX BLOCKED - Bloqueando AJAX para formulario Mimer

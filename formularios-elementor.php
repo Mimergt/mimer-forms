@@ -2,7 +2,34 @@
 /**
  * Plugin Name: Mimer Forms VDI
  * Plugin URI: https://github.com/Mimergt/mimer-forms
- * Description: Sistema unificado multi-formulario con detección automática y Select2 integrado. Soporta Depo Provera, RoundUp y futuros formularios con selectores modernos.
+ * Description: Sistem// 🚨 DEBUG: Log para verificar si el plugin se está cargando en thankyou pages
+add_action('wp_head', function() {
+    if (strpos($_SERVER['REQUEST_URI'], 'thankyou') !== false || strpos($_SERVER['REQUEST_URI'], 'thank') !== false) {
+        $debug_log = "[" . date('Y-m-d H:i:s') . "] 🔍 PLUGIN CARGADO en página: " . $_SERVER['REQUEST_URI'] . "\n";
+        file_put_contents(plugin_dir_path(__FILE__) . 'log.txt', $debug_log, FILE_APPEND);
+    }
+});
+
+// 🔒 MODO DE EMERGENCIA: Deshabilitar todos los shortcodes en páginas thank you
+add_action('wp', function() {
+    if (strpos($_SERVER['REQUEST_URI'], 'thankyou') !== false || strpos($_SERVER['REQUEST_URI'], 'thank') !== false) {
+        // Log de emergencia
+        $debug_log = "[" . date('Y-m-d H:i:s') . "] 🚨 MODO EMERGENCIA: Deshabilitando shortcodes en " . $_SERVER['REQUEST_URI'] . "\n";
+        file_put_contents(plugin_dir_path(__FILE__) . 'log.txt', $debug_log, FILE_APPEND);
+        
+        // Remover temporalmente todos nuestros shortcodes
+        remove_shortcode('mimer_api_lead_id');
+        remove_shortcode('mimer_api_response_message');
+        remove_shortcode('mimer_api_validation_errors');
+        remove_shortcode('mimer_case_injury');
+        remove_shortcode('mimer_api_redirect_url');
+        remove_shortcode('mimer_auto_redirect');
+        remove_shortcode('mimer_debug');
+        
+        $debug_log = "[" . date('Y-m-d H:i:s') . "] ✅ Shortcodes removidos temporalmente\n";
+        file_put_contents(plugin_dir_path(__FILE__) . 'log.txt', $debug_log, FILE_APPEND);
+    }
+});cado multi-formulario con detección automática y Select2 integrado. Soporta Depo Provera, RoundUp y futuros formularios con selectores modernos.
  * Version: 2.7-test-mode-fix
  * Author: Mimer
  * Author URI: https://github.com/Mimergt
@@ -116,26 +143,44 @@ function env_validate_phone_number($record, $ajax_handler) {
 
 // ✅ VERSIÓN SIMPLIFICADA - SIN HOOKS ADICIONALES COMPLEJOS
 
-// 📝 Shortcodes para mostrar datos del API (solo si redirecciones están activadas)
+// � DEBUG: Log para verificar si el plugin se está cargando en thankyou pages
+add_action('wp_head', function() {
+    if (strpos($_SERVER['REQUEST_URI'], 'thankyou') !== false || strpos($_SERVER['REQUEST_URI'], 'thank') !== false) {
+        $debug_log = "[" . date('Y-m-d H:i:s') . "] 🔍 PLUGIN CARGADO en página: " . $_SERVER['REQUEST_URI'] . "\n";
+        file_put_contents(plugin_dir_path(__FILE__) . 'log.txt', $debug_log, FILE_APPEND);
+    }
+});
+
+// �📝 Shortcodes para mostrar datos del API (solo si redirecciones están activadas)
 function mimer_api_lead_id_shortcode() {
-    $redirections_enabled = get_option('mimer_redirections_enabled', 1);
-    if (!$redirections_enabled) return '';
-    
-    if (session_status() == PHP_SESSION_NONE) session_start();
-    $val = isset($_SESSION['mimer_api_lead_id']) ? $_SESSION['mimer_api_lead_id'] : '';
-    unset($_SESSION['mimer_api_lead_id']);
-    return esc_html($val);
+    try {
+        $redirections_enabled = get_option('mimer_redirections_enabled', 1);
+        if (!$redirections_enabled) return '';
+        
+        if (session_status() == PHP_SESSION_NONE) session_start();
+        $val = isset($_SESSION['mimer_api_lead_id']) ? $_SESSION['mimer_api_lead_id'] : '';
+        unset($_SESSION['mimer_api_lead_id']);
+        return esc_html($val);
+    } catch (Exception $e) {
+        error_log('Mimer shortcode error: ' . $e->getMessage());
+        return '';
+    }
 }
 add_shortcode('mimer_api_lead_id', 'mimer_api_lead_id_shortcode');
 
 function mimer_api_response_message_shortcode() {
-    $redirections_enabled = get_option('mimer_redirections_enabled', 1);
-    if (!$redirections_enabled) return '';
-    
-    if (session_status() == PHP_SESSION_NONE) session_start();
-    $val = isset($_SESSION['mimer_api_response_message']) ? $_SESSION['mimer_api_response_message'] : '';
-    unset($_SESSION['mimer_api_response_message']);
-    return esc_html($val);
+    try {
+        $redirections_enabled = get_option('mimer_redirections_enabled', 1);
+        if (!$redirections_enabled) return '';
+        
+        if (session_status() == PHP_SESSION_NONE) session_start();
+        $val = isset($_SESSION['mimer_api_response_message']) ? $_SESSION['mimer_api_response_message'] : '';
+        unset($_SESSION['mimer_api_response_message']);
+        return esc_html($val);
+    } catch (Exception $e) {
+        error_log('Mimer shortcode error: ' . $e->getMessage());
+        return '';
+    }
 }
 add_shortcode('mimer_api_response_message', 'mimer_api_response_message_shortcode');
 
@@ -249,6 +294,27 @@ function mimer_auto_redirect_shortcode($atts = []) {
     return '';
 }
 add_shortcode('mimer_auto_redirect', 'mimer_auto_redirect_shortcode');
+
+// 🔍 SHORTCODE DE DEBUGGING PARA TROUBLESHOOT
+function mimer_debug_shortcode($atts = []) {
+    $redirections_enabled = get_option('mimer_redirections_enabled', 1);
+    
+    if (session_status() == PHP_SESSION_NONE) {
+        session_start();
+    }
+    
+    $redirect_url = isset($_SESSION['mimer_api_redirect_url']) ? $_SESSION['mimer_api_redirect_url'] : '';
+    
+    $debug_info = '<div style="background: #f9f9f9; padding: 15px; margin: 10px 0; border: 1px solid #ddd;">';
+    $debug_info .= '<h4>🔍 Mimer Debug Info</h4>';
+    $debug_info .= '<p><strong>Redirecciones habilitadas:</strong> ' . ($redirections_enabled ? '✅ SÍ' : '❌ NO') . '</p>';
+    $debug_info .= '<p><strong>URL de redirección en sesión:</strong> ' . ($redirect_url ? $redirect_url : 'Ninguna') . '</p>';
+    $debug_info .= '<p><strong>Shortcode funcionando:</strong> ✅ SÍ</p>';
+    $debug_info .= '</div>';
+    
+    return $debug_info;
+}
+add_shortcode('mimer_debug', 'mimer_debug_shortcode');
 
 // Crear una sola instancia del admin
 if (is_admin()) {

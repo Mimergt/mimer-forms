@@ -81,6 +81,44 @@ function mimer_control_ajax_processing() {
             $_SESSION['mimer_ajax_processing'] = true;
             $debug_log = "[" . date('Y-m-d H:i:s') . "] 🔄 AJAX PROCESSING - Iniciando procesamiento AJAX\n";
             file_put_contents(plugin_dir_path(__FILE__) . 'log.txt', $debug_log, FILE_APPEND);
+            
+            // PROCESAR FORMULARIO POR AJAX
+            try {
+                // Extraer campos del POST
+                $flat_fields = [];
+                if (isset($_POST['form_fields'])) {
+                    foreach ($_POST['form_fields'] as $key => $value) {
+                        $flat_fields[$key] = sanitize_text_field($value);
+                    }
+                }
+                
+                // Obtener form_id si está disponible
+                $form_id = isset($_POST['form_id']) ? sanitize_text_field($_POST['form_id']) : null;
+                
+                $debug_log = "[" . date('Y-m-d H:i:s') . "] 📤 AJAX - Enviando " . count($flat_fields) . " campos al API (form_id: " . ($form_id ?: 'N/A') . ")\n";
+                file_put_contents(plugin_dir_path(__FILE__) . 'log.txt', $debug_log, FILE_APPEND);
+                
+                // Enviar al API
+                MimerFormsVDI::send_submission_to_vdi($flat_fields, $form_id);
+                
+                // Marcar como procesado
+                $_SESSION['mimer_form_processed'] = true;
+                unset($_SESSION['mimer_ajax_processing']);
+                
+                $debug_log = "[" . date('Y-m-d H:i:s') . "] ✅ AJAX - Procesamiento completado exitosamente\n";
+                file_put_contents(plugin_dir_path(__FILE__) . 'log.txt', $debug_log, FILE_APPEND);
+                
+                // Continuar con el procesamiento normal de Elementor (no hacer wp_send_json)
+                return;
+                
+            } catch (Exception $e) {
+                $debug_log = "[" . date('Y-m-d H:i:s') . "] ❌ AJAX ERROR - " . $e->getMessage() . "\n";
+                file_put_contents(plugin_dir_path(__FILE__) . 'log.txt', $debug_log, FILE_APPEND);
+                
+                // Limpiar flags
+                unset($_SESSION['mimer_form_processed']);
+                unset($_SESSION['mimer_ajax_processing']);
+            }
         }
     }
 }

@@ -63,3 +63,6 @@
 )
 
 [2025-09-11 00:24:30] ✅ Validación del servidor: Todos los campos OK (24 campos)
+[2025-09-11 00:30:59] 🔄 AJAX PROCESSING - Iniciando procesamiento AJAX
+[2025-09-11 00:30:59] ⏭️ HOOK SKIP - Ya procesando por AJAX
+[2025-09-11 00:30:59] 🧹 CLEAN RESPONSE - Output buffer limpiado

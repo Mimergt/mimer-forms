@@ -2,8 +2,8 @@
 /**
  * Plugin Name: Mimer Forms VDI
  * Plugin URI: https://github.com/Mimergt/mimer-forms
- * Description: Sistem// ✅ PROBLEMA RESUELTO: Los shortcodes problemáticos fueron removidos de las páginas thankyoucado multi-formulario con detección automática y Select2 integrado. Soporta Depo Provera, RoundUp y futuros formularios con selectores modernos.
- * Version: 2.7-test-mode-fix
+ * Description: Sistema multi-formulario con detección automática y Select2 integrado. Soporta Depo Provera, RoundUp y futuros formularios con selectores modernos.
+ * Version: 2.8
  * Author: Mimer
  * Author URI: https://github.com/Mimergt
  * Text Domain: mimer-forms-vdi
@@ -158,57 +158,70 @@ function mimer_api_response_message_shortcode() {
 add_shortcode('mimer_api_response_message', 'mimer_api_response_message_shortcode');
 
 function mimer_api_validation_errors_shortcode() {
-    $redirections_enabled = get_option('mimer_redirections_enabled', 1);
-    if (!$redirections_enabled) return '';
-    
-    if (session_status() == PHP_SESSION_NONE) session_start();
-    $val = isset($_SESSION['mimer_api_validation_errors']) ? $_SESSION['mimer_api_validation_errors'] : '';
-    unset($_SESSION['mimer_api_validation_errors']);
-    return esc_html($val);
+    try {
+        $redirections_enabled = get_option('mimer_redirections_enabled', 1);
+        if (!$redirections_enabled) return '';
+        
+        if (session_status() == PHP_SESSION_NONE) session_start();
+        $val = isset($_SESSION['mimer_api_validation_errors']) ? $_SESSION['mimer_api_validation_errors'] : '';
+        unset($_SESSION['mimer_api_validation_errors']);
+        return esc_html($val);
+    } catch (Exception $e) {
+        error_log('Mimer shortcode error: ' . $e->getMessage());
+        return '';
+    }
 }
 add_shortcode('mimer_api_validation_errors', 'mimer_api_validation_errors_shortcode');
 
 function mimer_case_injury_shortcode() {
-    $redirections_enabled = get_option('mimer_redirections_enabled', 1);
-    if (!$redirections_enabled) return '';
-    
-    if (session_status() == PHP_SESSION_NONE) session_start();
-    $val = isset($_SESSION['mimer_case_injury']) ? $_SESSION['mimer_case_injury'] : '';
-    unset($_SESSION['mimer_case_injury']);
-    return esc_html($val);
+    try {
+        $redirections_enabled = get_option('mimer_redirections_enabled', 1);
+        if (!$redirections_enabled) return '';
+        
+        if (session_status() == PHP_SESSION_NONE) session_start();
+        $val = isset($_SESSION['mimer_case_injury']) ? $_SESSION['mimer_case_injury'] : '';
+        unset($_SESSION['mimer_case_injury']);
+        return esc_html($val);
+    } catch (Exception $e) {
+        error_log('Mimer shortcode error: ' . $e->getMessage());
+        return '';
+    }
 }
 add_shortcode('mimer_case_injury', 'mimer_case_injury_shortcode');
 
 function mimer_api_redirect_url_shortcode() {
-    if (session_status() == PHP_SESSION_NONE) session_start();
-    
-    // Obtener URL de redirección de múltiples fuentes
-    $redirect_url = '';
-    
-    // 1. Desde sesión (método preferido)
-    if (isset($_SESSION['mimer_api_redirect_url'])) {
-        $redirect_url = $_SESSION['mimer_api_redirect_url'];
-        unset($_SESSION['mimer_api_redirect_url']);
+    try {
+        // 🔒 VERIFICAR SI LAS REDIRECCIONES ESTÁN HABILITADAS
+        $redirections_enabled = get_option('mimer_redirections_enabled', 1);
+        if (!$redirections_enabled) return '';
+        
+        if (session_status() == PHP_SESSION_NONE) session_start();
+        
+        // Obtener URL de redirección de múltiples fuentes
+        $redirect_url = '';
+        
+        // 1. Desde sesión (método preferido)
+        if (isset($_SESSION['mimer_api_redirect_url'])) {
+            $redirect_url = $_SESSION['mimer_api_redirect_url'];
+            // NO limpiar aquí para que mimer_auto_redirect pueda usarla
+        }
+        // 2. Backup desde cookie
+        else if (isset($_COOKIE['mimer_redirect_backup'])) {
+            $redirect_url = $_COOKIE['mimer_redirect_backup'];
+        }
+        // 3. Backward compatibility
+        else if (isset($_SESSION['mimer_last_redirect_url'])) {
+            $redirect_url = $_SESSION['mimer_last_redirect_url'];
+        }
+        
+        // ✅ SOLO MOSTRAR LA URL, NO REDIRIGIR AUTOMÁTICAMENTE
+        // (Para redirección automática usar [mimer_auto_redirect])
+        return esc_url($redirect_url);
+        
+    } catch (Exception $e) {
+        error_log('Mimer shortcode error: ' . $e->getMessage());
+        return '';
     }
-    // 2. Backup desde cookie
-    else if (isset($_COOKIE['mimer_redirect_backup'])) {
-        $redirect_url = $_COOKIE['mimer_redirect_backup'];
-        // Limpiar cookie
-        setcookie('mimer_redirect_backup', '', time() - 3600, '/');
-    }
-    // 3. Backward compatibility
-    else if (isset($_SESSION['mimer_last_redirect_url'])) {
-        $redirect_url = $_SESSION['mimer_last_redirect_url'];
-        unset($_SESSION['mimer_last_redirect_url']);
-    }
-    
-    if (!empty($redirect_url)) {
-        // Limpiar y ejecutar redirección
-        wp_redirect($redirect_url);
-        exit;
-    }
-    
-    return '';
 }
 add_shortcode('mimer_api_redirect_url', 'mimer_api_redirect_url_shortcode');
 

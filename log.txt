@@ -175,4 +175,220 @@ Array
 ✅ Datos preparados correctamente para envío
 🎯 Para envío real: desactivar modo de pruebas en admin
 
-[2025-09-11 01:35:30] 🔍 PLUGIN CARGADO en página: /up-thankyou/
+[2025-09-11 01:35:30] 🔍 PLUGIN CARGADO en página: /up-thankyou[2025-09-10 19:16:22] 🧹 LOG LIMPIADO - Testing modo de pruebas v2.6
+[2025-09-11 01:18:47] Respuesta completa: Array
+(
+    [valid] => 1
+    [number] => 14044981326
+    [local_format] => 4044981326
+    [international_format] => +14044981326
+    [country_prefix] => +1
+    [country_code] => US
+    [country_name] => United States of America
+    [location] => Atlanta
+    [carrier] => 
+    [line_type] => landline
+)
+
+[2025-09-11 01:18:47] 🎯 Detectado formulario ROUNDUP - enviando...
+[2025-09-11 01:18:47] 🚨 VERSIÓN NUEVA v2.6 - RoundUp con JSON iniciando...
+[2025-09-11 01:18:47] 📤 🧪 MODO PRUEBAS - Enviando formulario roundup al API
+🔗 URL: https://api.valuedirectinc.com/api/submissions?form=ir-lca-roundup-post&team=vdi&user=ee5a1aba-6009-4d58-8a16-3810e2f777ad&signature=07c959ecf53e021ffb537dc16e60e7557297eae33536cd6b7a2d153d259fdd2f
+📝 DATOS QUE SE ENVIARÍAN:
+Array
+(
+    [lead-first-name] => tstas
+    [lead-last-name] => astas
+    [lead-email-address] => szt@tst.com
+    [lead-phone] => 14044981326
+    [case-exposed] => Yes, directly exposed
+    [case-exposed-duration] => Less than 1 year
+    [case-injury] => Anaplastic Large T/Null-Cell Lymphoma (T/N-ALCL)
+    [case-year-were-diagnosed] => Before 2000
+    [case-age-category] => 30-49
+    [case-description] => +14044981326
+    [case-attorney] => No
+    [lead-trusted-form-url] => https://cert.trustedform.com/38bba0d5ea4a53c3bf8d615acb61497cce1cc930
+    [lead-ip-address] => 2800:98:1112:1f4d:3520:fe86:9604:a1bd
+    [lead-zip-code] => 
+)
+
+📦 FORMATO: JSON (Content-Type: application/json)
+🔄 JSON BODY: {
+    "lead-first-name": "tstas",
+    "lead-last-name": "astas",
+    "lead-email-address": "szt@tst.com",
+    "lead-phone": "14044981326",
+    "case-exposed": "Yes, directly exposed",
+    "case-exposed-duration": "Less than 1 year",
+    "case-injury": "Anaplastic Large T\/Null-Cell Lymphoma (T\/N-ALCL)",
+    "case-year-were-diagnosed": "Before 2000",
+    "case-age-category": "30-49",
+    "case-description": "+14044981326",
+    "case-attorney": "No",
+    "lead-trusted-form-url": "https:\/\/cert.trustedform.com\/38bba0d5ea4a53c3bf8d615acb61497cce1cc930",
+    "lead-ip-address": "2800:98:1112:1f4d:3520:fe86:9604:a1bd",
+    "lead-zip-code": ""
+}
+[2025-09-11 01:18:47] 🧪 MODO PRUEBAS ACTIVO - NO se envía al API real
+✅ Datos preparados correctamente para envío
+🎯 Para envío real: desactivar modo de pruebas en admin
+
+[2025-09-11 01:28:32] Respuesta completa: Array
+(
+    [valid] => 1
+    [number] => 14049387541
+    [local_format] => 4049387541
+    [international_format] => +14049387541
+    [country_prefix] => +1
+    [country_code] => US
+    [country_name] => United States of America
+    [location] => Atlanta
+    [carrier] => Cellco Partnership (Verizon Wireless)
+    [line_type] => mobile
+)
+
+[2025-09-11 01:28:32] 🎯 Detectado formulario ROUNDUP - enviando...
+[2025-09-11 01:28:32] 🚨 VERSIÓN NUEVA v2.6 - RoundUp con JSON iniciando...
+[2025-09-11 01:28:32] 📤 🧪 MODO PRUEBAS - Enviando formulario roundup al API
+🔗 URL: https://api.valuedirectinc.com/api/submissions?form=ir-lca-roundup-post&team=vdi&user=ee5a1aba-6009-4d58-8a16-3810e2f777ad&signature=07c959ecf53e021ffb537dc16e60e7557297eae33536cd6b7a2d153d259fdd2f
+📝 DATOS QUE SE ENVIARÍAN:
+Array
+(
+    [lead-first-name] => Test
+    [lead-last-name] => Mimer
+    [lead-email-address] => testmail@epi.gt
+    [lead-phone] => 14049387541
+    [case-exposed] => Yes, directly exposed
+    [case-exposed-duration] => Less than 1 year
+    [case-injury] => Non-Hodgkin's Lymphoma (NHL)
+    [case-year-were-diagnosed] => 2017
+    [case-age-category] => 18-29
+    [case-description] => test description case.
+    [case-attorney] => No
+    [lead-trusted-form-url] => https://cert.trustedform.com/b0d25c27389ee2ea85afdc70c60d6d685e3d20f8
+    [lead-ip-address] => 2800:98:1112:1f4d:3520:fe86:9604:a1bd
+    [lead-zip-code] => 
+)
+
+📦 FORMATO: JSON (Content-Type: application/json)
+🔄 JSON BODY: {
+    "lead-first-name": "Test",
+    "lead-last-name": "Mimer",
+    "lead-email-address": "testmail@epi.gt",
+    "lead-phone": "14049387541",
+    "case-exposed": "Yes, directly exposed",
+    "case-exposed-duration": "Less than 1 year",
+    "case-injury": "Non-Hodgkin's Lymphoma (NHL)",
+    "case-year-were-diagnosed": "2017",
+    "case-age-category": "18-29",
+    "case-description": "test description case.",
+    "case-attorney": "No",
+    "lead-trusted-form-url": "https:\/\/cert.trustedform.com\/b0d25c27389ee2ea85afdc70c60d6d685e3d20f8",
+    "lead-ip-address": "2800:98:1112:1f4d:3520:fe86:9604:a1bd",
+    "lead-zip-code": ""
+}
+[2025-09-11 01:28:32] 🧪 MODO PRUEBAS ACTIVO - NO se envía al API real
+✅ Datos preparados correctamente para envío
+🎯 Para envío real: desactivar modo de pruebas en admin
+[2025-09-11 01:31:44] 🔍 PLUGIN CARGADO en página: /up-thankyou/
+[2025-09-11 01:32:09] 🔍 PLUGIN CARGADO en página: /up-thankyou/
+[2025-09-11 01:32:17] 🔍 PLUGIN CARGADO en página: /up-thankyou/?elementor-preview=1521&ver=1757554335
+[2025-09-11 01:35:29] Respuesta completa: Array
+(
+    [valid] => 1
+    [number] => 14049387541
+    [local_format] => 4049387541
+    [international_format] => +14049387541
+    [country_prefix] => +1
+    [country_code] => US
+    [country_name] => United States of America
+    [location] => Atlanta
+    [carrier] => Cellco Partnership (Verizon Wireless)
+    [line_type] => mobile
+)
+
+[2025-09-11 01:35:29] 🎯 Detectado formulario ROUNDUP - enviando...
+[2025-09-11 01:35:29] 🚨 VERSIÓN NUEVA v2.6 - RoundUp con JSON iniciando...
+[2025-09-11 01:35:29] 📤 🧪 MODO PRUEBAS - Enviando formulario roundup al API
+🔗 URL: https://api.valuedirectinc.com/api/submissions?form=ir-lca-roundup-post&team=vdi&user=ee5a1aba-6009-4d58-8a16-3810e2f777ad&signature=07c959ecf53e021ffb537dc16e60e7557297eae33536cd6b7a2d153d259fdd2f
+📝 DATOS QUE SE ENVIARÍAN:
+Array
+(
+    [lead-first-name] => ssdfa
+    [lead-last-name] => asdf
+    [lead-email-address] => fds@mail.com
+    [lead-phone] => 14049387541
+    [case-exposed] => Yes, directly exposed
+    [case-exposed-duration] => Less than 1 year
+    [case-injury] => Anaplastic Large T/Null-Cell Lymphoma (T/N-ALCL)
+    [case-year-were-diagnosed] => Before 2000
+    [case-age-category] => 18-29
+    [case-description] => test
+    [case-attorney] => No
+    [lead-trusted-form-url] => https://cert.trustedform.com/ec735b511aa5a41f012296cd5b2e104e1129a719
+    [lead-ip-address] => 2800:98:1112:1f4d:3520:fe86:9604:a1bd
+    [lead-zip-code] => 
+)
+
+📦 FORMATO: JSON (Content-Type: application/json)
+🔄 JSON BODY: {
+    "lead-first-name": "ssdfa",
+    "lead-last-name": "asdf",
+    "lead-email-address": "fds@mail.com",
+    "lead-phone": "14049387541",
+    "case-exposed": "Yes, directly exposed",
+    "case-exposed-duration": "Less than 1 year",
+    "case-injury": "Anaplastic Large T\/Null-Cell Lymphoma (T\/N-ALCL)",
+    "case-year-were-diagnosed": "Before 2000",
+    "case-age-category": "18-29",
+    "case-description": "test",
+    "case-attorney": "No",
+    "lead-trusted-form-url": "https:\/\/cert.trustedform.com\/ec735b511aa5a41f012296cd5b2e104e1129a719",
+    "lead-ip-address": "2800:98:1112:1f4d:3520:fe86:9604:a1bd",
+    "lead-zip-code": ""
+}
+[2025-09-11 01:35:29] 🧪 MODO PRUEBAS ACTIVO - NO se envía al API real
+✅ Datos preparados correctamente para envío
+🎯 Para envío real: desactivar modo de pruebas en admin
+
+[2025-09-11 01:35:30] 🔍 PLUGIN CARGADO en página: /up-thankyou/[2025-09-11 01:40:24] Respuesta completa: Array
+(
+    [valid] => 1
+    [number] => 14049387541
+    [local_format] => 4049387541
+    [international_format] => +14049387541
+    [country_prefix] => +1
+    [country_code] => US
+    [country_name] => United States of America
+    [location] => Atlanta
+    [carrier] => Cellco Partnership (Verizon Wireless)
+    [line_type] => mobile
+)
+
+[2025-09-11 01:40:24] 🎯 Detectado formulario DEPO PROVERA - enviando...
+[2025-09-11 01:40:24] 📤 🧪 MODO PRUEBAS - Enviando formulario depo al API
+🔗 URL: https://api.valuedirectinc.com/api/submissions?form=ir-lca-depo-post&team=vdi&user=ee5a1aba-6009-4d58-8a16-3810e2f777ad&signature=89a78284fe446f579d91ad0768e326e505f40a6bfa95ebf03c38f90eb110d453
+📝 DATOS QUE SE ENVIARÍAN:
+Array
+(
+    [lead-first-name] => stset
+    [lead-last-name] => tstst
+    [lead-email-address] => s@ma.com
+    [lead-phone] => 14049387541
+    [case-depo-provera-taken] => Yes, Depo Provera
+    [case-depo-provera-use] => 1 year
+    [case-injury] => Brain Meningioma
+    [case-description] => stst
+    [case-attorney] => No
+    [lead-trusted-form-cert-id] => https://cert.trustedform.com/53f96b24f9ad9345b77765a68a5dd8b93a40683d
+    [lead-ip-address] => 2800:98:1112:1f4d:3520:fe86:9604:a1bd
+    [lead-zip-code] => 30043
+)
+
+📦 FORMATO: Form Data (Content-Type: application/x-www-form-urlencoded)
+🔄 FORM DATA: lead-first-name=stset&lead-last-name=tstst&lead-email-address=s%40ma.com&lead-phone=14049387541&case-depo-provera-taken=Yes%2C+Depo+Provera&case-depo-provera-use=1+year&case-injury=Brain+Meningioma&case-description=stst&case-attorney=No&lead-trusted-form-cert-id=https%3A%2F%2Fcert.trustedform.com%2F53f96b24f9ad9345b77765a68a5dd8b93a40683d&lead-ip-address=2800%3A98%3A1112%3A1f4d%3A3520%3Afe86%3A9604%3Aa1bd&lead-zip-code=30043
+[2025-09-11 01:40:24] 🧪 MODO PRUEBAS ACTIVO - NO se envía al API real
+✅ Datos preparados correctamente para envío
+🎯 Para envío real: desactivar modo de pruebas en admin
+/

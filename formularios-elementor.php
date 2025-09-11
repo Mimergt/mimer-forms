@@ -58,15 +58,18 @@ function mimer_init_session_flag() {
     }
 }
 
-// Control de procesamiento AJAX para evitar doble procesamiento
-add_action('wp_ajax_elementor_pro_forms_send_form', 'mimer_control_ajax_processing', 1);
-add_action('wp_ajax_nopriv_elementor_pro_forms_send_form', 'mimer_control_ajax_processing', 1);
+// Bloquear AJAX completamente para nuestros formularios
+add_action('wp_ajax_elementor_pro_forms_send_form', 'mimer_block_ajax_processing', 1);
+add_action('wp_ajax_nopriv_elementor_pro_forms_send_form', 'mimer_block_ajax_processing', 1);
 
-function mimer_control_ajax_processing() {
-    // Solo logging básico - NO interferir con el procesamiento AJAX
+function mimer_block_ajax_processing() {
+    // Verificar si es nuestro formulario y bloquearlo completamente
     if (isset($_POST['form_fields']) && (isset($_POST['form_fields']['case_exposed']) || isset($_POST['form_fields']['case_depo_provera_taken']))) {
-        $debug_log = "[" . date('Y-m-d H:i:s') . "] 🔄 AJAX DETECTED - Form detectado, continuando con procesamiento normal\n";
+        $debug_log = "[" . date('Y-m-d H:i:s') . "] � AJAX BLOCKED - Bloqueando AJAX para formulario Mimer\n";
         file_put_contents(plugin_dir_path(__FILE__) . 'log.txt', $debug_log, FILE_APPEND);
+        
+        // Terminar inmediatamente para prevenir procesamiento AJAX
+        wp_die('Mimer Forms: AJAX processing disabled for this form type', 'Mimer Forms', array('response' => 200));
     }
 }
 

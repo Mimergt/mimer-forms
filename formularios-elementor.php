@@ -101,9 +101,16 @@ function env_validate_phone_number($record, $ajax_handler) {
 
     // ✅ ENVIAR AL API - LÓGICA SIMPLE COMO EN v1.4
     if ($is_depo_form) {
+        $debug_log = "[" . date('Y-m-d H:i:s') . "] 🎯 Detectado formulario DEPO PROVERA - enviando...\n";
+        file_put_contents(plugin_dir_path(__FILE__) . 'log.txt', $debug_log, FILE_APPEND);
         MimerFormsVDI::send_depo_provera_to_api($flat_fields);
     } elseif ($is_roundup_form) {
+        $debug_log = "[" . date('Y-m-d H:i:s') . "] 🎯 Detectado formulario ROUNDUP - enviando...\n";
+        file_put_contents(plugin_dir_path(__FILE__) . 'log.txt', $debug_log, FILE_APPEND);
         MimerFormsVDI::send_roundup_to_api($flat_fields);
+    } else {
+        $debug_log = "[" . date('Y-m-d H:i:s') . "] ❓ NO SE DETECTÓ TIPO DE FORMULARIO\n";
+        file_put_contents(plugin_dir_path(__FILE__) . 'log.txt', $debug_log, FILE_APPEND);
     }
 }
 

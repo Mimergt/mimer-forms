@@ -69,6 +69,10 @@ class MimerFormsVDI {
 
         $url = 'https://api.valuedirectinc.com/api/submissions?form=ir-lca-roundup-post&team=vdi&user=ee5a1aba-6009-4d58-8a16-3810e2f777ad&signature=07c959ecf53e021ffb537dc16e60e7557297eae33536cd6b7a2d153d259fdd2f';
         
+        // 🚨 DEBUG: Verificar que estamos usando el código nuevo
+        $debug_version = "[" . date('Y-m-d H:i:s') . "] 🚨 VERSIÓN NUEVA v2.6 - RoundUp con JSON iniciando...\n";
+        file_put_contents(plugin_dir_path(__FILE__) . '/../log.txt', $debug_version, FILE_APPEND);
+        
         self::simple_api_call($data, $url, 'roundup');
     }
 
@@ -80,11 +84,37 @@ class MimerFormsVDI {
             session_start();
         }
 
+        // ✅ VERIFICAR MODO DE PRUEBAS
+        $test_mode = get_option('mimer_test_mode_enabled', 0);
+        
         // ✅ LOG DETALLADO: Datos que se envían
-        $debug_log = "[" . date('Y-m-d H:i:s') . "] 📤 Enviando formulario $form_type al API\n";
+        $debug_log = "[" . date('Y-m-d H:i:s') . "] 📤 " . ($test_mode ? "🧪 MODO PRUEBAS" : "🚀 MODO PRODUCCIÓN") . " - Enviando formulario $form_type al API\n";
         $debug_log .= "🔗 URL: $url\n";
-        $debug_log .= "📝 DATOS ENVIADOS:\n" . print_r($data, true) . "\n";
+        $debug_log .= "📝 DATOS QUE SE ENVIARÍAN:\n" . print_r($data, true) . "\n";
+        
+        if ($form_type === 'roundup') {
+            $debug_log .= "📦 FORMATO: JSON (Content-Type: application/json)\n";
+            $debug_log .= "🔄 JSON BODY: " . json_encode($data, JSON_PRETTY_PRINT) . "\n";
+        } else {
+            $debug_log .= "📦 FORMATO: Form Data (Content-Type: application/x-www-form-urlencoded)\n";
+            $debug_log .= "🔄 FORM DATA: " . http_build_query($data) . "\n";
+        }
+        
         file_put_contents(plugin_dir_path(__FILE__) . '/../log.txt', $debug_log, FILE_APPEND);
+        
+        // 🧪 SI ESTÁ EN MODO PRUEBAS, NO ENVIAR REALMENTE
+        if ($test_mode) {
+            $debug_log = "[" . date('Y-m-d H:i:s') . "] 🧪 MODO PRUEBAS ACTIVO - NO se envía al API real\n";
+            $debug_log .= "✅ Datos preparados correctamente para envío\n";
+            $debug_log .= "🎯 Para envío real: desactivar modo de pruebas en admin\n\n";
+            file_put_contents(plugin_dir_path(__FILE__) . '/../log.txt', $debug_log, FILE_APPEND);
+            
+            // Simular éxito para testing
+            $_SESSION['mimer_api_redirect_url'] = $form_type === 'depo' 
+                ? 'https://injuryresolve.com/dp-thankyou/' 
+                : 'https://injuryresolve.com/roundup-thankyou/';
+            return;
+        }
 
         // ✅ LLAMADA API CORREGIDA: JSON para RoundUp, form-data para Depo Provera
         if ($form_type === 'roundup') {

@@ -63,63 +63,10 @@ add_action('wp_ajax_elementor_pro_forms_send_form', 'mimer_control_ajax_processi
 add_action('wp_ajax_nopriv_elementor_pro_forms_send_form', 'mimer_control_ajax_processing', 1);
 
 function mimer_control_ajax_processing() {
-    // Verificar si es nuestro formulario
+    // Solo logging básico - NO interferir con el procesamiento AJAX
     if (isset($_POST['form_fields']) && (isset($_POST['form_fields']['case_exposed']) || isset($_POST['form_fields']['case_depo_provera_taken']))) {
-        
-        // Verificar si ya procesamos este formulario
-        if (isset($_SESSION['mimer_form_processed']) && $_SESSION['mimer_form_processed'] === true) {
-            $debug_log = "[" . date('Y-m-d H:i:s') . "] ✅ AJAX SKIP - Formulario ya procesado por hook\n";
-            file_put_contents(plugin_dir_path(__FILE__) . 'log.txt', $debug_log, FILE_APPEND);
-            
-            // Devolver éxito simulado
-            wp_send_json_success([
-                'message' => 'Form already processed via validation hook',
-                'mimer_processed' => true
-            ]);
-        } else {
-            // Marcar que vamos a procesar por AJAX
-            $_SESSION['mimer_ajax_processing'] = true;
-            $debug_log = "[" . date('Y-m-d H:i:s') . "] 🔄 AJAX PROCESSING - Iniciando procesamiento AJAX\n";
-            file_put_contents(plugin_dir_path(__FILE__) . 'log.txt', $debug_log, FILE_APPEND);
-            
-            // PROCESAR FORMULARIO POR AJAX
-            try {
-                // Extraer campos del POST
-                $flat_fields = [];
-                if (isset($_POST['form_fields'])) {
-                    foreach ($_POST['form_fields'] as $key => $value) {
-                        $flat_fields[$key] = sanitize_text_field($value);
-                    }
-                }
-                
-                // Obtener form_id si está disponible
-                $form_id = isset($_POST['form_id']) ? sanitize_text_field($_POST['form_id']) : null;
-                
-                $debug_log = "[" . date('Y-m-d H:i:s') . "] 📤 AJAX - Enviando " . count($flat_fields) . " campos al API (form_id: " . ($form_id ?: 'N/A') . ")\n";
-                file_put_contents(plugin_dir_path(__FILE__) . 'log.txt', $debug_log, FILE_APPEND);
-                
-                // Enviar al API
-                MimerFormsVDI::send_submission_to_vdi($flat_fields, $form_id);
-                
-                // Marcar como procesado
-                $_SESSION['mimer_form_processed'] = true;
-                unset($_SESSION['mimer_ajax_processing']);
-                
-                $debug_log = "[" . date('Y-m-d H:i:s') . "] ✅ AJAX - Procesamiento completado exitosamente\n";
-                file_put_contents(plugin_dir_path(__FILE__) . 'log.txt', $debug_log, FILE_APPEND);
-                
-                // Continuar con el procesamiento normal de Elementor (no hacer wp_send_json)
-                return;
-                
-            } catch (Exception $e) {
-                $debug_log = "[" . date('Y-m-d H:i:s') . "] ❌ AJAX ERROR - " . $e->getMessage() . "\n";
-                file_put_contents(plugin_dir_path(__FILE__) . 'log.txt', $debug_log, FILE_APPEND);
-                
-                // Limpiar flags
-                unset($_SESSION['mimer_form_processed']);
-                unset($_SESSION['mimer_ajax_processing']);
-            }
-        }
+        $debug_log = "[" . date('Y-m-d H:i:s') . "] 🔄 AJAX DETECTED - Form detectado, continuando con procesamiento normal\n";
+        file_put_contents(plugin_dir_path(__FILE__) . 'log.txt', $debug_log, FILE_APPEND);
     }
 }
 
@@ -143,21 +90,10 @@ function env_validate_phone_number($record, $ajax_handler) {
         return;
     }
 
-    // Verificar si ya se está procesando por AJAX
+    // Inicializar sesión si es necesario
     if (session_status() == PHP_SESSION_NONE) {
         session_start();
     }
-    
-    if (isset($_SESSION['mimer_ajax_processing']) && $_SESSION['mimer_ajax_processing'] === true) {
-        // Ya se está procesando por AJAX, saltear este hook
-        $debug_log = "[" . date('Y-m-d H:i:s') . "] ⏭️ HOOK SKIP - Ya procesando por AJAX\n";
-        file_put_contents(plugin_dir_path(__FILE__) . 'log.txt', $debug_log, FILE_APPEND);
-        unset($_SESSION['mimer_ajax_processing']);
-        return;
-    }
-
-    // Marcar que procesamos por hook
-    $_SESSION['mimer_form_processed'] = true;
 
     // Log de procesamiento para debugging
     $debug_log = "[" . date('Y-m-d H:i:s') . "] 🔄 ELEMENTOR HOOK - Procesando nuestro formulario con " . count($fields) . " campos\n";
@@ -206,17 +142,9 @@ function env_validate_phone_number($record, $ajax_handler) {
         $debug_log = "[" . date('Y-m-d H:i:s') . "] ✅ API PROCESSING - Completado exitosamente\n";
         file_put_contents(plugin_dir_path(__FILE__) . 'log.txt', $debug_log, FILE_APPEND);
         
-        // Limpiar flags de sesión
-        unset($_SESSION['mimer_form_processed']);
-        unset($_SESSION['mimer_ajax_processing']);
-        
     } catch (Exception $e) {
         $debug_log = "[" . date('Y-m-d H:i:s') . "] ❌ API ERROR - " . $e->getMessage() . "\n";
         file_put_contents(plugin_dir_path(__FILE__) . 'log.txt', $debug_log, FILE_APPEND);
-        
-        // Limpiar flags de sesión en caso de error también
-        unset($_SESSION['mimer_form_processed']);
-        unset($_SESSION['mimer_ajax_processing']);
         
         // Añadir error a Elementor
         $ajax_handler->add_error_message('Ocurrió un error procesando el formulario. Por favor intente nuevamente.');

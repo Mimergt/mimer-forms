@@ -91,12 +91,15 @@ class MimerFormsVDI {
     }
     
     public static function send_submission_to_vdi($fields, $form_id = null) {
-        // 🔍 DETECCIÓN AUTOMÁTICA DEL TIPO DE FORMULARIO (CON ID PRIORITARIO)
-        $form_type = self::detect_form_type($fields, $form_id);
-        $form_configs = self::get_form_configs();
-        $form_config = $form_configs[$form_type];
+        // Asegurar headers correctos para evitar parsererror
+        if (!headers_sent()) {
+            header('Content-Type: application/json; charset=utf-8');
+        }
         
-        // Verificar si está en modo de pruebas
+        // � SISTEMA DE DETECCIÓN UNIFICADO
+        $form_type = self::detect_form_type($fields, $form_id);
+        $form_config = self::get_form_configs()[$form_type];
+        
         $test_mode = get_option('mimer_test_mode_enabled', 0);
         
         // Log simplificado de recepción con método de detección
@@ -287,6 +290,11 @@ class MimerFormsVDI {
         $log .= "🎯 PROCESAMIENTO COMPLETO\n";
         file_put_contents(plugin_dir_path(__FILE__) . '/../log.txt', $log, FILE_APPEND);
 
+        // Limpiar output buffer para evitar parsererror
+        if (ob_get_level()) {
+            ob_clean();
+        }
+        
         // Solo guardar en sesión si las redirecciones están habilitadas
     }
 }

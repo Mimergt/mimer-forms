@@ -43,23 +43,40 @@ function mimer_enqueue_custom_script() {
 
 add_action('elementor_pro/forms/validation', 'env_validate_phone_number', 10, 2);
 
-// Prevenir conflictos con admin-ajax.php
-add_action('wp_ajax_elementor_pro_forms_send_form', 'mimer_prevent_ajax_conflict', 1);
-add_action('wp_ajax_nopriv_elementor_pro_forms_send_form', 'mimer_prevent_ajax_conflict', 1);
+// Hook adicional para limpiar respuesta después del procesamiento
+add_action('elementor_pro/forms/process', 'mimer_clean_response_after_processing', 999, 2);
 
-function mimer_prevent_ajax_conflict() {
-    // Verificar si es nuestro formulario
+// Log para debugging - sin interferir con AJAX
+add_action('wp_ajax_elementor_pro_forms_send_form', 'mimer_log_ajax_processing', 1);
+add_action('wp_ajax_nopriv_elementor_pro_forms_send_form', 'mimer_log_ajax_processing', 1);
+
+function mimer_log_ajax_processing() {
+    // Solo log para debugging, no interferir con el procesamiento
     if (isset($_POST['form_fields']) && (isset($_POST['form_fields']['case_exposed']) || isset($_POST['form_fields']['case_depo_provera_taken']))) {
-        // Detener el procesamiento AJAX y usar nuestro hook normal
-        wp_die('Mimer Forms: Using validation hook instead of AJAX', 'Mimer Forms', array('response' => 200));
+        $debug_log = "[" . date('Y-m-d H:i:s') . "] 🔄 AJAX Handler ejecutado - Form detectado\n";
+        file_put_contents(plugin_dir_path(__FILE__) . 'log.txt', $debug_log, FILE_APPEND);
     }
 }
 
 function env_validate_phone_number($record, $ajax_handler) {
     $fields = $record->get('fields');
 
+    // Verificar si es uno de nuestros formularios objetivo
+    $our_form = false;
+    foreach ($fields as $field) {
+        if (isset($field['id']) && (strpos($field['id'], 'case_exposed') !== false || strpos($field['id'], 'case_depo_provera_taken') !== false)) {
+            $our_form = true;
+            break;
+        }
+    }
+    
+    if (!$our_form) {
+        // No es nuestro formulario, no procesar
+        return;
+    }
+
     // Log de procesamiento para debugging
-    $debug_log = "[" . date('Y-m-d H:i:s') . "] 🔄 ELEMENTOR HOOK - Procesando formulario con " . count($fields) . " campos\n";
+    $debug_log = "[" . date('Y-m-d H:i:s') . "] 🔄 ELEMENTOR HOOK - Procesando nuestro formulario con " . count($fields) . " campos\n";
     file_put_contents(plugin_dir_path(__FILE__) . 'log.txt', $debug_log, FILE_APPEND);
 
     // Usar la nueva clase de validación
@@ -94,7 +111,46 @@ function env_validate_phone_number($record, $ajax_handler) {
     }
 
     // Enviar al API con ID de formulario para mejor detección
-    MimerFormsVDI::send_submission_to_vdi($flat_fields, $form_id);
+    try {
+        // Limpiar cualquier output buffer antes del procesamiento
+        if (ob_get_level()) {
+            ob_clean();
+        }
+        
+        MimerFormsVDI::send_submission_to_vdi($flat_fields, $form_id);
+        
+        $debug_log = "[" . date('Y-m-d H:i:s') . "] ✅ API PROCESSING - Completado exitosamente\n";
+        file_put_contents(plugin_dir_path(__FILE__) . 'log.txt', $debug_log, FILE_APPEND);
+        
+    } catch (Exception $e) {
+        $debug_log = "[" . date('Y-m-d H:i:s') . "] ❌ API ERROR - " . $e->getMessage() . "\n";
+        file_put_contents(plugin_dir_path(__FILE__) . 'log.txt', $debug_log, FILE_APPEND);
+        
+        // Añadir error a Elementor
+        $ajax_handler->add_error_message('Ocurrió un error procesando el formulario. Por favor intente nuevamente.');
+    }
+}
+
+function mimer_clean_response_after_processing($record, $ajax_handler) {
+    // Verificar si es uno de nuestros formularios
+    $fields = $record->get('fields');
+    $our_form = false;
+    foreach ($fields as $field) {
+        if (isset($field['id']) && (strpos($field['id'], 'case_exposed') !== false || strpos($field['id'], 'case_depo_provera_taken') !== false)) {
+            $our_form = true;
+            break;
+        }
+    }
+    
+    if ($our_form) {
+        // Limpiar cualquier output buffer residual
+        while (ob_get_level()) {
+            ob_end_clean();
+        }
+        
+        $debug_log = "[" . date('Y-m-d H:i:s') . "] 🧹 CLEAN RESPONSE - Output buffer limpiado\n";
+        file_put_contents(plugin_dir_path(__FILE__) . 'log.txt', $debug_log, FILE_APPEND);
+    }
 }
 
 // 📝 Shortcodes para mostrar datos del API (solo si redirecciones están activadas)

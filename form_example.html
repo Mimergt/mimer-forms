@@ -21,7 +21,6 @@
   });
 
   jQuery(document).ready(function ($) {
-    console.log('Script cargado - jQuery ready'); // DEBUG
     
     // Función genérica para avanzar paso
     function avanzarPaso($step) {
@@ -48,7 +47,7 @@
             const totalSteps = $('.e-form__step').length;
             const progressPercentage = ((nextStepIndex + 1) / totalSteps) * 100;
             $progressMeter.css('width', progressPercentage + '%');
-            console.log('Barra de progreso actualizada:', progressPercentage + '%'); // DEBUG
+
           }
         }
         
@@ -57,12 +56,9 @@
           $form.trigger('step_changed', [nextStepIndex]);
           $nextStepElement.trigger('step_activated');
         } catch(eventError) {
-          console.log('Error al activar eventos:', eventError); // DEBUG
+          // Error silenciado
         }
         
-        console.log('Paso cambiado de', currentStepIndex, 'a', nextStepIndex); // DEBUG
-      } else {
-        console.log('No hay siguiente paso'); // DEBUG
       }
     }
 
@@ -78,9 +74,7 @@
         'change',
         'input[type="radio"][name="form_fields[' + fieldName + ']"]',
         function () {
-          console.log('Change detectado en radio ' + fieldName + ':', this.id, 'checked:', this.checked); // DEBUG
           if (this.checked) {
-            console.log('Radio válido para ' + fieldName + ', avanzando paso...'); // DEBUG
             const $step = $(this).closest('.e-form__step');
             
             // Usar nuestra función genérica para avanzar
@@ -102,9 +96,7 @@
     selectFields.forEach(function(fieldName) {
       // Manejar selects normales
       $('#roundup_form').on('change', '#form-field-' + fieldName, function () {
-        console.log('Change detectado en select ' + fieldName + ':', $(this).val()); // DEBUG
         if ($(this).val() && $(this).val() !== '-- Select one--                          ') {
-          console.log('Select válido para ' + fieldName + ', avanzando paso...'); // DEBUG
           const $step = $(this).closest('.e-form__step');
           
           // Usar nuestra función genérica para avanzar
@@ -116,10 +108,8 @@
       
       // Manejar Select2 (si está presente)
       $('#roundup_form').on('select2:select', '#form-field-' + fieldName, function (e) {
-        console.log('Select2 change detectado en ' + fieldName + ':', $(this).val()); // DEBUG
         var data = e.params.data;
         if (data.id && data.id !== '-- Select one--                          ') {
-          console.log('Select2 válido para ' + fieldName + ', avanzando paso...'); // DEBUG
           const $step = $(this).closest('.e-form__step');
           
           // Usar nuestra función genérica para avanzar
@@ -130,35 +120,21 @@
       });
     });
 
-    // DEBUG: Verificar que los campos existen
-    console.log('Radios "case_exposed" encontrados:', $('input[type="radio"][name="form_fields[case_exposed]"]').length);
-    console.log('Radios "case_attorney" encontrados:', $('input[type="radio"][name="form_fields[case_attorney]"]').length);
-    console.log('Radios "case_exposed_duration" encontrados:', $('input[type="radio"][name="form_fields[case_exposed_duration]"]').length);
-    console.log('Select "case_injury" encontrado:', $('#form-field-case_injury').length);
-    console.log('Select "year_were_diagnosed" encontrado:', $('#form-field-year_were_diagnosed').length);
-    console.log('Select "case_age_category" encontrado:', $('#form-field-case_age_category').length);
+
 
     $(document).on('click', '#siguiente-form, #siguiente-form1', function (e) {
       e.preventDefault();
-      console.log('Click en botón personalizado:', this.id); // DEBUG
       
       // Buscar el paso actual visible
       var $currentStep = $('.e-form__step').filter(function() {
         return !$(this).hasClass('elementor-hidden') && $(this).css('display') !== 'none';
       }).first();
       
-      console.log('Paso actual encontrado:', $currentStep.length, $currentStep[0]); // DEBUG
-      
       if ($currentStep.length) {
         // Usar nuestra función genérica para avanzar
         avanzarPaso($currentStep);
-      } else {
-        console.log('No se encontró paso actual visible'); // DEBUG
       }
     });
-    
-    // Mensaje de confirmación de carga
-    console.log('Formulario configurado correctamente. Todos los radios y selects avanzan automáticamente.'); // DEBUG
   });
 </script>
 

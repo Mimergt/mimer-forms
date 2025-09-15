@@ -123,14 +123,8 @@ class MimerFormsVDI {
         $debug_log = "[" . date('Y-m-d H:i:s') . "] 📤 " . ($test_mode ? "🧪 MODO PRUEBAS" : "🚀 MODO PRODUCCIÓN") . " - Enviando formulario $form_type al API\n";
         $debug_log .= "🔗 URL: $url\n";
         $debug_log .= "📝 DATOS QUE SE ENVIARÍAN:\n" . print_r($data, true) . "\n";
-        
-        if ($form_type === 'roundup') {
-            $debug_log .= "📦 FORMATO: JSON (Content-Type: application/json)\n";
-            $debug_log .= "🔄 JSON BODY: " . json_encode($data, JSON_PRETTY_PRINT) . "\n";
-        } else {
-            $debug_log .= "📦 FORMATO: Form Data (Content-Type: application/x-www-form-urlencoded)\n";
-            $debug_log .= "🔄 FORM DATA: " . http_build_query($data) . "\n";
-        }
+        $debug_log .= "📦 FORMATO: JSON (Content-Type: application/json) - TODOS LOS FORMULARIOS\n";
+        $debug_log .= "🔄 JSON BODY: " . json_encode($data, JSON_PRETTY_PRINT) . "\n";
         
         file_put_contents(plugin_dir_path(__FILE__) . '/../log.txt', $debug_log, FILE_APPEND);
         
@@ -152,27 +146,16 @@ class MimerFormsVDI {
             return;
         }
 
-        // ✅ LLAMADA API CORREGIDA: JSON para RoundUp, form-data para Depo Provera (V1 y V2)
-        if ($form_type === 'roundup') {
-            // RoundUp API espera JSON
-            $response = wp_remote_post($url, array(
-                'method' => 'POST',
-                'timeout' => 30,
-                'headers' => array(
-                    'Content-Type' => 'application/json',
-                    'Accept' => 'application/json'
-                ),
-                'body' => json_encode($data)
-            ));
-        } else {
-            // Depo Provera (V1 y V2) API espera form-data
-            $response = wp_remote_post($url, array(
-                'method' => 'POST',
-                'timeout' => 30,
-                'headers' => array('Content-Type' => 'application/x-www-form-urlencoded'),
-                'body' => http_build_query($data)
-            ));
-        }
+        // ✅ LLAMADA API UNIFICADA: JSON para TODOS los formularios (RoundUp, Depo V1 y V2)
+        $response = wp_remote_post($url, array(
+            'method' => 'POST',
+            'timeout' => 30,
+            'headers' => array(
+                'Content-Type' => 'application/json',
+                'Accept' => 'application/json'
+            ),
+            'body' => json_encode($data)
+        ));
 
         if (is_wp_error($response)) {
             $error_message = $response->get_error_message();

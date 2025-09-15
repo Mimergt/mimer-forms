@@ -40,6 +40,38 @@ class MimerFormsVDI {
     }
 
     /**
+     * ✅ FUNCIÓN SIMPLIFICADA PARA DEPO PROVERA V2
+     */
+    public static function send_depo_provera_v2_to_api($fields) {
+        // Limpiar número de teléfono
+        $lead_phone = preg_replace('/[^0-9]/', '', $fields['lead_phone']);
+        $zip_code = (string) $fields['lead_zip_code'];
+        $attorney = strtolower(trim($fields['case_attorney'])) === 'yes' ? 'Yes' : 'No';
+
+        $trustedform = isset($_POST['xxTrustedFormToken']) ? sanitize_text_field($_POST['xxTrustedFormToken']) : 'not available';
+
+        // Mapear campos simple - igual que V1 pero con URL diferente
+        $data = [
+            "lead-first-name"             => $fields['lead_first_name'],
+            "lead-last-name"              => $fields['lead_last_name'],
+            "lead-email-address"          => $fields['lead_email'],
+            "lead-phone"                  => $lead_phone,
+            "case-depo-provera-taken"     => $fields['case_depo_provera_taken'],
+            "case-depo-provera-use"       => $fields['case_depo_provera_use'],
+            "case-injury"                 => $fields['case_injury'],
+            "case-description"            => $fields['case_description'],
+            "case-attorney"               => $attorney,
+            "lead-trusted-form-cert-id"   => $trustedform,
+            "lead-ip-address"             => $_SERVER['REMOTE_ADDR'],
+            "lead-zip-code"               => $zip_code,
+        ];
+
+        $url = 'https://api.valuedirectinc.com/api/submissions?form=zm-ir-lca-depo-post&team=vdi&user=ee5a1aba-6009-4d58-8a16-3810e2f777ad&signature=254365aae9e577ab0d20b73f377596736460fd5f38464cb2ffd684a4889fcb44';
+        
+        self::simple_api_call($data, $url, 'depo_v2');
+    }
+
+    /**
      * ✅ FUNCIÓN SIMPLIFICADA PARA ROUNDUP - CAMPOS CORREGIDOS
      */
     public static function send_roundup_to_api($fields) {
@@ -109,14 +141,18 @@ class MimerFormsVDI {
             $debug_log .= "🎯 Para envío real: desactivar modo de pruebas en admin\n\n";
             file_put_contents(plugin_dir_path(__FILE__) . '/../log.txt', $debug_log, FILE_APPEND);
             
-            // Simular éxito para testing
-            $_SESSION['mimer_api_redirect_url'] = $form_type === 'depo' 
-                ? 'https://injuryresolve.com/dp-thankyou/' 
-                : 'https://injuryresolve.com/roundup-thankyou/';
+            // Simular éxito para testing - URLs según tipo de formulario
+            if ($form_type === 'depo') {
+                $_SESSION['mimer_api_redirect_url'] = 'https://injuryresolve.com/dp-thankyou/';
+            } elseif ($form_type === 'depo_v2') {
+                $_SESSION['mimer_api_redirect_url'] = 'https://injuryresolve.com/dp-thankyou/';
+            } else {
+                $_SESSION['mimer_api_redirect_url'] = 'https://injuryresolve.com/roundup-thankyou/';
+            }
             return;
         }
 
-        // ✅ LLAMADA API CORREGIDA: JSON para RoundUp, form-data para Depo Provera
+        // ✅ LLAMADA API CORREGIDA: JSON para RoundUp, form-data para Depo Provera (V1 y V2)
         if ($form_type === 'roundup') {
             // RoundUp API espera JSON
             $response = wp_remote_post($url, array(
@@ -129,7 +165,7 @@ class MimerFormsVDI {
                 'body' => json_encode($data)
             ));
         } else {
-            // Depo Provera API espera form-data
+            // Depo Provera (V1 y V2) API espera form-data
             $response = wp_remote_post($url, array(
                 'method' => 'POST',
                 'timeout' => 30,
@@ -162,17 +198,21 @@ class MimerFormsVDI {
                 $_SESSION['mimer_api_redirect_url'] = $response_data['redirect_url'];
             } else {
                 // URL por defecto según tipo
-                $_SESSION['mimer_api_redirect_url'] = $form_type === 'depo' 
-                    ? 'https://injuryresolve.com/dp-thankyou/' 
-                    : 'https://injuryresolve.com/roundup-thankyou/';
+                if ($form_type === 'depo' || $form_type === 'depo_v2') {
+                    $_SESSION['mimer_api_redirect_url'] = 'https://injuryresolve.com/dp-thankyou/';
+                } else {
+                    $_SESSION['mimer_api_redirect_url'] = 'https://injuryresolve.com/roundup-thankyou/';
+                }
             }
             
             $debug_log = "[" . date('Y-m-d H:i:s') . "] ✅ Formulario $form_type aceptado\n";
         } else {
             // Rechazado - URL de rechazo
-            $_SESSION['mimer_api_redirect_url'] = $form_type === 'depo' 
-                ? 'https://injuryresolve.com/dp_rejected/' 
-                : 'https://injuryresolve.com/roundup-rejected/';
+            if ($form_type === 'depo' || $form_type === 'depo_v2') {
+                $_SESSION['mimer_api_redirect_url'] = 'https://injuryresolve.com/dp_rejected/';
+            } else {
+                $_SESSION['mimer_api_redirect_url'] = 'https://injuryresolve.com/roundup-rejected/';
+            }
                 
             $debug_log = "[" . date('Y-m-d H:i:s') . "] 🚫 Formulario $form_type rechazado\n";
         }

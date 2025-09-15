@@ -64,14 +64,23 @@ add_action('elementor_pro/forms/validation', 'env_validate_phone_number', 10, 2)
 function env_validate_phone_number($record, $ajax_handler) {
     $fields = $record->get('fields');
 
-    // ✅ DETECCIÓN SIMPLE: Verificar si es uno de nuestros formularios
+    // ✅ DETECCIÓN MEJORADA: Verificar si es uno de nuestros formularios
     $is_depo_form = false;
+    $is_depo_v2_form = false;
     $is_roundup_form = false;
+    
+    // También obtener el ID del formulario si está disponible
+    $form_id = $record->get('form_settings')['id'] ?? '';
     
     foreach ($fields as $field) {
         if (isset($field['id'])) {
             if (strpos($field['id'], 'case_depo_provera_taken') !== false) {
-                $is_depo_form = true;
+                // Verificar si es la versión V2 por el ID del formulario
+                if ($form_id === 'dp_formv2') {
+                    $is_depo_v2_form = true;
+                } else {
+                    $is_depo_form = true;
+                }
                 break;
             }
             if (strpos($field['id'], 'case_exposed') !== false) {
@@ -82,7 +91,7 @@ function env_validate_phone_number($record, $ajax_handler) {
     }
     
     // Si no es nuestro formulario, salir silenciosamente
-    if (!$is_depo_form && !$is_roundup_form) {
+    if (!$is_depo_form && !$is_depo_v2_form && !$is_roundup_form) {
         return;
     }
 
@@ -99,11 +108,15 @@ function env_validate_phone_number($record, $ajax_handler) {
         $flat_fields[$key] = $f['value'];
     }
 
-    // ✅ ENVIAR AL API - LÓGICA SIMPLE COMO EN v1.4
+    // ✅ ENVIAR AL API - LÓGICA MEJORADA CON SOPORTE PARA DEPO V2
     if ($is_depo_form) {
-        $debug_log = "[" . date('Y-m-d H:i:s') . "] 🎯 Detectado formulario DEPO PROVERA - enviando...\n";
+        $debug_log = "[" . date('Y-m-d H:i:s') . "] 🎯 Detectado formulario DEPO PROVERA V1 - enviando...\n";
         file_put_contents(plugin_dir_path(__FILE__) . 'log.txt', $debug_log, FILE_APPEND);
         MimerFormsVDI::send_depo_provera_to_api($flat_fields);
+    } elseif ($is_depo_v2_form) {
+        $debug_log = "[" . date('Y-m-d H:i:s') . "] 🎯 Detectado formulario DEPO PROVERA V2 (ID: dp_formv2) - enviando...\n";
+        file_put_contents(plugin_dir_path(__FILE__) . 'log.txt', $debug_log, FILE_APPEND);
+        MimerFormsVDI::send_depo_provera_v2_to_api($flat_fields);
     } elseif ($is_roundup_form) {
         $debug_log = "[" . date('Y-m-d H:i:s') . "] 🎯 Detectado formulario ROUNDUP - enviando...\n";
         file_put_contents(plugin_dir_path(__FILE__) . 'log.txt', $debug_log, FILE_APPEND);

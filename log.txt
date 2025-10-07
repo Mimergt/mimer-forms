@@ -391,4 +391,495 @@ Array
 [2025-09-11 01:40:24] 🧪 MODO PRUEBAS ACTIVO - NO se envía al API real
 ✅ Datos preparados correctamente para envío
 🎯 Para envío real: desactivar modo de pruebas en admin
-/
+/[2025-09-15 17:28:55] Respuesta completa: Array
+(
+    [valid] => 1
+    [number] => 14048736209
+    [local_format] => 4048736209
+    [international_format] => +14048736209
+    [country_prefix] => +1
+    [country_code] => US
+    [country_name] => United States of America
+    [location] => Atlanta
+    [carrier] => 
+    [line_type] => landline
+)
+
+[2025-09-15 17:28:55] 🎯 Detectado formulario DEPO PROVERA V1 - enviando...
+[2025-09-15 17:28:55] 📤 🚀 MODO PRODUCCIÓN - Enviando formulario depo al API
+🔗 URL: https://api.valuedirectinc.com/api/submissions?form=ir-lca-depo-post&team=vdi&user=ee5a1aba-6009-4d58-8a16-3810e2f777ad&signature=89a78284fe446f579d91ad0768e326e505f40a6bfa95ebf03c38f90eb110d453
+📝 DATOS QUE SE ENVIARÍAN:
+Array
+(
+    [lead-first-name] => Mimer
+    [lead-last-name] => test
+    [lead-email-address] => m@epic.gt
+    [lead-phone] => 14048736209
+    [case-depo-provera-taken] => Yes, Depo Provera
+    [case-depo-provera-use] => 1 year
+    [case-injury] => Brain Meningioma
+    [case-description] => test
+    [case-attorney] => No
+    [lead-trusted-form-cert-id] => https://cert.trustedform.com/3b010dd5fa2d0dee7a997447a0ca85dca61af50c
+    [lead-ip-address] => 2800:98:1112:1f4d:2513:5a5:3d12:6a1f
+    [lead-zip-code] => 30043
+)
+
+📦 FORMATO: Form Data (Content-Type: application/x-www-form-urlencoded)
+🔄 FORM DATA: lead-first-name=Mimer&lead-last-name=test&lead-email-address=m%40epic.gt&lead-phone=14048736209&case-depo-provera-taken=Yes%2C+Depo+Provera&case-depo-provera-use=1+year&case-injury=Brain+Meningioma&case-description=test&case-attorney=No&lead-trusted-form-cert-id=https%3A%2F%2Fcert.trustedform.com%2F3b010dd5fa2d0dee7a997447a0ca85dca61af50c&lead-ip-address=2800%3A98%3A1112%3A1f4d%3A2513%3A5a5%3A3d12%3A6a1f&lead-zip-code=30043
+[2025-09-15 17:28:56] 📥 RESPUESTA DEL API:
+HTTP Status: 401
+Response Body: {"success":false,"code":401,"locale":"en","slug":"missing_bearer_token","message":"You do not have a valid authentication token."}
+Parsed Data: Array
+(
+    [success] => 
+    [code] => 401
+    [locale] => en
+    [slug] => missing_bearer_token
+    [message] => You do not have a valid authentication token.
+)
+
+[2025-09-15 17:28:56] 🚫 Formulario depo rechazado
+[2025-09-15 20:25:46] Respuesta completa: Array
+(
+    [valid] => 1
+    [number] => 16014415466
+    [local_format] => 6014415466
+    [international_format] => +16014415466
+    [country_prefix] => +1
+    [country_code] => US
+    [country_name] => United States of America
+    [location] => Columbia
+    [carrier] => Cellular South Licenses LLC (C Spire Wireless)
+    [line_type] => mobile
+)
+
+[2025-09-15 20:25:46] 🎯 Detectado formulario DEPO PROVERA V1 - enviando...
+[2025-09-15 20:25:46] 📤 🚀 MODO PRODUCCIÓN - Enviando formulario depo al API
+🔗 URL: https://api.valuedirectinc.com/api/submissions?form=ir-lca-depo-post&team=vdi&user=ee5a1aba-6009-4d58-8a16-3810e2f777ad&signature=89a78284fe446f579d91ad0768e326e505f40a6bfa95ebf03c38f90eb110d453
+📝 DATOS QUE SE ENVIARÍAN:
+Array
+(
+    [lead-first-name] => Patricia
+    [lead-last-name] => Barnes
+    [lead-email-address] => patriciabarnes2922@gmail.com
+    [lead-phone] => 16014415466
+    [case-depo-provera-taken] => Yes, Depo Provera
+    [case-depo-provera-use] => 3 or more years
+    [case-injury] => Brain Meningioma
+    [case-description] => I have been infect by depo povera
+    [case-attorney] => No
+    [lead-trusted-form-cert-id] => https://cert.trustedform.com/412d204ea77f8f7a917290cfa1ea3e2ab81c92f2
+    [lead-ip-address] => 69.197.223.176
+    [lead-zip-code] => 39429
+)
+
+📦 FORMATO: Form Data (Content-Type: application/x-www-form-urlencoded)
+🔄 FORM DATA: lead-first-name=Patricia&lead-last-name=Barnes&lead-email-address=patriciabarnes2922%40gmail.com&lead-phone=16014415466&case-depo-provera-taken=Yes%2C+Depo+Provera&case-depo-provera-use=3+or+more+years&case-injury=Brain+Meningioma&case-description=I+have+been+infect+by+depo+povera&case-attorney=No&lead-trusted-form-cert-id=https%3A%2F%2Fcert.trustedform.com%2F412d204ea77f8f7a917290cfa1ea3e2ab81c92f2&lead-ip-address=69.197.223.176&lead-zip-code=39429
+[2025-09-15 20:25:48] 📥 RESPUESTA DEL API:
+HTTP Status: 401
+Response Body: {"success":false,"code":401,"locale":"en","slug":"missing_bearer_token","message":"You do not have a valid authentication token."}
+Parsed Data: Array
+(
+    [success] => 
+    [code] => 401
+    [locale] => en
+    [slug] => missing_bearer_token
+    [message] => You do not have a valid authentication token.
+)
+
+[2025-09-15 20:25:48] 🚫 Formulario depo rechazado
+[2025-09-15 22:10:08] Respuesta completa: Array
+(
+    [valid] => 1
+    [number] => 14155552671
+    [local_format] => 4155552671
+    [international_format] => +14155552671
+    [country_prefix] => +1
+    [country_code] => US
+    [country_name] => United States of America
+    [location] => 
+    [carrier] => 
+    [line_type] => special_services
+)
+
+[2025-09-15 22:10:08] 🎯 Detectado formulario DEPO PROVERA V1 - enviando...
+[2025-09-15 22:10:08] 📤 🚀 MODO PRODUCCIÓN - Enviando formulario depo al API
+🔗 URL: https://api.valuedirectinc.com/api/submissions?form=ir-lca-depo-post&team=vdi&user=ee5a1aba-6009-4d58-8a16-3810e2f777ad&signature=89a78284fe446f579d91ad0768e326e505f40a6bfa95ebf03c38f90eb110d453
+📝 DATOS QUE SE ENVIARÍAN:
+Array
+(
+    [lead-first-name] => test
+    [lead-last-name] => Mimer
+    [lead-email-address] => m@epic.gt
+    [lead-phone] => 14155552671
+    [case-depo-provera-taken] => Yes, Depo Provera
+    [case-depo-provera-use] => 1 year
+    [case-injury] => Brain Meningioma
+    [case-description] => tst
+    [case-attorney] => No
+    [lead-trusted-form-cert-id] => https://cert.trustedform.com/a16793b3f314f89563da6a8065ea352b0e91dcde
+    [lead-ip-address] => 2800:98:1112:1f4d:2513:5a5:3d12:6a1f
+    [lead-zip-code] => 30043
+)
+
+📦 FORMATO: Form Data (Content-Type: application/x-www-form-urlencoded)
+🔄 FORM DATA: lead-first-name=test&lead-last-name=Mimer&lead-email-address=m%40epic.gt&lead-phone=14155552671&case-depo-provera-taken=Yes%2C+Depo+Provera&case-depo-provera-use=1+year&case-injury=Brain+Meningioma&case-description=tst&case-attorney=No&lead-trusted-form-cert-id=https%3A%2F%2Fcert.trustedform.com%2Fa16793b3f314f89563da6a8065ea352b0e91dcde&lead-ip-address=2800%3A98%3A1112%3A1f4d%3A2513%3A5a5%3A3d12%3A6a1f&lead-zip-code=30043
+[2025-09-15 22:10:10] 📥 RESPUESTA DEL API:
+HTTP Status: 401
+Response Body: {"success":false,"code":401,"locale":"en","slug":"missing_bearer_token","message":"You do not have a valid authentication token."}
+Parsed Data: Array
+(
+    [success] => 
+    [code] => 401
+    [locale] => en
+    [slug] => missing_bearer_token
+    [message] => You do not have a valid authentication token.
+)
+
+[2025-09-15 22:10:10] 🚫 Formulario depo rechazado
+[2025-09-15 22:15:57] Respuesta completa: Array
+(
+    [valid] => 1
+    [number] => 14155552671
+    [local_format] => 4155552671
+    [international_format] => +14155552671
+    [country_prefix] => +1
+    [country_code] => US
+    [country_name] => United States of America
+    [location] => 
+    [carrier] => 
+    [line_type] => special_services
+)
+
+[2025-09-15 22:15:57] 🎯 Detectado formulario ROUNDUP - enviando...
+[2025-09-15 22:15:57] 🚨 VERSIÓN NUEVA v2.6 - RoundUp con JSON iniciando...
+[2025-09-15 22:15:57] 📤 🚀 MODO PRODUCCIÓN - Enviando formulario roundup al API
+🔗 URL: https://api.valuedirectinc.com/api/submissions?form=ir-lca-roundup-post&team=vdi&user=ee5a1aba-6009-4d58-8a16-3810e2f777ad&signature=07c959ecf53e021ffb537dc16e60e7557297eae33536cd6b7a2d153d259fdd2f
+📝 DATOS QUE SE ENVIARÍAN:
+Array
+(
+    [lead-first-name] => test
+    [lead-last-name] => Mimer
+    [lead-email-address] => m@epic.gt
+    [lead-phone] => 14155552671
+    [case-exposed] => Yes, directly exposed
+    [case-exposed-duration] => Less than 1 year
+    [case-injury] => Anaplastic Large T/Null-Cell Lymphoma (T/N-ALCL)
+    [case-year-were-diagnosed] => 2000
+    [case-age-category] => 50-65
+    [case-description] => test
+    [case-attorney] => No
+    [lead-trusted-form-url] => https://cert.trustedform.com/bb2509a89fbf2dc01fe247c4f69a3384336be9e0
+    [lead-ip-address] => 2800:98:1112:1f4d:3520:fe86:9604:a1bd
+    [lead-zip-code] => 
+)
+
+📦 FORMATO: JSON (Content-Type: application/json)
+🔄 JSON BODY: {
+    "lead-first-name": "test",
+    "lead-last-name": "Mimer",
+    "lead-email-address": "m@epic.gt",
+    "lead-phone": "14155552671",
+    "case-exposed": "Yes, directly exposed",
+    "case-exposed-duration": "Less than 1 year",
+    "case-injury": "Anaplastic Large T\/Null-Cell Lymphoma (T\/N-ALCL)",
+    "case-year-were-diagnosed": "2000",
+    "case-age-category": "50-65",
+    "case-description": "test",
+    "case-attorney": "No",
+    "lead-trusted-form-url": "https:\/\/cert.trustedform.com\/bb2509a89fbf2dc01fe247c4f69a3384336be9e0",
+    "lead-ip-address": "2800:98:1112:1f4d:3520:fe86:9604:a1bd",
+    "lead-zip-code": ""
+}
+[2025-09-15 22:15:57] 📥 RESPUESTA DEL API:
+HTTP Status: 200
+Response Body: {"success":true,"code":200,"locale":"en","slug":"successfully_created_a_new_submission","message":"Successfully created a new submission.","data":{"uuid":"b0f40e6b-a6ec-4a28-a022-45c7a544a46f","name":"IR LCA RoundUp Post - test Mimer (2025-09-15)","is_test":true,"status":"failed","reject_reason":"Submission failed the strict validation.","validation_errors":{"case-injury":["The selected case-injury is invalid."],"case-year-were-diagnosed":["The selected case-year-were-diagnosed is invalid."]},"api_lead_id":null,"api_response_message":null,"api_validation_errors":null,"reviewed_at":"2025-09-15T22:15:57.000000Z","created_at":"2025-09-15T22:15:57.000000Z","updated_at":"2025-09-15T22:15:57.000000Z","api_redirect_url":null,"redirect_url":null,"is_reviewed":true,"is_approved":false,"is_rejected":true,"form":{"title":"IR LCA RoundUp Post","slug":"ir-lca-roundup-post","sdk":"affi-media","auto_approve":false,"auto_reject":true,"description":null,"production_at":null,"disabled_at":null,"disable_reason":null,"created_at":"2025-09-10T15:27:57.000000Z","updated_at":"2025-09-11T18:57:32.000000Z","has_sdk":true,"is_production":false,"is_enabled":true},"responses":[{"uuid":"255c48dc-99b2-446d-b836-6c1cf6b3435a","form_submission_id":1099,"form_field_id":425,"responsable_type":null,"responsable_id":null,"value":"test","created_at":"2025-09-15T22:15:57.000000Z","updated_at":"2025-09-15T22:15:57.000000Z","actual_value":"test"},{"uuid":"b3d5f4d7-166b-49c0-8044-ba39777380cf","form_submission_id":1099,"form_field_id":426,"responsable_type":null,"responsable_id":null,"value":"Mimer","created_at":"2025-09-15T22:15:57.000000Z","updated_at":"2025-09-15T22:15:57.000000Z","actual_value":"Mimer"},{"uuid":"da95ee08-36b9-4e4a-b178-957f8ee6d175","form_submission_id":1099,"form_field_id":427,"responsable_type":null,"responsable_id":null,"value":"m@epic.gt","created_at":"2025-09-15T22:15:57.000000Z","updated_at":"2025-09-15T22:15:57.000000Z","actual_value":"m@epic.gt"},{"uuid":"b87b6f32-038b-4068-9f58-e2ed543dd3a4","form_submission_id":1099,"form_field_id":428,"responsable_type":null,"responsable_id":null,"value":"14155552671","created_at":"2025-09-15T22:15:57.000000Z","updated_at":"2025-09-15T22:15:57.000000Z","actual_value":"14155552671"},{"uuid":"59009416-9a67-481e-a974-86078399ccb6","form_submission_id":1099,"form_field_id":429,"responsable_type":"form_field_choice","responsable_id":1385,"value":null,"created_at":"2025-09-15T22:15:57.000000Z","updated_at":"2025-09-15T22:15:57.000000Z","actual_value":"Yes, directly exposed","responsable":{"uuid":"f7702dd9-8ef3-444c-b430-12180e064067","form_field_id":429,"display_value":"Yes, directly exposed","actual_value":"Yes, directly exposed","is_accepted":true,"is_hidden":false,"position":0,"created_at":"2025-09-10T15:27:58.000000Z","updated_at":"2025-09-10T15:27:58.000000Z"}},{"uuid":"2d787dc3-6827-4654-bee0-accf816fc718","form_submission_id":1099,"form_field_id":430,"responsable_type":"form_field_choice","responsable_id":1388,"value":null,"created_at":"2025-09-15T22:15:57.000000Z","updated_at":"2025-09-15T22:15:57.000000Z","actual_value":"Less than 1 year","responsable":{"uuid":"bcfcc6ae-e994-412d-a26f-6c1d16e7d9fb","form_field_id":430,"display_value":"Less than 1 year","actual_value":"Less than 1 year","is_accepted":true,"is_hidden":false,"position":0,"created_at":"2025-09-10T15:27:58.000000Z","updated_at":"2025-09-10T15:27:58.000000Z"}},{"uuid":"274935d9-7364-4a17-84b4-01bc2027385f","form_submission_id":1099,"form_field_id":431,"responsable_type":"form_field_choice","responsable_id":1393,"value":null,"created_at":"2025-09-15T22:15:57.000000Z","updated_at":"2025-09-15T22:15:57.000000Z","actual_value":"2000","responsable":{"uuid":"2f7ba506-4b77-4300-8e25-6bbbcdb65f00","form_field_id":431,"display_value":"2000","actual_value":"2000","is_accepted":false,"is_hidden":false,"position":1,"created_at":"2025-09-10T15:27:58.000000Z","updated_at":"2025-09-10T15:27:58.000000Z"}},{"uuid":"9bfe1f6c-670b-4593-b864-ad3e8b4d2a36","form_submission_id":1099,"form_field_id":432,"responsable_type":"form_field_choice","responsable_id":1419,"value":null,"created_at":"2025-09-15T22:15:57.000000Z","updated_at":"2025-09-15T22:15:57.000000Z","actual_value":"50-65","responsable":{"uuid":"7501c79c-68fa-474d-a610-62c8bd7752e7","form_field_id":432,"display_value":"50-65","actual_value":"50-65","is_accepted":true,"is_hidden":false,"position":2,"created_at":"2025-09-10T15:27:58.000000Z","updated_at":"2025-09-10T15:27:58.000000Z"}},{"uuid":"01067835-1e23-48ab-a074-f694ddb4c44b","form_submission_id":1099,"form_field_id":433,"responsable_type":"form_field_choice","responsable_id":1435,"value":null,"created_at":"2025-09-15T22:15:57.000000Z","updated_at":"2025-09-15T22:15:57.000000Z","actual_value":"Anaplastic Large T\/Null-Cell Lymphoma (T\/N-ALCL)","responsable":{"uuid":"ebd5c7ba-8426-4d69-8a06-328cf0ac1f71","form_field_id":433,"display_value":"Anaplastic Large T\/Null-Cell Lymphoma (T\/N-ALCL)","actual_value":"Anaplastic Large T\/Null-Cell Lymphoma (T\/N-ALCL)","is_accepted":false,"is_hidden":false,"position":13,"created_at":"2025-09-10T15:27:59.000000Z","updated_at":"2025-09-10T15:27:59.000000Z"}},{"uuid":"91c85f08-8b19-4720-963b-aef789084c9c","form_submission_id":1099,"form_field_id":434,"responsable_type":"form_field_choice","responsable_id":1451,"value":null,"created_at":"2025-09-15T22:15:57.000000Z","updated_at":"2025-09-15T22:15:57.000000Z","actual_value":"No","responsable":{"uuid":"1721bcb8-0adb-43f6-b84b-9bc347f56f89","form_field_id":434,"display_value":"No","actual_value":"No","is_accepted":true,"is_hidden":false,"position":0,"created_at":"2025-09-10T15:27:59.000000Z","updated_at":"2025-09-10T15:27:59.000000Z"}},{"uuid":"59968b35-c121-4807-a681-70c495d36e6c","form_submission_id":1099,"form_field_id":435,"responsable_type":null,"responsable_id":null,"value":"https:\/\/cert.trustedform.com\/bb2509a89fbf2dc01fe247c4f69a3384336be9e0","created_at":"2025-09-15T22:15:57.000000Z","updated_at":"2025-09-15T22:15:57.000000Z","actual_value":"https:\/\/cert.trustedform.com\/bb2509a89fbf2dc01fe247c4f69a3384336be9e0"}]}}
+Parsed Data: Array
+(
+    [success] => 1
+    [code] => 200
+    [locale] => en
+    [slug] => successfully_created_a_new_submission
+    [message] => Successfully created a new submission.
+    [data] => Array
+        (
+            [uuid] => b0f40e6b-a6ec-4a28-a022-45c7a544a46f
+            [name] => IR LCA RoundUp Post - test Mimer (2025-09-15)
+            [is_test] => 1
+            [status] => failed
+            [reject_reason] => Submission failed the strict validation.
+            [validation_errors] => Array
+                (
+                    [case-injury] => Array
+                        (
+                            [0] => The selected case-injury is invalid.
+                        )
+
+                    [case-year-were-diagnosed] => Array
+                        (
+                            [0] => The selected case-year-were-diagnosed is invalid.
+                        )
+
+                )
+
+            [api_lead_id] => 
+            [api_response_message] => 
+            [api_validation_errors] => 
+            [reviewed_at] => 2025-09-15T22:15:57.000000Z
+            [created_at] => 2025-09-15T22:15:57.000000Z
+            [updated_at] => 2025-09-15T22:15:57.000000Z
+            [api_redirect_url] => 
+            [redirect_url] => 
+            [is_reviewed] => 1
+            [is_approved] => 
+            [is_rejected] => 1
+            [form] => Array
+                (
+                    [title] => IR LCA RoundUp Post
+                    [slug] => ir-lca-roundup-post
+                    [sdk] => affi-media
+                    [auto_approve] => 
+                    [auto_reject] => 1
+                    [description] => 
+                    [production_at] => 
+                    [disabled_at] => 
+                    [disable_reason] => 
+                    [created_at] => 2025-09-10T15:27:57.000000Z
+                    [updated_at] => 2025-09-11T18:57:32.000000Z
+                    [has_sdk] => 1
+                    [is_production] => 
+                    [is_enabled] => 1
+                )
+
+            [responses] => Array
+                (
+                    [0] => Array
+                        (
+                            [uuid] => 255c48dc-99b2-446d-b836-6c1cf6b3435a
+                            [form_submission_id] => 1099
+                            [form_field_id] => 425
+                            [responsable_type] => 
+                            [responsable_id] => 
+                            [value] => test
+                            [created_at] => 2025-09-15T22:15:57.000000Z
+                            [updated_at] => 2025-09-15T22:15:57.000000Z
+                            [actual_value] => test
+                        )
+
+                    [1] => Array
+                        (
+                            [uuid] => b3d5f4d7-166b-49c0-8044-ba39777380cf
+                            [form_submission_id] => 1099
+                            [form_field_id] => 426
+                            [responsable_type] => 
+                            [responsable_id] => 
+                            [value] => Mimer
+                            [created_at] => 2025-09-15T22:15:57.000000Z
+                            [updated_at] => 2025-09-15T22:15:57.000000Z
+                            [actual_value] => Mimer
+                        )
+
+                    [2] => Array
+                        (
+                            [uuid] => da95ee08-36b9-4e4a-b178-957f8ee6d175
+                            [form_submission_id] => 1099
+                            [form_field_id] => 427
+                            [responsable_type] => 
+                            [responsable_id] => 
+                            [value] => m@epic.gt
+                            [created_at] => 2025-09-15T22:15:57.000000Z
+                            [updated_at] => 2025-09-15T22:15:57.000000Z
+                            [actual_value] => m@epic.gt
+                        )
+
+                    [3] => Array
+                        (
+                            [uuid] => b87b6f32-038b-4068-9f58-e2ed543dd3a4
+                            [form_submission_id] => 1099
+                            [form_field_id] => 428
+                            [responsable_type] => 
+                            [responsable_id] => 
+                            [value] => 14155552671
+                            [created_at] => 2025-09-15T22:15:57.000000Z
+                            [updated_at] => 2025-09-15T22:15:57.000000Z
+                            [actual_value] => 14155552671
+                        )
+
+                    [4] => Array
+                        (
+                            [uuid] => 59009416-9a67-481e-a974-86078399ccb6
+                            [form_submission_id] => 1099
+                            [form_field_id] => 429
+                            [responsable_type] => form_field_choice
+                            [responsable_id] => 1385
+                            [value] => 
+                            [created_at] => 2025-09-15T22:15:57.000000Z
+                            [updated_at] => 2025-09-15T22:15:57.000000Z
+                            [actual_value] => Yes, directly exposed
+                            [responsable] => Array
+                                (
+                                    [uuid] => f7702dd9-8ef3-444c-b430-12180e064067
+                                    [form_field_id] => 429
+                                    [display_value] => Yes, directly exposed
+                                    [actual_value] => Yes, directly exposed
+                                    [is_accepted] => 1
+                                    [is_hidden] => 
+                                    [position] => 0
+                                    [created_at] => 2025-09-10T15:27:58.000000Z
+                                    [updated_at] => 2025-09-10T15:27:58.000000Z
+                                )
+
+                        )
+
+                    [5] => Array
+                        (
+                            [uuid] => 2d787dc3-6827-4654-bee0-accf816fc718
+                            [form_submission_id] => 1099
+                            [form_field_id] => 430
+                            [responsable_type] => form_field_choice
+                            [responsable_id] => 1388
+                            [value] => 
+                            [created_at] => 2025-09-15T22:15:57.000000Z
+                            [updated_at] => 2025-09-15T22:15:57.000000Z
+                            [actual_value] => Less than 1 year
+                            [responsable] => Array
+                                (
+                                    [uuid] => bcfcc6ae-e994-412d-a26f-6c1d16e7d9fb
+                                    [form_field_id] => 430
+                                    [display_value] => Less than 1 year
+                                    [actual_value] => Less than 1 year
+                                    [is_accepted] => 1
+                                    [is_hidden] => 
+                                    [position] => 0
+                                    [created_at] => 2025-09-10T15:27:58.000000Z
+                                    [updated_at] => 2025-09-10T15:27:58.000000Z
+                                )
+
+                        )
+
+                    [6] => Array
+                        (
+                            [uuid] => 274935d9-7364-4a17-84b4-01bc2027385f
+                            [form_submission_id] => 1099
+                            [form_field_id] => 431
+                            [responsable_type] => form_field_choice
+                            [responsable_id] => 1393
+                            [value] => 
+                            [created_at] => 2025-09-15T22:15:57.000000Z
+                            [updated_at] => 2025-09-15T22:15:57.000000Z
+                            [actual_value] => 2000
+                            [responsable] => Array
+                                (
+                                    [uuid] => 2f7ba506-4b77-4300-8e25-6bbbcdb65f00
+                                    [form_field_id] => 431
+                                    [display_value] => 2000
+                                    [actual_value] => 2000
+                                    [is_accepted] => 
+                                    [is_hidden] => 
+                                    [position] => 1
+                                    [created_at] => 2025-09-10T15:27:58.000000Z
+                                    [updated_at] => 2025-09-10T15:27:58.000000Z
+                                )
+
+                        )
+
+                    [7] => Array
+                        (
+                            [uuid] => 9bfe1f6c-670b-4593-b864-ad3e8b4d2a36
+                            [form_submission_id] => 1099
+                            [form_field_id] => 432
+                            [responsable_type] => form_field_choice
+                            [responsable_id] => 1419
+                            [value] => 
+                            [created_at] => 2025-09-15T22:15:57.000000Z
+                            [updated_at] => 2025-09-15T22:15:57.000000Z
+                            [actual_value] => 50-65
+                            [responsable] => Array
+                                (
+                                    [uuid] => 7501c79c-68fa-474d-a610-62c8bd7752e7
+                                    [form_field_id] => 432
+                                    [display_value] => 50-65
+                                    [actual_value] => 50-65
+                                    [is_accepted] => 1
+                                    [is_hidden] => 
+                                    [position] => 2
+                                    [created_at] => 2025-09-10T15:27:58.000000Z
+                                    [updated_at] => 2025-09-10T15:27:58.000000Z
+                                )
+
+                        )
+
+                    [8] => Array
+                        (
+                            [uuid] => 01067835-1e23-48ab-a074-f694ddb4c44b
+                            [form_submission_id] => 1099
+                            [form_field_id] => 433
+                            [responsable_type] => form_field_choice
+                            [responsable_id] => 1435
+                            [value] => 
+                            [created_at] => 2025-09-15T22:15:57.000000Z
+                            [updated_at] => 2025-09-15T22:15:57.000000Z
+                            [actual_value] => Anaplastic Large T/Null-Cell Lymphoma (T/N-ALCL)
+                            [responsable] => Array
+                                (
+                                    [uuid] => ebd5c7ba-8426-4d69-8a06-328cf0ac1f71
+                                    [form_field_id] => 433
+                                    [display_value] => Anaplastic Large T/Null-Cell Lymphoma (T/N-ALCL)
+                                    [actual_value] => Anaplastic Large T/Null-Cell Lymphoma (T/N-ALCL)
+                                    [is_accepted] => 
+                                    [is_hidden] => 
+                                    [position] => 13
+                                    [created_at] => 2025-09-10T15:27:59.000000Z
+                                    [updated_at] => 2025-09-10T15:27:59.000000Z
+                                )
+
+                        )
+
+                    [9] => Array
+                        (
+                            [uuid] => 91c85f08-8b19-4720-963b-aef789084c9c
+                            [form_submission_id] => 1099
+                            [form_field_id] => 434
+                            [responsable_type] => form_field_choice
+                            [responsable_id] => 1451
+                            [value] => 
+                            [created_at] => 2025-09-15T22:15:57.000000Z
+                            [updated_at] => 2025-09-15T22:15:57.000000Z
+                            [actual_value] => No
+                            [responsable] => Array
+                                (
+                                    [uuid] => 1721bcb8-0adb-43f6-b84b-9bc347f56f89
+                                    [form_field_id] => 434
+                                    [display_value] => No
+                                    [actual_value] => No
+                                    [is_accepted] => 1
+                                    [is_hidden] => 
+                                    [position] => 0
+                                    [created_at] => 2025-09-10T15:27:59.000000Z
+                                    [updated_at] => 2025-09-10T15:27:59.000000Z
+                                )
+
+                        )
+
+                    [10] => Array
+                        (
+                            [uuid] => 59968b35-c121-4807-a681-70c495d36e6c
+                            [form_submission_id] => 1099
+                            [form_field_id] => 435
+                            [responsable_type] => 
+                            [responsable_id] => 
+                            [value] => https://cert.trustedform.com/bb2509a89fbf2dc01fe247c4f69a3384336be9e0
+                            [created_at] => 2025-09-15T22:15:57.000000Z
+                            [updated_at] => 2025-09-15T22:15:57.000000Z
+                            [actual_value] => https://cert.trustedform.com/bb2509a89fbf2dc01fe247c4f69a3384336be9e0
+                        )
+
+                )
+
+        )
+
+)
+
+[2025-09-15 22:15:57] 🚫 Formulario roundup rechazado
+[2025-09-15 22:15:58] 🔍 PLUGIN CARGADO en página: /up-thankyou/

@@ -29,9 +29,10 @@ class MimerFormsVDI {
             "case-injury"                 => $fields['case_injury'],
             "case-description"            => $fields['case_description'],
             "case-attorney"               => $attorney,
-            "lead-trusted-form-cert-id"   => $trustedform,
+            "lead-trusted-form-url"   	  => $trustedform,
             "lead-ip-address"             => $_SERVER['REMOTE_ADDR'],
             "lead-zip-code"               => $zip_code,
+            "lead-state"               	  => $fields['lead_state'],
         ];
 
         $url = 'https://api.valuedirectinc.com/api/submissions?form=ir-lca-depo-post&team=vdi&user=ee5a1aba-6009-4d58-8a16-3810e2f777ad&signature=89a78284fe446f579d91ad0768e326e505f40a6bfa95ebf03c38f90eb110d453';

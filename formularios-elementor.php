@@ -68,6 +68,7 @@ function env_validate_phone_number($record, $ajax_handler) {
     $is_depo_form = false;
     $is_depo_v2_form = false;
     $is_roundup_form = false;
+    $is_roblox_form = false;
     
     // También obtener el ID del formulario si está disponible
     $form_id = $record->get('form_settings')['id'] ?? '';
@@ -85,6 +86,10 @@ function env_validate_phone_number($record, $ajax_handler) {
             }
             if (strpos($field['id'], 'case_exposed') !== false) {
                 $is_roundup_form = true;
+                break;
+            }
+            if (strpos($field['id'], 'case_abuse_type') !== false || strpos($field['id'], 'case_interaction') !== false) {
+                $is_roblox_form = true;
                 break;
             }
         }
@@ -121,6 +126,17 @@ function env_validate_phone_number($record, $ajax_handler) {
         $debug_log = "[" . date('Y-m-d H:i:s') . "] 🎯 Detectado formulario ROUNDUP - enviando...\n";
         file_put_contents(plugin_dir_path(__FILE__) . 'log.txt', $debug_log, FILE_APPEND);
         MimerFormsVDI::send_roundup_to_api($flat_fields);
+    } elseif ($is_roblox_form) {
+        $debug_log = "[" . date('Y-m-d H:i:s') . "] 🎯 Detectado formulario ROBLOX/ROUNDUP-TYPE - enviando...\n";
+        file_put_contents(plugin_dir_path(__FILE__) . 'log.txt', $debug_log, FILE_APPEND);
+
+        // Dump flat fields in test mode to inspect mapping
+        if (get_option('mimer_test_mode_enabled', 0)) {
+            $dump = "[" . date('Y-m-d H:i:s') . "] 🐛 FLAT_FIELDS DUMP: " . print_r($flat_fields, true) . "\n";
+            file_put_contents(plugin_dir_path(__FILE__) . 'log.txt', $dump, FILE_APPEND);
+        }
+
+        MimerFormsVDI::send_roblox_to_api($flat_fields);
     } else {
         $debug_log = "[" . date('Y-m-d H:i:s') . "] ❓ NO SE DETECTÓ TIPO DE FORMULARIO\n";
         file_put_contents(plugin_dir_path(__FILE__) . 'log.txt', $debug_log, FILE_APPEND);

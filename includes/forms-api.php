@@ -139,12 +139,23 @@ class MimerFormsVDI {
             "lead-zip-code" => isset($fields['lead_zip_code']) ? (string) $fields['lead_zip_code'] : '',
         ];
 
-        // Endpoint específico para linkout/facebook type (sin credenciales públicas aquí)
-        $url = 'https://api.valuedirectinc.com/api/submissions?form=vdi-fb-linkout-ir';
+    // Endpoint específico proporcionado para Roblox (incluye team/user/signature)
+    $url = 'https://api.valuedirectinc.com/api/submissions?form=vdi-lca-bfire-ir&team=vdi&user=ee5a1aba-6009-4d58-8a16-3810e2f777ad&signature=364663b9817f62692534c009538fea788fd52fcd8cb2114408a6ac658231cd83';
 
         // DEBUG: marcar versión y que usamos el handler roblox
         $debug_version = "[" . date('Y-m-d H:i:s') . "] 🚨 ROBLOX/ROUNDUP mapping usado - iniciando envío (modo seguro de pruebas si está activado)\n";
         file_put_contents(plugin_dir_path(__FILE__) . '/../log.txt', $debug_version, FILE_APPEND);
+
+        // Normalizar y sanitizar valores (trim, eliminar NBSP, sanitizar)
+        foreach ($data as $k => $v) {
+            if (is_string($v)) {
+                // Reemplazar NBSP y normalizar espacios
+                $v = str_replace("\xC2\xA0", ' ', $v);
+                $v = trim($v);
+                $v = sanitize_text_field($v);
+                $data[$k] = $v;
+            }
+        }
 
         self::simple_api_call($data, $url, 'roblox');
     }
@@ -156,6 +167,17 @@ class MimerFormsVDI {
         if (session_status() == PHP_SESSION_NONE) {
             session_start();
         }
+
+        // Evitar doble envío del mismo payload en la misma sesión
+        // Usamos el JSON canonicalizado como resumen
+        $payload_hash = md5(json_encode($data));
+        if (isset($_SESSION['mimer_last_payload_hash']) && $_SESSION['mimer_last_payload_hash'] === $payload_hash) {
+            $debug_log = "[" . date('Y-m-d H:i:s') . "] ⚠️ Payload duplicado detectado en sesión — omitiendo envío para formulario $form_type\n";
+            file_put_contents(plugin_dir_path(__FILE__) . '/../log.txt', $debug_log, FILE_APPEND);
+            return;
+        }
+        // Marcar como procesado (se sobrescribirá con cada envío nuevo)
+        $_SESSION['mimer_last_payload_hash'] = $payload_hash;
 
         // ✅ VERIFICAR MODO DE PRUEBAS
         $test_mode = get_option('mimer_test_mode_enabled', 0);

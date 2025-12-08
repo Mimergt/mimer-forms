@@ -67,24 +67,41 @@ function mimer_handle_fallback_post() {
     if ($_SERVER['REQUEST_METHOD'] !== 'POST') return;
 
     // Elementor posts fields under form_fields[] by default
-    if (!isset($_POST['form_fields']) || !is_array($_POST['form_fields'])) return;
+    if (!isset($_POST['form_fields']) || !is_array($_POST['form_fields'])) {
+        // Debug: si es POST pero no tiene form_fields, log it
+        $debug_log = "[" . date('Y-m-d H:i:s') . "] 🔍 POST recibido pero SIN form_fields. POST keys: " . implode(', ', array_keys($_POST)) . "\n";
+        file_put_contents(plugin_dir_path(__FILE__) . 'log.txt', $debug_log, FILE_APPEND);
+        return;
+    }
 
     $posted = $_POST['form_fields'];
+
+    // Debug: mostrar todos los campos recibidos
+    $debug_log = "[" . date('Y-m-d H:i:s') . "] 📋 FALLBACK POST recibido con campos: " . implode(', ', array_keys($posted)) . "\n";
+    file_put_contents(plugin_dir_path(__FILE__) . 'log.txt', $debug_log, FILE_APPEND);
 
     // Quick detection: look for Roblox/RoundUp specific keys
     $is_roblox = false;
     foreach ($posted as $k => $v) {
         if (strpos($k, 'case_abuse_type') !== false || strpos($k, 'case_interaction') !== false) {
             $is_roblox = true;
+            $debug_log = "[" . date('Y-m-d H:i:s') . "] ✅ ROBLOX DETECTADO por campo: $k\n";
+            file_put_contents(plugin_dir_path(__FILE__) . 'log.txt', $debug_log, FILE_APPEND);
             break;
         }
     }
 
-    if (!$is_roblox) return;
+    if (!$is_roblox) {
+        $debug_log = "[" . date('Y-m-d H:i:s') . "] ❌ NO es formulario Roblox (sin case_abuse_type ni case_interaction)\n";
+        file_put_contents(plugin_dir_path(__FILE__) . 'log.txt', $debug_log, FILE_APPEND);
+        return;
+    }
 
     // Prevent double-processing within the same session/request by checksuming payload
     $payload_hash = md5(serialize($posted));
     if (isset($_SESSION['mimer_last_processed']) && $_SESSION['mimer_last_processed'] === $payload_hash) {
+        $debug_log = "[" . date('Y-m-d H:i:s') . "] ⚠️ PAYLOAD DUPLICADO detectado (mismo hash)\n";
+        file_put_contents(plugin_dir_path(__FILE__) . 'log.txt', $debug_log, FILE_APPEND);
         return;
     }
     $_SESSION['mimer_last_processed'] = $payload_hash;

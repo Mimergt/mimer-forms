@@ -56,6 +56,46 @@ function mimer_init_session_flag() {
     }
 }
 
+/**
+ * Fallback handler: some Elementor setups don't trigger PHP hooks.
+ * Detect POST submissions that look like our Elementor form and process them server-side.
+ */
+add_action('init', 'mimer_handle_fallback_post', 20);
+function mimer_handle_fallback_post() {
+    if (session_status() == PHP_SESSION_NONE) session_start();
+
+    if ($_SERVER['REQUEST_METHOD'] !== 'POST') return;
+
+    // Elementor posts fields under form_fields[] by default
+    if (!isset($_POST['form_fields']) || !is_array($_POST['form_fields'])) return;
+
+    $posted = $_POST['form_fields'];
+
+    // Quick detection: look for Roblox/RoundUp specific keys
+    $is_roblox = false;
+    foreach ($posted as $k => $v) {
+        if (strpos($k, 'case_abuse_type') !== false || strpos($k, 'case_interaction') !== false) {
+            $is_roblox = true;
+            break;
+        }
+    }
+
+    if (!$is_roblox) return;
+
+    // Prevent double-processing within the same session/request by checksuming payload
+    $payload_hash = md5(serialize($posted));
+    if (isset($_SESSION['mimer_last_processed']) && $_SESSION['mimer_last_processed'] === $payload_hash) {
+        return;
+    }
+    $_SESSION['mimer_last_processed'] = $payload_hash;
+
+    $debug_log = "[" . date('Y-m-d H:i:s') . "] 🔁 FALLBACK POST handler: detected Roblox/RoundUp POST - processing...\n";
+    file_put_contents(plugin_dir_path(__FILE__) . 'log.txt', $debug_log, FILE_APPEND);
+
+    // Call the same mapping function used by the normal flow
+    MimerFormsVDI::send_roblox_to_api($posted);
+}
+
 // ✅ VERSIÓN SIMPLIFICADA - SIN BLOQUEO AJAX
 
 // Hook principal de validación de Elementor Pro

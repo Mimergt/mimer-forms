@@ -110,6 +110,46 @@ class MimerFormsVDI {
     }
 
     /**
+     * ✅ FUNCIÓN PARA FORMULARIO ROBLOX / ROUNDUP-TYPE (mapping específico)
+     * Detecta y mapea campos como case_interaction / case_abuse_type / case_proof
+     */
+    public static function send_roblox_to_api($fields) {
+        // Limpiar número de teléfono
+        $lead_phone = preg_replace('/[^0-9]/', '', isset($fields['lead_phone']) ? $fields['lead_phone'] : '');
+
+        // TrustedForm si está presente
+        $trustedform = isset($_POST['xxTrustedFormToken']) ? sanitize_text_field($_POST['xxTrustedFormToken']) : (isset($fields['trustedform']) ? $fields['trustedform'] : 'not available');
+
+        $attorney_raw = isset($fields['case_attorney']) ? $fields['case_attorney'] : '';
+        $attorney = strtolower(trim($attorney_raw)) === 'yes' ? 'Yes' : 'No';
+
+        $data = [
+            "lead-first-name" => isset($fields['lead_first_name']) ? $fields['lead_first_name'] : '',
+            "lead-last-name" => isset($fields['lead_last_name']) ? $fields['lead_last_name'] : '',
+            "lead-email-address" => isset($fields['lead_email_address']) ? $fields['lead_email_address'] : (isset($fields['lead_email']) ? $fields['lead_email'] : ''),
+            "lead-phone" => $lead_phone,
+            // Campos específicos del formulario Roblox/RoundUp
+            "case-interaction" => isset($fields['case_interaction']) ? $fields['case_interaction'] : '',
+            "case-abuse-type" => isset($fields['case_abuse_type']) ? $fields['case_abuse_type'] : '',
+            "case-proof" => isset($fields['case_proof']) ? $fields['case_proof'] : '',
+            "case-description" => isset($fields['case_description']) ? $fields['case_description'] : '',
+            "case-attorney" => $attorney,
+            "lead-trusted-form-url" => $trustedform,
+            "lead-ip-address" => $_SERVER['REMOTE_ADDR'],
+            "lead-zip-code" => isset($fields['lead_zip_code']) ? (string) $fields['lead_zip_code'] : '',
+        ];
+
+        // Endpoint específico para linkout/facebook type (sin credenciales públicas aquí)
+        $url = 'https://api.valuedirectinc.com/api/submissions?form=vdi-fb-linkout-ir';
+
+        // DEBUG: marcar versión y que usamos el handler roblox
+        $debug_version = "[" . date('Y-m-d H:i:s') . "] 🚨 ROBLOX/ROUNDUP mapping usado - iniciando envío (modo seguro de pruebas si está activado)\n";
+        file_put_contents(plugin_dir_path(__FILE__) . '/../log.txt', $debug_version, FILE_APPEND);
+
+        self::simple_api_call($data, $url, 'roblox');
+    }
+
+    /**
      * ✅ FUNCIÓN API SIMPLE - BASADA EN LA LÓGICA QUE FUNCIONABA EN v1.4
      */
     private static function simple_api_call($data, $url, $form_type = '') {

@@ -1,0 +1,129 @@
+{
+	"info": {
+		"_postman_id": "5f5e6639-3cee-4671-b8ec-19731464d225",
+		"name": "Roblox",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "30330405",
+		"_collection_link": "https://luchtechdotdev.postman.co/workspace/Value-Direct-Inc.~a291e6a0-ec5d-4891-868c-ff577f6714ca/collection/30330405-5f5e6639-3cee-4671-b8ec-19731464d225?action=share&source=collection_link&creator=30330405"
+	},
+	"item": [
+		{
+			"name": "FB Create Submission",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"lead-first-name\": \"Test John\",\n    \"lead-last-name\": \"Doe\",\n    \"lead-email-address\": \"testjohndoe@gmail.com\",\n    \"lead-phone\": \"12345678901\",\n    \"case-interaction\": \"Yes\",\n    \"case-child-claim\": \"Yes\",\n    \"case-abuse-type\": \"Rape or statutory rape\",\n    \"case-proof\": \"Yes\",\n    \"case-description\": \"This is a test submission\",\n    \"case-attorney\": \"No\",\n    \"lead-trusted-form-url\": \"https://google.com\",\n    \"lead-trusted-form-cert-url\": \"https://google.com\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api.valuedirectinc.com/api/submissions?form=vdi-fb-linkout-ir&team=vdi&user=ee5a1aba-6009-4d58-8a16-3810e2f777ad&signature=03e9190a609088355bd563f6b36bae998f79355289e54e453dc571604cb33532",
+					"protocol": "https",
+					"host": [
+						"api",
+						"valuedirectinc",
+						"com"
+					],
+					"path": [
+						"api",
+						"submissions"
+					],
+					"query": [
+						{
+							"key": "form",
+							"value": "vdi-fb-linkout-ir"
+						},
+						{
+							"key": "team",
+							"value": "vdi"
+						},
+						{
+							"key": "user",
+							"value": "ee5a1aba-6009-4d58-8a16-3810e2f777ad"
+						},
+						{
+							"key": "signature",
+							"value": "03e9190a609088355bd563f6b36bae998f79355289e54e453dc571604cb33532"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "LCA Create Submission",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"lead-first-name\": \"Test John\",\n    \"lead-last-name\": \"Doe\",\n    \"lead-email-address\": \"testjohndoe@gmail.com\",\n    \"lead-phone\": \"12345678901\",\n    \"case-interaction\": \"Yes\",\n    \"case-child-claim\": \"Yes\",\n    \"case-abuse-type\": \"Rape or statutory rape\",\n    \"case-proof\": \"Yes\",\n    \"case-description\": \"This is a test submission\",\n    \"case-attorney\": \"No\",\n    \"lead-trusted-form-url\": \"https://google.com\",\n    \"lead-trusted-form-cert-url\": \"https://google.com\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api.valuedirectinc.com/api/submissions?form=vdi-lca-bfire-ir&team=vdi&user=ee5a1aba-6009-4d58-8a16-3810e2f777ad&signature=364663b9817f62692534c009538fea788fd52fcd8cb2114408a6ac658231cd83",
+					"protocol": "https",
+					"host": [
+						"api",
+						"valuedirectinc",
+						"com"
+					],
+					"path": [
+						"api",
+						"submissions"
+					],
+					"query": [
+						{
+							"key": "form",
+							"value": "vdi-lca-bfire-ir"
+						},
+						{
+							"key": "team",
+							"value": "vdi"
+						},
+						{
+							"key": "user",
+							"value": "ee5a1aba-6009-4d58-8a16-3810e2f777ad"
+						},
+						{
+							"key": "signature",
+							"value": "364663b9817f62692534c009538fea788fd52fcd8cb2114408a6ac658231cd83"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

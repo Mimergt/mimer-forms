@@ -165,6 +165,14 @@ class MimerPhoneValidatorAdmin {
                     
                     $log_file = plugin_dir_path(__FILE__) . '/../log.txt';
                     if (file_exists($log_file)) {
+                        // Diagnostics: permissions and metadata
+                        $writable = is_writable($log_file) ? 'yes' : 'no';
+                        $size = filesize($log_file);
+                        $mtime = date('Y-m-d H:i:s', filemtime($log_file));
+                        $perms = substr(sprintf('%o', fileperms($log_file)), -4);
+                        echo '<div style="margin-bottom:10px; font-size:12px; color:#555">';
+                        echo '<strong>Log file diagnostics:</strong> writable: ' . $writable . ' • size: ' . $size . ' bytes • modified: ' . $mtime . ' • perms: ' . $perms . '</div>';
+                        
                         $logs = file_get_contents($log_file);
                         if (isset($_POST['clear_logs'])) {
                             file_put_contents($log_file, '');

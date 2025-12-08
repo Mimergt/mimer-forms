@@ -96,7 +96,7 @@ function env_validate_phone_number($record, $ajax_handler) {
     }
     
     // Si no es nuestro formulario, salir silenciosamente
-    if (!$is_depo_form && !$is_depo_v2_form && !$is_roundup_form) {
+    if (!$is_depo_form && !$is_depo_v2_form && !$is_roundup_form && !$is_roblox_form) {
         return;
     }
 

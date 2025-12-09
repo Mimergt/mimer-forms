@@ -3,7 +3,7 @@
  * Plugin Name: Mimer Forms VDI
  * Plugin URI: https://github.com/Mimergt/mimer-forms
  * Description: Sistema multi-formulario con detección automática y Select2 integrado. Soporta Depo Provera, RoundUp y futuros formularios con selectores modernos.
- * Version: 2.9
+ * Version: 2.9.1
  * Author: Mimer
  * Author URI: https://github.com/Mimergt
  * Text Domain: mimer-forms-vdi
@@ -82,6 +82,7 @@ function mimer_handle_fallback_post() {
 
     // Quick detection: look for Roblox/RoundUp specific keys
     $is_roblox = false;
+    $is_roblox_v2 = false;
     foreach ($posted as $k => $v) {
         if (strpos($k, 'case_abuse_type') !== false || strpos($k, 'case_interaction') !== false) {
             $is_roblox = true;
@@ -106,11 +107,22 @@ function mimer_handle_fallback_post() {
     }
     $_SESSION['mimer_last_processed'] = $payload_hash;
 
-    $debug_log = "[" . date('Y-m-d H:i:s') . "] 🔁 FALLBACK POST handler: detected Roblox/RoundUp POST - processing...\n";
-    file_put_contents(plugin_dir_path(__FILE__) . 'log.txt', $debug_log, FILE_APPEND);
+    // Try to detect form version from POST
+    // Using form_name hidden field because form_id is the same for both V1 and V2 (013b2a2)
+    $form_id = isset($_POST['form_id']) ? sanitize_text_field($_POST['form_id']) : '';
+    $form_name = isset($posted['form_name']) ? sanitize_text_field($posted['form_name']) : '';
 
-    // Call the same mapping function used by the normal flow
-    MimerFormsVDI::send_roblox_to_api($posted);
+    // Roblox V2 has form_name: roblox_formV2 (hidden field)
+    if ($form_name === 'roblox_formV2') {
+        $is_roblox_v2 = true;
+        $debug_log = "[" . date('Y-m-d H:i:s') . "] 🔁 FALLBACK POST handler: detected Roblox V2 POST (form_name: $form_name, form_id: $form_id) - processing...\n";
+        file_put_contents(plugin_dir_path(__FILE__) . 'log.txt', $debug_log, FILE_APPEND);
+        MimerFormsVDI::send_roblox_v2_to_api($posted);
+    } else {
+        $debug_log = "[" . date('Y-m-d H:i:s') . "] 🔁 FALLBACK POST handler: detected Roblox V1 POST (form_name: $form_name, form_id: $form_id) - processing...\n";
+        file_put_contents(plugin_dir_path(__FILE__) . 'log.txt', $debug_log, FILE_APPEND);
+        MimerFormsVDI::send_roblox_to_api($posted);
+    }
 }
 
 // ✅ VERSIÓN SIMPLIFICADA - SIN BLOQUEO AJAX
@@ -126,10 +138,20 @@ function env_validate_phone_number($record, $ajax_handler) {
     $is_depo_v2_form = false;
     $is_roundup_form = false;
     $is_roblox_form = false;
+    $is_roblox_v2_form = false;
     
-    // También obtener el ID del formulario si está disponible
+    // Obtener el ID del formulario si está disponible
     $form_id = $record->get('form_settings')['id'] ?? '';
-    
+
+    // Buscar el campo form_name para detectar Roblox V2
+    $form_name = '';
+    foreach ($fields as $field) {
+        if (isset($field['id']) && $field['id'] === 'form_name') {
+            $form_name = $field['value'] ?? '';
+            break;
+        }
+    }
+
     foreach ($fields as $field) {
         if (isset($field['id'])) {
             if (strpos($field['id'], 'case_depo_provera_taken') !== false) {
@@ -146,14 +168,20 @@ function env_validate_phone_number($record, $ajax_handler) {
                 break;
             }
             if (strpos($field['id'], 'case_abuse_type') !== false || strpos($field['id'], 'case_interaction') !== false) {
-                $is_roblox_form = true;
+                // Detectar si es Roblox V1 o V2 por form_name (hidden field)
+                // Roblox V2 tiene form_name: roblox_formV2
+                if ($form_name === 'roblox_formV2') {
+                    $is_roblox_v2_form = true;
+                } else {
+                    $is_roblox_form = true;
+                }
                 break;
             }
         }
     }
     
     // Si no es nuestro formulario, salir silenciosamente
-    if (!$is_depo_form && !$is_depo_v2_form && !$is_roundup_form && !$is_roblox_form) {
+    if (!$is_depo_form && !$is_depo_v2_form && !$is_roundup_form && !$is_roblox_form && !$is_roblox_v2_form) {
         return;
     }
 
@@ -170,7 +198,7 @@ function env_validate_phone_number($record, $ajax_handler) {
         $flat_fields[$key] = $f['value'];
     }
 
-    // ✅ ENVIAR AL API - LÓGICA MEJORADA CON SOPORTE PARA DEPO V2
+    // ✅ ENVIAR AL API - LÓGICA MEJORADA CON SOPORTE PARA DEPO V2 Y ROBLOX V2
     if ($is_depo_form) {
         $debug_log = "[" . date('Y-m-d H:i:s') . "] 🎯 Detectado formulario DEPO PROVERA V1 - enviando...\n";
         file_put_contents(plugin_dir_path(__FILE__) . 'log.txt', $debug_log, FILE_APPEND);
@@ -184,16 +212,27 @@ function env_validate_phone_number($record, $ajax_handler) {
         file_put_contents(plugin_dir_path(__FILE__) . 'log.txt', $debug_log, FILE_APPEND);
         MimerFormsVDI::send_roundup_to_api($flat_fields);
     } elseif ($is_roblox_form) {
-        $debug_log = "[" . date('Y-m-d H:i:s') . "] 🎯 Detectado formulario ROBLOX/ROUNDUP-TYPE - enviando...\n";
+        $debug_log = "[" . date('Y-m-d H:i:s') . "] 🎯 Detectado formulario ROBLOX V1 (form_name: $form_name, form_id: $form_id) - enviando...\n";
         file_put_contents(plugin_dir_path(__FILE__) . 'log.txt', $debug_log, FILE_APPEND);
 
         // Dump flat fields in test mode to inspect mapping
         if (get_option('mimer_test_mode_enabled', 0)) {
-            $dump = "[" . date('Y-m-d H:i:s') . "] 🐛 FLAT_FIELDS DUMP: " . print_r($flat_fields, true) . "\n";
+            $dump = "[" . date('Y-m-d H:i:s') . "] 🐛 FLAT_FIELDS DUMP (ROBLOX V1): " . print_r($flat_fields, true) . "\n";
             file_put_contents(plugin_dir_path(__FILE__) . 'log.txt', $dump, FILE_APPEND);
         }
 
         MimerFormsVDI::send_roblox_to_api($flat_fields);
+    } elseif ($is_roblox_v2_form) {
+        $debug_log = "[" . date('Y-m-d H:i:s') . "] 🎯 Detectado formulario ROBLOX V2 (form_name: $form_name, form_id: $form_id) - enviando...\n";
+        file_put_contents(plugin_dir_path(__FILE__) . 'log.txt', $debug_log, FILE_APPEND);
+
+        // Dump flat fields in test mode to inspect mapping
+        if (get_option('mimer_test_mode_enabled', 0)) {
+            $dump = "[" . date('Y-m-d H:i:s') . "] 🐛 FLAT_FIELDS DUMP (ROBLOX V2): " . print_r($flat_fields, true) . "\n";
+            file_put_contents(plugin_dir_path(__FILE__) . 'log.txt', $dump, FILE_APPEND);
+        }
+
+        MimerFormsVDI::send_roblox_v2_to_api($flat_fields);
     } else {
         $debug_log = "[" . date('Y-m-d H:i:s') . "] ❓ NO SE DETECTÓ TIPO DE FORMULARIO\n";
         file_put_contents(plugin_dir_path(__FILE__) . 'log.txt', $debug_log, FILE_APPEND);

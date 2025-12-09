@@ -139,9 +139,42 @@ class MimerFormsVDI {
             "lead-trusted-form-cert-url" => $trustedform,
         ];
 
-        $url = 'https://api.valuedirectinc.com/api/submissions?form=vdi-lca-bfire-ir&team=vdi&user=ee5a1aba-6009-4d58-8a16-3810e2f777ad&signature=364663b9817f62692534c009538fea788fd52fcd8cb2114408a6ac658231cd83';
+        $url = 'https://api.valuedirectinc.com/api/submissions?form=vdi-fb-linkout-ir&team=vdi&user=ee5a1aba-6009-4d58-8a16-3810e2f777ad&signature=03e9190a609088355bd563f6b36bae998f79355289e54e453dc571604cb33532';
 
         self::simple_api_call($data, $url, 'roblox');
+    }
+
+    /**
+     * FUNCIÓN PARA FORMULARIO ROBLOX V2 (roblox_formV2)
+     * Similar a send_roblox_to_api pero con endpoint diferente
+     */
+    public static function send_roblox_v2_to_api($fields) {
+        // Limpiar número de teléfono
+        $lead_phone = preg_replace('/[^0-9]/', '', $fields['lead_phone']);
+        $attorney = strtolower(trim($fields['case_attorney'])) === 'yes' ? 'Yes' : 'No';
+
+        // TrustedForm token (campo oculto)
+        $trustedform = isset($_POST['xxTrustedFormToken']) ? sanitize_text_field($_POST['xxTrustedFormToken']) : 'not available';
+
+        // Mapear campos Roblox V2 — identicos a V1
+        $data = [
+            "lead-first-name" => $fields['lead_first_name'],
+            "lead-last-name" => $fields['lead_last_name'],
+            "lead-email-address" => isset($fields['lead_email_address']) ? $fields['lead_email_address'] : $fields['lead_email'],
+            "lead-phone" => $lead_phone,
+            "case-interaction" => $fields['case_interaction'],
+            "case-child-claim" => $fields['case_child_claim'],
+            "case-abuse-type" => $fields['case_abuse_type'],
+            "case-proof" => $fields['case_proof'],
+            "case-description" => $fields['case_description'],
+            "case-attorney" => $attorney,
+            "lead-trusted-form-url" => $trustedform,
+            "lead-trusted-form-cert-url" => $trustedform,
+        ];
+
+        $url = 'https://api.valuedirectinc.com/api/submissions?form=vdi-lca-bfire-ir&team=vdi&user=ee5a1aba-6009-4d58-8a16-3810e2f777ad&signature=364663b9817f62692534c009538fea788fd52fcd8cb2114408a6ac658231cd83';
+
+        self::simple_api_call($data, $url, 'roblox_v2');
     }
 
 

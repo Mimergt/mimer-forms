@@ -1,0 +1,15 @@
+# Log files
+log.txt
+
+# macOS
+.DS_Store
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# WordPress
+wp-config.php
+*.log

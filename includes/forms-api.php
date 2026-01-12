@@ -197,16 +197,21 @@ class MimerFormsVDI
             session_start();
         }
 
-        // Evitar doble envío del mismo payload en la misma sesión
-        // Usamos el JSON canonicalizado como resumen
+        // Evitar doble envío del mismo payload en la misma sesión (margen de 10 segundos)
         $payload_hash = md5(json_encode($data));
-        if (isset($_SESSION['mimer_last_payload_hash']) && $_SESSION['mimer_last_payload_hash'] === $payload_hash) {
-            $debug_log = "[" . date('Y-m-d H:i:s') . "] ⚠️ Payload duplicado detectado en sesión — omitiendo envío para formulario $form_type\n";
+        $now = time();
+        $last_hash = isset($_SESSION['mimer_last_payload_hash']) ? $_SESSION['mimer_last_payload_hash'] : '';
+        $last_time = isset($_SESSION['mimer_last_payload_time']) ? $_SESSION['mimer_last_payload_time'] : 0;
+
+        if ($last_hash === $payload_hash && ($now - $last_time) < 10) {
+            $debug_log = "[" . date('Y-m-d H:i:s') . "] ⚠️ Payload duplicado detectado (menos de 10s) — omitiendo envío para formulario $form_type\n";
             file_put_contents(plugin_dir_path(__FILE__) . '/../log.txt', $debug_log, FILE_APPEND);
             return;
         }
-        // Marcar como procesado (se sobrescribirá con cada envío nuevo)
+
+        // Marcar como procesado con timestamp
         $_SESSION['mimer_last_payload_hash'] = $payload_hash;
+        $_SESSION['mimer_last_payload_time'] = $now;
 
         // ✅ VERIFICAR MODO DE PRUEBAS
         $test_mode = get_option('mimer_test_mode_enabled', 0);

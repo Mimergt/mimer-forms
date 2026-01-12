@@ -3,7 +3,7 @@
  * Plugin Name: Mimer Forms VDI
  * Plugin URI: https://github.com/Mimergt/mimer-forms
  * Description: Sistema multi-formulario con detección automática y Select2 integrado. Soporta Depo Provera, RoundUp y futuros formularios con selectores modernos.
- * Version: 2.9.2
+ * Version: 2.9.3
  * Author: Mimer
  * Author URI: https://github.com/Mimergt
  * Text Domain: mimer-forms-vdi
@@ -182,14 +182,12 @@ function env_validate_phone_number($record, $ajax_handler)
             }
             if (strpos($field['id'], 'case_abuse_type') !== false || strpos($field['id'], 'case_interaction') !== false) {
                 // Detectar si es Roblox V1 o V2
-                // Se verifica: campo oculto form_name, ID del formulario o Nombre del formulario en Elementor
-                // Como el usuario indicó que usa id="roblox_formV2" y name="Roblox-formV2", verificamos ambos
+                // PRIORIDAD ABSOLUTA: Si el ID de CSS o el Form ID es 'roblox_formV2'
                 if (
-                    $form_name_field === 'roblox_formV2' ||
-                    $form_name_field === 'Roblox-formV2' ||
                     $form_id_setting === 'roblox_formV2' ||
+                    $form_name_field === 'roblox_formV2' ||
                     $form_name_setting === 'Roblox-formV2' ||
-                    $form_name_setting === 'roblox_formV2' ||
+                    $form_name_field === 'Roblox-formV2' ||
                     $form_id_setting === '2b3ef9f'
                 ) {
                     $is_roblox_v2_form = true;

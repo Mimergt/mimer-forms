@@ -3,7 +3,7 @@
  * Plugin Name: Mimer Forms VDI
  * Plugin URI: https://github.com/Mimergt/mimer-forms
  * Description: Sistema multi-formulario con detección automática y Select2 integrado. Soporta Depo Provera, RoundUp y futuros formularios con selectores modernos.
- * Version: 2.9.1
+ * Version: 2.9.2
  * Author: Mimer
  * Author URI: https://github.com/Mimergt
  * Text Domain: mimer-forms-vdi
@@ -16,7 +16,8 @@
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
  */
 
-if (!defined('ABSPATH')) exit;
+if (!defined('ABSPATH'))
+    exit;
 
 // Incluir archivos necesarios
 require_once plugin_dir_path(__FILE__) . 'admin/back-end.php';
@@ -27,17 +28,18 @@ require_once plugin_dir_path(__FILE__) . 'includes/select2-handler.php';
 
 // ✅ SCRIPTS SIMPLIFICADOS - SIN INTERCEPTORES AJAX COMPLEJOS
 add_action('wp_enqueue_scripts', 'mimer_enqueue_custom_script');
-function mimer_enqueue_custom_script() {
+function mimer_enqueue_custom_script()
+{
     // Select2 CSS y JS desde CDN
     wp_enqueue_style('select2-css', 'https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css');
     wp_enqueue_script('select2-js', 'https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js', array('jquery'), null, true);
-    
+
     // Nuestro handler de Select2
     wp_enqueue_script('select2-handler', plugin_dir_url(__FILE__) . 'includes/select2-handler.php', array('jquery', 'select2-js'), '1.0.' . time(), true);
-    
+
     // Script de validaciones principales
     wp_enqueue_script('form-validation', plugin_dir_url(__FILE__) . 'includes/form-validation.js', array('jquery'), '2.6.simple.' . time(), true);
-    
+
     // Script principal básico
     wp_enqueue_script(
         'mimer-form-validation',
@@ -50,7 +52,8 @@ function mimer_enqueue_custom_script() {
 
 // Inicializar sesiones
 add_action('init', 'mimer_init_session_flag');
-function mimer_init_session_flag() {
+function mimer_init_session_flag()
+{
     if (session_status() == PHP_SESSION_NONE) {
         session_start();
     }
@@ -61,10 +64,13 @@ function mimer_init_session_flag() {
  * Detect POST submissions that look like our Elementor form and process them server-side.
  */
 add_action('init', 'mimer_handle_fallback_post', 20);
-function mimer_handle_fallback_post() {
-    if (session_status() == PHP_SESSION_NONE) session_start();
+function mimer_handle_fallback_post()
+{
+    if (session_status() == PHP_SESSION_NONE)
+        session_start();
 
-    if ($_SERVER['REQUEST_METHOD'] !== 'POST') return;
+    if ($_SERVER['REQUEST_METHOD'] !== 'POST')
+        return;
 
     // Elementor posts fields under form_fields[] by default
     if (!isset($_POST['form_fields']) || !is_array($_POST['form_fields'])) {
@@ -108,12 +114,16 @@ function mimer_handle_fallback_post() {
     $_SESSION['mimer_last_processed'] = $payload_hash;
 
     // Try to detect form version from POST
-    // Using form_name hidden field because form_id is the same for both V1 and V2 (013b2a2)
+    // Using form_name hidden field because form_id is the same for both V1 and V2 in some cases
     $form_id = isset($_POST['form_id']) ? sanitize_text_field($_POST['form_id']) : '';
     $form_name = isset($posted['form_name']) ? sanitize_text_field($posted['form_name']) : '';
 
-    // Roblox V2 has form_name: roblox_formV2 (hidden field)
-    if ($form_name === 'roblox_formV2') {
+    // Roblox V2 detection (check form_name or specific form_id hashes)
+    // We check for 'roblox_formV2' (ID) and 'Roblox-formV2' (Name) as requested
+    if (
+        $form_name === 'roblox_formV2' || $form_name === 'Roblox-formV2' ||
+        $form_id === 'roblox_formV2' || $form_id === '2b3ef9f'
+    ) {
         $is_roblox_v2 = true;
         $debug_log = "[" . date('Y-m-d H:i:s') . "] 🔁 FALLBACK POST handler: detected Roblox V2 POST (form_name: $form_name, form_id: $form_id) - processing...\n";
         file_put_contents(plugin_dir_path(__FILE__) . 'log.txt', $debug_log, FILE_APPEND);
@@ -130,7 +140,8 @@ function mimer_handle_fallback_post() {
 // Hook principal de validación de Elementor Pro
 add_action('elementor_pro/forms/validation', 'env_validate_phone_number', 10, 2);
 
-function env_validate_phone_number($record, $ajax_handler) {
+function env_validate_phone_number($record, $ajax_handler)
+{
     $fields = $record->get('fields');
 
     // ✅ DETECCIÓN MEJORADA: Verificar si es uno de nuestros formularios
@@ -139,15 +150,17 @@ function env_validate_phone_number($record, $ajax_handler) {
     $is_roundup_form = false;
     $is_roblox_form = false;
     $is_roblox_v2_form = false;
-    
-    // Obtener el ID del formulario si está disponible
-    $form_id = $record->get('form_settings')['id'] ?? '';
 
-    // Buscar el campo form_name para detectar Roblox V2
-    $form_name = '';
+    // Obtener el ID y nombre del formulario desde la configuración de Elementor
+    $form_settings = $record->get('form_settings');
+    $form_id_setting = $form_settings['id'] ?? '';
+    $form_name_setting = $form_settings['form_name'] ?? '';
+
+    // Buscar el campo form_name o form_id en los campos enviados para detectar versiones
+    $form_name_field = '';
     foreach ($fields as $field) {
-        if (isset($field['id']) && $field['id'] === 'form_name') {
-            $form_name = $field['value'] ?? '';
+        if (isset($field['id']) && ($field['id'] === 'form_name' || $field['id'] === 'form_id')) {
+            $form_name_field = $field['value'] ?? '';
             break;
         }
     }
@@ -156,7 +169,7 @@ function env_validate_phone_number($record, $ajax_handler) {
         if (isset($field['id'])) {
             if (strpos($field['id'], 'case_depo_provera_taken') !== false) {
                 // Verificar si es la versión V2 por el ID del formulario
-                if ($form_id === 'dp_formv2') {
+                if ($form_id_setting === 'dp_formv2' || $form_name_field === 'dp_formv2') {
                     $is_depo_v2_form = true;
                 } else {
                     $is_depo_form = true;
@@ -168,9 +181,17 @@ function env_validate_phone_number($record, $ajax_handler) {
                 break;
             }
             if (strpos($field['id'], 'case_abuse_type') !== false || strpos($field['id'], 'case_interaction') !== false) {
-                // Detectar si es Roblox V1 o V2 por form_name (hidden field)
-                // Roblox V2 tiene form_name: roblox_formV2
-                if ($form_name === 'roblox_formV2') {
+                // Detectar si es Roblox V1 o V2
+                // Se verifica: campo oculto form_name, ID del formulario o Nombre del formulario en Elementor
+                // Como el usuario indicó que usa id="roblox_formV2" y name="Roblox-formV2", verificamos ambos
+                if (
+                    $form_name_field === 'roblox_formV2' ||
+                    $form_name_field === 'Roblox-formV2' ||
+                    $form_id_setting === 'roblox_formV2' ||
+                    $form_name_setting === 'Roblox-formV2' ||
+                    $form_name_setting === 'roblox_formV2' ||
+                    $form_id_setting === '2b3ef9f'
+                ) {
                     $is_roblox_v2_form = true;
                 } else {
                     $is_roblox_form = true;
@@ -179,7 +200,7 @@ function env_validate_phone_number($record, $ajax_handler) {
             }
         }
     }
-    
+
     // Si no es nuestro formulario, salir silenciosamente
     if (!$is_depo_form && !$is_depo_v2_form && !$is_roundup_form && !$is_roblox_form && !$is_roblox_v2_form) {
         return;
@@ -187,7 +208,7 @@ function env_validate_phone_number($record, $ajax_handler) {
 
     // ✅ LÓGICA SIMPLE: Validar → Procesar → Enviar
     $validation_passed = MimerFormValidation::validate_form($fields, $ajax_handler);
-    
+
     if (!$validation_passed) {
         return; // Salir si hay errores de validación
     }
@@ -212,7 +233,7 @@ function env_validate_phone_number($record, $ajax_handler) {
         file_put_contents(plugin_dir_path(__FILE__) . 'log.txt', $debug_log, FILE_APPEND);
         MimerFormsVDI::send_roundup_to_api($flat_fields);
     } elseif ($is_roblox_form) {
-        $debug_log = "[" . date('Y-m-d H:i:s') . "] 🎯 Detectado formulario ROBLOX V1 (form_name: $form_name, form_id: $form_id) - enviando...\n";
+        $debug_log = "[" . date('Y-m-d H:i:s') . "] 🎯 Detectado formulario ROBLOX V1 (Name Setting: $form_name_setting, ID Setting: $form_id_setting, Field: $form_name_field) - enviando...\n";
         file_put_contents(plugin_dir_path(__FILE__) . 'log.txt', $debug_log, FILE_APPEND);
 
         // Dump flat fields in test mode to inspect mapping
@@ -223,7 +244,7 @@ function env_validate_phone_number($record, $ajax_handler) {
 
         MimerFormsVDI::send_roblox_to_api($flat_fields);
     } elseif ($is_roblox_v2_form) {
-        $debug_log = "[" . date('Y-m-d H:i:s') . "] 🎯 Detectado formulario ROBLOX V2 (form_name: $form_name, form_id: $form_id) - enviando...\n";
+        $debug_log = "[" . date('Y-m-d H:i:s') . "] 🎯 Detectado formulario ROBLOX V2 (Name Setting: $form_name_setting, ID Setting: $form_id_setting, Field: $form_name_field) - enviando...\n";
         file_put_contents(plugin_dir_path(__FILE__) . 'log.txt', $debug_log, FILE_APPEND);
 
         // Dump flat fields in test mode to inspect mapping
@@ -242,7 +263,7 @@ function env_validate_phone_number($record, $ajax_handler) {
 // ✅ VERSIÓN SIMPLIFICADA - SIN HOOKS ADICIONALES COMPLEJOS
 
 // � DEBUG: Log para verificar si el plugin se está cargando en thankyou pages
-add_action('wp_head', function() {
+add_action('wp_head', function () {
     if (strpos($_SERVER['REQUEST_URI'], 'thankyou') !== false || strpos($_SERVER['REQUEST_URI'], 'thank') !== false) {
         $debug_log = "[" . date('Y-m-d H:i:s') . "] 🔍 PLUGIN CARGADO en página: " . $_SERVER['REQUEST_URI'] . "\n";
         file_put_contents(plugin_dir_path(__FILE__) . 'log.txt', $debug_log, FILE_APPEND);
@@ -250,12 +271,15 @@ add_action('wp_head', function() {
 });
 
 // �📝 Shortcodes para mostrar datos del API (solo si redirecciones están activadas)
-function mimer_api_lead_id_shortcode() {
+function mimer_api_lead_id_shortcode()
+{
     try {
         $redirections_enabled = get_option('mimer_redirections_enabled', 1);
-        if (!$redirections_enabled) return '';
-        
-        if (session_status() == PHP_SESSION_NONE) session_start();
+        if (!$redirections_enabled)
+            return '';
+
+        if (session_status() == PHP_SESSION_NONE)
+            session_start();
         $val = isset($_SESSION['mimer_api_lead_id']) ? $_SESSION['mimer_api_lead_id'] : '';
         unset($_SESSION['mimer_api_lead_id']);
         return esc_html($val);
@@ -266,12 +290,15 @@ function mimer_api_lead_id_shortcode() {
 }
 add_shortcode('mimer_api_lead_id', 'mimer_api_lead_id_shortcode');
 
-function mimer_api_response_message_shortcode() {
+function mimer_api_response_message_shortcode()
+{
     try {
         $redirections_enabled = get_option('mimer_redirections_enabled', 1);
-        if (!$redirections_enabled) return '';
-        
-        if (session_status() == PHP_SESSION_NONE) session_start();
+        if (!$redirections_enabled)
+            return '';
+
+        if (session_status() == PHP_SESSION_NONE)
+            session_start();
         $val = isset($_SESSION['mimer_api_response_message']) ? $_SESSION['mimer_api_response_message'] : '';
         unset($_SESSION['mimer_api_response_message']);
         return esc_html($val);
@@ -282,12 +309,15 @@ function mimer_api_response_message_shortcode() {
 }
 add_shortcode('mimer_api_response_message', 'mimer_api_response_message_shortcode');
 
-function mimer_api_validation_errors_shortcode() {
+function mimer_api_validation_errors_shortcode()
+{
     try {
         $redirections_enabled = get_option('mimer_redirections_enabled', 1);
-        if (!$redirections_enabled) return '';
-        
-        if (session_status() == PHP_SESSION_NONE) session_start();
+        if (!$redirections_enabled)
+            return '';
+
+        if (session_status() == PHP_SESSION_NONE)
+            session_start();
         $val = isset($_SESSION['mimer_api_validation_errors']) ? $_SESSION['mimer_api_validation_errors'] : '';
         unset($_SESSION['mimer_api_validation_errors']);
         return esc_html($val);
@@ -298,12 +328,15 @@ function mimer_api_validation_errors_shortcode() {
 }
 add_shortcode('mimer_api_validation_errors', 'mimer_api_validation_errors_shortcode');
 
-function mimer_case_injury_shortcode() {
+function mimer_case_injury_shortcode()
+{
     try {
         $redirections_enabled = get_option('mimer_redirections_enabled', 1);
-        if (!$redirections_enabled) return '';
-        
-        if (session_status() == PHP_SESSION_NONE) session_start();
+        if (!$redirections_enabled)
+            return '';
+
+        if (session_status() == PHP_SESSION_NONE)
+            session_start();
         $val = isset($_SESSION['mimer_case_injury']) ? $_SESSION['mimer_case_injury'] : '';
         unset($_SESSION['mimer_case_injury']);
         return esc_html($val);
@@ -314,17 +347,20 @@ function mimer_case_injury_shortcode() {
 }
 add_shortcode('mimer_case_injury', 'mimer_case_injury_shortcode');
 
-function mimer_api_redirect_url_shortcode() {
+function mimer_api_redirect_url_shortcode()
+{
     try {
         // 🔒 VERIFICAR SI LAS REDIRECCIONES ESTÁN HABILITADAS
         $redirections_enabled = get_option('mimer_redirections_enabled', 1);
-        if (!$redirections_enabled) return '';
-        
-        if (session_status() == PHP_SESSION_NONE) session_start();
-        
+        if (!$redirections_enabled)
+            return '';
+
+        if (session_status() == PHP_SESSION_NONE)
+            session_start();
+
         // Obtener URL de redirección de múltiples fuentes
         $redirect_url = '';
-        
+
         // 1. Desde sesión (método preferido)
         if (isset($_SESSION['mimer_api_redirect_url'])) {
             $redirect_url = $_SESSION['mimer_api_redirect_url'];
@@ -338,11 +374,11 @@ function mimer_api_redirect_url_shortcode() {
         else if (isset($_SESSION['mimer_last_redirect_url'])) {
             $redirect_url = $_SESSION['mimer_last_redirect_url'];
         }
-        
+
         // ✅ SOLO MOSTRAR LA URL, NO REDIRIGIR AUTOMÁTICAMENTE
         // (Para redirección automática usar [mimer_auto_redirect])
         return esc_url($redirect_url);
-        
+
     } catch (Exception $e) {
         error_log('Mimer shortcode error: ' . $e->getMessage());
         return '';
@@ -351,26 +387,27 @@ function mimer_api_redirect_url_shortcode() {
 add_shortcode('mimer_api_redirect_url', 'mimer_api_redirect_url_shortcode');
 
 // ✅ SHORTCODE AUTO-REDIRECT QUE RESPETA CONFIGURACIÓN ADMIN
-function mimer_auto_redirect_shortcode($atts = []) {
+function mimer_auto_redirect_shortcode($atts = [])
+{
     // 🔒 VERIFICAR SI LAS REDIRECCIONES ESTÁN HABILITADAS
     $redirections_enabled = get_option('mimer_redirections_enabled', 1);
-    
+
     if (!$redirections_enabled) {
         // Si están desactivadas, no hacer nada (página normal)
         return '';
     }
-    
+
     if (session_status() == PHP_SESSION_NONE) {
         session_start();
     }
-    
+
     // Solo redirigir si hay URL en sesión
     $redirect_url = isset($_SESSION['mimer_api_redirect_url']) ? $_SESSION['mimer_api_redirect_url'] : '';
-    
+
     if (!empty($redirect_url)) {
         // Limpiar la sesión
         unset($_SESSION['mimer_api_redirect_url']);
-        
+
         return '<span id="redirect-message">You will be redirected in 3 seconds...</span>
         <script>
             let count = 3;
@@ -388,29 +425,30 @@ function mimer_auto_redirect_shortcode($atts = []) {
             }, 1000);
         </script>';
     }
-    
+
     // Si no hay URL, no mostrar nada (página normal)
     return '';
 }
 add_shortcode('mimer_auto_redirect', 'mimer_auto_redirect_shortcode');
 
 // 🔍 SHORTCODE DE DEBUGGING PARA TROUBLESHOOT
-function mimer_debug_shortcode($atts = []) {
+function mimer_debug_shortcode($atts = [])
+{
     $redirections_enabled = get_option('mimer_redirections_enabled', 1);
-    
+
     if (session_status() == PHP_SESSION_NONE) {
         session_start();
     }
-    
+
     $redirect_url = isset($_SESSION['mimer_api_redirect_url']) ? $_SESSION['mimer_api_redirect_url'] : '';
-    
+
     $debug_info = '<div style="background: #f9f9f9; padding: 15px; margin: 10px 0; border: 1px solid #ddd;">';
     $debug_info .= '<h4>🔍 Mimer Debug Info</h4>';
     $debug_info .= '<p><strong>Redirecciones habilitadas:</strong> ' . ($redirections_enabled ? '✅ SÍ' : '❌ NO') . '</p>';
     $debug_info .= '<p><strong>URL de redirección en sesión:</strong> ' . ($redirect_url ? $redirect_url : 'Ninguna') . '</p>';
     $debug_info .= '<p><strong>Shortcode funcionando:</strong> ✅ SÍ</p>';
     $debug_info .= '</div>';
-    
+
     return $debug_info;
 }
 add_shortcode('mimer_debug', 'mimer_debug_shortcode');

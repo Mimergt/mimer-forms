@@ -3,7 +3,7 @@
  * Plugin Name: Mimer Forms VDI
  * Plugin URI: https://github.com/Mimergt/mimer-forms
  * Description: Sistema multi-formulario con detección automática y Select2 integrado. Soporta Depo Provera, RoundUp y futuros formularios con selectores modernos.
- * Version: 2.9.3
+ * Version: 2.9.4
  * Author: Mimer
  * Author URI: https://github.com/Mimergt
  * Text Domain: mimer-forms-vdi
@@ -72,6 +72,12 @@ function mimer_handle_fallback_post()
     if ($_SERVER['REQUEST_METHOD'] !== 'POST')
         return;
 
+    // 🚨 PRIORIDAD: Si es un envío AJAX de Elementor Pro, salir.
+    // Dejamos que el hook oficial 'elementor_pro/forms/validation' se encargue.
+    if (isset($_POST['action']) && $_POST['action'] === 'elementor_pro_forms_send_form') {
+        return;
+    }
+
     // Elementor posts fields under form_fields[] by default
     if (!isset($_POST['form_fields']) || !is_array($_POST['form_fields'])) {
         // Debug: si es POST pero no tiene form_fields, log it
@@ -119,10 +125,11 @@ function mimer_handle_fallback_post()
     $form_name = isset($posted['form_name']) ? sanitize_text_field($posted['form_name']) : '';
 
     // Roblox V2 detection (check form_name or specific form_id hashes)
-    // We check for 'roblox_formV2' (ID) and 'Roblox-formV2' (Name) as requested
+    // We check for 'roblox_formV2' (ID) and 'Roblox-formV2' (Name)
     if (
         $form_name === 'roblox_formV2' || $form_name === 'Roblox-formV2' ||
-        $form_id === 'roblox_formV2' || $form_id === '2b3ef9f'
+        $form_id === 'roblox_formV2' || $form_id === 'Roblox-formV2' ||
+        $form_id === '2b3ef9f'
     ) {
         $is_roblox_v2 = true;
         $debug_log = "[" . date('Y-m-d H:i:s') . "] 🔁 FALLBACK POST handler: detected Roblox V2 POST (form_name: $form_name, form_id: $form_id) - processing...\n";

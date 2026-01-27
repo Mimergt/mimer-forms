@@ -195,6 +195,11 @@ class MimerFormsVDI
         // Limpiar número de teléfono
         $lead_phone = preg_replace('/[^0-9]/', '', $fields['lead_phone']);
 
+        // Corregir teléfono a 10 dígitos si tiene 11 y empieza con 1
+        if (strlen($lead_phone) === 11 && substr($lead_phone, 0, 1) === '1') {
+            $lead_phone = substr($lead_phone, 1);
+        }
+
         // Normalizar attorney (Yes/No)
         $attorney = strtolower(trim($fields['case_attorney'])) === 'yes' ? 'Yes' : 'No';
 

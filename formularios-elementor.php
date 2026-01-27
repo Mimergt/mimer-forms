@@ -3,7 +3,7 @@
  * Plugin Name: Mimer Forms VDI
  * Plugin URI: https://github.com/Mimergt/mimer-forms
  * Description: Sistema multi-formulario con detección automática y Select2 integrado. Soporta Depo Provera, RoundUp y futuros formularios con selectores modernos.
- * Version: 2.9.4
+ * Version: 3.0.0
  * Author: Mimer
  * Author URI: https://github.com/Mimergt
  * Text Domain: mimer-forms-vdi
@@ -157,6 +157,7 @@ function env_validate_phone_number($record, $ajax_handler)
     $is_roundup_form = false;
     $is_roblox_form = false;
     $is_roblox_v2_form = false;
+    $is_ssdi_form = false;
 
     // Obtener el ID y nombre del formulario desde la configuración de Elementor
     $form_settings = $record->get('form_settings');
@@ -174,6 +175,11 @@ function env_validate_phone_number($record, $ajax_handler)
 
     foreach ($fields as $field) {
         if (isset($field['id'])) {
+            // ✅ DETECCIÓN SSDI
+            if ($form_id_setting === 'ssdi_form' || $form_name_setting === 'ssdi-form' || strpos($field['id'], 'case_social_security_benefits') !== false) {
+                $is_ssdi_form = true;
+                break;
+            }
             if (strpos($field['id'], 'case_depo_provera_taken') !== false) {
                 // Verificar si es la versión V2 por el ID del formulario
                 if ($form_id_setting === 'dp_formv2' || $form_name_field === 'dp_formv2') {
@@ -207,7 +213,7 @@ function env_validate_phone_number($record, $ajax_handler)
     }
 
     // Si no es nuestro formulario, salir silenciosamente
-    if (!$is_depo_form && !$is_depo_v2_form && !$is_roundup_form && !$is_roblox_form && !$is_roblox_v2_form) {
+    if (!$is_depo_form && !$is_depo_v2_form && !$is_roundup_form && !$is_roblox_form && !$is_roblox_v2_form && !$is_ssdi_form) {
         return;
     }
 
@@ -225,7 +231,11 @@ function env_validate_phone_number($record, $ajax_handler)
     }
 
     // ✅ ENVIAR AL API - LÓGICA MEJORADA CON SOPORTE PARA DEPO V2 Y ROBLOX V2
-    if ($is_depo_form) {
+    if ($is_ssdi_form) {
+        $debug_log = "[" . date('Y-m-d H:i:s') . "] 🎯 Detectado formulario SSDI - enviando...\n";
+        file_put_contents(plugin_dir_path(__FILE__) . 'log.txt', $debug_log, FILE_APPEND);
+        MimerFormsVDI::send_ssdi_to_api($flat_fields);
+    } elseif ($is_depo_form) {
         $debug_log = "[" . date('Y-m-d H:i:s') . "] 🎯 Detectado formulario DEPO PROVERA V1 - enviando...\n";
         file_put_contents(plugin_dir_path(__FILE__) . 'log.txt', $debug_log, FILE_APPEND);
         MimerFormsVDI::send_depo_provera_to_api($flat_fields);

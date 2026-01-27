@@ -186,6 +186,45 @@ class MimerFormsVDI
         self::simple_api_call($data, $url, 'roblox_v2');
     }
 
+    /**
+     * ✅ FUNCIÓN PARA FORMULARIO SSDI
+     * Mapeo basado en Postman (LB_Ping_Post_Lead.postman_collection.json)
+     */
+    public static function send_ssdi_to_api($fields)
+    {
+        // Limpiar número de teléfono
+        $lead_phone = preg_replace('/[^0-9]/', '', $fields['lead_phone']);
+
+        // Normalizar attorney (Yes/No)
+        $attorney = strtolower(trim($fields['case_attorney'])) === 'yes' ? 'Yes' : 'No';
+
+        // TrustedForm token (campo oculto)
+        $trustedform = isset($_POST['xxTrustedFormToken']) ? sanitize_text_field($_POST['xxTrustedFormToken']) : 'not available';
+
+        // Mapear campos SSDI
+        $data = [
+            "lead-first-name" => $fields['lead_first_name'],
+            "lead-last-name" => $fields['lead_last_name'],
+            "lead-email-address" => isset($fields['lead_email_address']) ? $fields['lead_email_address'] : $fields['lead_email'],
+            "lead-phone" => $lead_phone,
+            "lead-state" => $fields['lead_state'],
+            "lead-zip-code" => isset($fields['lead_zip_code']) ? (string) $fields['lead_zip_code'] : '',
+            "lead-dob" => $fields['lead_dob'],
+            "lead-ip-address" => $_SERVER['REMOTE_ADDR'],
+            "case-disability-prevent-work" => $fields['case_disability_prevent_work'],
+            "case-social-security-benefits" => $fields['case_social_security_benefits'],
+            "case-out-of-work" => $fields['case_out_of_work'],
+            "case-attorney" => $attorney,
+            "case-notes" => isset($fields['case_notes']) ? $fields['case_notes'] : '',
+            "lead-trusted-form-url" => $trustedform
+        ];
+
+        // URL específica para SSDI (API v2)
+        $url = 'https://api.valuedirectinc.com/api/v2/submissions?form=legal-brand-marketing-form&team=vdi&user=ee5a1aba-6009-4d58-8a16-3810e2f777ad&signature=80523617858679a05848a0aa908972824241f5d5ecba454893d8b52843caee7a';
+
+        self::simple_api_call($data, $url, 'ssdi');
+    }
+
 
 
     /**

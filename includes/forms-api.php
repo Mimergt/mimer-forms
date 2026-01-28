@@ -209,6 +209,15 @@ class MimerFormsVDI
         // TrustedForm token (campo oculto)
         $trustedform = isset($_POST['xxTrustedFormToken']) ? sanitize_text_field($_POST['xxTrustedFormToken']) : 'not available';
 
+        // ✅ FILTRO CALIFORNIA: No enviar a API si el estado es California
+        $lead_state = isset($fields['lead_state']) ? trim($fields['lead_state']) : '';
+        if ($lead_state === 'California') {
+            $debug_log = "[" . date('Y-m-d H:i:s') . "] 🚫 SSDI BLOQUEADO: California no está permitido. Omitiendo envío al API.\n";
+            file_put_contents(plugin_dir_path(__FILE__) . '/../log.txt', $debug_log, FILE_APPEND);
+
+            return;
+        }
+
         // Mapear campos SSDI
         $data = [
             "lead-first-name" => $fields['lead_first_name'],

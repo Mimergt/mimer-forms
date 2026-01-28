@@ -146,7 +146,8 @@ class MimerFormsVDI
             "lead-state" => $fields['lead_state'],
         ];
 
-        $url = 'https://api.valuedirectinc.com/api/submissions?form=vdi-fb-linkout-ir&team=vdi&user=ee5a1aba-6009-4d58-8a16-3810e2f777ad&signature=03e9190a609088355bd563f6b36bae998f79355289e54e453dc571604cb33532';
+        //        $url = 'https://api.valuedirectinc.com/api/submissions?form=vdi-fb-linkout-ir&team=vdi&user=ee5a1aba-6009-4d58-8a16-3810e2f777ad&signature=03e9190a609088355bd563f6b36bae998f79355289e54e453dc571604cb33532';
+        $url = 'https://api.valuedirectinc.com/api/v2/submissions?form=vdi-fb-linkout-ir&team=vdi&user=ee5a1aba-6009-4d58-8a16-3810e2f777ad&signature=7b11a98d1bb370922928ea70c6061a6d552b2cdb11118e8da1e96556e254e112';
 
         self::simple_api_call($data, $url, 'roblox');
     }
@@ -181,7 +182,9 @@ class MimerFormsVDI
             "lead-state" => $fields['lead_state'],
         ];
 
-        $url = 'https://api.valuedirectinc.com/api/submissions?form=vdi-lca-bfire-ir&team=vdi&user=ee5a1aba-6009-4d58-8a16-3810e2f777ad&signature=364663b9817f62692534c009538fea788fd52fcd8cb2114408a6ac658231cd83';
+        //  $url = 'https://api.valuedirectinc.com/api/submissions?form=vdi-lca-bfire-ir&team=vdi&user=ee5a1aba-6009-4d58-8a16-3810e2f777ad&signature=364663b9817f62692534c009538fea788fd52fcd8cb2114408a6ac658231cd83';
+
+        $url = 'https://api.valuedirectinc.com/api/v2/submissions?form=vdi-lca-bfire-ir&team=vdi&user=ee5a1aba-6009-4d58-8a16-3810e2f777ad&signature=cb24a77bd11ef36b2df10ea2418ea071bca91ec92a4b1b4c109c210f7221cc0a';
 
         self::simple_api_call($data, $url, 'roblox_v2');
     }

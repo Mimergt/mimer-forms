@@ -158,6 +158,7 @@ function env_validate_phone_number($record, $ajax_handler)
     $is_roblox_form = false;
     $is_roblox_v2_form = false;
     $is_ssdi_form = false;
+    $is_mva_form = false;
 
     // Obtener el ID y nombre del formulario desde la configuración de Elementor
     $form_settings = $record->get('form_settings');
@@ -175,6 +176,11 @@ function env_validate_phone_number($record, $ajax_handler)
 
     foreach ($fields as $field) {
         if (isset($field['id'])) {
+            // ✅ DETECCIÓN MVA (Motor Vehicle Accident)
+            if ($form_id_setting === 'mva_form' || $form_name_setting === 'mva-form' || strpos($field['id'], 'case_accident_date') !== false) {
+                $is_mva_form = true;
+                break;
+            }
             // ✅ DETECCIÓN SSDI
             if ($form_id_setting === 'ssdi_form' || $form_name_setting === 'ssdi-form' || strpos($field['id'], 'case_social_security_benefits') !== false) {
                 $is_ssdi_form = true;
@@ -213,7 +219,7 @@ function env_validate_phone_number($record, $ajax_handler)
     }
 
     // Si no es nuestro formulario, salir silenciosamente
-    if (!$is_depo_form && !$is_depo_v2_form && !$is_roundup_form && !$is_roblox_form && !$is_roblox_v2_form && !$is_ssdi_form) {
+    if (!$is_depo_form && !$is_depo_v2_form && !$is_roundup_form && !$is_roblox_form && !$is_roblox_v2_form && !$is_ssdi_form && !$is_mva_form) {
         return;
     }
 
@@ -230,8 +236,12 @@ function env_validate_phone_number($record, $ajax_handler)
         $flat_fields[$key] = $f['value'];
     }
 
-    // ✅ ENVIAR AL API - LÓGICA MEJORADA CON SOPORTE PARA DEPO V2 Y ROBLOX V2
-    if ($is_ssdi_form) {
+    // ✅ ENVIAR AL API - LÓGICA MEJORADA CON SOPORTE PARA DEPO V2, ROBLOX V2 Y MVA
+    if ($is_mva_form) {
+        $debug_log = "[" . date('Y-m-d H:i:s') . "] 🎯 Detectado formulario MVA - enviando...\n";
+        file_put_contents(plugin_dir_path(__FILE__) . 'log.txt', $debug_log, FILE_APPEND);
+        MimerFormsVDI::send_mva_to_api($flat_fields);
+    } elseif ($is_ssdi_form) {
         $debug_log = "[" . date('Y-m-d H:i:s') . "] 🎯 Detectado formulario SSDI - enviando...\n";
         file_put_contents(plugin_dir_path(__FILE__) . 'log.txt', $debug_log, FILE_APPEND);
         MimerFormsVDI::send_ssdi_to_api($flat_fields);

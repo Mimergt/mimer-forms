@@ -245,6 +245,60 @@ class MimerFormsVDI
 
 
     /**
+     * ✅ FUNCIÓN PARA FORMULARIO MVA (Motor Vehicle Accident)
+     * Mapeo basado en Postman (LB-MVA.postman_collection.json)
+     */
+    public static function send_mva_to_api($fields)
+    {
+        // Limpiar número de teléfono
+        $lead_phone = preg_replace('/[^0-9]/', '', $fields['lead_phone']);
+
+        // Corregir teléfono a 10 dígitos si tiene 11 y empieza con 1
+        if (strlen($lead_phone) === 11 && substr($lead_phone, 0, 1) === '1') {
+            $lead_phone = substr($lead_phone, 1);
+        }
+
+        // Normalizar attorney (Yes/No)
+        $attorney = strtolower(trim($fields['case_attorney'])) === 'yes' ? 'Yes' : 'No';
+
+        // Normalizar at-fault (Yes/No)
+        $at_fault = strtolower(trim($fields['case_at_fault'])) === 'yes' ? 'Yes' : 'No';
+
+        // Normalizar physically-injured (Yes/No)
+        $physically_injured = strtolower(trim($fields['case_physically_injured'])) === 'yes' ? 'Yes' : 'No';
+
+        // Normalizar received-treatment (Yes/No)
+        $received_treatment = strtolower(trim($fields['case_received_treatment'])) === 'yes' ? 'Yes' : 'No';
+
+        // TrustedForm token (campo oculto)
+        $trustedform = isset($_POST['xxTrustedFormToken']) ? sanitize_text_field($_POST['xxTrustedFormToken']) : 'not available';
+
+        // Mapear campos MVA según la colección de Postman
+        $data = [
+            "lead-first-name" => $fields['lead_first_name'],
+            "lead-last-name" => $fields['lead_last_name'],
+            "lead-email-address" => isset($fields['lead_email_address']) ? $fields['lead_email_address'] : $fields['lead_email'],
+            "lead-phone" => $lead_phone,
+            "lead-state" => $fields['lead_state'],
+            "lead-zip-code" => isset($fields['lead_zip_code']) ? (string) $fields['lead_zip_code'] : '',
+            "lead-ip-address" => $_SERVER['REMOTE_ADDR'],
+            "case-physically-injured" => $physically_injured,
+            "case-accident-date" => $fields['case_accident_date'], // Formato MM/DD/YYYY
+            "case-received-treatment" => $received_treatment,
+            "case-at-fault" => $at_fault,
+            "case-attorney" => $attorney,
+            "case-notes" => isset($fields['case_notes']) ? $fields['case_notes'] : '',
+            "lead-trusted-form-url" => $trustedform
+        ];
+
+        // URL específica para MVA (API v2) - según Postman collection
+        $url = 'https://api.valuedirectinc.com/api/v2/submissions?form=lbm-mva&team=vdi&user=ee5a1aba-6009-4d58-8a16-3810e2f777ad&signature=59a9a1ccf0b363c4d2b69b93da44759b3fc74224877c75acb6930bde8d5a64e7';
+
+        self::simple_api_call($data, $url, 'mva');
+    }
+
+
+    /**
      * ✅ FUNCIÓN API SIMPLE - BASADA EN LA LÓGICA QUE FUNCIONABA EN v1.4
      */
     private static function simple_api_call($data, $url, $form_type = '')

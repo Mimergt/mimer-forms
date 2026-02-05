@@ -283,7 +283,7 @@ class MimerFormsVDI
             "lead-zip-code" => isset($fields['lead_zip_code']) ? (string) $fields['lead_zip_code'] : '',
             "lead-ip-address" => $_SERVER['REMOTE_ADDR'],
             "case-physically-injured" => $physically_injured,
-            "case-accident-date" => $fields['case_accident_date'], // Formato MM/DD/YYYY
+            "case-accident-date" => !empty($fields['case_accident_date']) ? date('m/d/Y', strtotime($fields['case_accident_date'])) : '', // Formato MM/DD/YYYY
             "case-received-treatment" => $received_treatment,
             "case-at-fault" => $at_fault,
             "case-attorney" => $attorney,
